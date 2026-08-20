@@ -138,27 +138,22 @@
             box-shadow: 0 12px 28px -6px rgba(225, 29, 72, 0.25), 0 8px 16px -4px rgba(0, 0, 0, 0.4);
         }
 
-        /* Clean Print Stylesheet with Landscape Support */
+        /* Clean Print Stylesheet: Dynamic Portrait (Daily) & Landscape (Monthly) */
         @media print {
-            @page { 
-                size: A4 landscape; 
-                margin: 4mm 5mm; 
-            }
             html, body { 
                 background: #ffffff !important; 
                 color: #000000 !important; 
                 padding: 0 !important; 
                 margin: 0 !important; 
-                font-size: 8px !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
-            .no-print, header, #toast-container, #status-picker-backdrop, #status-picker-popover { 
+            .no-print, header, #toast-container, #status-picker-backdrop, #status-picker-popover, #login-screen { 
                 display: none !important; 
             }
             .print-only { 
                 display: block !important; 
-                padding: 4px 0 6px 0 !important;
+                padding: 3px 0 5px 0 !important;
                 margin-bottom: 4px !important;
                 border-bottom: 1.5px solid #0f172a !important;
             }
@@ -181,32 +176,87 @@
             table { 
                 width: 100% !important; 
                 border-collapse: collapse !important; 
-                table-layout: fixed !important;
-                page-break-inside: auto !important;
+                page-break-inside: auto !important; 
             }
             tr { 
                 page-break-inside: avoid !important; 
                 page-break-after: auto !important; 
             }
-            th, td { 
-                border: 1px solid #94a3b8 !important; 
-                padding: 2.5px 1px !important; 
+
+            /* --- 1. DAILY ROSTER PRINT STYLES (PORTRAIT) --- */
+            body.print-mode-daily {
+                font-size: 9px !important;
+            }
+            body.print-mode-daily #view-daily-container {
+                display: block !important;
+            }
+            body.print-mode-daily #view-monthly-container {
+                display: none !important;
+            }
+            body.print-mode-daily table {
+                table-layout: auto !important;
+            }
+            body.print-mode-daily th, body.print-mode-daily td {
+                border: 1px solid #94a3b8 !important;
+                padding: 4.5px 4px !important;
+                color: #000000 !important;
+                font-size: 8.5px !important;
+            }
+            body.print-mode-daily th {
+                background-color: #f1f5f9 !important;
+                font-weight: 900 !important;
+                color: #0f172a !important;
+                text-align: center !important;
+            }
+            body.print-mode-daily .col-daily-sl { width: 28px !important; text-align: center !important; font-weight: 800 !important; }
+            body.print-mode-daily .col-daily-name { width: 130px !important; text-align: left !important; font-weight: 800 !important; }
+            body.print-mode-daily .col-daily-off { width: 65px !important; text-align: center !important; font-weight: 800 !important; }
+            body.print-mode-daily .col-daily-phone { width: 85px !important; text-align: center !important; font-mono: true; }
+            body.print-mode-daily .col-daily-join { width: 105px !important; text-align: center !important; }
+            body.print-mode-daily .col-daily-status { width: 95px !important; text-align: center !important; font-weight: 800 !important; }
+
+            /* Daily print status tags */
+            .print-status-tag {
+                display: inline-block !important;
+                padding: 2px 6px !important;
+                border-radius: 4px !important;
+                font-size: 8px !important;
+                font-weight: 900 !important;
+                border: 0.5px solid currentColor !important;
+                text-align: center !important;
+            }
+
+            /* --- 2. MONTHLY SHEET PRINT STYLES (LANDSCAPE) --- */
+            body.print-mode-monthly {
+                font-size: 8px !important;
+            }
+            body.print-mode-monthly #view-monthly-container {
+                display: block !important;
+            }
+            body.print-mode-monthly #view-daily-container {
+                display: none !important;
+            }
+            body.print-mode-monthly table {
+                table-layout: fixed !important;
+            }
+            body.print-mode-monthly th, body.print-mode-monthly td {
+                border: 1px solid #94a3b8 !important;
+                padding: 2.5px 1px !important;
                 color: #000000 !important;
                 text-align: center !important;
                 vertical-align: middle !important;
                 font-size: 7.5px !important;
             }
-            th { 
-                background-color: #f1f5f9 !important; 
+            body.print-mode-monthly th {
+                background-color: #f1f5f9 !important;
                 font-weight: 900 !important;
                 color: #0f172a !important;
             }
-            /* Specific Column Widths in Print */
-            .col-sl { width: 22px !important; font-size: 8px !important; }
-            .col-name { width: 110px !important; text-align: left !important; padding-left: 4px !important; font-weight: 800 !important; font-size: 8px !important; }
-            .col-off { width: 24px !important; font-weight: 800 !important; font-size: 7.5px !important; }
-            .col-day { width: 19px !important; }
-            .col-tot { width: 22px !important; font-weight: 900 !important; font-size: 8px !important; }
+            body.print-mode-monthly .col-sl { width: 22px !important; font-size: 8px !important; }
+            body.print-mode-monthly .col-name { width: 110px !important; text-align: left !important; padding-left: 4px !important; font-weight: 800 !important; font-size: 8px !important; }
+            body.print-mode-monthly .col-off { width: 24px !important; font-weight: 800 !important; font-size: 7.5px !important; }
+            body.print-mode-monthly .col-day { width: 19px !important; }
+            body.print-mode-monthly .col-tot { width: 22px !important; font-weight: 900 !important; font-size: 8px !important; }
 
             /* Print Badges */
             .status-badge {
@@ -218,6 +268,7 @@
             }
             .badge-p { background: #d1fae5 !important; color: #065f46 !important; border: 0.5px solid #10b981 !important; }
             .badge-off { background: #fef3c7 !important; color: #92400e !important; border: 0.5px solid #f59e0b !important; }
+            .badge-ex { background: #cffafe !important; color: #155e75 !important; border: 0.5px solid #06b6d4 !important; }
             .badge-a { background: #fee2e2 !important; color: #991b1b !important; border: 0.5px solid #ef4444 !important; }
             .badge-n { background: #e0e7ff !important; color: #3730a3 !important; border: 0.5px solid #6366f1 !important; }
             .badge-l { background: #f3e8ff !important; color: #6b21a8 !important; border: 0.5px solid #a855f7 !important; }
@@ -389,6 +440,13 @@
                         class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-bold rounded-xl bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 transition shadow-xs">
                     <i class="fa-solid fa-plane-departure text-purple-600 text-xs"></i>
                     <span>Approved Leave (<span id="active-leave-count">0</span>)</span>
+                </button>
+
+                <!-- Weekend Exchange Management Button -->
+                <button onclick="openExchangeModal()" 
+                        class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-bold rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 hover:bg-cyan-100 dark:hover:bg-cyan-900/60 transition shadow-xs">
+                    <i class="fa-solid fa-arrows-rotate text-cyan-600 dark:text-cyan-400 text-xs"></i>
+                    <span>Weekend Exchange (<span id="active-exchange-count">0</span>)</span>
                 </button>
 
                 <!-- Quick Unexcused Absent Alert Button -->
@@ -581,6 +639,7 @@
                         <option value="ALL">All Statuses</option>
                         <option value="Present">🟢 Present</option>
                         <option value="Weekly Off">🏖️ Weekly Off</option>
+                        <option value="Weekend Exchange">🔄 Weekend Exchange</option>
                         <option value="Absent">🔴 Absent</option>
                         <option value="Night Shift">🔵 Night Shift</option>
                         <option value="Leave">✈️ Approved Leave</option>
@@ -729,7 +788,7 @@
                 </div>
 
                 <!-- Single Mod Quick Metric Badges -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 pt-3 border-t border-slate-200/60 dark:border-slate-800">
                     <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                         <div class="text-xs font-black uppercase tracking-wider text-slate-400">Total Month Days</div>
                         <div id="single-mod-stat-days" class="text-2xl sm:text-3xl font-black font-mono text-slate-800 dark:text-white mt-1">31</div>
@@ -741,6 +800,10 @@
                     <div class="p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800">
                         <div class="text-xs font-black uppercase tracking-wider text-amber-600 dark:text-amber-400">Weekly Off</div>
                         <div id="single-mod-stat-off" class="text-2xl sm:text-3xl font-black font-mono text-amber-700 dark:text-amber-300 mt-1">5</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-cyan-50/70 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800">
+                        <div class="text-xs font-black uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Weekend Exchange</div>
+                        <div id="single-mod-stat-exchange" class="text-2xl sm:text-3xl font-black font-mono text-cyan-700 dark:text-cyan-300 mt-1">0</div>
                     </div>
                     <div class="p-3 rounded-xl bg-rose-50/70 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800">
                         <div class="text-xs font-black uppercase tracking-wider text-rose-600 dark:text-rose-400">Absences</div>
@@ -772,6 +835,7 @@
                     <div class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hidden sm:flex items-center gap-3">
                         <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> P = Present</span>
                         <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500"></span> OFF = Weekly Off</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-cyan-500"></span> EX = Exchange</span>
                         <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-500"></span> A = Absent</span>
                         <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-indigo-500"></span> N = Night</span>
                         <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-purple-500"></span> L = Leave</span>
@@ -1163,6 +1227,86 @@
         </div>
     </div>
 
+    <!-- WEEKEND EXCHANGE MANAGEMENT MODAL (SWAP OFF-DAY & DUTY) -->
+    <div id="weekend-exchange-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print">
+        <div class="relative w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6">
+            
+            <div class="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-800 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-cyan-50 dark:bg-cyan-950 text-cyan-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Weekend Exchange Management</h3>
+                        <p class="text-xs text-slate-400">Exchange scheduled weekly off with another working day</p>
+                    </div>
+                </div>
+                <button onclick="closeExchangeModal()" class="text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form onsubmit="handleExchangeSubmit(event)" class="space-y-3.5 mb-5">
+                <div>
+                    <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Select Moderator</label>
+                    <select id="exchange-mod-select" onchange="handleExchangeModSelectChange()" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold text-sm">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">
+                            Weekend Duty Date <span class="text-emerald-600 text-[11px] font-semibold">(Working Day)</span>
+                        </label>
+                        <input type="date" id="exchange-duty-date" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                        <div id="exchange-duty-day-label" class="text-[11px] font-bold text-slate-400 mt-1">Scheduled Off Duty</div>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">
+                            Exchange Off Date <span class="text-cyan-600 text-[11px] font-semibold">(Off Taken)</span>
+                        </label>
+                        <input type="date" id="exchange-off-date" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                        <div id="exchange-off-day-label" class="text-[11px] font-bold text-cyan-600 dark:text-cyan-400 mt-1">Replacement Off</div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Reason / Note</label>
+                    <input type="text" id="exchange-reason" placeholder="e.g. Covered Friday duty, taking Monday off" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-medium text-sm">
+                </div>
+
+                <div class="p-3 rounded-2xl bg-cyan-50/60 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800 text-xs text-cyan-900 dark:text-cyan-200 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-cyan-600 text-sm"></i>
+                    <span>Auto-actions: Weekend Duty Date will be set to <b>Present</b>, and Exchange Off Date will be marked as <b>Weekend Exchange</b>.</span>
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-sm flex items-center gap-2 shadow-md shadow-cyan-600/20 transition">
+                        <i class="fa-solid fa-arrows-rotate"></i> Record Weekend Exchange
+                    </button>
+                </div>
+            </form>
+
+            <!-- Active Weekend Exchanges List -->
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-3.5">
+                <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
+                    Recent Weekend Exchange Records
+                </h4>
+                <div id="exchange-records-list" class="max-h-44 overflow-y-auto space-y-2 pr-1">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-3 border-t border-slate-200 dark:border-slate-800 mt-4">
+                <button onclick="closeExchangeModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-sm font-bold">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- AUTOMATIC WHATSAPP ALERT MODAL FOR UNEXCUSED ABSENCE (FORMAL ENGLISH) -->
     <div id="absent-alert-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print">
         <div class="relative w-full max-w-lg rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6">
@@ -1288,10 +1432,11 @@
                     <select id="form-status" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold">
                         <option value="Present">🟢 Present</option>
                         <option value="Weekly Off">🏖️ Weekly Off</option>
+                        <option value="Weekend Exchange">🔄 Weekend Exchange</option>
                         <option value="Absent">🔴 Absent</option>
                         <option value="Night Shift">🔵 Night Shift</option>
                         <option value="Leave">✈️ Approved Leave</option>
-                        <option value="Outside Work">🟡 Outside Work</option>
+                        <option value="Outside Work">🟡 Outside Duty</option>
                     </select>
                 </div>
 
@@ -1334,6 +1479,11 @@
                     class="flex items-center gap-2.5 p-2.5 rounded-xl bg-amber-50 text-amber-800 hover:bg-amber-100 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 transition text-left">
                 <span class="w-6 h-6 rounded-md flex items-center justify-center bg-amber-500 text-white font-black text-[10px] shadow-xs">OFF</span>
                 <span>Weekly Off</span>
+            </button>
+            <button type="button" onclick="applyStatusChangeFromPicker('Weekend Exchange')" 
+                    class="col-span-2 flex items-center gap-2.5 p-2.5 rounded-xl bg-cyan-50 text-cyan-800 hover:bg-cyan-100 dark:bg-cyan-950/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60 transition text-left">
+                <span class="w-6 h-6 rounded-md flex items-center justify-center bg-cyan-600 text-white font-black text-[10px] shadow-xs">EX</span>
+                <span>🔄 Weekend Exchange</span>
             </button>
             <button type="button" onclick="applyStatusChangeFromPicker('Absent')" 
                     class="flex items-center gap-2.5 p-2.5 rounded-xl bg-rose-50 text-rose-800 hover:bg-rose-100 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60 transition text-left">
@@ -1390,9 +1540,10 @@
         ];
 
         let moderators = [];
-        let attendanceHistory = {}; // Format: { "YYYY-MM-DD": { [sl]: "Present" | "Weekly Off" | "Absent" | "Night Shift" | "Leave" } }
+        let attendanceHistory = {}; // Format: { "YYYY-MM-DD": { [sl]: "Present" | "Weekly Off" | "Weekend Exchange" | "Absent" | "Night Shift" | "Leave" } }
         let scheduledNightShifts = []; // Format: [ { id, modSl, modName, startDate, endDate } ]
         let approvedLeaves = []; // Format: [ { id, modSl, modName, startDate, endDate, approvedBy, reason } ]
+        let weekendExchanges = []; // Format: [ { id, modSl, modName, weekendDate, exchangeDate, note, createdAt } ]
 
         let currentActiveDate = ""; // e.g. "2026-08-20"
         let currentActiveMonth = ""; // e.g. "2026-08"
@@ -1893,6 +2044,11 @@
                 localStorage.setItem('sanveesApprovedLeaves_v8', JSON.stringify(approvedLeaves));
                 hasChanges = true;
             }
+            if (Array.isArray(data.weekendExchanges)) {
+                weekendExchanges = data.weekendExchanges;
+                localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
+                hasChanges = true;
+            }
 
             localStorage.setItem('sanvees_last_cloud_sync_time', Date.now().toString());
             updateFirebaseStatusUI('connected');
@@ -1923,6 +2079,7 @@
                     attendanceHistory: attendanceHistory,
                     scheduledNightShifts: scheduledNightShifts,
                     approvedLeaves: approvedLeaves,
+                    weekendExchanges: weekendExchanges,
                     lastUpdated: Date.now(),
                     updatedAtISO: new Date().toISOString(),
                     schemaVersion: "8.0"
@@ -2002,6 +2159,7 @@
             localStorage.setItem('sanveesAttendanceHistory_v8', JSON.stringify(attendanceHistory));
             localStorage.setItem('sanveesNightShifts_v8', JSON.stringify(scheduledNightShifts));
             localStorage.setItem('sanveesApprovedLeaves_v8', JSON.stringify(approvedLeaves));
+            localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
 
             // Automatically push to cloud if Firebase is connected
             if ((realtimeDb || firestoreDb) && !isRemoteUpdate && isAutoSyncEnabled()) {
@@ -2049,6 +2207,11 @@
             if (savedLeaves) {
                 try { approvedLeaves = JSON.parse(savedLeaves); } catch(e) { approvedLeaves = []; }
             } else { approvedLeaves = []; }
+
+            const savedExchanges = localStorage.getItem('sanveesWeekendExchanges_v8');
+            if (savedExchanges) {
+                try { weekendExchanges = JSON.parse(savedExchanges); } catch(e) { weekendExchanges = []; }
+            } else { weekendExchanges = []; }
 
             currentActiveDate = getTodayDateStr();
             currentActiveMonth = getCurrentMonthStr();
@@ -2113,6 +2276,7 @@
                 dailyContainer.classList.add('hidden');
                 renderMonthlyTable();
             }
+            applyPrintOrientationSettings();
         }
 
         // Date Navigation
@@ -2193,22 +2357,61 @@
             document.getElementById('theme-icon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-600';
         }
 
-        // Print Report
-        function handlePrintReport() {
+        function applyPrintOrientationSettings() {
+            let printStyle = document.getElementById('dynamic-print-orientation-style');
+            if (!printStyle) {
+                printStyle = document.createElement('style');
+                printStyle.id = 'dynamic-print-orientation-style';
+                document.head.appendChild(printStyle);
+            }
+
             const now = new Date();
             const timeStr = now.toLocaleTimeString();
 
             if (activeView === 'daily') {
-                document.getElementById('print-sheet-title').innerText = "Moderators Data";
-                document.getElementById('print-date-str').innerText = `${currentActiveDate} (${getDayNameForDate(currentActiveDate)})`;
+                // Daily View: A4 Portrait Mode
+                printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 8mm 6mm; } }`;
+                document.body.classList.add('print-mode-daily');
+                document.body.classList.remove('print-mode-monthly');
+
+                const titleEl = document.getElementById('print-sheet-title');
+                if (titleEl) titleEl.innerText = "Daily Duty Roster & Attendance Sheet";
+
+                const dateEl = document.getElementById('print-date-str');
+                if (dateEl) dateEl.innerText = `${currentActiveDate} (${getDayNameForDate(currentActiveDate)})`;
+
+                const modeEl = document.getElementById('print-mode-label');
+                if (modeEl) modeEl.innerText = "Portrait (Daily Duty Roster)";
             } else {
-                document.getElementById('print-sheet-title').innerText = `Moderator Monthly Attendance Sheet (${document.getElementById('monthly-sheet-label').innerText})`;
-                document.getElementById('print-date-str').innerText = currentActiveMonth;
+                // Monthly View: A4 Landscape Mode
+                printStyle.innerHTML = `@media print { @page { size: A4 landscape; margin: 4mm 5mm; } }`;
+                document.body.classList.add('print-mode-monthly');
+                document.body.classList.remove('print-mode-daily');
+
+                const titleEl = document.getElementById('print-sheet-title');
+                if (titleEl) titleEl.innerText = `Moderator Monthly Attendance Sheet (${document.getElementById('monthly-sheet-label')?.innerText || currentActiveMonth})`;
+
+                const dateEl = document.getElementById('print-date-str');
+                if (dateEl) dateEl.innerText = currentActiveMonth;
+
+                const modeEl = document.getElementById('print-mode-label');
+                if (modeEl) modeEl.innerText = "Landscape (Monthly Matrix)";
             }
 
-            document.getElementById('print-time-str').innerText = timeStr;
+            const timeEl = document.getElementById('print-time-str');
+            if (timeEl) timeEl.innerText = timeStr;
+        }
+
+        // Print Report
+        function handlePrintReport() {
+            applyPrintOrientationSettings();
             window.print();
         }
+
+        // Global beforeprint listener (Ctrl+P / Cmd+P)
+        window.addEventListener('beforeprint', () => {
+            applyPrintOrientationSettings();
+        });
 
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
@@ -2299,17 +2502,17 @@
 
                 tr.innerHTML = `
                     <!-- Continuous SL (01, 02, 03... up to filtered total) -->
-                    <td class="py-4 px-5 text-center font-mono font-black text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    <td class="col-daily-sl py-4 px-5 text-center font-mono font-black text-slate-600 dark:text-slate-400 text-sm sm:text-base">
                         ${String(renderIndex + 1).padStart(2, '0')}
                     </td>
 
                     <!-- Name & Info -->
-                    <td class="py-4 px-5">
+                    <td class="col-daily-name py-4 px-5">
                         <div class="flex items-center gap-3.5">
                             <div onclick="viewModeratorMonthly(${mod.sl})" 
                                  title="Click to view ${mod.name}'s Monthly Sheet"
-                                 class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white font-black text-sm flex items-center justify-center shadow-xs flex-shrink-0 cursor-pointer hover:scale-105 transition-transform">
-                                ${getInitials(mod.name)}
+                                 class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white font-black text-sm flex items-center justify-center shadow-xs flex-shrink-0 cursor-pointer hover:scale-105 transition-transform no-print">
+                                 ${getInitials(mod.name)}
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
@@ -2321,7 +2524,7 @@
                                         <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover/name:text-rose-500 opacity-60 group-hover/name:opacity-100 transition no-print"></i>
                                     </button>
                                     ${isUnexcusedAbsent ? `
-                                        <span class="px-2.5 py-0.5 rounded-md text-xs font-black bg-rose-600 text-white animate-pulse">
+                                        <span class="px-2.5 py-0.5 rounded-md text-xs font-black bg-rose-600 text-white animate-pulse no-print">
                                             ⚠️ Absent
                                         </span>
                                     ` : ''}
@@ -2331,14 +2534,14 @@
                     </td>
 
                     <!-- Weekly Off with Color Coding -->
-                    <td class="py-4 px-5 text-center">
+                    <td class="col-daily-off py-4 px-5 text-center">
                         <span class="px-4 py-1.5 rounded-xl font-extrabold text-sm sm:text-base border shadow-2xs ${weekendBadgeClass}">
                             ${mod.weekend}
                         </span>
                     </td>
 
                     <!-- Phone & 1-Click WhatsApp -->
-                    <td class="py-4 px-5">
+                    <td class="col-daily-phone py-4 px-5">
                         <div class="flex items-center gap-2.5 font-mono text-sm sm:text-base font-bold text-slate-800 dark:text-slate-200">
                             <span>${mod.phone}</span>
                             <button onclick="triggerDirectWhatsApp('${mod.phone}', '${mod.name}', ${isUnexcusedAbsent})" 
@@ -2350,7 +2553,7 @@
                     </td>
 
                     <!-- Joining Date & Service Tenure -->
-                    <td class="py-4 px-5 text-center">
+                    <td class="col-daily-join py-4 px-5 text-center">
                         <div class="font-mono text-slate-800 dark:text-slate-200 font-bold text-sm sm:text-base">
                             ${mod.join}
                         </div>
@@ -2361,11 +2564,12 @@
                     </td>
 
                     <!-- Attendance Selector for Selected Date -->
-                    <td class="py-4 px-5 text-center">
+                    <td class="col-daily-status py-4 px-5 text-center">
                         <select onchange="handleStatusSelect(${mod._originalIndex}, this.value)" 
-                                class="w-full max-w-[220px] px-4 py-2.5 rounded-xl text-sm sm:text-base font-black border outline-none cursor-pointer shadow-xs transition
+                                class="no-print w-full max-w-[220px] px-4 py-2.5 rounded-xl text-sm sm:text-base font-black border outline-none cursor-pointer shadow-xs transition
                                 ${currentStatus === 'Present' ? 'bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950 dark:text-emerald-300' : ''}
                                 ${currentStatus === 'Weekly Off' ? 'bg-amber-50 text-amber-800 border-amber-300 dark:bg-amber-950 dark:text-amber-300' : ''}
+                                ${currentStatus === 'Weekend Exchange' ? 'bg-cyan-50 text-cyan-800 border-cyan-300 dark:bg-cyan-950 dark:text-cyan-300' : ''}
                                 ${currentStatus === 'Absent' ? 'bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950 dark:text-rose-300' : ''}
                                 ${currentStatus === 'Night Shift' ? 'bg-indigo-50 text-indigo-700 border-indigo-300 dark:bg-indigo-950 dark:text-indigo-300' : ''}
                                 ${currentStatus === 'Leave' ? 'bg-purple-50 text-purple-700 border-purple-300 dark:bg-purple-950 dark:text-purple-300' : ''}
@@ -2373,11 +2577,17 @@
                                 ">
                             <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>🏖️ Weekly Off</option>
                             <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>🟢 Present</option>
+                            <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>🔄 Weekend Exchange</option>
                             <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent</option>
                             <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>🔵 Night Shift</option>
                             <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>✈️ Approved Leave</option>
                             <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>🟡 Outside Duty</option>
                         </select>
+                        <div class="print-only font-bold">
+                            <span class="print-status-tag ${currentStatus === 'Present' ? 'badge-p' : ''} ${currentStatus === 'Weekly Off' ? 'badge-off' : ''} ${currentStatus === 'Weekend Exchange' ? 'badge-ex' : ''} ${currentStatus === 'Absent' ? 'badge-a' : ''} ${currentStatus === 'Night Shift' ? 'badge-n' : ''} ${currentStatus === 'Leave' ? 'badge-l' : ''} ${currentStatus === 'Outside Work' ? 'badge-o' : ''}">
+                                ${currentStatus}
+                            </span>
+                        </div>
                     </td>
 
                     <!-- Actions -->
@@ -2440,8 +2650,12 @@
                 unexcusedBtn.classList.add('hidden');
             }
 
-            // Update Header Leave Badge Count
-            document.getElementById('active-leave-count').innerText = approvedLeaves.length;
+            // Update Header Leave & Exchange Badge Counts
+            const leaveBadgeEl = document.getElementById('active-leave-count');
+            if (leaveBadgeEl) leaveBadgeEl.innerText = approvedLeaves.length;
+
+            const exchangeBadgeEl = document.getElementById('active-exchange-count');
+            if (exchangeBadgeEl) exchangeBadgeEl.innerText = weekendExchanges.length;
         }
 
         // Status Update Trigger
@@ -2464,6 +2678,9 @@
                 openNightShiftModal(mod.sl);
             } else if (newStatus === 'Leave') {
                 openLeaveModal(mod.sl);
+            } else if (newStatus === 'Weekend Exchange') {
+                openExchangeModal(mod.sl, currentActiveDate);
+                showToast(`Weekend Exchange marked for ${mod.name}`);
             } else {
                 showToast(`Status updated to ${newStatus} for ${currentActiveDate}`);
             }
@@ -2730,6 +2947,192 @@
             }
         }
 
+        // ======================= WEEKEND EXCHANGE MANAGEMENT =======================
+        function openExchangeModal(preselectSl = null, customStartDate = null) {
+            const selectEl = document.getElementById('exchange-mod-select');
+            selectEl.innerHTML = '';
+            moderators.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m.sl;
+                opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
+                if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                selectEl.appendChild(opt);
+            });
+
+            handleExchangeModSelectChange(customStartDate);
+            renderExchangeList();
+            document.getElementById('weekend-exchange-modal').classList.remove('hidden');
+        }
+
+        function closeExchangeModal() {
+            document.getElementById('weekend-exchange-modal').classList.add('hidden');
+        }
+
+        function handleExchangeModSelectChange(preferredDate = null) {
+            const selectEl = document.getElementById('exchange-mod-select');
+            if (!selectEl) return;
+            const sl = parseInt(selectEl.value, 10);
+            const mod = moderators.find(m => m.sl === sl);
+            if (!mod) return;
+
+            const baseDate = preferredDate || currentActiveDate || getTodayDateStr();
+            const dutyDateInput = document.getElementById('exchange-duty-date');
+            const offDateInput = document.getElementById('exchange-off-date');
+
+            // Find nearest weekend date for this mod
+            const nearestWeekend = getNearestWeekendForModerator(mod, baseDate);
+            if (dutyDateInput) dutyDateInput.value = nearestWeekend;
+            if (offDateInput) offDateInput.value = baseDate !== nearestWeekend ? baseDate : getNextWeekday(baseDate);
+
+            updateExchangeDayLabels();
+
+            if (dutyDateInput) dutyDateInput.onchange = updateExchangeDayLabels;
+            if (offDateInput) offDateInput.onchange = updateExchangeDayLabels;
+        }
+
+        function getNearestWeekendForModerator(mod, fromDateStr) {
+            if (!mod || !mod.weekend || !fromDateStr) return fromDateStr;
+            const [y, m, d] = fromDateStr.split('-').map(Number);
+            const baseDate = new Date(y, m - 1, d);
+            const targetDay = mod.weekend.toLowerCase();
+
+            let bestDate = fromDateStr;
+            let minDiff = 999;
+            for (let i = -3; i <= 6; i++) {
+                const checkDate = new Date(baseDate);
+                checkDate.setDate(checkDate.getDate() + i);
+                const cy = checkDate.getFullYear();
+                const cm = String(checkDate.getMonth() + 1).padStart(2, '0');
+                const cd = String(checkDate.getDate()).padStart(2, '0');
+                const dateStr = `${cy}-${cm}-${cd}`;
+                const dayName = getDayNameForDate(dateStr);
+                if (dayName.toLowerCase() === targetDay) {
+                    const diff = Math.abs(i);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        bestDate = dateStr;
+                    }
+                }
+            }
+            return bestDate;
+        }
+
+        function getNextWeekday(fromDateStr) {
+            const [y, m, d] = fromDateStr.split('-').map(Number);
+            const baseDate = new Date(y, m - 1, d);
+            baseDate.setDate(baseDate.getDate() + 1);
+            const cy = baseDate.getFullYear();
+            const cm = String(baseDate.getMonth() + 1).padStart(2, '0');
+            const cd = String(baseDate.getDate()).padStart(2, '0');
+            return `${cy}-${cm}-${cd}`;
+        }
+
+        function updateExchangeDayLabels() {
+            const dutyInput = document.getElementById('exchange-duty-date');
+            const offInput = document.getElementById('exchange-off-date');
+            const dutyLabel = document.getElementById('exchange-duty-day-label');
+            const offLabel = document.getElementById('exchange-off-day-label');
+
+            if (dutyInput && dutyLabel && dutyInput.value) {
+                const dName = getDayNameForDate(dutyInput.value);
+                dutyLabel.innerText = `Duty: ${dutyInput.value} (${dName}) ➔ Set to Present`;
+            }
+            if (offInput && offLabel && offInput.value) {
+                const oName = getDayNameForDate(offInput.value);
+                offLabel.innerText = `Off: ${offInput.value} (${oName}) ➔ Set to Weekend Exchange`;
+            }
+        }
+
+        function handleExchangeSubmit(e) {
+            e.preventDefault();
+            const sl = parseInt(document.getElementById('exchange-mod-select').value, 10);
+            const mod = moderators.find(m => m.sl === sl);
+            if (!mod) return;
+
+            const dutyDate = document.getElementById('exchange-duty-date').value;
+            const offDate = document.getElementById('exchange-off-date').value;
+            const reason = document.getElementById('exchange-reason').value.trim() || `Weekend off swapped from ${dutyDate} to ${offDate}`;
+
+            if (dutyDate === offDate) {
+                alert('Duty Date and Off Date cannot be the same day!');
+                return;
+            }
+
+            // Set Duty Date to Present (covered weekend duty)
+            setModeratorStatusForDate(mod, dutyDate, 'Present');
+            // Set Off Date to Weekend Exchange (replacement off taken)
+            setModeratorStatusForDate(mod, offDate, 'Weekend Exchange');
+
+            // Save exchange record
+            const newRecord = {
+                id: Date.now(),
+                modSl: mod.sl,
+                modName: mod.name,
+                dutyDate,
+                offDate,
+                reason,
+                createdAt: new Date().toISOString()
+            };
+            weekendExchanges.unshift(newRecord);
+            saveToLocalStorage();
+
+            renderExchangeList();
+            renderDailyTable();
+            if (activeView === 'monthly') renderMonthlyTable();
+
+            showToast(`Weekend Exchange recorded for ${mod.name}`, 'success');
+        }
+
+        function renderExchangeList() {
+            const listEl = document.getElementById('exchange-records-list');
+            listEl.innerHTML = '';
+
+            if (weekendExchanges.length === 0) {
+                listEl.innerHTML = '<div class="text-xs text-slate-400 italic py-2">No weekend exchange records found.</div>';
+                return;
+            }
+
+            weekendExchanges.forEach((rec, idx) => {
+                const dutyDay = getDayNameForDate(rec.dutyDate);
+                const offDay = getDayNameForDate(rec.offDate);
+
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between p-2.5 rounded-xl bg-cyan-50/60 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800 text-xs';
+                div.innerHTML = `
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-extrabold text-slate-900 dark:text-white text-sm">${rec.modName}</span>
+                            <span class="px-2 py-0.5 rounded-md font-bold text-[10px] bg-cyan-100 text-cyan-900 dark:bg-cyan-900 dark:text-cyan-200">
+                                🔄 Weekend Swapped
+                            </span>
+                        </div>
+                        <div class="font-mono text-slate-600 dark:text-slate-300 mt-0.5">
+                            <b class="text-emerald-700 dark:text-emerald-300">Worked:</b> ${rec.dutyDate} (${dutyDay}) ➔ <b class="text-cyan-700 dark:text-cyan-300">Off:</b> ${rec.offDate} (${offDay})
+                        </div>
+                        <div class="text-slate-400 italic mt-0.5 text-[11px]">
+                            ${rec.reason}
+                        </div>
+                    </div>
+                    <button onclick="deleteExchangeRecord(${idx})" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950 transition" title="Remove Exchange">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+
+        function deleteExchangeRecord(idx) {
+            const rec = weekendExchanges[idx];
+            if (confirm(`Remove Weekend Exchange record for ${rec.modName}?`)) {
+                weekendExchanges.splice(idx, 1);
+                saveToLocalStorage();
+                renderExchangeList();
+                renderDailyTable();
+                if (activeView === 'monthly') renderMonthlyTable();
+                showToast('Weekend exchange record removed');
+            }
+        }
+
         // ======================= SINGLE MODERATOR & MONTHLY FILTERING =======================
         function viewModeratorMonthly(modSl) {
             selectedMonthlyModSl = String(modSl);
@@ -2786,7 +3189,7 @@
             let left = rect.left - 100;
 
             const popoverWidth = 288;
-            const popoverHeight = 240;
+            const popoverHeight = 290;
 
             if (left + popoverWidth > window.innerWidth - 12) {
                 left = window.innerWidth - popoverWidth - 12;
@@ -2916,7 +3319,7 @@
             let grandPresent = 0, grandOff = 0, grandAbsent = 0, grandNight = 0;
 
             displayMods.forEach((mod) => {
-                let modPresent = 0, modOff = 0, modAbsent = 0, modNight = 0, modLeave = 0, modOutside = 0;
+                let modPresent = 0, modOff = 0, modExchange = 0, modAbsent = 0, modNight = 0, modLeave = 0, modOutside = 0;
 
                 let rowHtml = `
                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
@@ -2949,6 +3352,9 @@
                     } else if (status === 'Weekly Off') {
                         modOff++;
                         badge = `<span class="status-badge status-badge-screen badge-off bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 text-[10px]">OFF</span>`;
+                    } else if (status === 'Weekend Exchange') {
+                        modExchange++;
+                        badge = `<span class="status-badge status-badge-screen badge-ex bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-300 font-extrabold text-[9.5px]">EX</span>`;
                     } else if (status === 'Absent') {
                         modAbsent++;
                         badge = `<span class="status-badge status-badge-screen badge-a bg-rose-600 text-white shadow-xs">A</span>`;
@@ -3039,6 +3445,9 @@
 
                     const offEl = document.getElementById('single-mod-stat-off');
                     if (offEl) offEl.innerText = modOff;
+
+                    const exchangeEl = document.getElementById('single-mod-stat-exchange');
+                    if (exchangeEl) exchangeEl.innerText = modExchange;
 
                     const absentEl = document.getElementById('single-mod-stat-absent');
                     if (absentEl) absentEl.innerText = modAbsent;
@@ -3254,21 +3663,22 @@
 
                 let csv = `data:text/csv;charset=utf-8,SL,Name,Off-Day`;
                 for (let d = 1; d <= daysInMonth; d++) csv += `,Day ${d}`;
-                csv += `,Total Present,Total Off,Total Absent,Total Night\n`;
+                csv += `,Total Present,Total Off,Total Exchange,Total Absent,Total Night\n`;
 
                 moderators.forEach(m => {
-                    let p = 0, o = 0, a = 0, n = 0;
+                    let p = 0, o = 0, ex = 0, a = 0, n = 0;
                     csv += `${m.sl},"${m.name}","${m.weekend}"`;
                     for (let d = 1; d <= daysInMonth; d++) {
                         const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
                         const status = getModeratorStatusForDate(m, dateStr);
                         if (status === 'Present') p++;
                         else if (status === 'Weekly Off') o++;
+                        else if (status === 'Weekend Exchange') ex++;
                         else if (status === 'Absent') a++;
                         else if (status === 'Night Shift') n++;
                         csv += `,"${status}"`;
                     }
-                    csv += `,${p},${o},${a},${n}\n`;
+                    csv += `,${p},${o},${ex},${a},${n}\n`;
                 });
                 downloadCSV(csv, `Sanvees_Monthly_Report_${currentActiveMonth}.csv`);
             }
@@ -3502,6 +3912,7 @@
             updateDateUI();
             document.getElementById('selected-month-picker').value = currentActiveMonth;
             renderDailyTable();
+            applyPrintOrientationSettings();
             checkAuthStatus();
         });
     </script>
