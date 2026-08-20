@@ -155,10 +155,8 @@
                 padding: 0 !important; 
                 margin: 0 !important;
                 width: 100% !important;
-                height: 100% !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
-                overflow: hidden !important;
             }
             #main-app-wrapper {
                 padding: 0 !important;
@@ -2563,9 +2561,28 @@
             const now = new Date();
             const timeStr = now.toLocaleTimeString();
 
+            // Calculate active rows dynamically
+            let currentModCount = moderators.length;
+            if (activeView === 'monthly' && selectedMonthlyModSl !== 'ALL') {
+                currentModCount = 1;
+            } else if (activeView === 'daily') {
+                const filterRole = document.getElementById('filter-role-select')?.value || 'ALL';
+                const filterStatus = document.getElementById('filter-status-select')?.value || 'ALL';
+                const searchQ = document.getElementById('search-moderator-input')?.value?.trim().toLowerCase() || '';
+                
+                let count = 0;
+                moderators.forEach(m => {
+                    const status = getModeratorStatusForDate(m, currentActiveDate);
+                    const matchRole = filterRole === 'ALL' || m.weekend === filterRole;
+                    const matchStatus = filterStatus === 'ALL' || status === filterStatus;
+                    const matchSearch = !searchQ || m.name.toLowerCase().includes(searchQ) || m.phone.includes(searchQ);
+                    if (matchRole && matchStatus && matchSearch) count++;
+                });
+                currentModCount = Math.max(1, count);
+            }
+
             if (activeView === 'daily') {
-                // Daily View: A4 Portrait Mode
-                printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 4mm 5mm; } }`;
+                // ================= DAILY VIEW: A4 PORTRAIT DYNAMIC SCALING =================
                 document.body.classList.add('print-mode-daily');
                 document.body.classList.remove('print-mode-monthly');
 
@@ -2577,9 +2594,61 @@
 
                 const modeEl = document.getElementById('print-mode-label');
                 if (modeEl) modeEl.innerText = "Portrait (Daily Duty Roster)";
+
+                // Dynamic height calculation: Total printable height ~250mm (approx 940px)
+                const rawRowHeight = Math.floor(920 / Math.max(1, currentModCount));
+                const rowHeight = Math.max(18, Math.min(42, rawRowHeight));
+                const cellPaddingV = Math.max(1.5, Math.min(6, (rowHeight - 14) / 2));
+                const fontSizeMain = Math.max(7.5, Math.min(10.5, 7 + rowHeight * 0.08));
+                const fontSizeSub = Math.max(6.5, Math.min(8.5, fontSizeMain - 1.5));
+
+                printStyle.innerHTML = `
+                    @media print {
+                        @page { 
+                            size: A4 portrait; 
+                            margin: 4mm 5mm; 
+                        }
+                        body.print-mode-daily {
+                            font-size: ${fontSizeMain}px !important;
+                        }
+                        body.print-mode-daily th {
+                            padding: ${Math.max(2.5, cellPaddingV + 0.5)}px 2px !important;
+                            font-size: ${fontSizeMain}px !important;
+                        }
+                        body.print-mode-daily td {
+                            padding: ${cellPaddingV}px 2.5px !important;
+                            font-size: ${fontSizeMain}px !important;
+                            height: ${rowHeight}px !important;
+                        }
+                        body.print-mode-daily .col-daily-sl {
+                            font-size: ${fontSizeMain}px !important;
+                        }
+                        body.print-mode-daily .col-daily-name button,
+                        body.print-mode-daily .col-daily-name span {
+                            font-size: ${fontSizeMain + 0.5}px !important;
+                        }
+                        body.print-mode-daily .col-daily-off span {
+                            font-size: ${fontSizeSub}px !important;
+                            padding: ${Math.max(0.5, cellPaddingV * 0.3)}px 4px !important;
+                        }
+                        body.print-mode-daily .col-daily-phone {
+                            font-size: ${fontSizeMain}px !important;
+                        }
+                        body.print-mode-daily .col-daily-join div:first-child {
+                            font-size: ${fontSizeSub}px !important;
+                        }
+                        body.print-mode-daily .col-daily-join div + div {
+                            font-size: ${fontSizeSub - 0.5}px !important;
+                            padding: 0.5px 3px !important;
+                        }
+                        body.print-mode-daily .print-status-tag {
+                            font-size: ${fontSizeSub}px !important;
+                            padding: ${Math.max(1, cellPaddingV * 0.4)}px 5px !important;
+                        }
+                    }
+                `;
             } else {
-                // Monthly View: A4 Landscape Mode
-                printStyle.innerHTML = `@media print { @page { size: A4 landscape; margin: 3mm 4mm; } }`;
+                // ================= MONTHLY VIEW: A4 LANDSCAPE DYNAMIC SCALING =================
                 document.body.classList.add('print-mode-monthly');
                 document.body.classList.remove('print-mode-daily');
 
@@ -2591,6 +2660,65 @@
 
                 const modeEl = document.getElementById('print-mode-label');
                 if (modeEl) modeEl.innerText = "Landscape (Monthly Matrix)";
+
+                // Total printable height in A4 Landscape (210mm) ~175mm (approx 660px)
+                const rawRowHeight = Math.floor(630 / Math.max(1, currentModCount));
+                const rowHeight = Math.max(12, Math.min(30, rawRowHeight));
+                const cellPaddingV = Math.max(0.5, Math.min(4.5, (rowHeight - 15) / 2));
+                const badgeSize = Math.max(11, Math.min(18, rowHeight - 4));
+                const badgeFontSize = Math.max(5.5, Math.min(8.5, badgeSize * 0.48));
+                const textFontSize = Math.max(6.5, Math.min(9.5, 6 + rowHeight * 0.12));
+
+                printStyle.innerHTML = `
+                    @media print {
+                        @page { 
+                            size: A4 landscape; 
+                            margin: 3mm 4mm; 
+                        }
+                        body.print-mode-monthly {
+                            font-size: ${textFontSize}px !important;
+                        }
+                        body.print-mode-monthly th {
+                            padding: ${Math.max(2, cellPaddingV + 1)}px 0.5px !important;
+                            font-size: ${textFontSize}px !important;
+                        }
+                        body.print-mode-monthly th .text-xs {
+                            font-size: ${textFontSize}px !important;
+                        }
+                        body.print-mode-monthly th .text-[9px] {
+                            font-size: ${Math.max(5, textFontSize - 2)}px !important;
+                        }
+                        body.print-mode-monthly td {
+                            padding: ${cellPaddingV}px 0.5px !important;
+                            height: ${rowHeight}px !important;
+                            font-size: ${textFontSize}px !important;
+                        }
+                        body.print-mode-monthly .col-sl {
+                            font-size: ${textFontSize}px !important;
+                        }
+                        body.print-mode-monthly .col-name {
+                            font-size: ${textFontSize + 0.5}px !important;
+                        }
+                        body.print-mode-monthly .col-name button,
+                        body.print-mode-monthly .col-name span {
+                            font-size: ${textFontSize + 0.5}px !important;
+                        }
+                        body.print-mode-monthly .col-off {
+                            font-size: ${textFontSize}px !important;
+                        }
+                        body.print-mode-monthly .col-tot {
+                            font-size: ${textFontSize + 0.5}px !important;
+                        }
+                        .status-badge {
+                            width: ${badgeSize}px !important;
+                            height: ${badgeSize}px !important;
+                            min-width: ${badgeSize}px !important;
+                            font-size: ${badgeFontSize}px !important;
+                            line-height: ${badgeSize}px !important;
+                            border-radius: ${Math.max(2, badgeSize * 0.18)}px !important;
+                        }
+                    }
+                `;
             }
 
             const timeEl = document.getElementById('print-time-str');
