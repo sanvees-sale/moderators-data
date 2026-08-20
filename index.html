@@ -2566,9 +2566,9 @@
             if (activeView === 'monthly' && selectedMonthlyModSl !== 'ALL') {
                 currentModCount = 1;
             } else if (activeView === 'daily') {
-                const filterRole = document.getElementById('filter-role-select')?.value || 'ALL';
+                const filterRole = document.getElementById('filter-weekend-select')?.value || 'ALL';
                 const filterStatus = document.getElementById('filter-status-select')?.value || 'ALL';
-                const searchQ = document.getElementById('search-moderator-input')?.value?.trim().toLowerCase() || '';
+                const searchQ = document.getElementById('search-input')?.value?.trim().toLowerCase() || '';
                 
                 let count = 0;
                 moderators.forEach(m => {
@@ -2582,7 +2582,7 @@
             }
 
             if (activeView === 'daily') {
-                // ================= DAILY VIEW: A4 PORTRAIT DYNAMIC SCALING =================
+                // ================= DAILY VIEW: A4 PORTRAIT DYNAMIC SCALING (GUARANTEED 1-PAGE) =================
                 document.body.classList.add('print-mode-daily');
                 document.body.classList.remove('print-mode-monthly');
 
@@ -2595,12 +2595,13 @@
                 const modeEl = document.getElementById('print-mode-label');
                 if (modeEl) modeEl.innerText = "Portrait (Daily Duty Roster)";
 
-                // Dynamic height calculation: Total printable height ~250mm (approx 940px)
-                const rawRowHeight = Math.floor(920 / Math.max(1, currentModCount));
-                const rowHeight = Math.max(18, Math.min(42, rawRowHeight));
-                const cellPaddingV = Math.max(1.5, Math.min(6, (rowHeight - 14) / 2));
-                const fontSizeMain = Math.max(7.5, Math.min(10.5, 7 + rowHeight * 0.08));
-                const fontSizeSub = Math.max(6.5, Math.min(8.5, fontSizeMain - 1.5));
+                // Safe Portrait Body Budget: 650px total for rows (guarantees strictly 1 page in Chrome A4 print)
+                const targetBodyHeight = 650;
+                const rawRowHeight = Math.floor(targetBodyHeight / Math.max(1, currentModCount));
+                const rowHeight = Math.max(16, Math.min(32, rawRowHeight));
+                const cellPaddingV = Math.max(1, Math.min(3, (rowHeight - 16) / 2));
+                const fontSizeMain = Math.max(7, Math.min(9.2, 6.5 + rowHeight * 0.08));
+                const fontSizeSub = Math.max(5.5, Math.min(7.5, fontSizeMain - 1.2));
 
                 printStyle.innerHTML = `
                     @media print {
@@ -2612,38 +2613,76 @@
                             font-size: ${fontSizeMain}px !important;
                         }
                         body.print-mode-daily th {
-                            padding: ${Math.max(2.5, cellPaddingV + 0.5)}px 2px !important;
+                            padding: ${Math.max(2, cellPaddingV + 0.5)}px 2px !important;
                             font-size: ${fontSizeMain}px !important;
                         }
                         body.print-mode-daily td {
-                            padding: ${cellPaddingV}px 2.5px !important;
+                            padding: ${cellPaddingV}px 2px !important;
                             font-size: ${fontSizeMain}px !important;
                             height: ${rowHeight}px !important;
+                            line-height: 1.15 !important;
                         }
                         body.print-mode-daily .col-daily-sl {
                             font-size: ${fontSizeMain}px !important;
+                            width: 22px !important;
+                        }
+                        body.print-mode-daily .col-daily-name {
+                            width: 110px !important;
+                        }
+                        body.print-mode-daily .col-daily-name div {
+                            gap: 0 !important;
                         }
                         body.print-mode-daily .col-daily-name button,
                         body.print-mode-daily .col-daily-name span {
-                            font-size: ${fontSizeMain + 0.5}px !important;
+                            font-size: ${fontSizeMain}px !important;
+                            line-height: 1.1 !important;
+                            margin: 0 !important;
+                        }
+                        body.print-mode-daily .col-daily-off {
+                            width: 58px !important;
                         }
                         body.print-mode-daily .col-daily-off span {
                             font-size: ${fontSizeSub}px !important;
-                            padding: ${Math.max(0.5, cellPaddingV * 0.3)}px 4px !important;
+                            padding: 1px 4px !important;
+                            line-height: 1 !important;
+                            display: inline-block !important;
                         }
                         body.print-mode-daily .col-daily-phone {
                             font-size: ${fontSizeMain}px !important;
+                            width: 78px !important;
+                        }
+                        body.print-mode-daily .col-daily-phone div {
+                            margin: 0 !important;
+                            gap: 0 !important;
+                            line-height: 1 !important;
+                        }
+                        body.print-mode-daily .col-daily-join {
+                            width: 88px !important;
+                        }
+                        body.print-mode-daily .col-daily-join i {
+                            display: none !important;
                         }
                         body.print-mode-daily .col-daily-join div:first-child {
                             font-size: ${fontSizeSub}px !important;
+                            line-height: 1 !important;
+                            margin: 0 !important;
                         }
                         body.print-mode-daily .col-daily-join div + div {
-                            font-size: ${fontSizeSub - 0.5}px !important;
+                            font-size: ${fontSizeSub - 0.6}px !important;
                             padding: 0.5px 3px !important;
+                            line-height: 1 !important;
+                            margin-top: 1px !important;
+                            display: inline-block !important;
+                        }
+                        body.print-mode-daily .col-daily-status {
+                            width: 78px !important;
                         }
                         body.print-mode-daily .print-status-tag {
                             font-size: ${fontSizeSub}px !important;
-                            padding: ${Math.max(1, cellPaddingV * 0.4)}px 5px !important;
+                            padding: 1px 4.5px !important;
+                            line-height: 1 !important;
+                            display: inline-block !important;
+                            min-width: 48px !important;
                         }
                     }
                 `;
@@ -2661,13 +2700,14 @@
                 const modeEl = document.getElementById('print-mode-label');
                 if (modeEl) modeEl.innerText = "Landscape (Monthly Matrix)";
 
-                // Total printable height in A4 Landscape (210mm) ~175mm (approx 660px)
-                const rawRowHeight = Math.floor(630 / Math.max(1, currentModCount));
-                const rowHeight = Math.max(12, Math.min(30, rawRowHeight));
-                const cellPaddingV = Math.max(0.5, Math.min(4.5, (rowHeight - 15) / 2));
-                const badgeSize = Math.max(11, Math.min(18, rowHeight - 4));
-                const badgeFontSize = Math.max(5.5, Math.min(8.5, badgeSize * 0.48));
-                const textFontSize = Math.max(6.5, Math.min(9.5, 6 + rowHeight * 0.12));
+                // Safe Landscape Body Budget: 530px total for rows (guarantees strictly 1 page in Chrome A4 Landscape)
+                const targetBodyHeight = 530;
+                const rawRowHeight = Math.floor(targetBodyHeight / Math.max(1, currentModCount));
+                const rowHeight = Math.max(12, Math.min(25, rawRowHeight));
+                const cellPaddingV = Math.max(0.5, Math.min(2.5, (rowHeight - 15) / 2));
+                const badgeSize = Math.max(11, Math.min(15.5, rowHeight - 4));
+                const badgeFontSize = Math.max(5.5, Math.min(7.5, badgeSize * 0.48));
+                const textFontSize = Math.max(6.5, Math.min(8.5, 6 + rowHeight * 0.1));
 
                 printStyle.innerHTML = `
                     @media print {
@@ -2679,7 +2719,7 @@
                             font-size: ${textFontSize}px !important;
                         }
                         body.print-mode-monthly th {
-                            padding: ${Math.max(2, cellPaddingV + 1)}px 0.5px !important;
+                            padding: ${Math.max(1.5, cellPaddingV + 0.5)}px 0.5px !important;
                             font-size: ${textFontSize}px !important;
                         }
                         body.print-mode-monthly th .text-xs {
