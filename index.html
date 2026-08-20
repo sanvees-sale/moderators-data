@@ -138,34 +138,73 @@
             box-shadow: 0 12px 28px -6px rgba(225, 29, 72, 0.25), 0 8px 16px -4px rgba(0, 0, 0, 0.4);
         }
 
-        /* Clean Print Stylesheet: Dynamic Portrait (Daily) & Landscape (Monthly) */
+        /* ==========================================================================
+           SINGLE PAGE PRINT SYSTEM: Ultra-Optimized for A4 Portrait & Landscape
+           ========================================================================== */
         @media print {
+            @page {
+                margin: 4mm 5mm;
+            }
+            *, *::before, *::after {
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
             html, body { 
                 background: #ffffff !important; 
                 color: #000000 !important; 
                 padding: 0 !important; 
-                margin: 0 !important; 
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                overflow: hidden !important;
             }
-            .no-print, header, #toast-container, #status-picker-backdrop, #status-picker-popover, #login-screen { 
+            #main-app-wrapper {
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .no-print, header, #toast-container, #status-picker-backdrop, #status-picker-popover, #login-screen, #single-mod-monthly-card, #no-results-state { 
                 display: none !important; 
             }
             .print-only { 
                 display: block !important; 
-                padding: 3px 0 5px 0 !important;
-                margin-bottom: 4px !important;
+                padding: 2px 0 3px 0 !important;
+                margin: 0 0 3px 0 !important;
                 border-bottom: 1.5px solid #0f172a !important;
             }
-            .print-container { 
+            .print-only h1 {
+                font-size: 13px !important;
+                line-height: 1.1 !important;
+                margin: 0 !important;
+                font-weight: 900 !important;
+                color: #000000 !important;
+            }
+            .print-only h2 {
+                font-size: 8.5px !important;
+                line-height: 1.1 !important;
+                margin: 1px 0 0 0 !important;
+                font-weight: 800 !important;
+                color: #334155 !important;
+            }
+            .print-only div {
+                font-size: 7px !important;
+                line-height: 1.15 !important;
+                margin: 0 !important;
+            }
+
+            /* Container and Table normalization */
+            .print-container, #view-daily-container, #view-monthly-container, section { 
                 width: 100% !important; 
                 max-width: 100% !important; 
                 padding: 0 !important; 
                 margin: 0 !important;
                 border: none !important;
                 box-shadow: none !important;
+                background: transparent !important;
             }
-            /* Neutralize sticky so columns NEVER overlap in print */
             .sticky, th, td {
                 position: static !important;
                 left: auto !important;
@@ -176,16 +215,19 @@
             table { 
                 width: 100% !important; 
                 border-collapse: collapse !important; 
-                page-break-inside: auto !important; 
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
             tr { 
                 page-break-inside: avoid !important; 
-                page-break-after: auto !important; 
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
             }
 
-            /* --- 1. DAILY ROSTER PRINT STYLES (PORTRAIT) --- */
+            /* ==================== 1. DAILY ROSTER PRINT (A4 PORTRAIT) ==================== */
             body.print-mode-daily {
-                font-size: 9px !important;
+                font-size: 7.5px !important;
             }
             body.print-mode-daily #view-daily-container {
                 display: block !important;
@@ -194,41 +236,117 @@
                 display: none !important;
             }
             body.print-mode-daily table {
-                table-layout: auto !important;
+                table-layout: fixed !important;
+                width: 100% !important;
             }
-            body.print-mode-daily th, body.print-mode-daily td {
-                border: 1px solid #94a3b8 !important;
-                padding: 4.5px 4px !important;
+            body.print-mode-daily th, 
+            body.print-mode-daily td {
+                border: 0.5px solid #94a3b8 !important;
+                padding: 1.5px 2.5px !important;
                 color: #000000 !important;
-                font-size: 8.5px !important;
+                font-size: 7.5px !important;
+                line-height: 1.15 !important;
+                height: auto !important;
+                vertical-align: middle !important;
             }
             body.print-mode-daily th {
                 background-color: #f1f5f9 !important;
                 font-weight: 900 !important;
                 color: #0f172a !important;
                 text-align: center !important;
+                padding: 2.5px 2px !important;
+                font-size: 7.5px !important;
+                text-transform: uppercase !important;
             }
-            body.print-mode-daily .col-daily-sl { width: 28px !important; text-align: center !important; font-weight: 800 !important; }
-            body.print-mode-daily .col-daily-name { width: 130px !important; text-align: left !important; font-weight: 800 !important; }
-            body.print-mode-daily .col-daily-off { width: 65px !important; text-align: center !important; font-weight: 800 !important; }
-            body.print-mode-daily .col-daily-phone { width: 85px !important; text-align: center !important; font-mono: true; }
-            body.print-mode-daily .col-daily-join { width: 105px !important; text-align: center !important; }
-            body.print-mode-daily .col-daily-status { width: 95px !important; text-align: center !important; font-weight: 800 !important; }
-
-            /* Daily print status tags */
-            .print-status-tag {
-                display: inline-block !important;
-                padding: 2px 6px !important;
-                border-radius: 4px !important;
+            body.print-mode-daily .col-daily-sl { 
+                width: 22px !important; 
+                text-align: center !important; 
+                font-weight: 800 !important; 
+                font-size: 7.5px !important;
+            }
+            body.print-mode-daily .col-daily-name { 
+                width: 110px !important; 
+                text-align: left !important; 
+                font-weight: 800 !important; 
                 font-size: 8px !important;
+                padding-left: 4px !important;
+            }
+            body.print-mode-daily .col-daily-name button,
+            body.print-mode-daily .col-daily-name span {
+                font-size: 8px !important;
+                font-weight: 800 !important;
+                color: #000000 !important;
+                text-decoration: none !important;
+            }
+            body.print-mode-daily .col-daily-off { 
+                width: 58px !important; 
+                text-align: center !important; 
+            }
+            body.print-mode-daily .col-daily-off span {
+                display: inline-block !important;
+                padding: 0.5px 3.5px !important;
+                font-size: 7px !important;
+                font-weight: 800 !important;
+                border-radius: 3px !important;
+                border: 0.5px solid currentColor !important;
+            }
+            body.print-mode-daily .col-daily-phone { 
+                width: 75px !important; 
+                text-align: center !important; 
+                font-family: ui-monospace, SFMono-Regular, monospace !important;
+                font-size: 7.5px !important;
+                font-weight: 700 !important;
+            }
+            body.print-mode-daily .col-daily-join { 
+                width: 88px !important; 
+                text-align: center !important; 
+            }
+            body.print-mode-daily .col-daily-join div:first-child {
+                font-size: 7px !important;
+                font-family: ui-monospace, monospace !important;
+                font-weight: 700 !important;
+                line-height: 1 !important;
+            }
+            body.print-mode-daily .col-daily-join div + div {
+                display: inline-block !important;
+                font-size: 6px !important;
+                font-weight: 800 !important;
+                padding: 0.5px 3px !important;
+                margin-top: 1px !important;
+                border-radius: 2px !important;
+                line-height: 1 !important;
+                background-color: #eef2ff !important;
+                color: #3730a3 !important;
+                border: 0.5px solid #c7d2fe !important;
+            }
+            body.print-mode-daily .col-daily-status { 
+                width: 82px !important; 
+                text-align: center !important; 
+            }
+            body.print-mode-daily .print-status-tag {
+                display: inline-block !important;
+                padding: 1px 4px !important;
+                border-radius: 3px !important;
+                font-size: 7px !important;
                 font-weight: 900 !important;
                 border: 0.5px solid currentColor !important;
                 text-align: center !important;
+                min-width: 52px !important;
+                line-height: 1.1 !important;
+            }
+            body.print-mode-daily #footer-count-text {
+                font-size: 7px !important;
+            }
+            body.print-mode-daily #view-daily-container > section > div:last-child {
+                padding: 2px 4px !important;
+                font-size: 7px !important;
+                border-top: 0.5px solid #94a3b8 !important;
+                background: transparent !important;
             }
 
-            /* --- 2. MONTHLY SHEET PRINT STYLES (LANDSCAPE) --- */
+            /* ==================== 2. MONTHLY MATRIX PRINT (A4 LANDSCAPE) ==================== */
             body.print-mode-monthly {
-                font-size: 8px !important;
+                font-size: 6.5px !important;
             }
             body.print-mode-monthly #view-monthly-container {
                 display: block !important;
@@ -236,39 +354,116 @@
             body.print-mode-monthly #view-daily-container {
                 display: none !important;
             }
+            body.print-mode-monthly #view-monthly-container > section > div:first-child {
+                padding: 2px 4px !important;
+                margin-bottom: 2px !important;
+                border-bottom: 0.5px solid #94a3b8 !important;
+                background: transparent !important;
+            }
+            body.print-mode-monthly #view-monthly-container > section > div:first-child * {
+                font-size: 7px !important;
+            }
             body.print-mode-monthly table {
                 table-layout: fixed !important;
+                width: 100% !important;
             }
-            body.print-mode-monthly th, body.print-mode-monthly td {
-                border: 1px solid #94a3b8 !important;
-                padding: 2.5px 1px !important;
+            body.print-mode-monthly th, 
+            body.print-mode-monthly td {
+                border: 0.5px solid #94a3b8 !important;
+                padding: 0.5px 0.5px !important;
                 color: #000000 !important;
                 text-align: center !important;
                 vertical-align: middle !important;
-                font-size: 7.5px !important;
+                font-size: 6.5px !important;
+                line-height: 1 !important;
+                height: 12px !important;
             }
             body.print-mode-monthly th {
                 background-color: #f1f5f9 !important;
                 font-weight: 900 !important;
                 color: #0f172a !important;
+                padding: 1.5px 0.5px !important;
             }
-            body.print-mode-monthly .col-sl { width: 22px !important; font-size: 8px !important; }
-            body.print-mode-monthly .col-name { width: 110px !important; text-align: left !important; padding-left: 4px !important; font-weight: 800 !important; font-size: 8px !important; }
-            body.print-mode-monthly .col-off { width: 24px !important; font-weight: 800 !important; font-size: 7.5px !important; }
-            body.print-mode-monthly .col-day { width: 19px !important; }
-            body.print-mode-monthly .col-tot { width: 22px !important; font-weight: 900 !important; font-size: 8px !important; }
-
-            /* Print Badges */
-            .status-badge {
-                width: 15px !important;
-                height: 15px !important;
-                font-size: 7px !important;
+            body.print-mode-monthly th .text-xs {
+                font-size: 6.5px !important;
+                line-height: 1 !important;
                 font-weight: 900 !important;
-                border-radius: 3px !important;
+            }
+            body.print-mode-monthly th .text-[9px] {
+                font-size: 5px !important;
+                line-height: 1 !important;
+                font-weight: 800 !important;
+                text-transform: uppercase !important;
+            }
+            body.print-mode-monthly .col-sl { 
+                width: 18px !important; 
+                font-size: 6.5px !important; 
+                font-weight: 800 !important; 
+            }
+            body.print-mode-monthly .col-name { 
+                width: 82px !important; 
+                text-align: left !important; 
+                padding-left: 2px !important; 
+                font-weight: 800 !important; 
+                font-size: 7px !important; 
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            body.print-mode-monthly .col-name button,
+            body.print-mode-monthly .col-name span {
+                font-size: 7px !important;
+                font-weight: 800 !important;
+                color: #000000 !important;
+                text-decoration: none !important;
+            }
+            body.print-mode-monthly .col-off { 
+                width: 20px !important; 
+                font-weight: 800 !important; 
+                font-size: 6.5px !important; 
+            }
+            body.print-mode-monthly .col-day { 
+                width: 17px !important; 
+                min-width: 16px !important;
+                max-width: 18px !important;
+                padding: 0.5px 0 !important;
+            }
+            body.print-mode-monthly .col-day button {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border: none !important;
+                background: transparent !important;
+                cursor: default !important;
+            }
+            body.print-mode-monthly .col-tot { 
+                width: 16px !important; 
+                font-weight: 900 !important; 
+                font-size: 6.5px !important; 
+            }
+
+            /* Monthly Print Status Badges - Compact 11.5px */
+            .status-badge {
+                width: 11.5px !important;
+                height: 11.5px !important;
+                min-width: 11.5px !important;
+                font-size: 5.5px !important;
+                font-weight: 900 !important;
+                border-radius: 2px !important;
+                line-height: 11.5px !important;
+                margin: 0 auto !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 0 !important;
             }
             .badge-p { background: #d1fae5 !important; color: #065f46 !important; border: 0.5px solid #10b981 !important; }
-            .badge-off { background: #fef3c7 !important; color: #92400e !important; border: 0.5px solid #f59e0b !important; }
-            .badge-ex { background: #cffafe !important; color: #155e75 !important; border: 0.5px solid #06b6d4 !important; }
+            .badge-off { background: #fef3c7 !important; color: #92400e !important; border: 0.5px solid #f59e0b !important; font-size: 5px !important; }
+            .badge-ex { background: #cffafe !important; color: #155e75 !important; border: 0.5px solid #06b6d4 !important; font-size: 5px !important; }
             .badge-a { background: #fee2e2 !important; color: #991b1b !important; border: 0.5px solid #ef4444 !important; }
             .badge-n { background: #e0e7ff !important; color: #3730a3 !important; border: 0.5px solid #6366f1 !important; }
             .badge-l { background: #f3e8ff !important; color: #6b21a8 !important; border: 0.5px solid #a855f7 !important; }
@@ -282,7 +477,7 @@
                 padding: 0 !important;
                 font-weight: bold !important;
                 color: #000 !important;
-                font-size: 8.5px !important;
+                font-size: 7px !important;
             }
         }
         .print-only { display: none; }
@@ -2370,7 +2565,7 @@
 
             if (activeView === 'daily') {
                 // Daily View: A4 Portrait Mode
-                printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 8mm 6mm; } }`;
+                printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 4mm 5mm; } }`;
                 document.body.classList.add('print-mode-daily');
                 document.body.classList.remove('print-mode-monthly');
 
@@ -2384,7 +2579,7 @@
                 if (modeEl) modeEl.innerText = "Portrait (Daily Duty Roster)";
             } else {
                 // Monthly View: A4 Landscape Mode
-                printStyle.innerHTML = `@media print { @page { size: A4 landscape; margin: 4mm 5mm; } }`;
+                printStyle.innerHTML = `@media print { @page { size: A4 landscape; margin: 3mm 4mm; } }`;
                 document.body.classList.add('print-mode-monthly');
                 document.body.classList.remove('print-mode-daily');
 
