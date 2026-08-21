@@ -747,13 +747,13 @@
                     <i id="theme-icon" class="fa-solid fa-moon"></i>
                 </button>
 
-                <!-- Google Sheets Cloud Database Sync Status & Config Button -->
-                <button onclick="openSheetsConfigModal()" id="btn-sheets-status" title="Google Sheets Cloud Database Connection & Real-Time Sync"
-                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-xs sm:text-sm font-black transition shadow-xs active:scale-95">
+                <!-- Google Sheets Cloud Database Live Status Indicator Badge (Non-clickable) -->
+                <div id="btn-sheets-status" title="Google Sheet Database Connected & Live Auto-Sync Active"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800/80 text-xs sm:text-sm font-black shadow-xs cursor-default select-none">
                     <span id="sheets-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     <i class="fa-solid fa-table-cells text-emerald-600 dark:text-emerald-400"></i>
-                    <span id="sheets-status-label" class="hidden sm:inline font-mono">Google Sheet DB</span>
-                </button>
+                    <span id="sheets-status-label" class="hidden sm:inline font-mono">Google Sheet Live</span>
+                </div>
 
                 <!-- Change Password / Security Settings -->
                 <button onclick="openChangePasswordModal()" title="Change Admin Password" 
@@ -2523,7 +2523,7 @@ function updateExchangesSheet(ss, exchanges) {
             const config = getSavedSheetsConfig();
 
             if (status === 'connected') {
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 hover:bg-emerald-100";
+                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border shadow-xs bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 cursor-default select-none";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse";
                 label.innerText = "Google Sheet Live";
                 
@@ -2535,7 +2535,7 @@ function updateExchangesSheet(ss, exchanges) {
                     modalStatusSub.innerText = message || "Google Sheets database is actively connected and synchronizing.";
                 }
             } else if (status === 'syncing') {
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800";
+                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border shadow-xs bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800 cursor-default select-none";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping";
                 label.innerText = "Syncing Sheet...";
 
@@ -2547,7 +2547,7 @@ function updateExchangesSheet(ss, exchanges) {
                     modalStatusSub.innerText = message || "Pushing/pulling latest roster data...";
                 }
             } else if (status === 'error') {
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800 hover:bg-rose-100";
+                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border shadow-xs bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800 cursor-default select-none";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-rose-500";
                 label.innerText = "Sheet Error";
                 
@@ -2560,9 +2560,9 @@ function updateExchangesSheet(ss, exchanges) {
                 }
             } else {
                 // Offline / Unconfigured
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200";
+                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border shadow-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 cursor-default select-none";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
-                label.innerText = "Connect Sheet";
+                label.innerText = "Google Sheet Live";
 
                 if (modalBanner) {
                     modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-xs";
