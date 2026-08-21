@@ -1583,12 +1583,16 @@
 
                 <div class="grid grid-cols-2 gap-3.5">
                     <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Serial (SL)</label>
-                        <input type="number" id="form-sl" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 text-xs">Serial (SL)</label>
+                            <span class="text-[10px] font-extrabold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2 py-0.5 rounded-md border border-rose-200 dark:border-rose-900">Auto Serial</span>
+                        </div>
+                        <input type="number" id="form-sl" readonly class="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-slate-700 dark:text-slate-200 cursor-not-allowed">
+                        <p id="form-sl-hint" class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1">Auto-assigned by Weekend group</p>
                     </div>
                     <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Weekly Off-Day</label>
-                        <select id="form-weekend" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold">
+                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Weekly Off-Day (Weekend)</label>
+                        <select id="form-weekend" onchange="updateFormCalculatedSl()" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold text-slate-900 dark:text-white">
                             <option value="Saturday">Saturday</option>
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
@@ -1760,6 +1764,175 @@
             'Thursday': 'bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-300 border-sky-300',
             'Friday': 'bg-yellow-100 text-yellow-900 dark:bg-yellow-950 dark:text-yellow-300 border-yellow-300'
         };
+
+        // Standard Weekly Sequence for Moderators Roster (Saturday to Friday)
+        const WEEKEND_DAY_ORDER = {
+            'Saturday': 0,
+            'Sunday': 1,
+            'Monday': 2,
+            'Tuesday': 3,
+            'Wednesday': 4,
+            'Thursday': 5,
+            'Friday': 6
+        };
+
+        const WEEKEND_DAYS_LIST = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+        // Calculate predicted SL serial for a new or edited moderator based on chosen weekend
+        function calculatePredictedSlForWeekend(targetWeekend, ignoreIndex = -1) {
+            const targetOrder = WEEKEND_DAY_ORDER[targetWeekend] !== undefined ? WEEKEND_DAY_ORDER[targetWeekend] : 99;
+            let count = 0;
+            moderators.forEach((m, idx) => {
+                if (idx === ignoreIndex) return;
+                const mOrder = WEEKEND_DAY_ORDER[m.weekend] !== undefined ? WEEKEND_DAY_ORDER[m.weekend] : 99;
+                if (mOrder <= targetOrder) {
+                    count++;
+                }
+            });
+            return count + 1;
+        }
+
+        // Live preview of calculated SL inside Add / Edit Moderator Modal
+        function updateFormCalculatedSl() {
+            const editIndex = parseInt(document.getElementById('form-edit-index').value, 10);
+            const weekendVal = document.getElementById('form-weekend').value;
+            const slInput = document.getElementById('form-sl');
+            const slHint = document.getElementById('form-sl-hint');
+
+            if (editIndex >= 0) {
+                const mod = moderators[editIndex];
+                if (mod && mod.weekend === weekendVal) {
+                    slInput.value = mod.sl;
+                    if (slHint) slHint.innerText = `Current position: SL #${String(mod.sl).padStart(2, '0')} (${mod.weekend} Off group)`;
+                } else {
+                    const predictedSl = calculatePredictedSlForWeekend(weekendVal, editIndex);
+                    slInput.value = predictedSl;
+                    if (slHint) slHint.innerText = `Will move to ${weekendVal} Off serial (SL #${String(predictedSl).padStart(2, '0')})`;
+                }
+            } else {
+                const predictedSl = calculatePredictedSlForWeekend(weekendVal, -1);
+                slInput.value = predictedSl;
+                if (slHint) slHint.innerText = `Auto-assigned to ${weekendVal} Off serial (SL #${String(predictedSl).padStart(2, '0')})`;
+            }
+        }
+
+        // Master function: Sorts moderators strictly by weekend order (Saturday -> Friday) and re-indexes SL 1..N
+        function sortAndReindexModerators() {
+            if (!Array.isArray(moderators) || moderators.length === 0) return;
+
+            // Ensure every moderator has a stable ID
+            moderators.forEach((m, idx) => {
+                if (!m.id) {
+                    const cleanPhone = m.phone ? m.phone.replace(/\D/g, '') : '';
+                    m.id = 'mod_' + (cleanPhone || Date.now()) + '_' + idx + '_' + Math.random().toString(36).substring(2, 7);
+                }
+                m._tempSortIdx = idx;
+            });
+
+            // Record previous SL by ID
+            const idToOldSl = {};
+            moderators.forEach(m => {
+                idToOldSl[m.id] = m.sl;
+            });
+
+            // Sort moderators strictly according to Sanvee's work week order:
+            // Saturday (0) -> Sunday (1) -> Monday (2) -> Tuesday (3) -> Wednesday (4) -> Thursday (5) -> Friday (6)
+            moderators.sort((a, b) => {
+                const orderA = WEEKEND_DAY_ORDER[a.weekend] !== undefined ? WEEKEND_DAY_ORDER[a.weekend] : 99;
+                const orderB = WEEKEND_DAY_ORDER[b.weekend] !== undefined ? WEEKEND_DAY_ORDER[b.weekend] : 99;
+                if (orderA !== orderB) {
+                    return orderA - orderB;
+                }
+                // Within the same weekend group, maintain previous relative order
+                const slA = a.sl !== undefined && a.sl !== null ? a.sl : 9999;
+                const slB = b.sl !== undefined && b.sl !== null ? b.sl : 9999;
+                if (slA !== slB) {
+                    return slA - slB;
+                }
+                return (a._tempSortIdx || 0) - (b._tempSortIdx || 0);
+            });
+
+            // Re-assign clean sequential 1..N serial numbers
+            let slChanged = false;
+            moderators.forEach((m, index) => {
+                delete m._tempSortIdx;
+                const newSl = index + 1;
+                const oldSl = idToOldSl[m.id];
+                if (oldSl !== undefined && oldSl !== newSl) {
+                    slChanged = true;
+                }
+                m.sl = newSl;
+            });
+
+            // If any moderator SL shifted, migrate attendance records & related datasets
+            if (slChanged) {
+                migrateRelatedRecordsBySl(idToOldSl);
+            }
+        }
+
+        // Migrate historical attendance and related datasets when SL changes
+        function migrateRelatedRecordsBySl(idToOldSl) {
+            // 1. Migrate attendanceHistory records
+            if (attendanceHistory && typeof attendanceHistory === 'object') {
+                Object.keys(attendanceHistory).forEach(dateStr => {
+                    const oldDateRec = attendanceHistory[dateStr];
+                    if (oldDateRec && typeof oldDateRec === 'object') {
+                        const newDateRec = {};
+                        moderators.forEach(m => {
+                            const oldSl = idToOldSl[m.id];
+                            if (oldSl !== undefined && oldDateRec[String(oldSl)] !== undefined) {
+                                newDateRec[String(m.sl)] = oldDateRec[String(oldSl)];
+                            } else if (oldDateRec[String(m.sl)] !== undefined) {
+                                newDateRec[String(m.sl)] = oldDateRec[String(m.sl)];
+                            }
+                        });
+                        attendanceHistory[dateStr] = newDateRec;
+                    }
+                });
+            }
+
+            // 2. Migrate scheduledNightShifts
+            if (Array.isArray(scheduledNightShifts)) {
+                scheduledNightShifts.forEach(rec => {
+                    const mod = moderators.find(m => idToOldSl[m.id] === rec.modSl || (m.name && m.name.toLowerCase() === (rec.modName || '').toLowerCase()));
+                    if (mod) {
+                        rec.modSl = mod.sl;
+                        rec.modName = mod.name;
+                    }
+                });
+            }
+
+            // 3. Migrate approvedLeaves
+            if (Array.isArray(approvedLeaves)) {
+                approvedLeaves.forEach(rec => {
+                    const mod = moderators.find(m => idToOldSl[m.id] === rec.modSl || (m.name && m.name.toLowerCase() === (rec.modName || '').toLowerCase()));
+                    if (mod) {
+                        rec.modSl = mod.sl;
+                        rec.modName = mod.name;
+                    }
+                });
+            }
+
+            // 4. Migrate weekendExchanges
+            if (Array.isArray(weekendExchanges)) {
+                weekendExchanges.forEach(rec => {
+                    const mod = moderators.find(m => idToOldSl[m.id] === rec.modSl || (m.name && m.name.toLowerCase() === (rec.modName || '').toLowerCase()));
+                    if (mod) {
+                        rec.modSl = mod.sl;
+                        rec.modName = mod.name;
+                    }
+                });
+            }
+
+            // 5. Update selected monthly filter if single moderator was active
+            if (selectedMonthlyModSl && selectedMonthlyModSl !== 'ALL') {
+                const oldSlNum = parseInt(selectedMonthlyModSl, 10);
+                const mod = moderators.find(m => idToOldSl[m.id] === oldSlNum);
+                if (mod) {
+                    selectedMonthlyModSl = String(mod.sl);
+                }
+            }
+        }
 
         function getDayNameForDate(dateStr) {
             const [y, m, d] = dateStr.split('-').map(Number);
@@ -2219,28 +2392,32 @@
 
             if (Array.isArray(data.moderators) && data.moderators.length > 0) {
                 moderators = data.moderators;
-                localStorage.setItem('sanveesModeratorsData_v8', JSON.stringify(moderators));
                 hasChanges = true;
             }
             if (data.attendanceHistory && typeof data.attendanceHistory === 'object') {
                 attendanceHistory = data.attendanceHistory;
-                localStorage.setItem('sanveesAttendanceHistory_v8', JSON.stringify(attendanceHistory));
                 hasChanges = true;
             }
             if (Array.isArray(data.scheduledNightShifts)) {
                 scheduledNightShifts = data.scheduledNightShifts;
-                localStorage.setItem('sanveesNightShifts_v8', JSON.stringify(scheduledNightShifts));
                 hasChanges = true;
             }
             if (Array.isArray(data.approvedLeaves)) {
                 approvedLeaves = data.approvedLeaves;
-                localStorage.setItem('sanveesApprovedLeaves_v8', JSON.stringify(approvedLeaves));
                 hasChanges = true;
             }
             if (Array.isArray(data.weekendExchanges)) {
                 weekendExchanges = data.weekendExchanges;
-                localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
                 hasChanges = true;
+            }
+
+            if (hasChanges) {
+                sortAndReindexModerators();
+                localStorage.setItem('sanveesModeratorsData_v8', JSON.stringify(moderators));
+                localStorage.setItem('sanveesAttendanceHistory_v8', JSON.stringify(attendanceHistory));
+                localStorage.setItem('sanveesNightShifts_v8', JSON.stringify(scheduledNightShifts));
+                localStorage.setItem('sanveesApprovedLeaves_v8', JSON.stringify(approvedLeaves));
+                localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
             }
 
             localStorage.setItem('sanvees_last_cloud_sync_time', Date.now().toString());
@@ -2365,14 +2542,13 @@
             if (savedMods) {
                 try {
                     moderators = JSON.parse(savedMods);
-                    // Ensure Mosharof Hossain (SL 09) and all default roster members are intact
+                    // Ensure default roster members are intact by name or phone
                     DEFAULT_MODERATORS.forEach(defMod => {
-                        const exists = moderators.some(m => m.sl === defMod.sl || m.name.toLowerCase() === defMod.name.toLowerCase());
+                        const exists = moderators.some(m => m.name.toLowerCase() === defMod.name.toLowerCase() || (m.phone && defMod.phone && m.phone.replace(/\D/g, '') === defMod.phone.replace(/\D/g, '')));
                         if (!exists) {
                             moderators.push(JSON.parse(JSON.stringify(defMod)));
                         }
                     });
-                    moderators.sort((a, b) => (a.sl || 0) - (b.sl || 0));
                 } catch(e) {
                     moderators = JSON.parse(JSON.stringify(DEFAULT_MODERATORS));
                 }
@@ -2405,6 +2581,9 @@
             if (savedExchanges) {
                 try { weekendExchanges = JSON.parse(savedExchanges); } catch(e) { weekendExchanges = []; }
             } else { weekendExchanges = []; }
+
+            // Ensure moderators are organized by weekend day order (Saturday -> Friday) and re-indexed
+            sortAndReindexModerators();
 
             currentActiveDate = getTodayDateStr();
             currentActiveMonth = getCurrentMonthStr();
@@ -3933,8 +4112,6 @@
         function openAddModal() {
             document.getElementById('form-edit-index').value = "-1";
             document.getElementById('modal-title').innerText = "Add Moderator";
-            const maxSl = moderators.reduce((max, m) => Math.max(max, m.sl || 0), 0);
-            document.getElementById('form-sl').value = maxSl + 1;
             document.getElementById('form-name').value = "";
             document.getElementById('form-weekend').value = "Saturday";
             document.getElementById('form-phone').value = "";
@@ -3944,6 +4121,7 @@
             document.getElementById('form-join').value = todayStr;
             document.getElementById('form-status').value = "Present";
             updateFormTenurePreview();
+            updateFormCalculatedSl();
 
             document.getElementById('moderator-modal').classList.remove('hidden');
         }
@@ -3960,6 +4138,7 @@
             document.getElementById('form-join').value = mod.join;
             document.getElementById('form-status').value = getModeratorStatusForDate(mod, currentActiveDate);
             updateFormTenurePreview();
+            updateFormCalculatedSl();
 
             document.getElementById('moderator-modal').classList.remove('hidden');
         }
@@ -3971,40 +4150,58 @@
         function handleFormSubmit(e) {
             e.preventDefault();
             const editIndex = parseInt(document.getElementById('form-edit-index').value, 10);
-            
-            const data = {
-                sl: parseInt(document.getElementById('form-sl').value, 10),
-                name: document.getElementById('form-name').value.trim(),
-                weekend: document.getElementById('form-weekend').value,
-                phone: document.getElementById('form-phone').value.trim(),
-                join: document.getElementById('form-join').value.trim(),
-                status: document.getElementById('form-status').value,
-                notes: ""
-            };
+            const weekendVal = document.getElementById('form-weekend').value;
+            const nameVal = document.getElementById('form-name').value.trim();
+            const phoneVal = document.getElementById('form-phone').value.trim();
+            const joinVal = document.getElementById('form-join').value.trim();
+            const statusVal = document.getElementById('form-status').value;
 
             if (editIndex >= 0) {
-                moderators[editIndex] = data;
-                setModeratorStatusForDate(data, currentActiveDate, data.status);
-                showToast(`Updated ${data.name}`);
+                const mod = moderators[editIndex];
+                mod.name = nameVal;
+                mod.weekend = weekendVal;
+                mod.phone = phoneVal;
+                mod.join = joinVal;
+                mod.status = statusVal;
+
+                setModeratorStatusForDate(mod, currentActiveDate, statusVal);
+                sortAndReindexModerators();
+                saveToLocalStorage();
+                showToast(`Updated ${nameVal} (Positioned in ${weekendVal} serial)`);
             } else {
-                moderators.push(data);
-                setModeratorStatusForDate(data, currentActiveDate, data.status);
-                showToast(`Added ${data.name}`);
+                const newMod = {
+                    id: 'mod_' + (phoneVal.replace(/\D/g, '') || Date.now()) + '_' + Math.random().toString(36).substring(2, 7),
+                    sl: 9999,
+                    name: nameVal,
+                    weekend: weekendVal,
+                    phone: phoneVal,
+                    join: joinVal,
+                    status: statusVal,
+                    notes: ""
+                };
+
+                moderators.push(newMod);
+                sortAndReindexModerators();
+                setModeratorStatusForDate(newMod, currentActiveDate, statusVal);
+                saveToLocalStorage();
+                showToast(`Added ${nameVal} (SL #${String(newMod.sl).padStart(2, '0')} in ${weekendVal} Off serial)`, 'success');
             }
 
-            saveToLocalStorage();
             closeModal();
             if (activeView === 'daily') renderDailyTable();
             else renderMonthlyTable();
         }
 
         function deleteModerator(index) {
-            if (confirm(`Remove ${moderators[index].name} from roster?`)) {
+            const mod = moderators[index];
+            if (!mod) return;
+            if (confirm(`Remove ${mod.name} (SL #${String(mod.sl).padStart(2, '0')}) from roster?`)) {
                 moderators.splice(index, 1);
+                sortAndReindexModerators();
                 saveToLocalStorage();
                 if (activeView === 'daily') renderDailyTable();
                 else renderMonthlyTable();
-                showToast('Deleted moderator');
+                showToast(`Removed ${mod.name}`);
             }
         }
 
