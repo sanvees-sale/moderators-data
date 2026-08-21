@@ -12,11 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Firebase App, Realtime Database & Firestore SDKs (Compat for Standalone HTML) -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <!-- Google Sheets Database & Cloud Sync Integration (Lightweight Web App API) -->
+
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -675,12 +672,12 @@
                     <i id="theme-icon" class="fa-solid fa-moon"></i>
                 </button>
 
-                <!-- Firebase Cloud Sync Status & Config Button -->
-                <button onclick="openFirebaseConfigModal()" id="btn-firebase-status" title="Firebase Cloud Database Connection & Sync Status"
-                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/80 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-xs sm:text-sm font-black transition shadow-xs">
-                    <span id="firebase-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
-                    <i class="fa-solid fa-fire-flame-curved text-amber-500"></i>
-                    <span id="firebase-status-label" class="hidden sm:inline">Firebase Cloud</span>
+                <!-- Google Sheets Cloud Database Sync Status & Config Button -->
+                <button onclick="openSheetsConfigModal()" id="btn-sheets-status" title="Google Sheets Cloud Database Connection & Real-Time Sync"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-xs sm:text-sm font-black transition shadow-xs">
+                    <span id="sheets-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <i class="fa-solid fa-table-cells text-emerald-600 dark:text-emerald-400"></i>
+                    <span id="sheets-status-label" class="hidden sm:inline">Google Sheet DB</span>
                 </button>
 
                 <!-- Change Password / Security Settings -->
@@ -1054,134 +1051,164 @@
                     </div>
                     <span id="monthly-footer-count" class="font-mono">Showing 25 of 25 Members</span>
                 </div>
-            </section>
-        </div>
-
-    </main>
-    </div>
-
-    <!-- ======================= FIREBASE CLOUD REAL-TIME SYNC MODAL ======================= -->
-    <div id="firebase-config-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print select-none">
-        <div class="relative w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6 sm:p-7 animate-fade-scale">
+              <!-- ======================= GOOGLE SHEETS CLOUD DATABASE MODAL ======================= -->
+    <div id="sheets-config-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print select-none">
+        <div class="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6 sm:p-7 animate-fade-scale max-h-[92vh] overflow-y-auto">
             
-            <!-- Top Gradient Border -->
-            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500"></div>
+            <!-- Top Gradient Border (Google Sheets Theme) -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-green-600"></div>
 
             <!-- Header -->
             <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg border border-amber-200 dark:border-amber-800/80">
-                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg border border-emerald-200 dark:border-emerald-800/80">
+                        <i class="fa-solid fa-table-cells"></i>
                     </div>
                     <div>
-                        <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">Firebase Cloud Database</h3>
-                        <p class="text-xs text-slate-400 font-semibold">Real-time cloud database sync across devices & browsers</p>
+                        <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>Google Sheets Cloud Database</span>
+                            <span class="text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded-full">Live Sync</span>
+                        </h3>
+                        <p class="text-xs text-slate-400 font-semibold">Real-time two-way cloud database sync with your personal Google Spreadsheet</p>
                     </div>
                 </div>
-                <button onclick="closeFirebaseConfigModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+                <button onclick="closeSheetsConfigModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
             <!-- Connection Status Banner -->
-            <div id="fb-modal-status-banner" class="mb-4 p-3.5 rounded-2xl border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-xs">
+            <div id="sheets-modal-status-banner" class="mb-4 p-3.5 rounded-2xl border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-xs">
                 <div class="flex items-center justify-between">
-                    <div class="font-extrabold text-slate-800 dark:text-slate-200" id="fb-modal-status-text">⚪ Firebase Not Connected (Local Storage Mode)</div>
-                    <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="fb-last-sync-time" class="font-bold text-slate-600 dark:text-slate-300">Never</span></span>
+                    <div class="font-extrabold text-slate-800 dark:text-slate-200" id="sheets-modal-status-text">⚪ Google Sheet Not Connected (Local Storage Mode)</div>
+                    <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="sheets-last-sync-time" class="font-bold text-slate-600 dark:text-slate-300">Never</span></span>
                 </div>
-                <p id="fb-modal-status-sub" class="text-slate-500 dark:text-slate-400 mt-1">
-                    Paste your Firebase configuration credentials below to activate real-time multi-admin cloud sync.
+                <p id="sheets-modal-status-sub" class="text-slate-500 dark:text-slate-400 mt-1">
+                    Connect your Google Apps Script Web App URL below to activate automatic cloud backup & live multi-admin sync.
                 </p>
             </div>
 
             <!-- Configuration Form -->
-            <form onsubmit="handleSaveFirebaseConfig(event)" class="space-y-3.5">
+            <form onsubmit="handleSaveSheetsConfig(event)" class="space-y-4">
                 
-                <!-- Quick Paste Box -->
+                <!-- Web App Deployment URL -->
+                <div>
+                    <label class="block font-black text-slate-700 dark:text-slate-300 text-xs uppercase tracking-wider mb-1">
+                        🔗 Google Apps Script Web App URL <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="url" id="sheets-input-webapp-url" required
+                           placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-emerald-500 transition">
+                    <p class="text-[11px] text-slate-400 mt-1 font-semibold">
+                        Enter the Web App URL generated from Apps Script Deployment (ends with <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded font-mono">/exec</code>).
+                    </p>
+                </div>
+
+                <!-- Google Spreadsheet Direct URL / ID (Optional helper) -->
                 <div>
                     <div class="flex items-center justify-between mb-1">
                         <label class="block font-black text-slate-700 dark:text-slate-300 text-xs uppercase tracking-wider">
-                            🚀 Quick Paste Config (From Firebase Console)
+                            📊 Google Spreadsheet Link / Sheet URL (Optional)
                         </label>
-                        <button type="button" onclick="handleAutoParseFirebaseSnippet()" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill Fields
+                        <button type="button" onclick="openConnectedGoogleSheet()" class="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Open Sheet
                         </button>
                     </div>
-                    <textarea id="fb-raw-config-snippet" rows="3" placeholder='Paste `const firebaseConfig = { ... }` or JSON from Firebase Console'
-                              class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500 transition"></textarea>
-                </div>
-
-                <!-- Individual Credential Fields -->
-                <div class="grid grid-cols-2 gap-2.5 text-xs">
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">API Key</label>
-                        <input type="text" id="fb-input-api-key" placeholder="AIzaSy..."
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">Project ID</label>
-                        <input type="text" id="fb-input-project-id" placeholder="moderators-data"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div class="col-span-2">
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">
-                            Database URL <span class="text-amber-500 font-semibold">(Realtime Database)</span>
-                        </label>
-                        <input type="text" id="fb-input-database-url" placeholder="https://moderators-data-default-rtdb.asia-southeast1.firebasedatabase.app"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">Auth Domain</label>
-                        <input type="text" id="fb-input-auth-domain" placeholder="project.firebaseapp.com"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">Storage Bucket</label>
-                        <input type="text" id="fb-input-storage-bucket" placeholder="project.firebasestorage.app"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div class="col-span-2">
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">App ID</label>
-                        <input type="text" id="fb-input-app-id" placeholder="1:1234567890:web:abcdef..."
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
+                    <div class="relative">
+                        <input type="url" id="sheets-input-spreadsheet-url"
+                               placeholder="https://docs.google.com/spreadsheets/d/1abc.../edit"
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-emerald-500 transition">
                     </div>
                 </div>
 
                 <!-- Real-Time Auto-Sync Toggle -->
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                     <div>
-                        <div class="text-xs font-black text-slate-900 dark:text-white">Real-Time Multi-Device Live Sync</div>
-                        <div class="text-[11px] text-slate-500 dark:text-slate-400">Sync all attendance updates live without page reload</div>
+                        <div class="text-xs font-black text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>Real-Time Multi-Device Auto-Sync</span>
+                            <span class="text-[10px] font-extrabold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-md">Recommended</span>
+                        </div>
+                        <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                            Automatically saves any attendance or moderator change to Google Sheets in background
+                        </div>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="fb-autosync-toggle" checked onchange="handleToggleAutoSync(this.checked)" class="sr-only peer">
-                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-amber-500"></div>
+                        <input type="checkbox" id="sheets-autosync-toggle" checked onchange="handleToggleSheetsAutoSync(this.checked)" class="sr-only peer">
+                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
                     </label>
                 </div>
 
                 <!-- Action Controls -->
                 <div class="pt-2 flex flex-wrap items-center justify-between gap-2.5">
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="syncDataToFirestore(true)" title="Upload current local roster to Firebase Cloud" 
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="syncDataToGoogleSheet(true)" title="Upload current local roster to Google Sheet" 
                                 class="px-3.5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-bold text-xs border border-emerald-300 dark:border-emerald-700 transition flex items-center gap-1.5 shadow-2xs">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload to Cloud
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload to Sheet
                         </button>
-                        <button type="button" onclick="pullFirestoreDataToLocal(true)" title="Download roster from Firebase Cloud" 
+                        <button type="button" onclick="pullDataFromGoogleSheet(true)" title="Download roster from Google Sheet" 
                                 class="px-3.5 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold text-xs border border-indigo-300 dark:border-indigo-700 transition flex items-center gap-1.5 shadow-2xs">
-                            <i class="fa-solid fa-cloud-arrow-down"></i> Restore from Cloud
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Restore from Sheet
+                        </button>
+                        <button type="button" onclick="testSheetsConnection()" title="Test Connection"
+                                class="px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs transition">
+                            <i class="fa-solid fa-plug"></i> Test
                         </button>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <button type="button" onclick="handleDisconnectFirebase()" class="text-xs font-bold text-slate-400 hover:text-rose-600 transition px-2">
+                        <button type="button" onclick="handleDisconnectSheets()" class="text-xs font-bold text-slate-400 hover:text-rose-600 transition px-2">
                             Clear / Disconnect
                         </button>
-                        <button type="submit" class="shimmer-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-black text-xs shadow-md shadow-orange-500/20 active:scale-95 transition flex items-center gap-1.5">
+                        <button type="submit" class="shimmer-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-black text-xs shadow-md shadow-emerald-600/20 active:scale-95 transition flex items-center gap-1.5">
                             <i class="fa-solid fa-floppy-disk"></i> Save & Connect
                         </button>
                     </div>
                 </div>
             </form>
+
+            <!-- 1-Click Apps Script Code & Setup Guide Accordion -->
+            <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-code text-emerald-600 dark:text-emerald-400"></i>
+                        <span class="text-xs font-black uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                            Google Apps Script Setup Guide (১ মিনিটে সেটাপ)
+                        </span>
+                    </div>
+                    <button type="button" onclick="copyAppsScriptCode()" id="btn-copy-script-code"
+                            class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black flex items-center gap-1.5 shadow-xs transition active:scale-95">
+                        <i class="fa-regular fa-copy"></i>
+                        <span id="copy-script-text">Copy Apps Script Code</span>
+                    </button>
+                </div>
+
+                <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 font-medium">
+                    <div class="flex items-start gap-2">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono font-black flex items-center justify-center flex-shrink-0 text-[10px]">1</span>
+                        <span>যেকোনো ব্রাউজারে <a href="https://sheets.new" target="_blank" class="text-emerald-600 dark:text-emerald-400 font-bold underline">sheets.new</a> ওপেন করে একটি নতুন Google Sheet তৈরি করুন।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono font-black flex items-center justify-center flex-shrink-0 text-[10px]">2</span>
+                        <span>শিটের উপরের মেনু থেকে <b>Extensions (এক্সটেনশন)</b> &gt; <b>Apps Script (অ্যাপস স্ক্রিপ্ট)</b>-এ ক্লিক করুন।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono font-black flex items-center justify-center flex-shrink-0 text-[10px]">3</span>
+                        <span>পূর্বের কোড মুছে দিয়ে উপরের <b>"Copy Apps Script Code"</b> বাটনে ক্লিক করে কোডটি পেস্ট করুন এবং সেভ করুন।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono font-black flex items-center justify-center flex-shrink-0 text-[10px]">4</span>
+                        <span>উপরে <b>Deploy (ডিপ্লয়)</b> &gt; <b>New deployment (নতুন ডিপ্লয়মেন্ট)</b> নির্বাচন করুন।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono font-black flex items-center justify-center flex-shrink-0 text-[10px]">5</span>
+                        <span>Select type ➔ <b>Web app</b> দিন। "Who has access" ➔ <b>Anyone (যে কেউ)</b> সিলেক্ট করে <b>Deploy</b> করুন।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono font-black flex items-center justify-center flex-shrink-0 text-[10px]">6</span>
+                        <span>পাওয়া <b>Web App URL</b> টি কপি করে উপরের বক্সে পেস্ট করে <b>Save & Connect</b> ক্লিক করলেই আপনার গুগল শিট ডেটাবেজ লাইভ হয়ে যাবে!</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2063,346 +2090,461 @@
             textEl.innerText = tenure ? `Service: ${tenure}` : 'Service: --';
         }
 
-        // ======================= FIREBASE CLOUD REAL-TIME SYNC SYSTEM =======================
-        const DEFAULT_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyBBfXQ7BrZVG5K_VOkhisHxxM3MZO9xf2I",
-            authDomain: "moderators-data.firebaseapp.com",
-            databaseURL: "https://moderators-data-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "moderators-data",
-            storageBucket: "moderators-data.firebasestorage.app",
-            messagingSenderId: "866387060884",
-            appId: "1:866387060884:web:7f40d8e8271ef5a941ec81",
-            measurementId: "G-0Q2F8EPLTW"
+        // ======================= GOOGLE SHEETS CLOUD DATABASE SYSTEM =======================
+        const GOOGLE_APPS_SCRIPT_TEMPLATE = `/**
+ * Sanvee's by Tony - Moderators Portal Database Backend
+ * Google Apps Script Web App for Google Sheets Database
+ */
+
+function doGet(e) {
+  try {
+    const lock = LockService.getScriptLock();
+    lock.tryLock(10000);
+    
+    const action = (e && e.parameter && e.parameter.action) || 'getData';
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    
+    if (action === 'test') {
+      return ContentService.createTextOutput(JSON.stringify({
+        status: 'success',
+        message: 'Google Sheets Database is connected and active!',
+        spreadsheetName: ss.getName(),
+        spreadsheetUrl: ss.getUrl(),
+        timestamp: new Date().toISOString()
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Read from DB_Store_JSON sheet
+    let jsonSheet = ss.getSheetByName('DB_Store_JSON');
+    if (!jsonSheet) {
+      jsonSheet = ss.insertSheet('DB_Store_JSON');
+      jsonSheet.hideSheet();
+    }
+    
+    const rawData = jsonSheet.getRange(1, 1).getValue();
+    let dbData = null;
+    if (rawData) {
+      try {
+        dbData = JSON.parse(rawData);
+      } catch (err) {
+        dbData = null;
+      }
+    }
+    
+    lock.releaseLock();
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'success',
+      data: dbData,
+      timestamp: new Date().toISOString()
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doPost(e) {
+  try {
+    const lock = LockService.getScriptLock();
+    lock.tryLock(15000);
+    
+    if (!e || !e.postData || !e.postData.contents) {
+      throw new Error('No post data received');
+    }
+    
+    const payload = JSON.parse(e.postData.contents);
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    
+    // 1. Save complete raw backup JSON into hidden sheet for lossless restore
+    let jsonSheet = ss.getSheetByName('DB_Store_JSON');
+    if (!jsonSheet) {
+      jsonSheet = ss.insertSheet('DB_Store_JSON');
+      jsonSheet.hideSheet();
+    }
+    jsonSheet.getRange(1, 1).setValue(JSON.stringify(payload));
+    
+    // 2. Format & Update 'Daily_Roster' Sheet
+    if (payload.moderators && Array.isArray(payload.moderators)) {
+      updateModeratorsSheet(ss, payload.moderators);
+    }
+    
+    // 3. Format & Update 'Attendance_Records' Sheet
+    if (payload.attendanceHistory && typeof payload.attendanceHistory === 'object') {
+      updateAttendanceSheet(ss, payload.attendanceHistory, payload.moderators);
+    }
+    
+    // 4. Update 'Night_Shifts' Sheet
+    if (payload.scheduledNightShifts && Array.isArray(payload.scheduledNightShifts)) {
+      updateNightShiftsSheet(ss, payload.scheduledNightShifts);
+    }
+    
+    // 5. Update 'Approved_Leaves' Sheet
+    if (payload.approvedLeaves && Array.isArray(payload.approvedLeaves)) {
+      updateLeavesSheet(ss, payload.approvedLeaves);
+    }
+    
+    // 6. Update 'Weekend_Exchanges' Sheet
+    if (payload.weekendExchanges && Array.isArray(payload.weekendExchanges)) {
+      updateExchangesSheet(ss, payload.weekendExchanges);
+    }
+    
+    lock.releaseLock();
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'success',
+      message: 'Data successfully synced to Google Sheets!',
+      timestamp: new Date().toISOString()
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function updateModeratorsSheet(ss, moderators) {
+  let sheet = ss.getSheetByName('Moderators');
+  if (!sheet) {
+    sheet = ss.insertSheet('Moderators', 0);
+  }
+  sheet.clear();
+  
+  const headers = [['SL', 'Name', 'Weekly Off', 'Phone', 'Joining Date', 'Default Status', 'Notes']];
+  const rows = moderators.map(m => [
+    m.sl,
+    m.name || '',
+    m.weekend || '',
+    m.phone || '',
+    m.join || '',
+    m.status || 'Present',
+    m.notes || ''
+  ]);
+  
+  sheet.getRange(1, 1, 1, headers[0].length).setValues(headers)
+    .setBackground('#e11d48')
+    .setFontColor('#ffffff')
+    .setFontWeight('bold');
+    
+  if (rows.length > 0) {
+    sheet.getRange(2, 1, rows.length, headers[0].length).setValues(rows);
+  }
+  sheet.autoResizeColumns(1, headers[0].length);
+}
+
+function updateAttendanceSheet(ss, attendanceHistory, moderators) {
+  let sheet = ss.getSheetByName('Attendance_Records');
+  if (!sheet) {
+    sheet = ss.insertSheet('Attendance_Records', 1);
+  }
+  sheet.clear();
+  
+  const headers = [['Date', 'Moderator SL', 'Moderator Name', 'Status']];
+  const modMap = {};
+  if (Array.isArray(moderators)) {
+    moderators.forEach(m => { modMap[String(m.sl)] = m.name; });
+  }
+  
+  const rows = [];
+  const dates = Object.keys(attendanceHistory).sort().reverse();
+  
+  dates.forEach(d => {
+    const dayObj = attendanceHistory[d];
+    if (dayObj && typeof dayObj === 'object') {
+      Object.keys(dayObj).forEach(sl => {
+        rows.push([
+          d,
+          sl,
+          modMap[String(sl)] || ('SL ' + sl),
+          dayObj[sl]
+        ]);
+      });
+    }
+  });
+  
+  sheet.getRange(1, 1, 1, headers[0].length).setValues(headers)
+    .setBackground('#059669')
+    .setFontColor('#ffffff')
+    .setFontWeight('bold');
+    
+  if (rows.length > 0) {
+    sheet.getRange(2, 1, rows.length, headers[0].length).setValues(rows);
+  }
+  sheet.autoResizeColumns(1, headers[0].length);
+}
+
+function updateNightShiftsSheet(ss, nightShifts) {
+  let sheet = ss.getSheetByName('Night_Shifts');
+  if (!sheet) {
+    sheet = ss.insertSheet('Night_Shifts', 2);
+  }
+  sheet.clear();
+  
+  const headers = [['ID', 'Mod SL', 'Moderator Name', 'Start Date', 'End Date', 'Days Count', 'Night Shifts Count']];
+  const rows = nightShifts.map(n => [
+    n.id,
+    n.modSl,
+    n.modName || '',
+    n.startDate || '',
+    n.endDate || '',
+    n.count || 0,
+    n.nightCount || 0
+  ]);
+  
+  sheet.getRange(1, 1, 1, headers[0].length).setValues(headers)
+    .setBackground('#4f46e5')
+    .setFontColor('#ffffff')
+    .setFontWeight('bold');
+    
+  if (rows.length > 0) {
+    sheet.getRange(2, 1, rows.length, headers[0].length).setValues(rows);
+  }
+  sheet.autoResizeColumns(1, headers[0].length);
+}
+
+function updateLeavesSheet(ss, leaves) {
+  let sheet = ss.getSheetByName('Approved_Leaves');
+  if (!sheet) {
+    sheet = ss.insertSheet('Approved_Leaves', 3);
+  }
+  sheet.clear();
+  
+  const headers = [['ID', 'Mod SL', 'Moderator Name', 'Start Date', 'End Date', 'Approved By', 'Reason', 'Days Count']];
+  const rows = leaves.map(l => [
+    l.id,
+    l.modSl,
+    l.modName || '',
+    l.startDate || '',
+    l.endDate || '',
+    l.approvedBy || '',
+    l.reason || '',
+    l.count || 0
+  ]);
+  
+  sheet.getRange(1, 1, 1, headers[0].length).setValues(headers)
+    .setBackground('#9333ea')
+    .setFontColor('#ffffff')
+    .setFontWeight('bold');
+    
+  if (rows.length > 0) {
+    sheet.getRange(2, 1, rows.length, headers[0].length).setValues(rows);
+  }
+  sheet.autoResizeColumns(1, headers[0].length);
+}
+
+function updateExchangesSheet(ss, exchanges) {
+  let sheet = ss.getSheetByName('Weekend_Exchanges');
+  if (!sheet) {
+    sheet = ss.insertSheet('Weekend_Exchanges', 4);
+  }
+  sheet.clear();
+  
+  const headers = [['ID', 'Mod SL', 'Moderator Name', 'Duty Date (Worked)', 'Off Date (Taken)', 'Reason / Note', 'Created At']];
+  const rows = exchanges.map(e => [
+    e.id,
+    e.modSl,
+    e.modName || '',
+    e.dutyDate || '',
+    e.offDate || '',
+    e.reason || '',
+    e.createdAt || ''
+  ]);
+  
+  sheet.getRange(1, 1, 1, headers[0].length).setValues(headers)
+    .setBackground('#0891b2')
+    .setFontColor('#ffffff')
+    .setFontWeight('bold');
+    
+  if (rows.length > 0) {
+    sheet.getRange(2, 1, rows.length, headers[0].length).setValues(rows);
+  }
+  sheet.autoResizeColumns(1, headers[0].length);
+}`;
+
+        const DEFAULT_SHEETS_CONFIG = {
+            webAppUrl: "https://script.google.com/macros/s/AKfycbwI8rwYa5UqAZXdI_yXsiFbKf__sZ7z506CHJD1taxJjUVYbFPRHCDH3sc92FgsxGccKQ/exec",
+            spreadsheetUrl: "https://docs.google.com/spreadsheets/d/1RECeY_qznr_bt8Tbn2nDr6W2uzTOC8IHBi89DVHMSMA/edit"
         };
 
-        const FIREBASE_STORAGE_KEY = 'sanvees_firebase_config_v1';
-        const FIREBASE_AUTO_SYNC_KEY = 'sanvees_firebase_autosync_v1';
-        let firebaseApp = null;
-        let realtimeDb = null;
-        let firestoreDb = null;
+        const SHEETS_STORAGE_KEY = 'sanvees_sheets_config_v1';
+        const SHEETS_AUTO_SYNC_KEY = 'sanvees_sheets_autosync_v1';
         let isRemoteUpdate = false;
         let isSyncingToCloud = false;
+        let sheetsAutoSyncTimer = null;
 
-        function getSavedFirebaseConfig() {
+        function getSavedSheetsConfig() {
             try {
-                const raw = localStorage.getItem(FIREBASE_STORAGE_KEY);
+                const raw = localStorage.getItem(SHEETS_STORAGE_KEY);
                 if (raw) {
                     const parsed = JSON.parse(raw);
-                    if (!parsed.databaseURL && parsed.projectId === DEFAULT_FIREBASE_CONFIG.projectId) {
-                        parsed.databaseURL = DEFAULT_FIREBASE_CONFIG.databaseURL;
-                    }
+                    if (!parsed.webAppUrl) parsed.webAppUrl = DEFAULT_SHEETS_CONFIG.webAppUrl;
+                    if (!parsed.spreadsheetUrl) parsed.spreadsheetUrl = DEFAULT_SHEETS_CONFIG.spreadsheetUrl;
                     return parsed;
                 }
-                return DEFAULT_FIREBASE_CONFIG;
+                return DEFAULT_SHEETS_CONFIG;
             } catch(e) {
-                return DEFAULT_FIREBASE_CONFIG;
+                return DEFAULT_SHEETS_CONFIG;
             }
         }
 
-        function isAutoSyncEnabled() {
-            const val = localStorage.getItem(FIREBASE_AUTO_SYNC_KEY);
+        function isSheetsAutoSyncEnabled() {
+            const val = localStorage.getItem(SHEETS_AUTO_SYNC_KEY);
             return val === null ? true : val === 'true';
         }
 
-        function updateFirebaseStatusUI(status, message = '') {
-            const btn = document.getElementById('btn-firebase-status');
-            const dot = document.getElementById('firebase-indicator-dot');
-            const label = document.getElementById('firebase-status-label');
-            const modalBanner = document.getElementById('fb-modal-status-banner');
-            const modalStatusText = document.getElementById('fb-modal-status-text');
-            const modalStatusSub = document.getElementById('fb-modal-status-sub');
-            const lastSyncEl = document.getElementById('fb-last-sync-time');
+        function updateSheetsStatusUI(status, message = '') {
+            const btn = document.getElementById('btn-sheets-status');
+            const dot = document.getElementById('sheets-indicator-dot');
+            const label = document.getElementById('sheets-status-label');
+            const modalBanner = document.getElementById('sheets-modal-status-banner');
+            const modalStatusText = document.getElementById('sheets-modal-status-text');
+            const modalStatusSub = document.getElementById('sheets-modal-status-sub');
+            const lastSyncEl = document.getElementById('sheets-last-sync-time');
 
             if (!btn || !dot || !label) return;
 
-            const config = getSavedFirebaseConfig();
+            const config = getSavedSheetsConfig();
 
             if (status === 'connected') {
                 btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 hover:bg-emerald-100";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse";
-                label.innerText = "Firebase Live";
+                label.innerText = "Google Sheet Live";
                 
                 if (modalBanner) {
                     modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-emerald-50/90 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-xs";
                     modalStatusText.className = "font-extrabold text-emerald-800 dark:text-emerald-200";
-                    modalStatusText.innerText = "🟢 Connected & Real-Time Sync Active";
+                    modalStatusText.innerText = "🟢 Connected & Live Auto-Sync Active";
                     modalStatusSub.className = "text-emerald-700 dark:text-emerald-300 mt-1";
-                    modalStatusSub.innerText = message || `Live synced to Firebase: "${config?.projectId || 'Configured'}"`;
+                    modalStatusSub.innerText = message || "Google Sheets database is actively connected and synchronizing.";
                 }
             } else if (status === 'syncing') {
                 btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping";
-                label.innerText = "Syncing...";
+                label.innerText = "Syncing Sheet...";
 
                 if (modalBanner) {
                     modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-amber-50/90 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800 text-xs";
                     modalStatusText.className = "font-extrabold text-amber-800 dark:text-amber-200";
-                    modalStatusText.innerText = "🟡 Syncing with Firebase Cloud...";
+                    modalStatusText.innerText = "🟡 Syncing with Google Sheets...";
                     modalStatusSub.className = "text-amber-700 dark:text-amber-300 mt-1";
                     modalStatusSub.innerText = message || "Pushing/pulling latest roster data...";
                 }
             } else if (status === 'error') {
                 btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800 hover:bg-rose-100";
                 dot.className = "w-2.5 h-2.5 rounded-full bg-rose-500";
-                label.innerText = "Cloud Error";
+                label.innerText = "Sheet Error";
                 
                 if (modalBanner) {
                     modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-rose-50/90 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800 text-xs";
                     modalStatusText.className = "font-extrabold text-rose-800 dark:text-rose-200";
-                    modalStatusText.innerText = "🔴 Firebase Connection Notice";
+                    modalStatusText.innerText = "🔴 Google Sheet Connection Notice";
                     modalStatusSub.className = "text-rose-700 dark:text-rose-300 mt-1";
-                    modalStatusSub.innerText = message || "Please verify your database rules in Firebase Console (set .read and .write to true).";
+                    modalStatusSub.innerText = message || "Please verify your Google Apps Script Web App Deployment (Access: Anyone).";
                 }
             } else {
                 // Offline / Unconfigured
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/80 hover:bg-amber-100";
-                dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
-                label.innerText = "Firebase Cloud";
+                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200";
+                dot.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
+                label.innerText = "Connect Sheet";
 
                 if (modalBanner) {
                     modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-xs";
                     modalStatusText.className = "font-extrabold text-slate-800 dark:text-slate-200";
-                    modalStatusText.innerText = "⚪ Firebase Not Connected (Local Storage Mode)";
+                    modalStatusText.innerText = "⚪ Google Sheet Not Connected (Local Storage Mode)";
                     modalStatusSub.className = "text-slate-500 dark:text-slate-400 mt-1";
-                    modalStatusSub.innerText = "Paste your Firebase configuration credentials below to activate real-time multi-admin cloud sync.";
+                    modalStatusSub.innerText = "Connect your Google Apps Script Web App URL below to activate automatic cloud backup & live multi-admin sync.";
                 }
             }
 
             if (lastSyncEl) {
-                const last = localStorage.getItem('sanvees_last_cloud_sync_time');
+                const last = localStorage.getItem('sanvees_last_sheets_sync_time');
                 lastSyncEl.innerText = last ? new Date(parseInt(last, 10)).toLocaleTimeString() : 'Never';
             }
         }
 
-        function openFirebaseConfigModal() {
-            populateFirebaseModalInputs();
-            document.getElementById('firebase-config-modal').classList.remove('hidden');
+        function openSheetsConfigModal() {
+            populateSheetsModalInputs();
+            document.getElementById('sheets-config-modal').classList.remove('hidden');
         }
 
-        function closeFirebaseConfigModal() {
-            document.getElementById('firebase-config-modal').classList.add('hidden');
+        function closeSheetsConfigModal() {
+            document.getElementById('sheets-config-modal').classList.add('hidden');
         }
 
-        function populateFirebaseModalInputs() {
-            const config = getSavedFirebaseConfig() || {};
-            document.getElementById('fb-input-api-key').value = config.apiKey || '';
-            document.getElementById('fb-input-project-id').value = config.projectId || '';
-            document.getElementById('fb-input-database-url').value = config.databaseURL || '';
-            document.getElementById('fb-input-auth-domain').value = config.authDomain || '';
-            document.getElementById('fb-input-storage-bucket').value = config.storageBucket || '';
-            document.getElementById('fb-input-app-id').value = config.appId || '';
-            document.getElementById('fb-autosync-toggle').checked = isAutoSyncEnabled();
+        function populateSheetsModalInputs() {
+            const config = getSavedSheetsConfig();
+            document.getElementById('sheets-input-webapp-url').value = config.webAppUrl || '';
+            document.getElementById('sheets-input-spreadsheet-url').value = config.spreadsheetUrl || '';
+            document.getElementById('sheets-autosync-toggle').checked = isSheetsAutoSyncEnabled();
 
-            const rawEl = document.getElementById('fb-raw-config-snippet');
-            if (rawEl && !rawEl.value) {
-                rawEl.value = JSON.stringify(config, null, 2);
-            }
-
-            if (realtimeDb || firestoreDb) {
-                updateFirebaseStatusUI('connected');
-            } else if (config.apiKey && (config.projectId || config.databaseURL)) {
-                updateFirebaseStatusUI('error', 'Ready to connect');
+            if (config.webAppUrl) {
+                updateSheetsStatusUI('connected');
             } else {
-                updateFirebaseStatusUI('offline');
+                updateSheetsStatusUI('offline');
             }
         }
 
-        function handleAutoParseFirebaseSnippet() {
-            const raw = document.getElementById('fb-raw-config-snippet').value.trim();
-            if (!raw) {
-                showToast("Please paste your Firebase configuration code first", "info");
-                return;
-            }
-
-            let parsed = {};
-
-            try {
-                parsed = JSON.parse(raw);
-            } catch(e) {
-                const extract = (key) => {
-                    const match = raw.match(new RegExp(`${key}\\s*[:=]\\s*["']([^"']+)["']`, 'i'));
-                    return match ? match[1] : '';
-                };
-
-                parsed = {
-                    apiKey: extract('apiKey'),
-                    authDomain: extract('authDomain'),
-                    databaseURL: extract('databaseURL'),
-                    projectId: extract('projectId'),
-                    storageBucket: extract('storageBucket'),
-                    messagingSenderId: extract('messagingSenderId'),
-                    appId: extract('appId'),
-                    measurementId: extract('measurementId')
-                };
-            }
-
-            if (parsed.apiKey || parsed.projectId || parsed.databaseURL) {
-                if (parsed.apiKey) document.getElementById('fb-input-api-key').value = parsed.apiKey;
-                if (parsed.projectId) document.getElementById('fb-input-project-id').value = parsed.projectId;
-                if (parsed.databaseURL) document.getElementById('fb-input-database-url').value = parsed.databaseURL;
-                if (parsed.authDomain) document.getElementById('fb-input-auth-domain').value = parsed.authDomain;
-                if (parsed.storageBucket) document.getElementById('fb-input-storage-bucket').value = parsed.storageBucket;
-                if (parsed.appId) document.getElementById('fb-input-app-id').value = parsed.appId;
-
-                showToast("Config fields auto-extracted successfully!", "success");
-            } else {
-                showToast("Could not automatically parse keys. Please fill the fields manually.", "error");
-            }
-        }
-
-        function handleSaveFirebaseConfig(e) {
+        function handleSaveSheetsConfig(e) {
             if (e) e.preventDefault();
 
-            const config = {
-                apiKey: document.getElementById('fb-input-api-key').value.trim(),
-                projectId: document.getElementById('fb-input-project-id').value.trim(),
-                databaseURL: document.getElementById('fb-input-database-url').value.trim(),
-                authDomain: document.getElementById('fb-input-auth-domain').value.trim(),
-                storageBucket: document.getElementById('fb-input-storage-bucket').value.trim(),
-                appId: document.getElementById('fb-input-app-id').value.trim()
-            };
+            const webAppUrl = document.getElementById('sheets-input-webapp-url').value.trim();
+            const spreadsheetUrl = document.getElementById('sheets-input-spreadsheet-url').value.trim();
 
-            if (!config.apiKey || (!config.projectId && !config.databaseURL)) {
-                alert("Please provide at least API Key and Project ID or Database URL to connect Firebase.");
+            if (!webAppUrl) {
+                alert("Please provide a valid Google Apps Script Web App URL (starts with https://script.google.com/macros/s/.../exec)");
                 return;
             }
 
-            if (config.projectId && !config.authDomain) config.authDomain = `${config.projectId}.firebaseapp.com`;
-            if (config.projectId && !config.storageBucket) config.storageBucket = `${config.projectId}.firebasestorage.app`;
+            const config = {
+                webAppUrl,
+                spreadsheetUrl
+            };
 
-            localStorage.setItem(FIREBASE_STORAGE_KEY, JSON.stringify(config));
+            localStorage.setItem(SHEETS_STORAGE_KEY, JSON.stringify(config));
+            updateSheetsStatusUI('connected');
+            showToast("Google Sheets database configured successfully!", "success");
             
-            const connected = initFirebase();
-            if (connected) {
-                showToast("Firebase Cloud configured and connected!", "success");
-                syncDataToFirestore(true);
+            // Trigger initial sync to sheet
+            syncDataToGoogleSheet(true);
+        }
+
+        function handleDisconnectSheets() {
+            if (confirm("Disconnect Google Sheet Database and return to local storage mode?")) {
+                localStorage.removeItem(SHEETS_STORAGE_KEY);
+                document.getElementById('sheets-input-webapp-url').value = '';
+                document.getElementById('sheets-input-spreadsheet-url').value = '';
+                updateSheetsStatusUI('offline');
+                showToast("Google Sheet disconnected. Portal is running in local storage mode.", "info");
             }
         }
 
-        function handleDisconnectFirebase() {
-            if (confirm("Disconnect Firebase Cloud and return to local storage mode?")) {
-                if (realtimeDb) {
-                    try { realtimeDb.ref('sanvees_roster_v8').off(); } catch(e){}
-                }
-                realtimeDb = null;
-                firestoreDb = null;
-                localStorage.removeItem(FIREBASE_STORAGE_KEY);
-                document.getElementById('fb-input-api-key').value = '';
-                document.getElementById('fb-input-project-id').value = '';
-                document.getElementById('fb-input-database-url').value = '';
-                document.getElementById('fb-input-auth-domain').value = '';
-                document.getElementById('fb-input-storage-bucket').value = '';
-                document.getElementById('fb-input-app-id').value = '';
-                document.getElementById('fb-raw-config-snippet').value = '';
-                updateFirebaseStatusUI('offline');
-                showToast("Firebase disconnected. App is in local storage mode.", "info");
-            }
-        }
-
-        function handleToggleAutoSync(enabled) {
-            localStorage.setItem(FIREBASE_AUTO_SYNC_KEY, String(enabled));
+        function handleToggleSheetsAutoSync(enabled) {
+            localStorage.setItem(SHEETS_AUTO_SYNC_KEY, String(enabled));
             if (enabled) {
-                setupRealtimeListeners();
-                showToast("Live Multi-Device Auto-Sync Enabled", "success");
+                showToast("Real-Time Google Sheet Auto-Sync Enabled", "success");
+                triggerAutoSyncToSheet();
             } else {
-                if (realtimeDb) {
-                    try { realtimeDb.ref('sanvees_roster_v8').off(); } catch(e){}
-                }
-                showToast("Live Auto-Sync Paused (Manual Cloud Sync Available)", "info");
+                showToast("Auto-Sync Paused (Manual Sync Available)", "info");
             }
         }
 
-        function initFirebase() {
-            const config = getSavedFirebaseConfig();
-            if (!config || !config.apiKey || (!config.projectId && !config.databaseURL)) {
-                updateFirebaseStatusUI('offline');
-                return false;
-            }
-
-            if (typeof firebase === 'undefined') {
-                console.warn("Firebase SDK not loaded from CDN.");
-                updateFirebaseStatusUI('error', 'Firebase SDK CDN failed to load.');
-                return false;
-            }
-
-            try {
-                if (firebase.apps && firebase.apps.length > 0) {
-                    firebaseApp = firebase.apps[0];
-                } else {
-                    firebaseApp = firebase.initializeApp(config);
-                }
-
-                // Initialize Realtime Database and Firestore
-                try {
-                    if (firebase.database) {
-                        realtimeDb = firebase.database();
-                    }
-                } catch(e) {
-                    console.warn("Realtime DB init note:", e);
-                }
-
-                try {
-                    if (firebase.firestore) {
-                        firestoreDb = firebase.firestore();
-                    }
-                } catch(e) {
-                    console.warn("Firestore init note:", e);
-                }
-
-                updateFirebaseStatusUI('connected');
-                setupRealtimeListeners();
+        function initGoogleSheets() {
+            const config = getSavedSheetsConfig();
+            if (config && config.webAppUrl) {
+                updateSheetsStatusUI('connected');
+                // Fetch cloud data or initialize silently on startup
+                setTimeout(() => {
+                    pullDataFromGoogleSheet(false);
+                }, 500);
                 return true;
-            } catch(err) {
-                console.error("Firebase init error:", err);
-                updateFirebaseStatusUI('error', err.message);
+            } else {
+                updateSheetsStatusUI('offline');
                 return false;
-            }
-        }
-
-        function setupRealtimeListeners() {
-            if (!isAutoSyncEnabled()) return;
-
-            // 1. Firebase Realtime Database Listener (Preferred if databaseURL present)
-            if (realtimeDb) {
-                try {
-                    realtimeDb.ref('sanvees_roster_v8').on('value', (snapshot) => {
-                        const data = snapshot.val();
-                        if (!data) {
-                            // Auto-seed empty cloud database with current local roster
-                            syncDataToFirestore(false);
-                            return;
-                        }
-                        if (isSyncingToCloud) return;
-
-                        applyCloudData(data);
-                    }, (error) => {
-                        console.warn("Realtime DB on value error:", error);
-                        updateFirebaseStatusUI('error', error.message);
-                    });
-                } catch(err) {
-                    console.warn("Realtime DB listener setup error:", err);
-                }
-            }
-
-            // 2. Cloud Firestore Listener fallback
-            if (firestoreDb && !realtimeDb) {
-                try {
-                    firestoreDb.collection('sanvees_portal').doc('roster_data_v8')
-                        .onSnapshot((doc) => {
-                            if (doc.exists) {
-                                const data = doc.data();
-                                if (!data) return;
-                                if (isSyncingToCloud) return;
-
-                                applyCloudData(data);
-                            }
-                        }, (error) => {
-                            console.warn("Firestore onSnapshot error:", error);
-                            updateFirebaseStatusUI('error', error.message);
-                        });
-                } catch(err) {
-                    console.warn("Firestore listener setup error:", err);
-                }
             }
         }
 
@@ -2440,8 +2582,8 @@
                 localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
             }
 
-            localStorage.setItem('sanvees_last_cloud_sync_time', Date.now().toString());
-            updateFirebaseStatusUI('connected');
+            localStorage.setItem('sanvees_last_sheets_sync_time', Date.now().toString());
+            updateSheetsStatusUI('connected');
 
             if (hasChanges) {
                 if (activeView === 'daily') renderDailyTable();
@@ -2451,20 +2593,22 @@
             isRemoteUpdate = false;
         }
 
-        async function syncDataToFirestore(showNotification = true) {
-            if (!realtimeDb && !firestoreDb) {
-                if (showNotification) {
-                    openFirebaseConfigModal();
-                    showToast("Please enter your Firebase credentials to connect to Cloud", "info");
+        async function syncDataToGoogleSheet(showNotification = true, isAuto = false) {
+            const config = getSavedSheetsConfig();
+            if (!config || !config.webAppUrl) {
+                if (showNotification && !isAuto) {
+                    openSheetsConfigModal();
+                    showToast("Please connect your Google Apps Script Web App first", "info");
                 }
-                return;
+                return false;
             }
 
             try {
                 isSyncingToCloud = true;
-                updateFirebaseStatusUI('syncing');
+                updateSheetsStatusUI('syncing', isAuto ? 'Auto-saving to Google Sheet...' : 'Pushing data to Google Sheet...');
 
                 const payload = {
+                    action: "syncData",
                     moderators: moderators,
                     attendanceHistory: attendanceHistory,
                     scheduledNightShifts: scheduledNightShifts,
@@ -2475,75 +2619,163 @@
                     schemaVersion: "8.0"
                 };
 
-                // Write to Realtime Database if available
-                if (realtimeDb) {
-                    await realtimeDb.ref('sanvees_roster_v8').set(payload);
-                }
+                // Use text/plain POST to avoid browser CORS OPTIONS preflight block
+                const response = await fetch(config.webAppUrl, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify(payload)
+                });
 
-                // Write to Firestore if available
-                if (firestoreDb) {
-                    await firestoreDb.collection('sanvees_portal').doc('roster_data_v8').set(payload, { merge: true });
-                }
-                
-                localStorage.setItem('sanvees_last_cloud_sync_time', Date.now().toString());
-                updateFirebaseStatusUI('connected');
-                isSyncingToCloud = false;
+                const result = await response.json();
 
-                if (showNotification) {
-                    showToast("Cloud Synced: Roster & Attendance uploaded to Firebase!", "success");
+                if (result.status === 'success') {
+                    localStorage.setItem('sanvees_last_sheets_sync_time', Date.now().toString());
+                    updateSheetsStatusUI('connected', `Synced: ${new Date().toLocaleTimeString()}`);
+                    isSyncingToCloud = false;
+
+                    if (showNotification && !isAuto) {
+                        showToast("Roster & Attendance synced to Google Sheet!", "success");
+                    }
+                    return true;
+                } else {
+                    throw new Error(result.message || 'Error reported by Google Apps Script');
                 }
             } catch(err) {
                 isSyncingToCloud = false;
-                console.error("Firebase sync error:", err);
-                updateFirebaseStatusUI('error', err.message);
+                console.error("Google Sheets sync error:", err);
+                updateSheetsStatusUI('error', err.message);
                 if (showNotification) {
-                    showToast(`Firebase Sync Notice: ${err.message}`, "error");
+                    showToast(`Google Sheet Sync Error: ${err.message}`, "error");
                 }
+                return false;
             }
         }
 
-        async function pullFirestoreDataToLocal(showNotification = true) {
-            if (!realtimeDb && !firestoreDb) {
+        async function pullDataFromGoogleSheet(showNotification = true) {
+            const config = getSavedSheetsConfig();
+            if (!config || !config.webAppUrl) {
                 if (showNotification) {
-                    openFirebaseConfigModal();
-                    showToast("Please connect Firebase first", "info");
+                    openSheetsConfigModal();
+                    showToast("Please connect your Google Sheet first", "info");
                 }
+                return false;
+            }
+
+            try {
+                updateSheetsStatusUI('syncing', 'Fetching data from Google Sheet...');
+                const url = config.webAppUrl + (config.webAppUrl.includes('?') ? '&' : '?') + 'action=getData&t=' + Date.now();
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success' && result.data) {
+                    applyCloudData(result.data);
+                    localStorage.setItem('sanvees_last_sheets_sync_time', Date.now().toString());
+                    updateSheetsStatusUI('connected', `Restored: ${new Date().toLocaleTimeString()}`);
+                    if (showNotification) {
+                        showToast("Successfully restored data from Google Sheet!", "success");
+                    }
+                    return true;
+                } else if (result.status === 'success' && !result.data) {
+                    // Empty sheet database, initialize by pushing current local data
+                    await syncDataToGoogleSheet(false);
+                    if (showNotification) {
+                        showToast("Google Sheet initialized with current roster data.", "info");
+                    }
+                    return true;
+                } else {
+                    throw new Error(result.message || 'Could not parse data from Google Sheet.');
+                }
+            } catch(err) {
+                console.error("Pull from Google Sheet error:", err);
+                updateSheetsStatusUI('error', err.message);
+                if (showNotification) {
+                    showToast(`Google Sheet Fetch Error: ${err.message}`, "error");
+                }
+                return false;
+            }
+        }
+
+        async function testSheetsConnection() {
+            const webAppUrl = (document.getElementById('sheets-input-webapp-url')?.value || getSavedSheetsConfig().webAppUrl || '').trim();
+            if (!webAppUrl) {
+                alert("Please enter a Google Apps Script Web App URL to test.");
                 return;
             }
 
             try {
-                updateFirebaseStatusUI('syncing');
-                let cloudData = null;
+                showToast("Testing connection with Google Sheet...", "info");
+                const url = webAppUrl + (webAppUrl.includes('?') ? '&' : '?') + 'action=test&t=' + Date.now();
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                const result = await response.json();
 
-                if (realtimeDb) {
-                    const snap = await realtimeDb.ref('sanvees_roster_v8').once('value');
-                    cloudData = snap.val();
-                } else if (firestoreDb) {
-                    const doc = await firestoreDb.collection('sanvees_portal').doc('roster_data_v8').get();
-                    if (doc.exists) cloudData = doc.data();
-                }
-
-                if (cloudData) {
-                    applyCloudData(cloudData);
-                    if (showNotification) {
-                        showToast("Successfully restored data from Firebase Cloud!", "success");
-                    }
+                if (result.status === 'success') {
+                    showToast(`Connection active! Connected to "${result.spreadsheetName || 'Google Spreadsheet'}"`, "success");
+                    updateSheetsStatusUI('connected', `Verified: ${result.spreadsheetName || 'Active'}`);
                 } else {
-                    await syncDataToFirestore(false);
-                    if (showNotification) {
-                        showToast("Initialized cloud roster with current data.", "info");
-                    }
+                    alert(`Google Sheet response: ${result.message}`);
                 }
             } catch(err) {
-                console.error("Pull from Firebase error:", err);
-                updateFirebaseStatusUI('error', err.message);
-                if (showNotification) {
-                    showToast(`Firebase Fetch Error: ${err.message}`, "error");
-                }
+                alert(`Connection test failed: ${err.message}\n\nPlease ensure your Apps Script Web App is deployed with 'Who has access: Anyone'.`);
             }
         }
 
-        // Unified Storage Management (Local Storage + Cloud Firestore Sync)
+        function openConnectedGoogleSheet() {
+            const config = getSavedSheetsConfig();
+            const sheetUrl = (document.getElementById('sheets-input-spreadsheet-url')?.value || config.spreadsheetUrl || '').trim();
+            if (sheetUrl) {
+                window.open(sheetUrl, '_blank');
+            } else {
+                window.open('https://sheets.google.com', '_blank');
+            }
+        }
+
+        function copyAppsScriptCode() {
+            if (!navigator.clipboard) {
+                const textarea = document.createElement('textarea');
+                textarea.value = GOOGLE_APPS_SCRIPT_TEMPLATE;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                textarea.remove();
+            } else {
+                navigator.clipboard.writeText(GOOGLE_APPS_SCRIPT_TEMPLATE);
+            }
+
+            const btn = document.getElementById('btn-copy-script-code');
+            const textSpan = document.getElementById('copy-script-text');
+            if (btn && textSpan) {
+                btn.className = "px-3.5 py-1.5 rounded-xl bg-emerald-700 text-white text-xs font-black flex items-center gap-1.5 shadow-xs transition";
+                textSpan.innerText = "✓ Script Code Copied!";
+                setTimeout(() => {
+                    btn.className = "px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black flex items-center gap-1.5 shadow-xs transition active:scale-95";
+                    textSpan.innerText = "Copy Apps Script Code";
+                }, 2500);
+            }
+            showToast("Google Apps Script code copied to clipboard!", "success");
+        }
+
+        function triggerAutoSyncToSheet() {
+            if (isRemoteUpdate || !isSheetsAutoSyncEnabled()) return;
+            const config = getSavedSheetsConfig();
+            if (!config || !config.webAppUrl) return;
+
+            if (sheetsAutoSyncTimer) clearTimeout(sheetsAutoSyncTimer);
+            sheetsAutoSyncTimer = setTimeout(() => {
+                syncDataToGoogleSheet(false, true);
+            }, 800);
+        }
+
+        // Unified Storage Management (Local Storage + Google Sheets Auto-Sync)
         function saveToLocalStorage() {
             localStorage.setItem('sanveesModeratorsData_v8', JSON.stringify(moderators));
             localStorage.setItem('sanveesAttendanceHistory_v8', JSON.stringify(attendanceHistory));
@@ -2551,10 +2783,8 @@
             localStorage.setItem('sanveesApprovedLeaves_v8', JSON.stringify(approvedLeaves));
             localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
 
-            // Automatically push to cloud if Firebase is connected
-            if ((realtimeDb || firestoreDb) && !isRemoteUpdate && isAutoSyncEnabled()) {
-                syncDataToFirestore(false);
-            }
+            // Automatically push to Google Sheet if connected & auto-sync enabled
+            triggerAutoSyncToSheet();
         }
 
         function loadFromLocalStorage() {
@@ -4485,7 +4715,7 @@
                 closeAbsentAlertModal();
                 closeBulkUnexcusedModal();
                 closeChangePasswordModal();
-                closeFirebaseConfigModal();
+                closeSheetsConfigModal();
             }
         });
 
@@ -4493,7 +4723,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             initTheme();
             loadFromLocalStorage();
-            initFirebase();
+            initGoogleSheets();
             updateDateUI();
             document.getElementById('selected-month-picker').value = currentActiveMonth;
             renderDailyTable();
