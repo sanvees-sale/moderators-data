@@ -1714,7 +1714,7 @@
             { sl: 3, name: "Arman Alif", weekend: "Saturday", phone: "01406274628", join: "04-10-2025", status: "Present", notes: "" },
             { sl: 4, name: "Sajedul Islam", weekend: "Sunday", phone: "01876608766", join: "13-12-2023", status: "Present", notes: "" },
             { sl: 5, name: "Tarikul Islam", weekend: "Sunday", phone: "01401248381", join: "03-01-2026", status: "Present", notes: "" },
-            { sl: 6, name: "Tonmoy", weekend: "Sunday", phone: "01921080031", join: "02-11-2026", status: "Present", notes: "" },
+            { sl: 6, name: "Tonmoy", weekend: "Sunday", phone: "01921080031", join: "02-11-2024", status: "Present", notes: "" },
             { sl: 7, name: "Omar Faruk Majumder", weekend: "Sunday", phone: "01675562296", join: "31-12-2025", status: "Present", notes: "" },
             { sl: 8, name: "Md Sujon", weekend: "Monday", phone: "01762946309", join: "12-07-2024", status: "Present", notes: "" },
             { sl: 9, name: "Mosharof Hossain", weekend: "Monday", phone: "01927917924", join: "01-01-2026", status: "Present", notes: "" },
@@ -1978,8 +1978,20 @@
         function calculateTenure(joinDateStr, asOfDateStr = null) {
             if (!joinDateStr || typeof joinDateStr !== 'string') return "";
             let jD, jM, jY;
-            if (joinDateStr.includes('-')) {
-                const parts = joinDateStr.split('-');
+            const cleanStr = joinDateStr.trim();
+            if (cleanStr.includes('-')) {
+                const parts = cleanStr.split('-');
+                if (parts[0].length === 4) {
+                    jY = parseInt(parts[0], 10);
+                    jM = parseInt(parts[1], 10);
+                    jD = parseInt(parts[2], 10);
+                } else {
+                    jD = parseInt(parts[0], 10);
+                    jM = parseInt(parts[1], 10);
+                    jY = parseInt(parts[2], 10);
+                }
+            } else if (cleanStr.includes('/')) {
+                const parts = cleanStr.split('/');
                 if (parts[0].length === 4) {
                     jY = parseInt(parts[0], 10);
                     jM = parseInt(parts[1], 10);
@@ -1992,6 +2004,8 @@
             } else {
                 return "";
             }
+
+            if (!jY || !jM || !jD || isNaN(jY) || isNaN(jM) || isNaN(jD)) return "";
 
             const startDate = new Date(jY, jM - 1, jD);
             let endDate;
@@ -2024,12 +2038,18 @@
             }
 
             const parts = [];
-            if (years > 0) parts.push(`${years} ${years === 1 ? 'Year' : 'Years'}`);
-            if (months > 0) parts.push(`${months} ${months === 1 ? 'Month' : 'Months'}`);
-            if (days > 0 && years === 0) parts.push(`${days} ${days === 1 ? 'Day' : 'Days'}`);
+            if (years > 0) {
+                parts.push(`${years} ${years === 1 ? 'Year' : 'Years'}`);
+            }
+            if (months > 0) {
+                parts.push(`${months} ${months === 1 ? 'Month' : 'Months'}`);
+            }
+            if (days > 0) {
+                parts.push(`${days} ${days === 1 ? 'Day' : 'Days'}`);
+            }
 
             if (parts.length === 0) {
-                return `${days} Days`;
+                return "Joined Today";
             }
 
             return parts.join(' ');
@@ -2547,6 +2567,11 @@
                         const exists = moderators.some(m => m.name.toLowerCase() === defMod.name.toLowerCase() || (m.phone && defMod.phone && m.phone.replace(/\D/g, '') === defMod.phone.replace(/\D/g, '')));
                         if (!exists) {
                             moderators.push(JSON.parse(JSON.stringify(defMod)));
+                        }
+                    });
+                    moderators.forEach(m => {
+                        if (m.name && m.name.toLowerCase() === 'tonmoy' && m.join === '02-11-2026') {
+                            m.join = '02-11-2024';
                         }
                     });
                 } catch(e) {
