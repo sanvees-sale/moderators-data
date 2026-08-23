@@ -3371,13 +3371,23 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             renderMonthlyNightShiftLog();
         }
 
+        function formatDateISO(dateObj) {
+            if (!dateObj) return '';
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
         function getNextWeekendForModerator(mod, fromDateStr) {
-            const date = new Date(fromDateStr + 'T00:00:00');
+            if (!mod || !mod.weekend || !fromDateStr) return fromDateStr;
+            const [y, m, d] = fromDateStr.split('-').map(Number);
+            const baseDate = new Date(y, m - 1, d);
             const targetDay = mod.weekend.toLowerCase();
             const daysMap = { sunday: 0, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6 };
             const targetDayNum = daysMap[targetDay];
 
-            let curr = new Date(date);
+            let curr = new Date(baseDate);
             for (let i = 1; i <= 7; i++) {
                 curr.setDate(curr.getDate() + 1);
                 if (curr.getDay() === targetDayNum) {
@@ -3413,16 +3423,20 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
 
         function openNightShiftModal(preselectSl = null, customStartDate = null) {
             const selectEl = document.getElementById('night-mod-select');
-            selectEl.innerHTML = '';
-            moderators.forEach(m => {
-                const opt = document.createElement('option');
-                opt.value = m.sl;
-                opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
-                if (preselectSl && m.sl === preselectSl) opt.selected = true;
-                selectEl.appendChild(opt);
-            });
+            if (selectEl) {
+                selectEl.innerHTML = '';
+                moderators.forEach(m => {
+                    const opt = document.createElement('option');
+                    opt.value = m.sl;
+                    opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
+                    if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                    selectEl.appendChild(opt);
+                });
+            }
 
-            document.getElementById('night-start-date').value = customStartDate || currentActiveDate;
+            const startInput = document.getElementById('night-start-date');
+            if (startInput) startInput.value = customStartDate || currentActiveDate;
+            
             autoCalculateNightEndDate();
 
             if (!monthlyNightShiftMonth) {
@@ -3432,11 +3446,13 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             if (monthPicker) monthPicker.value = monthlyNightShiftMonth;
 
             switchNightShiftTab('active');
-            document.getElementById('night-shift-modal').classList.remove('hidden');
+            const modalEl = document.getElementById('night-shift-modal');
+            if (modalEl) modalEl.classList.remove('hidden');
         }
 
         function closeNightShiftModal() {
-            document.getElementById('night-shift-modal').classList.add('hidden');
+            const modalEl = document.getElementById('night-shift-modal');
+            if (modalEl) modalEl.classList.add('hidden');
         }
 
         function handleNightShiftSubmit(e) {
@@ -3487,6 +3503,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             if (activeView === 'monthly') renderMonthlyTable();
 
             showToast(`Night Shift assigned for ${mod.name} until next ${mod.weekend} (${startDate} to ${endDate})`, 'success');
+            closeNightShiftModal();
         }
 
         function renderNightShiftList() {
@@ -3792,6 +3809,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             if (activeView === 'monthly') renderMonthlyTable();
 
             showToast(`Leave sanctioned by ${approvedBy} for ${mod.name} (${startDate} to ${endDate})`, 'success');
+            closeLeaveModal();
         }
 
         function renderLeaveList() {
