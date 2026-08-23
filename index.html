@@ -1356,13 +1356,16 @@
                         <input type="month" id="monthly-night-month-picker" onchange="handleMonthlyNightMonthChange(this.value)" 
                                class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono font-bold text-xs outline-none cursor-pointer">
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
                         <span class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-black">
                             Total Night Duties: <b id="monthly-night-total-shifts" class="font-mono text-sm">0</b>
                         </span>
                         <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 font-black">
                             Total Duty Days: <b id="monthly-night-total-days" class="font-mono text-sm">0</b>
                         </span>
+                        <button type="button" onclick="printMonthlyNightReport()" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-black flex items-center gap-1.5 shadow-sm transition cursor-pointer">
+                            <i class="fa-solid fa-print"></i> <span>Print</span>
+                        </button>
                     </div>
                 </div>
 
@@ -1387,9 +1390,14 @@
 
             <div class="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-slate-800 mt-4 text-xs font-bold text-slate-400">
                 <span>Sanvee's Night Shift Roster System</span>
-                <button onclick="closeNightShiftModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-xs sm:text-sm font-bold">
-                    Close
-                </button>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="night-modal-footer-print-btn" onclick="printMonthlyNightReport()" class="hidden px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer">
+                        <i class="fa-solid fa-print"></i> <span>Print Monthly Report</span>
+                    </button>
+                    <button onclick="closeNightShiftModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-xs sm:text-sm font-bold">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1496,13 +1504,16 @@
                         <input type="month" id="monthly-leave-month-picker" onchange="handleMonthlyLeaveMonthChange(this.value)" 
                                class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono font-bold text-xs outline-none cursor-pointer">
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
                         <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 font-black">
                             Total Leave Grants: <b id="monthly-leave-total-records" class="font-mono text-sm">0</b>
                         </span>
                         <span class="px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950 text-pink-700 dark:text-pink-300 font-black">
                             Total Days: <b id="monthly-leave-total-days" class="font-mono text-sm">0</b>
                         </span>
+                        <button type="button" onclick="printMonthlyLeaveReport()" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-black flex items-center gap-1.5 shadow-sm transition cursor-pointer">
+                            <i class="fa-solid fa-print"></i> <span>Print</span>
+                        </button>
                     </div>
                 </div>
 
@@ -1527,9 +1538,14 @@
 
             <div class="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-slate-800 mt-4 text-xs font-bold text-slate-400">
                 <span>Sanvee's Official Leave Management</span>
-                <button onclick="closeLeaveModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-xs sm:text-sm font-bold">
-                    Close
-                </button>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="leave-modal-footer-print-btn" onclick="printMonthlyLeaveReport()" class="hidden px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer">
+                        <i class="fa-solid fa-print"></i> <span>Print Monthly Report</span>
+                    </button>
+                    <button onclick="closeLeaveModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-xs sm:text-sm font-bold">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -3349,6 +3365,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             const btnMonthly = document.getElementById('tab-btn-night-monthly');
             const tabActive = document.getElementById('night-tab-active');
             const tabMonthly = document.getElementById('night-tab-monthly');
+            const footerPrintBtn = document.getElementById('night-modal-footer-print-btn');
 
             if (!btnActive || !btnMonthly || !tabActive || !tabMonthly) return;
 
@@ -3357,12 +3374,14 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
                 tabActive.classList.remove('hidden');
                 tabMonthly.classList.add('hidden');
+                if (footerPrintBtn) footerPrintBtn.classList.add('hidden');
                 renderNightShiftList();
             } else {
                 btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs";
                 btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
                 tabMonthly.classList.remove('hidden');
                 tabActive.classList.add('hidden');
+                if (footerPrintBtn) footerPrintBtn.classList.remove('hidden');
                 renderMonthlyNightShiftLog();
             }
         }
@@ -3704,6 +3723,159 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             });
         }
 
+        function printHtmlDocument(title, contentHtml) {
+            let iframe = document.getElementById('report-print-frame');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = 'report-print-frame';
+                iframe.style.position = 'fixed';
+                iframe.style.right = '0';
+                iframe.style.bottom = '0';
+                iframe.style.width = '0';
+                iframe.style.height = '0';
+                iframe.style.border = 'none';
+                document.body.appendChild(iframe);
+            }
+            const frameDoc = iframe.contentWindow.document;
+            frameDoc.open();
+            frameDoc.write(contentHtml);
+            frameDoc.close();
+            setTimeout(() => {
+                iframe.contentWindow.focus();
+                iframe.contentWindow.print();
+            }, 300);
+        }
+
+        function printMonthlyNightReport() {
+            const selectedMonth = monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const year = parseInt(yearStr, 10);
+            const month = parseInt(monthStr, 10);
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const monthNameFull = MONTH_NAMES[month - 1];
+            const monthNameShort = monthNameFull.substring(0, 3);
+
+            let totalDutyDaysCount = 0;
+            const reportRows = [];
+
+            moderators.forEach(mod => {
+                const dutyDates = [];
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    const status = getModeratorStatusForDate(mod, dateStr);
+                    if (status === 'Night Shift') {
+                        dutyDates.push(dateStr);
+                    }
+                }
+                if (dutyDates.length > 0) {
+                    totalDutyDaysCount += dutyDates.length;
+                    reportRows.push({
+                        sl: mod.sl,
+                        name: mod.name,
+                        weekend: mod.weekend,
+                        days: dutyDates.length,
+                        dates: dutyDates
+                    });
+                }
+            });
+
+            const now = new Date();
+            const printTime = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+            let rowsHtml = '';
+            if (reportRows.length === 0) {
+                rowsHtml = `<tr><td colspan="5" style="text-align: center; padding: 30px; color: #64748b; font-style: italic;">No night shift duty records found for ${monthNameFull} ${year}.</td></tr>`;
+            } else {
+                reportRows.forEach((item, idx) => {
+                    const datesPills = item.dates.map(d => {
+                        const day = parseInt(d.split('-')[2], 10);
+                        return `<span style="display:inline-block; margin:2px 3px; padding:2px 7px; background:#eef2ff; color:#3730a3; border:1px solid #c7d2fe; border-radius:4px; font-size:11px; font-weight:700;">${day} ${monthNameShort}</span>`;
+                    }).join('');
+
+                    rowsHtml += `
+                        <tr style="border-bottom: 1px solid #e2e8f0; background: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
+                            <td style="padding: 9px 12px; font-family: monospace; font-weight: bold; text-align: center; color: #64748b;">${String(item.sl).padStart(2, '0')}</td>
+                            <td style="padding: 9px 12px; font-weight: 800; color: #0f172a;">${item.name}</td>
+                            <td style="padding: 9px 12px; text-align: center;"><span style="display:inline-block; padding: 2px 8px; background: #fef3c7; color: #92400e; font-weight: bold; border-radius: 4px; font-size: 11px;">${item.weekend}</span></td>
+                            <td style="padding: 9px 12px; text-align: center; font-weight: 900; color: #4338ca; font-size: 13px;">${item.days} Days</td>
+                            <td style="padding: 9px 12px;">${datesPills}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            const html = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Night_Shift_Report_${selectedMonth}</title>
+                    <meta charset="utf-8">
+                    <style>
+                        @page { size: portrait; margin: 12mm; }
+                        * { box-sizing: border-box; }
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; margin: 0; padding: 0; background: #fff; line-height: 1.4; }
+                        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #4f46e5; padding-bottom: 12px; margin-bottom: 14px; }
+                        .title { font-size: 20px; font-weight: 900; color: #1e1b4b; text-transform: uppercase; letter-spacing: 0.5px; }
+                        .subtitle { font-size: 12px; color: #4f46e5; font-weight: 800; margin-top: 3px; letter-spacing: 0.3px; }
+                        .meta { text-align: right; font-size: 11px; color: #64748b; line-height: 1.5; }
+                        .kpi-row { display: flex; gap: 12px; margin-bottom: 14px; }
+                        .kpi-box { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; }
+                        .kpi-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: #64748b; }
+                        .kpi-val { font-size: 16px; font-weight: 900; color: #0f172a; margin-top: 2px; }
+                        table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; }
+                        th { background: #f1f5f9; padding: 9px 12px; text-align: left; font-weight: 800; color: #334155; border-bottom: 2px solid #cbd5e1; font-size: 11px; text-transform: uppercase; }
+                        .footer-signs { display: flex; justify-content: space-between; margin-top: 45px; padding-top: 10px; }
+                        .sign-box { width: 220px; text-align: center; border-top: 1px dashed #94a3b8; padding-top: 8px; font-size: 11px; color: #475569; font-weight: 600; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div>
+                            <div class="title">SANVEE'S BY TONY</div>
+                            <div class="subtitle">MODERATORS NIGHT SHIFT ROSTER & MONTHLY DUTY REPORT</div>
+                        </div>
+                        <div class="meta">
+                            <div><b>Report Month:</b> ${monthNameFull} ${year}</div>
+                            <div><b>Printed On:</b> ${printTime}</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-row">
+                        <div class="kpi-box">
+                            <div class="kpi-label">Report Month</div>
+                            <div class="kpi-val">${monthNameFull} ${year}</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-label">Total Night Duty Staff</div>
+                            <div class="kpi-val">${reportRows.length} Persons</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-label">Total Night Duty Days</div>
+                            <div class="kpi-val" style="color: #4f46e5;">${totalDutyDaysCount} Duty Days</div>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="text-align:center; width: 45px;">SL</th>
+                                <th style="width: 180px;">Moderator Name</th>
+                                <th style="text-align:center; width: 100px;">Off Day</th>
+                                <th style="text-align:center; width: 110px;">Total Night Days</th>
+                                <th>Duty Dates in ${monthNameShort} ${year}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHtml}
+                        </tbody>
+                    </table>
+                </body>
+                </html>
+            `;
+
+            printHtmlDocument(`Night_Shift_Report_${selectedMonth}`, html);
+        }
+
         // ======================= APPROVED LEAVE MANAGEMENT (ACTIVE & MONTHLY SUMMARY) =======================
         let activeLeaveTab = 'active';
         let monthlyLeaveMonth = '';
@@ -3714,6 +3886,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             const btnMonthly = document.getElementById('tab-btn-leave-monthly');
             const tabActive = document.getElementById('leave-tab-active');
             const tabMonthly = document.getElementById('leave-tab-monthly');
+            const footerPrintBtn = document.getElementById('leave-modal-footer-print-btn');
 
             if (!btnActive || !btnMonthly || !tabActive || !tabMonthly) return;
 
@@ -3722,12 +3895,14 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
                 tabActive.classList.remove('hidden');
                 tabMonthly.classList.add('hidden');
+                if (footerPrintBtn) footerPrintBtn.classList.add('hidden');
                 renderLeaveList();
             } else {
                 btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 shadow-xs";
                 btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
                 tabMonthly.classList.remove('hidden');
                 tabActive.classList.add('hidden');
+                if (footerPrintBtn) footerPrintBtn.classList.remove('hidden');
                 renderMonthlyLeaveLog();
             }
         }
@@ -4010,6 +4185,144 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function printMonthlyLeaveReport() {
+            const selectedMonth = monthlyLeaveMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const year = parseInt(yearStr, 10);
+            const month = parseInt(monthStr, 10);
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const monthNameFull = MONTH_NAMES[month - 1];
+            const monthNameShort = monthNameFull.substring(0, 3);
+
+            let totalLeaveDaysCount = 0;
+            const reportRows = [];
+
+            moderators.forEach(mod => {
+                const leaveDates = [];
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    const status = getModeratorStatusForDate(mod, dateStr);
+                    if (status === 'Leave') {
+                        leaveDates.push(dateStr);
+                    }
+                }
+
+                const relatedRecords = approvedLeaves.filter(r => r.modSl === mod.sl && ((r.startDate && r.startDate.startsWith(selectedMonth)) || (r.endDate && r.endDate.startsWith(selectedMonth))));
+
+                if (leaveDates.length > 0 || relatedRecords.length > 0) {
+                    totalLeaveDaysCount += leaveDates.length;
+                    reportRows.push({
+                        mod,
+                        leaveDates,
+                        records: relatedRecords
+                    });
+                }
+            });
+
+            const now = new Date();
+            const printTime = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+            let rowsHtml = '';
+            if (reportRows.length === 0) {
+                rowsHtml = `<tr><td colspan="6" style="text-align: center; padding: 30px; color: #64748b; font-style: italic;">No approved leave records found for ${monthNameFull} ${year}.</td></tr>`;
+            } else {
+                reportRows.forEach((item, idx) => {
+                    const { mod, leaveDates, records } = item;
+                    const approver = records.length > 0 ? records[0].approvedBy : 'Management';
+                    const reason = records.length > 0 ? records[0].reason : 'Sanctioned Leave';
+                    const dateRangeStr = records.length > 0 ? `${records[0].startDate} ➔ ${records[0].endDate}` : '--';
+
+                    const datesPills = leaveDates.map(d => {
+                        const day = parseInt(d.split('-')[2], 10);
+                        return `<span style="display:inline-block; margin:2px 3px; padding:2px 7px; background:#faf5ff; color:#7e22ce; border:1px solid #e9d5ff; border-radius:4px; font-size:11px; font-weight:700;">${day} ${monthNameShort}</span>`;
+                    }).join('');
+
+                    rowsHtml += `
+                        <tr style="border-bottom: 1px solid #e2e8f0; background: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
+                            <td style="padding: 9px 12px; font-family: monospace; font-weight: bold; text-align: center; color: #64748b;">${String(mod.sl).padStart(2, '0')}</td>
+                            <td style="padding: 9px 12px; font-weight: 800; color: #0f172a;">${mod.name}</td>
+                            <td style="padding: 9px 12px; text-align: center;"><span style="display:inline-block; padding: 2px 8px; background: #f3e8ff; color: #7e22ce; font-weight: bold; border-radius: 4px; font-size: 11px;">${approver}</span></td>
+                            <td style="padding: 9px 12px; text-align: center; font-weight: 900; color: #7e22ce; font-size: 13px;">${leaveDates.length} Days</td>
+                            <td style="padding: 9px 12px;">${datesPills}</td>
+                            <td style="padding: 9px 12px; font-style: italic; color: #475569; font-size: 11px;">"${reason}"</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            const html = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Approved_Leave_Report_${selectedMonth}</title>
+                    <meta charset="utf-8">
+                    <style>
+                        @page { size: portrait; margin: 12mm; }
+                        * { box-sizing: border-box; }
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; margin: 0; padding: 0; background: #fff; line-height: 1.4; }
+                        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid #a855f7; padding-bottom: 12px; margin-bottom: 14px; }
+                        .title { font-size: 20px; font-weight: 900; color: #3b0764; text-transform: uppercase; letter-spacing: 0.5px; }
+                        .subtitle { font-size: 12px; color: #a855f7; font-weight: 800; margin-top: 3px; letter-spacing: 0.3px; }
+                        .meta { text-align: right; font-size: 11px; color: #64748b; line-height: 1.5; }
+                        .kpi-row { display: flex; gap: 12px; margin-bottom: 14px; }
+                        .kpi-box { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; }
+                        .kpi-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: #64748b; }
+                        .kpi-val { font-size: 16px; font-weight: 900; color: #0f172a; margin-top: 2px; }
+                        table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; }
+                        th { background: #f1f5f9; padding: 9px 12px; text-align: left; font-weight: 800; color: #334155; border-bottom: 2px solid #cbd5e1; font-size: 11px; text-transform: uppercase; }
+                        .footer-signs { display: flex; justify-content: space-between; margin-top: 45px; padding-top: 10px; }
+                        .sign-box { width: 220px; text-align: center; border-top: 1px dashed #94a3b8; padding-top: 8px; font-size: 11px; color: #475569; font-weight: 600; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div>
+                            <div class="title">SANVEE'S BY TONY</div>
+                            <div class="subtitle">OFFICIAL APPROVED LEAVE SUMMARY REPORT</div>
+                        </div>
+                        <div class="meta">
+                            <div><b>Report Month:</b> ${monthNameFull} ${year}</div>
+                            <div><b>Printed On:</b> ${printTime}</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-row">
+                        <div class="kpi-box">
+                            <div class="kpi-label">Report Month</div>
+                            <div class="kpi-val">${monthNameFull} ${year}</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-label">Total Leave Grants</div>
+                            <div class="kpi-val">${reportRows.length} Grants</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-label">Total Sanctioned Leave Days</div>
+                            <div class="kpi-val" style="color: #7e22ce;">${totalLeaveDaysCount} Days</div>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="text-align:center; width: 45px;">SL</th>
+                                <th style="width: 170px;">Moderator Name</th>
+                                <th style="text-align:center; width: 120px;">Approved By</th>
+                                <th style="text-align:center; width: 100px;">Total Days</th>
+                                <th>Leave Dates in ${monthNameShort} ${year}</th>
+                                <th>Reason / Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHtml}
+                        </tbody>
+                    </table>
+                </body>
+                </html>
+            `;
+
+            printHtmlDocument(`Approved_Leave_Report_${selectedMonth}`, html);
         }
 
         // ======================= WEEKEND EXCHANGE MANAGEMENT =======================
