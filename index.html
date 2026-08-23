@@ -3280,8 +3280,9 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             document.getElementById('count-present').innerText = present;
             document.getElementById('pct-present').innerText = `${Math.round((present/total)*100)}%`;
 
-            document.getElementById('count-absent').innerText = absent;
-            document.getElementById('count-night').innerText = night;
+            const activeNightDutyMods = scheduledNightShifts.filter(r => currentActiveDate >= r.startDate && currentActiveDate < r.endDate);
+            const nightDisplayCount = activeNightDutyMods.length > 0 ? activeNightDutyMods.length : night;
+            document.getElementById('count-night').innerText = nightDisplayCount;
             document.getElementById('count-off-today').innerText = offToday;
 
             const unexcusedBtn = document.getElementById('btn-unexcused-alert');
@@ -3296,7 +3297,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             }
 
             // Update Header Night Shift, Leave & Exchange Badge Counts
-            const activeNightShiftsCount = scheduledNightShifts.filter(r => r.endDate >= currentActiveDate).length;
+            const activeNightShiftsCount = scheduledNightShifts.filter(r => r.endDate > currentActiveDate).length;
             const activeLeavesCount = approvedLeaves.filter(r => r.endDate >= currentActiveDate).length;
             const activeExchangesCount = weekendExchanges.filter(x => x.exchangeDate >= currentActiveDate || x.weekendDate >= currentActiveDate).length;
 
@@ -3511,8 +3512,8 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             if (!listEl) return;
             listEl.innerHTML = '';
 
-            // Filter active or upcoming night shifts (endDate >= currentActiveDate)
-            const activeShifts = scheduledNightShifts.filter(rec => rec.endDate >= currentActiveDate);
+            // Filter active or upcoming night shifts (duty ends before weekly off day: endDate > currentActiveDate)
+            const activeShifts = scheduledNightShifts.filter(rec => rec.endDate > currentActiveDate);
 
             // Update Tab Count Badges
             const tabActiveBadge = document.getElementById('tab-night-active-count');
@@ -3543,13 +3544,10 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             activeShifts.forEach((rec) => {
                 const mod = moderators.find(m => m.sl === rec.modSl) || { name: rec.modName, weekend: 'Off' };
                 const isCurrentlyActive = currentActiveDate >= rec.startDate && currentActiveDate < rec.endDate;
-                const isOffDayToday = currentActiveDate === rec.endDate;
                 
                 let statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">🗓️ Upcoming</span>`;
                 if (isCurrentlyActive) {
                     statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 animate-pulse">🟢 Active Duty Tonight</span>`;
-                } else if (isOffDayToday) {
-                    statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">🗓️ Weekly Off Today</span>`;
                 }
 
                 const div = document.createElement('div');
