@@ -3681,7 +3681,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 return;
             }
 
-            monthlySummary.forEach(item => {
+            monthlySummary.forEach((item, idx) => {
                 const { mod, dutyDates, records } = item;
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
@@ -3694,7 +3694,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 tr.innerHTML = `
                     <td class="py-3 px-3">
                         <div class="flex items-center gap-2">
-                            <span class="font-mono font-bold text-slate-400 text-xs">${String(mod.sl).padStart(2, '0')}</span>
+                            <span class="font-mono font-bold text-slate-400 text-xs">${String(idx + 1).padStart(2, '0')}</span>
                             <span class="font-extrabold text-slate-900 dark:text-white text-sm">${mod.name}</span>
                         </div>
                     </td>
@@ -3794,7 +3794,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
 
                     rowsHtml += `
                         <tr style="border-bottom: 1px solid #e2e8f0; background: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
-                            <td style="padding: 9px 12px; font-family: monospace; font-weight: bold; text-align: center; color: #64748b;">${String(item.sl).padStart(2, '0')}</td>
+                            <td style="padding: 9px 12px; font-family: monospace; font-weight: bold; text-align: center; color: #64748b;">${String(idx + 1).padStart(2, '0')}</td>
                             <td style="padding: 9px 12px; font-weight: 800; color: #0f172a;">${item.name}</td>
                             <td style="padding: 9px 12px; text-align: center;"><span style="display:inline-block; padding: 2px 8px; background: #fef3c7; color: #92400e; font-weight: bold; border-radius: 4px; font-size: 11px;">${item.weekend}</span></td>
                             <td style="padding: 9px 12px; text-align: center; font-weight: 900; color: #4338ca; font-size: 13px;">${item.days} Days</td>
@@ -4139,7 +4139,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 return;
             }
 
-            monthlySummary.forEach(item => {
+            monthlySummary.forEach((item, idx) => {
                 const { mod, leaveDates, records } = item;
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
@@ -4155,7 +4155,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 tr.innerHTML = `
                     <td class="py-3 px-3">
                         <div class="flex items-center gap-2">
-                            <span class="font-mono font-bold text-slate-400 text-xs">${String(mod.sl).padStart(2, '0')}</span>
+                            <span class="font-mono font-bold text-slate-400 text-xs">${String(idx + 1).padStart(2, '0')}</span>
                             <span class="font-extrabold text-slate-900 dark:text-white text-sm">${mod.name}</span>
                         </div>
                     </td>
@@ -4241,7 +4241,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
 
                     rowsHtml += `
                         <tr style="border-bottom: 1px solid #e2e8f0; background: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
-                            <td style="padding: 9px 12px; font-family: monospace; font-weight: bold; text-align: center; color: #64748b;">${String(mod.sl).padStart(2, '0')}</td>
+                            <td style="padding: 9px 12px; font-family: monospace; font-weight: bold; text-align: center; color: #64748b;">${String(idx + 1).padStart(2, '0')}</td>
                             <td style="padding: 9px 12px; font-weight: 800; color: #0f172a;">${mod.name}</td>
                             <td style="padding: 9px 12px; text-align: center;"><span style="display:inline-block; padding: 2px 8px; background: #f3e8ff; color: #7e22ce; font-weight: bold; border-radius: 4px; font-size: 11px;">${approver}</span></td>
                             <td style="padding: 9px 12px; text-align: center; font-weight: 900; color: #7e22ce; font-size: 13px;">${leaveDates.length} Days</td>
