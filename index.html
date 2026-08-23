@@ -12,12 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Firebase App, Realtime Database & Firestore SDKs (Compat for Standalone HTML) -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -683,14 +677,6 @@
                     <span id="sheet-status-label" class="hidden sm:inline">Google Sheets</span>
                 </button>
 
-                <!-- Firebase Cloud Sync Status & Config Button -->
-                <button onclick="openFirebaseConfigModal()" id="btn-firebase-status" title="Firebase Cloud Database Connection & Sync Status"
-                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/80 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-xs sm:text-sm font-black transition shadow-xs">
-                    <span id="firebase-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
-                    <i class="fa-solid fa-fire-flame-curved text-amber-500"></i>
-                    <span id="firebase-status-label" class="hidden sm:inline">Firebase Cloud</span>
-                </button>
-
                 <!-- Change Password / Security Settings -->
                 <button onclick="openChangePasswordModal()" title="Change Admin Password" 
                         class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs sm:text-sm font-bold transition shadow-xs">
@@ -1180,131 +1166,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-
-    <!-- ======================= FIREBASE CLOUD REAL-TIME SYNC MODAL ======================= -->
-    <div id="firebase-config-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print select-none">
-        <div class="relative w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6 sm:p-7 animate-fade-scale">
-            
-            <!-- Top Gradient Border -->
-            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500"></div>
-
-            <!-- Header -->
-            <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg border border-amber-200 dark:border-amber-800/80">
-                        <i class="fa-solid fa-fire-flame-curved"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">Firebase Cloud Database</h3>
-                        <p class="text-xs text-slate-400 font-semibold">Real-time cloud database sync across devices & browsers</p>
-                    </div>
-                </div>
-                <button onclick="closeFirebaseConfigModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Connection Status Banner -->
-            <div id="fb-modal-status-banner" class="mb-4 p-3.5 rounded-2xl border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-xs">
-                <div class="flex items-center justify-between">
-                    <div class="font-extrabold text-slate-800 dark:text-slate-200" id="fb-modal-status-text">⚪ Firebase Not Connected (Local Storage Mode)</div>
-                    <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="fb-last-sync-time" class="font-bold text-slate-600 dark:text-slate-300">Never</span></span>
-                </div>
-                <p id="fb-modal-status-sub" class="text-slate-500 dark:text-slate-400 mt-1">
-                    Paste your Firebase configuration credentials below to activate real-time multi-admin cloud sync.
-                </p>
-            </div>
-
-            <!-- Configuration Form -->
-            <form onsubmit="handleSaveFirebaseConfig(event)" class="space-y-3.5">
-                
-                <!-- Quick Paste Box -->
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label class="block font-black text-slate-700 dark:text-slate-300 text-xs uppercase tracking-wider">
-                            🚀 Quick Paste Config (From Firebase Console)
-                        </label>
-                        <button type="button" onclick="handleAutoParseFirebaseSnippet()" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill Fields
-                        </button>
-                    </div>
-                    <textarea id="fb-raw-config-snippet" rows="3" placeholder='Paste `const firebaseConfig = { ... }` or JSON from Firebase Console'
-                              class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500 transition"></textarea>
-                </div>
-
-                <!-- Individual Credential Fields -->
-                <div class="grid grid-cols-2 gap-2.5 text-xs">
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">API Key</label>
-                        <input type="text" id="fb-input-api-key" placeholder="AIzaSy..."
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">Project ID</label>
-                        <input type="text" id="fb-input-project-id" placeholder="moderators-data"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div class="col-span-2">
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">
-                            Database URL <span class="text-amber-500 font-semibold">(Realtime Database)</span>
-                        </label>
-                        <input type="text" id="fb-input-database-url" placeholder="https://moderators-data-default-rtdb.asia-southeast1.firebasedatabase.app"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">Auth Domain</label>
-                        <input type="text" id="fb-input-auth-domain" placeholder="project.firebaseapp.com"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">Storage Bucket</label>
-                        <input type="text" id="fb-input-storage-bucket" placeholder="project.firebasestorage.app"
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                    <div class="col-span-2">
-                        <label class="block font-bold text-slate-600 dark:text-slate-300 mb-1">App ID</label>
-                        <input type="text" id="fb-input-app-id" placeholder="1:1234567890:web:abcdef..."
-                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
-                    </div>
-                </div>
-
-                <!-- Real-Time Auto-Sync Toggle -->
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                    <div>
-                        <div class="text-xs font-black text-slate-900 dark:text-white">Real-Time Multi-Device Live Sync</div>
-                        <div class="text-[11px] text-slate-500 dark:text-slate-400">Sync all attendance updates live without page reload</div>
-                    </div>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="fb-autosync-toggle" checked onchange="handleToggleAutoSync(this.checked)" class="sr-only peer">
-                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-amber-500"></div>
-                    </label>
-                </div>
-
-                <!-- Action Controls -->
-                <div class="pt-2 flex flex-wrap items-center justify-between gap-2.5">
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="syncDataToFirestore(true)" title="Upload current local roster to Firebase Cloud" 
-                                class="px-3.5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-bold text-xs border border-emerald-300 dark:border-emerald-700 transition flex items-center gap-1.5 shadow-2xs">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload to Cloud
-                        </button>
-                        <button type="button" onclick="pullFirestoreDataToLocal(true)" title="Download roster from Firebase Cloud" 
-                                class="px-3.5 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold text-xs border border-indigo-300 dark:border-indigo-700 transition flex items-center gap-1.5 shadow-2xs">
-                            <i class="fa-solid fa-cloud-arrow-down"></i> Restore from Cloud
-                        </button>
-                    </div>
-
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="handleDisconnectFirebase()" class="text-xs font-bold text-slate-400 hover:text-rose-600 transition px-2">
-                            Clear / Disconnect
-                        </button>
-                        <button type="submit" class="shimmer-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-black text-xs shadow-md shadow-orange-500/20 active:scale-95 transition flex items-center gap-1.5">
-                            <i class="fa-solid fa-floppy-disk"></i> Save & Connect
-                        </button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -2335,8 +2196,10 @@ function getOrCreateSheet(ss, sheetName) {
 }
 `;
 
+const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rwYa5UqAZXdI_yXsiFbKf__sZ7z506CHJD1taxJjUVYbFPRHCDH3sc92FgsxGccKQ/exec";
+
         function getSavedGoogleSheetUrl() {
-            return localStorage.getItem(GOOGLE_SHEET_STORAGE_KEY) || '';
+            return localStorage.getItem(GOOGLE_SHEET_STORAGE_KEY) || DEFAULT_GOOGLE_SHEET_URL;
         }
 
         function isSheetAutoSyncEnabled() {
@@ -2620,487 +2483,7 @@ function getOrCreateSheet(ss, sheetName) {
             }, 800);
         }
 
-        // ======================= FIREBASE CLOUD REAL-TIME SYNC SYSTEM =======================
-        const DEFAULT_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyBBfXQ7BrZVG5K_VOkhisHxxM3MZO9xf2I",
-            authDomain: "moderators-data.firebaseapp.com",
-            databaseURL: "https://moderators-data-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "moderators-data",
-            storageBucket: "moderators-data.firebasestorage.app",
-            messagingSenderId: "866387060884",
-            appId: "1:866387060884:web:7f40d8e8271ef5a941ec81",
-            measurementId: "G-0Q2F8EPLTW"
-        };
-
-        const FIREBASE_STORAGE_KEY = 'sanvees_firebase_config_v1';
-        const FIREBASE_AUTO_SYNC_KEY = 'sanvees_firebase_autosync_v1';
-        let firebaseApp = null;
-        let realtimeDb = null;
-        let firestoreDb = null;
-        let isRemoteUpdate = false;
-        let isSyncingToCloud = false;
-
-        function getSavedFirebaseConfig() {
-            try {
-                const raw = localStorage.getItem(FIREBASE_STORAGE_KEY);
-                if (raw) {
-                    const parsed = JSON.parse(raw);
-                    if (!parsed.databaseURL && parsed.projectId === DEFAULT_FIREBASE_CONFIG.projectId) {
-                        parsed.databaseURL = DEFAULT_FIREBASE_CONFIG.databaseURL;
-                    }
-                    return parsed;
-                }
-                return DEFAULT_FIREBASE_CONFIG;
-            } catch(e) {
-                return DEFAULT_FIREBASE_CONFIG;
-            }
-        }
-
-        function isAutoSyncEnabled() {
-            const val = localStorage.getItem(FIREBASE_AUTO_SYNC_KEY);
-            return val === null ? true : val === 'true';
-        }
-
-        function updateFirebaseStatusUI(status, message = '') {
-            const btn = document.getElementById('btn-firebase-status');
-            const dot = document.getElementById('firebase-indicator-dot');
-            const label = document.getElementById('firebase-status-label');
-            const modalBanner = document.getElementById('fb-modal-status-banner');
-            const modalStatusText = document.getElementById('fb-modal-status-text');
-            const modalStatusSub = document.getElementById('fb-modal-status-sub');
-            const lastSyncEl = document.getElementById('fb-last-sync-time');
-
-            if (!btn || !dot || !label) return;
-
-            const config = getSavedFirebaseConfig();
-
-            if (status === 'connected') {
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 hover:bg-emerald-100";
-                dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse";
-                label.innerText = "Firebase Live";
-                
-                if (modalBanner) {
-                    modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-emerald-50/90 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-xs";
-                    modalStatusText.className = "font-extrabold text-emerald-800 dark:text-emerald-200";
-                    modalStatusText.innerText = "🟢 Connected & Real-Time Sync Active";
-                    modalStatusSub.className = "text-emerald-700 dark:text-emerald-300 mt-1";
-                    modalStatusSub.innerText = message || `Live synced to Firebase: "${config?.projectId || 'Configured'}"`;
-                }
-            } else if (status === 'syncing') {
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800";
-                dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping";
-                label.innerText = "Syncing...";
-
-                if (modalBanner) {
-                    modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-amber-50/90 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800 text-xs";
-                    modalStatusText.className = "font-extrabold text-amber-800 dark:text-amber-200";
-                    modalStatusText.innerText = "🟡 Syncing with Firebase Cloud...";
-                    modalStatusSub.className = "text-amber-700 dark:text-amber-300 mt-1";
-                    modalStatusSub.innerText = message || "Pushing/pulling latest roster data...";
-                }
-            } else if (status === 'error') {
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800 hover:bg-rose-100";
-                dot.className = "w-2.5 h-2.5 rounded-full bg-rose-500";
-                label.innerText = "Cloud Error";
-                
-                if (modalBanner) {
-                    modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-rose-50/90 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800 text-xs";
-                    modalStatusText.className = "font-extrabold text-rose-800 dark:text-rose-200";
-                    modalStatusText.innerText = "🔴 Firebase Connection Notice";
-                    modalStatusSub.className = "text-rose-700 dark:text-rose-300 mt-1";
-                    modalStatusSub.innerText = message || "Please verify your database rules in Firebase Console (set .read and .write to true).";
-                }
-            } else {
-                // Offline / Unconfigured
-                btn.className = "inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-black rounded-xl border transition shadow-xs bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/80 hover:bg-amber-100";
-                dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
-                label.innerText = "Firebase Cloud";
-
-                if (modalBanner) {
-                    modalBanner.className = "mb-4 p-3.5 rounded-2xl border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-xs";
-                    modalStatusText.className = "font-extrabold text-slate-800 dark:text-slate-200";
-                    modalStatusText.innerText = "⚪ Firebase Not Connected (Local Storage Mode)";
-                    modalStatusSub.className = "text-slate-500 dark:text-slate-400 mt-1";
-                    modalStatusSub.innerText = "Paste your Firebase configuration credentials below to activate real-time multi-admin cloud sync.";
-                }
-            }
-
-            if (lastSyncEl) {
-                const last = localStorage.getItem('sanvees_last_cloud_sync_time');
-                lastSyncEl.innerText = last ? new Date(parseInt(last, 10)).toLocaleTimeString() : 'Never';
-            }
-        }
-
-        function openFirebaseConfigModal() {
-            populateFirebaseModalInputs();
-            document.getElementById('firebase-config-modal').classList.remove('hidden');
-        }
-
-        function closeFirebaseConfigModal() {
-            document.getElementById('firebase-config-modal').classList.add('hidden');
-        }
-
-        function populateFirebaseModalInputs() {
-            const config = getSavedFirebaseConfig() || {};
-            document.getElementById('fb-input-api-key').value = config.apiKey || '';
-            document.getElementById('fb-input-project-id').value = config.projectId || '';
-            document.getElementById('fb-input-database-url').value = config.databaseURL || '';
-            document.getElementById('fb-input-auth-domain').value = config.authDomain || '';
-            document.getElementById('fb-input-storage-bucket').value = config.storageBucket || '';
-            document.getElementById('fb-input-app-id').value = config.appId || '';
-            document.getElementById('fb-autosync-toggle').checked = isAutoSyncEnabled();
-
-            const rawEl = document.getElementById('fb-raw-config-snippet');
-            if (rawEl && !rawEl.value) {
-                rawEl.value = JSON.stringify(config, null, 2);
-            }
-
-            if (realtimeDb || firestoreDb) {
-                updateFirebaseStatusUI('connected');
-            } else if (config.apiKey && (config.projectId || config.databaseURL)) {
-                updateFirebaseStatusUI('error', 'Ready to connect');
-            } else {
-                updateFirebaseStatusUI('offline');
-            }
-        }
-
-        function handleAutoParseFirebaseSnippet() {
-            const raw = document.getElementById('fb-raw-config-snippet').value.trim();
-            if (!raw) {
-                showToast("Please paste your Firebase configuration code first", "info");
-                return;
-            }
-
-            let parsed = {};
-
-            try {
-                parsed = JSON.parse(raw);
-            } catch(e) {
-                const extract = (key) => {
-                    const match = raw.match(new RegExp(`${key}\\s*[:=]\\s*["']([^"']+)["']`, 'i'));
-                    return match ? match[1] : '';
-                };
-
-                parsed = {
-                    apiKey: extract('apiKey'),
-                    authDomain: extract('authDomain'),
-                    databaseURL: extract('databaseURL'),
-                    projectId: extract('projectId'),
-                    storageBucket: extract('storageBucket'),
-                    messagingSenderId: extract('messagingSenderId'),
-                    appId: extract('appId'),
-                    measurementId: extract('measurementId')
-                };
-            }
-
-            if (parsed.apiKey || parsed.projectId || parsed.databaseURL) {
-                if (parsed.apiKey) document.getElementById('fb-input-api-key').value = parsed.apiKey;
-                if (parsed.projectId) document.getElementById('fb-input-project-id').value = parsed.projectId;
-                if (parsed.databaseURL) document.getElementById('fb-input-database-url').value = parsed.databaseURL;
-                if (parsed.authDomain) document.getElementById('fb-input-auth-domain').value = parsed.authDomain;
-                if (parsed.storageBucket) document.getElementById('fb-input-storage-bucket').value = parsed.storageBucket;
-                if (parsed.appId) document.getElementById('fb-input-app-id').value = parsed.appId;
-
-                showToast("Config fields auto-extracted successfully!", "success");
-            } else {
-                showToast("Could not automatically parse keys. Please fill the fields manually.", "error");
-            }
-        }
-
-        function handleSaveFirebaseConfig(e) {
-            if (e) e.preventDefault();
-
-            const config = {
-                apiKey: document.getElementById('fb-input-api-key').value.trim(),
-                projectId: document.getElementById('fb-input-project-id').value.trim(),
-                databaseURL: document.getElementById('fb-input-database-url').value.trim(),
-                authDomain: document.getElementById('fb-input-auth-domain').value.trim(),
-                storageBucket: document.getElementById('fb-input-storage-bucket').value.trim(),
-                appId: document.getElementById('fb-input-app-id').value.trim()
-            };
-
-            if (!config.apiKey || (!config.projectId && !config.databaseURL)) {
-                alert("Please provide at least API Key and Project ID or Database URL to connect Firebase.");
-                return;
-            }
-
-            if (config.projectId && !config.authDomain) config.authDomain = `${config.projectId}.firebaseapp.com`;
-            if (config.projectId && !config.storageBucket) config.storageBucket = `${config.projectId}.firebasestorage.app`;
-
-            localStorage.setItem(FIREBASE_STORAGE_KEY, JSON.stringify(config));
-            
-            const connected = initFirebase();
-            if (connected) {
-                showToast("Firebase Cloud configured and connected!", "success");
-                syncDataToFirestore(true);
-            }
-        }
-
-        function handleDisconnectFirebase() {
-            if (confirm("Disconnect Firebase Cloud and return to local storage mode?")) {
-                if (realtimeDb) {
-                    try { realtimeDb.ref('sanvees_roster_v8').off(); } catch(e){}
-                }
-                realtimeDb = null;
-                firestoreDb = null;
-                localStorage.removeItem(FIREBASE_STORAGE_KEY);
-                document.getElementById('fb-input-api-key').value = '';
-                document.getElementById('fb-input-project-id').value = '';
-                document.getElementById('fb-input-database-url').value = '';
-                document.getElementById('fb-input-auth-domain').value = '';
-                document.getElementById('fb-input-storage-bucket').value = '';
-                document.getElementById('fb-input-app-id').value = '';
-                document.getElementById('fb-raw-config-snippet').value = '';
-                updateFirebaseStatusUI('offline');
-                showToast("Firebase disconnected. App is in local storage mode.", "info");
-            }
-        }
-
-        function handleToggleAutoSync(enabled) {
-            localStorage.setItem(FIREBASE_AUTO_SYNC_KEY, String(enabled));
-            if (enabled) {
-                setupRealtimeListeners();
-                showToast("Live Multi-Device Auto-Sync Enabled", "success");
-            } else {
-                if (realtimeDb) {
-                    try { realtimeDb.ref('sanvees_roster_v8').off(); } catch(e){}
-                }
-                showToast("Live Auto-Sync Paused (Manual Cloud Sync Available)", "info");
-            }
-        }
-
-        function initFirebase() {
-            const config = getSavedFirebaseConfig();
-            if (!config || !config.apiKey || (!config.projectId && !config.databaseURL)) {
-                updateFirebaseStatusUI('offline');
-                return false;
-            }
-
-            if (typeof firebase === 'undefined') {
-                console.warn("Firebase SDK not loaded from CDN.");
-                updateFirebaseStatusUI('error', 'Firebase SDK CDN failed to load.');
-                return false;
-            }
-
-            try {
-                if (firebase.apps && firebase.apps.length > 0) {
-                    firebaseApp = firebase.apps[0];
-                } else {
-                    firebaseApp = firebase.initializeApp(config);
-                }
-
-                // Initialize Realtime Database and Firestore
-                try {
-                    if (firebase.database) {
-                        realtimeDb = firebase.database();
-                    }
-                } catch(e) {
-                    console.warn("Realtime DB init note:", e);
-                }
-
-                try {
-                    if (firebase.firestore) {
-                        firestoreDb = firebase.firestore();
-                    }
-                } catch(e) {
-                    console.warn("Firestore init note:", e);
-                }
-
-                updateFirebaseStatusUI('connected');
-                setupRealtimeListeners();
-                return true;
-            } catch(err) {
-                console.error("Firebase init error:", err);
-                updateFirebaseStatusUI('error', err.message);
-                return false;
-            }
-        }
-
-        function setupRealtimeListeners() {
-            if (!isAutoSyncEnabled()) return;
-
-            // 1. Firebase Realtime Database Listener (Preferred if databaseURL present)
-            if (realtimeDb) {
-                try {
-                    realtimeDb.ref('sanvees_roster_v8').on('value', (snapshot) => {
-                        const data = snapshot.val();
-                        if (!data) {
-                            // Auto-seed empty cloud database with current local roster
-                            syncDataToFirestore(false);
-                            return;
-                        }
-                        if (isSyncingToCloud) return;
-
-                        applyCloudData(data);
-                    }, (error) => {
-                        console.warn("Realtime DB on value error:", error);
-                        updateFirebaseStatusUI('error', error.message);
-                    });
-                } catch(err) {
-                    console.warn("Realtime DB listener setup error:", err);
-                }
-            }
-
-            // 2. Cloud Firestore Listener fallback
-            if (firestoreDb && !realtimeDb) {
-                try {
-                    firestoreDb.collection('sanvees_portal').doc('roster_data_v8')
-                        .onSnapshot((doc) => {
-                            if (doc.exists) {
-                                const data = doc.data();
-                                if (!data) return;
-                                if (isSyncingToCloud) return;
-
-                                applyCloudData(data);
-                            }
-                        }, (error) => {
-                            console.warn("Firestore onSnapshot error:", error);
-                            updateFirebaseStatusUI('error', error.message);
-                        });
-                } catch(err) {
-                    console.warn("Firestore listener setup error:", err);
-                }
-            }
-        }
-
-        function applyCloudData(data) {
-            isRemoteUpdate = true;
-            let hasChanges = false;
-
-            if (Array.isArray(data.moderators) && data.moderators.length > 0) {
-                moderators = data.moderators;
-                hasChanges = true;
-            }
-            if (data.attendanceHistory && typeof data.attendanceHistory === 'object') {
-                attendanceHistory = data.attendanceHistory;
-                hasChanges = true;
-            }
-            if (Array.isArray(data.scheduledNightShifts)) {
-                scheduledNightShifts = data.scheduledNightShifts;
-                hasChanges = true;
-            }
-            if (Array.isArray(data.approvedLeaves)) {
-                approvedLeaves = data.approvedLeaves;
-                hasChanges = true;
-            }
-            if (Array.isArray(data.weekendExchanges)) {
-                weekendExchanges = data.weekendExchanges;
-                hasChanges = true;
-            }
-
-            if (hasChanges) {
-                sortAndReindexModerators();
-                localStorage.setItem('sanveesModeratorsData_v8', JSON.stringify(moderators));
-                localStorage.setItem('sanveesAttendanceHistory_v8', JSON.stringify(attendanceHistory));
-                localStorage.setItem('sanveesNightShifts_v8', JSON.stringify(scheduledNightShifts));
-                localStorage.setItem('sanveesApprovedLeaves_v8', JSON.stringify(approvedLeaves));
-                localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
-            }
-
-            localStorage.setItem('sanvees_last_cloud_sync_time', Date.now().toString());
-            updateFirebaseStatusUI('connected');
-
-            if (hasChanges) {
-                if (activeView === 'daily') renderDailyTable();
-                else renderMonthlyTable();
-            }
-
-            isRemoteUpdate = false;
-        }
-
-        async function syncDataToFirestore(showNotification = true) {
-            if (!realtimeDb && !firestoreDb) {
-                if (showNotification) {
-                    openFirebaseConfigModal();
-                    showToast("Please enter your Firebase credentials to connect to Cloud", "info");
-                }
-                return;
-            }
-
-            try {
-                isSyncingToCloud = true;
-                updateFirebaseStatusUI('syncing');
-
-                const payload = {
-                    moderators: moderators,
-                    attendanceHistory: attendanceHistory,
-                    scheduledNightShifts: scheduledNightShifts,
-                    approvedLeaves: approvedLeaves,
-                    weekendExchanges: weekendExchanges,
-                    lastUpdated: Date.now(),
-                    updatedAtISO: new Date().toISOString(),
-                    schemaVersion: "8.0"
-                };
-
-                // Write to Realtime Database if available
-                if (realtimeDb) {
-                    await realtimeDb.ref('sanvees_roster_v8').set(payload);
-                }
-
-                // Write to Firestore if available
-                if (firestoreDb) {
-                    await firestoreDb.collection('sanvees_portal').doc('roster_data_v8').set(payload, { merge: true });
-                }
-                
-                localStorage.setItem('sanvees_last_cloud_sync_time', Date.now().toString());
-                updateFirebaseStatusUI('connected');
-                isSyncingToCloud = false;
-
-                if (showNotification) {
-                    showToast("Cloud Synced: Roster & Attendance uploaded to Firebase!", "success");
-                }
-            } catch(err) {
-                isSyncingToCloud = false;
-                console.error("Firebase sync error:", err);
-                updateFirebaseStatusUI('error', err.message);
-                if (showNotification) {
-                    showToast(`Firebase Sync Notice: ${err.message}`, "error");
-                }
-            }
-        }
-
-        async function pullFirestoreDataToLocal(showNotification = true) {
-            if (!realtimeDb && !firestoreDb) {
-                if (showNotification) {
-                    openFirebaseConfigModal();
-                    showToast("Please connect Firebase first", "info");
-                }
-                return;
-            }
-
-            try {
-                updateFirebaseStatusUI('syncing');
-                let cloudData = null;
-
-                if (realtimeDb) {
-                    const snap = await realtimeDb.ref('sanvees_roster_v8').once('value');
-                    cloudData = snap.val();
-                } else if (firestoreDb) {
-                    const doc = await firestoreDb.collection('sanvees_portal').doc('roster_data_v8').get();
-                    if (doc.exists) cloudData = doc.data();
-                }
-
-                if (cloudData) {
-                    applyCloudData(cloudData);
-                    if (showNotification) {
-                        showToast("Successfully restored data from Firebase Cloud!", "success");
-                    }
-                } else {
-                    await syncDataToFirestore(false);
-                    if (showNotification) {
-                        showToast("Initialized cloud roster with current data.", "info");
-                    }
-                }
-            } catch(err) {
-                console.error("Pull from Firebase error:", err);
-                updateFirebaseStatusUI('error', err.message);
-                if (showNotification) {
-                    showToast(`Firebase Fetch Error: ${err.message}`, "error");
-                }
-            }
-        }
-
-        // Unified Storage Management (Local Storage + Cloud Google Sheet & Firebase Sync)
+        // Unified Storage Management (Local Storage + Google Sheets Live Sync)
         function saveToLocalStorage(skipCloud = false) {
             localStorage.setItem('sanveesModeratorsData_v8', JSON.stringify(moderators));
             localStorage.setItem('sanveesAttendanceHistory_v8', JSON.stringify(attendanceHistory));
@@ -3109,13 +2492,8 @@ function getOrCreateSheet(ss, sheetName) {
             localStorage.setItem('sanveesWeekendExchanges_v8', JSON.stringify(weekendExchanges));
 
             if (!skipCloud) {
-                // Automatically push to Google Sheet if configured
+                // Automatically push to Google Sheet on every mutation
                 triggerDebouncedGoogleSheetSync();
-
-                // Automatically push to cloud if Firebase is connected
-                if ((realtimeDb || firestoreDb) && !isRemoteUpdate && isAutoSyncEnabled()) {
-                    syncDataToFirestore(false);
-                }
             }
         }
 
@@ -5055,7 +4433,6 @@ function getOrCreateSheet(ss, sheetName) {
                 closeAbsentAlertModal();
                 closeBulkUnexcusedModal();
                 closeChangePasswordModal();
-                closeFirebaseConfigModal();
                 closeGoogleSheetModal();
             }
         });
@@ -5065,7 +4442,7 @@ function getOrCreateSheet(ss, sheetName) {
             initTheme();
             loadFromLocalStorage();
 
-            // Check Google Sheets connection and pull latest data
+            // Auto-connect to Google Sheets and pull latest data immediately on load
             const savedSheetUrl = getSavedGoogleSheetUrl();
             if (savedSheetUrl) {
                 updateGoogleSheetStatusUI('connected');
@@ -5074,7 +4451,6 @@ function getOrCreateSheet(ss, sheetName) {
                 updateGoogleSheetStatusUI('offline');
             }
 
-            initFirebase();
             updateDateUI();
             document.getElementById('selected-month-picker').value = currentActiveMonth;
             renderDailyTable();
