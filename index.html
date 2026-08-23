@@ -622,6 +622,13 @@
             <!-- Action Controls & Header Tools -->
             <div class="flex items-center gap-2 sm:gap-2.5">
                 
+                <!-- Night Shift Management Button -->
+                <button onclick="openNightShiftModal()" 
+                        class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-bold rounded-xl bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition shadow-xs">
+                    <i class="fa-solid fa-moon text-indigo-600 dark:text-indigo-400 text-xs"></i>
+                    <span>Night Shift (<span id="active-night-count">0</span>)</span>
+                </button>
+
                 <!-- Approved Leaves Management Button -->
                 <button onclick="openLeaveModal()" 
                         class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-bold rounded-xl bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 transition shadow-xs">
@@ -1253,151 +1260,274 @@
         </div>
     </div>
 
-    <!-- NIGHT SHIFT MANAGEMENT MODAL (SET MODERATOR & DATE RANGE) -->
-    <div id="night-shift-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print">
-        <div class="relative w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6">
+    <!-- NIGHT SHIFT MANAGEMENT MODAL (SET MODERATOR & DATE RANGE + MONTHLY DATA LOG) -->
+    <div id="night-shift-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print select-none">
+        <div class="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6 sm:p-7 animate-fade-scale">
             
+            <!-- Top Gradient Border -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+
+            <!-- Header -->
             <div class="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-800 mb-4">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 flex items-center justify-center text-lg">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg border border-indigo-200 dark:border-indigo-800/80">
                         <i class="fa-solid fa-moon"></i>
                     </div>
                     <div>
-                        <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Night Shift Management</h3>
-                        <p class="text-xs text-slate-400">Assign moderator to Night Shift for a date range</p>
+                        <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">Night Shift Management</h3>
+                        <p class="text-xs text-slate-400 font-semibold">Assign night duty & track monthly duty summary</p>
                     </div>
                 </div>
-                <button onclick="closeNightShiftModal()" class="text-slate-400 hover:text-slate-600 p-1">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                <button onclick="closeNightShiftModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
-            <!-- Form -->
-            <form onsubmit="handleNightShiftSubmit(event)" class="space-y-3.5 mb-5">
+            <!-- Tab Switcher -->
+            <div class="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-4 text-xs font-black">
+                <button type="button" id="tab-btn-night-active" onclick="switchNightShiftTab('active')" 
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs">
+                    <i class="fa-solid fa-clock"></i> <span>Active & Schedule Shift</span>
+                    <span id="tab-night-active-count" class="px-2 py-0.5 rounded-full text-[10px] bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">0</span>
+                </button>
+                <button type="button" id="tab-btn-night-monthly" onclick="switchNightShiftTab('monthly')" 
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <i class="fa-solid fa-calendar-days"></i> <span>Monthly Night Shift Log</span>
+                    <span id="tab-night-monthly-count" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">0</span>
+                </button>
+            </div>
+
+            <!-- TAB 1: ACTIVE & SCHEDULE NIGHT SHIFT -->
+            <div id="night-tab-active" class="space-y-4">
+                <form onsubmit="handleNightShiftSubmit(event)" class="space-y-3.5 bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80">
+                    <div>
+                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs uppercase tracking-wider">Select Moderator</label>
+                        <select id="night-mod-select" onchange="autoCalculateNightEndDate()" required class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold text-sm">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">From Date (Night Start)</label>
+                            <input type="date" id="night-start-date" onchange="autoCalculateNightEndDate()" required class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">To Date (Weekly Off Day)</label>
+                            <input type="date" id="night-end-date" required class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                        </div>
+                    </div>
+
+                    <div id="night-auto-calc-info" class="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-bold text-indigo-700 dark:text-indigo-300 flex items-center justify-between">
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i>
+                            <span id="night-calc-desc">Auto-calculated until next weekly off</span>
+                        </div>
+                        <span id="night-calc-count" class="font-mono text-[11px] bg-indigo-200/80 dark:bg-indigo-900 px-2 py-0.5 rounded-md">-- Days</span>
+                    </div>
+
+                    <div class="flex justify-end pt-1">
+                        <button type="submit" class="shimmer-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-black text-xs sm:text-sm flex items-center gap-2 shadow-md shadow-indigo-600/20 active:scale-95 transition">
+                            <i class="fa-solid fa-check"></i> Assign Night Shift
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Currently Active & Upcoming Night Shifts List -->
                 <div>
-                    <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Select Moderator</label>
-                    <select id="night-mod-select" onchange="autoCalculateNightEndDate()" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold text-sm">
-                        <!-- Populated by JS -->
-                    </select>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3.5">
-                    <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">From Date (Start)</label>
-                        <input type="date" id="night-start-date" onchange="autoCalculateNightEndDate()" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+                            Currently Active / Upcoming Night Shifts
+                        </h4>
+                        <span class="text-[11px] text-slate-400 font-semibold">Completed shifts auto-archive to Monthly Log</span>
                     </div>
-                    <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">To Date (Next Off-Day)</label>
-                        <input type="date" id="night-end-date" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                    <div id="night-shift-records-list" class="max-h-52 overflow-y-auto space-y-2 pr-1">
+                        <!-- Populated dynamically -->
                     </div>
-                </div>
-
-                <!-- Auto Calculation Info Banner -->
-                <div id="night-auto-calc-info" class="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-bold text-indigo-700 dark:text-indigo-300 flex items-center justify-between">
-                    <div class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i>
-                        <span id="night-calc-desc">Auto-calculated until next weekly off</span>
-                    </div>
-                    <span id="night-calc-count" class="font-mono text-[11px] bg-indigo-200/80 dark:bg-indigo-900 px-2 py-0.5 rounded-md">-- Days</span>
-                </div>
-
-                <div class="flex justify-end pt-1">
-                    <button type="submit" class="shimmer-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-sm flex items-center gap-2 shadow-md shadow-indigo-600/20 active:scale-95 transition">
-                        <i class="fa-solid fa-check"></i> Assign Night Shift
-                    </button>
-                </div>
-            </form>
-
-            <!-- Active Night Shifts List -->
-            <div class="border-t border-slate-200 dark:border-slate-800 pt-3.5">
-                <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
-                    Scheduled Night Shifts
-                </h4>
-                <div id="night-shift-records-list" class="max-h-48 overflow-y-auto space-y-2 pr-1">
-                    <!-- Populated dynamically -->
                 </div>
             </div>
 
-            <div class="flex justify-end pt-3 border-t border-slate-200 dark:border-slate-800 mt-4">
-                <button onclick="closeNightShiftModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-sm font-bold">
+            <!-- TAB 2: MONTHLY NIGHT SHIFT LOG & SUMMARY -->
+            <div id="night-tab-monthly" class="hidden space-y-4">
+                <!-- Month Filter & Metric Card -->
+                <div class="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="font-black text-slate-600 dark:text-slate-300 uppercase">Select Month:</span>
+                        <input type="month" id="monthly-night-month-picker" onchange="handleMonthlyNightMonthChange(this.value)" 
+                               class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono font-bold text-xs outline-none cursor-pointer">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-black">
+                            Total Night Duties: <b id="monthly-night-total-shifts" class="font-mono text-sm">0</b>
+                        </span>
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 font-black">
+                            Total Duty Days: <b id="monthly-night-total-days" class="font-mono text-sm">0</b>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Monthly Night Duty Breakdown Table -->
+                <div class="max-h-64 overflow-y-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-black sticky top-0 border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="py-2.5 px-3">SL & Member Name</th>
+                                <th class="py-2.5 px-3 text-center">Off Day</th>
+                                <th class="py-2.5 px-3 text-center">Total Night Days</th>
+                                <th class="py-2.5 px-3">Duty Dates in Month</th>
+                                <th class="py-2.5 px-3 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthly-night-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-slate-800 mt-4 text-xs font-bold text-slate-400">
+                <span>Sanvee's Night Shift Roster System</span>
+                <button onclick="closeNightShiftModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-xs sm:text-sm font-bold">
                     Close
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- APPROVED LEAVE MANAGEMENT MODAL (SET DATE RANGE & APPROVE BY CEO/GM) -->
-    <div id="approved-leave-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print">
-        <div class="relative w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6">
+    <!-- APPROVED LEAVE MANAGEMENT MODAL (SET DATE RANGE, APPROVE & MONTHLY LOG) -->
+    <div id="approved-leave-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 no-print select-none">
+        <div class="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6 sm:p-7 animate-fade-scale">
             
+            <!-- Top Gradient Border -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500"></div>
+
+            <!-- Header -->
             <div class="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-slate-800 mb-4">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 flex items-center justify-center text-lg">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg border border-purple-200 dark:border-purple-800/80">
                         <i class="fa-solid fa-plane-departure"></i>
                     </div>
                     <div>
-                        <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Approved Leave Management</h3>
-                        <p class="text-xs text-slate-400">Record sanctioned leaves with official authority approval</p>
+                        <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">Approved Leave Management</h3>
+                        <p class="text-xs text-slate-400 font-semibold">Record sanctioned leaves & track monthly leave summary</p>
                     </div>
                 </div>
-                <button onclick="closeLeaveModal()" class="text-slate-400 hover:text-slate-600 p-1">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                <button onclick="closeLeaveModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
-            <!-- Form -->
-            <form onsubmit="handleLeaveSubmit(event)" class="space-y-3.5 mb-5">
-                <div>
-                    <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Select Moderator</label>
-                    <select id="leave-mod-select" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold text-sm">
-                        <!-- Populated by JS -->
-                    </select>
-                </div>
+            <!-- Tab Switcher -->
+            <div class="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-4 text-xs font-black">
+                <button type="button" id="tab-btn-leave-active" onclick="switchLeaveTab('active')" 
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 shadow-xs">
+                    <i class="fa-solid fa-stamp"></i> <span>Sanction & Active Leaves</span>
+                    <span id="tab-leave-active-count" class="px-2 py-0.5 rounded-full text-[10px] bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">0</span>
+                </button>
+                <button type="button" id="tab-btn-leave-monthly" onclick="switchLeaveTab('monthly')" 
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <i class="fa-solid fa-chart-pie"></i> <span>Monthly Leave Log</span>
+                    <span id="tab-leave-monthly-count" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">0</span>
+                </button>
+            </div>
 
-                <div class="grid grid-cols-2 gap-3.5">
+            <!-- TAB 1: SANCTION & ACTIVE LEAVES -->
+            <div id="leave-tab-active" class="space-y-4">
+                <form onsubmit="handleLeaveSubmit(event)" class="space-y-3.5 bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80">
                     <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Leave Start Date</label>
-                        <input type="date" id="leave-start-date" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
-                    </div>
-                    <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Leave End Date</label>
-                        <input type="date" id="leave-end-date" required class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3.5">
-                    <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Approve By Authority</label>
-                        <select id="leave-approved-by" required class="w-full px-3.5 py-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-900 dark:text-purple-200 border border-purple-200 dark:border-purple-800 outline-none font-bold text-sm">
-                            <option value="CEO">CEO</option>
-                            <option value="General Manager">General Manager</option>
+                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs uppercase tracking-wider">Select Moderator</label>
+                        <select id="leave-mod-select" required class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-bold text-sm">
+                            <!-- Populated by JS -->
                         </select>
                     </div>
-                    <div>
-                        <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5 text-xs">Reason / Note</label>
-                        <input type="text" id="leave-reason" placeholder="e.g. Medical / Family emergency" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-medium text-sm">
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">Leave Start Date</label>
+                            <input type="date" id="leave-start-date" required class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">Leave End Date</label>
+                            <input type="date" id="leave-end-date" required class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-mono font-bold text-sm">
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex justify-end pt-2">
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm flex items-center gap-2 shadow-md shadow-purple-600/20 transition">
-                        <i class="fa-solid fa-stamp"></i> Sanction & Save Leave
-                    </button>
-                </div>
-            </form>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">Approve By Authority</label>
+                            <select id="leave-approved-by" required class="w-full px-3.5 py-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-900 dark:text-purple-200 border border-purple-200 dark:border-purple-800 outline-none font-bold text-xs sm:text-sm">
+                                <option value="CEO">CEO</option>
+                                <option value="General Manager">General Manager</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">Reason / Note</label>
+                            <input type="text" id="leave-reason" placeholder="e.g. Medical / Family emergency" class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none font-medium text-xs sm:text-sm">
+                        </div>
+                    </div>
 
-            <!-- Active Leaves List -->
-            <div class="border-t border-slate-200 dark:border-slate-800 pt-3.5">
-                <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
-                    Approved Leave Records
-                </h4>
-                <div id="leave-records-list" class="max-h-48 overflow-y-auto space-y-2 pr-1">
-                    <!-- Populated dynamically -->
+                    <div class="flex justify-end pt-1">
+                        <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-black text-xs sm:text-sm flex items-center gap-2 shadow-md shadow-purple-600/20 transition">
+                            <i class="fa-solid fa-stamp"></i> Sanction & Save Leave
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Currently Active & Upcoming Leaves List -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+                            Currently Active / Upcoming Leaves
+                        </h4>
+                        <span class="text-[11px] text-slate-400 font-semibold">Completed leaves auto-archive to Monthly Log</span>
+                    </div>
+                    <div id="leave-records-list" class="max-h-52 overflow-y-auto space-y-2 pr-1">
+                        <!-- Populated dynamically -->
+                    </div>
                 </div>
             </div>
 
-            <div class="flex justify-end pt-3 border-t border-slate-200 dark:border-slate-800 mt-4">
-                <button onclick="closeLeaveModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-sm font-bold">
+            <!-- TAB 2: MONTHLY LEAVE LOG & SUMMARY -->
+            <div id="leave-tab-monthly" class="hidden space-y-4">
+                <!-- Month Filter & Metric Card -->
+                <div class="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="font-black text-slate-600 dark:text-slate-300 uppercase">Select Month:</span>
+                        <input type="month" id="monthly-leave-month-picker" onchange="handleMonthlyLeaveMonthChange(this.value)" 
+                               class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono font-bold text-xs outline-none cursor-pointer">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 font-black">
+                            Total Leave Grants: <b id="monthly-leave-total-records" class="font-mono text-sm">0</b>
+                        </span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950 text-pink-700 dark:text-pink-300 font-black">
+                            Total Days: <b id="monthly-leave-total-days" class="font-mono text-sm">0</b>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Monthly Leave Breakdown Table -->
+                <div class="max-h-64 overflow-y-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-black sticky top-0 border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="py-2.5 px-3">SL & Member Name</th>
+                                <th class="py-2.5 px-3 text-center">Approved By</th>
+                                <th class="py-2.5 px-3 text-center">Total Days</th>
+                                <th class="py-2.5 px-3">Leave Dates & Reason</th>
+                                <th class="py-2.5 px-3 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthly-leave-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-slate-800 mt-4 text-xs font-bold text-slate-400">
+                <span>Sanvee's Official Leave Management</span>
+                <button onclick="closeLeaveModal()" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 text-xs sm:text-sm font-bold">
                     Close
                 </button>
             </div>
@@ -3165,12 +3295,19 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 unexcusedBtn.classList.add('hidden');
             }
 
-            // Update Header Leave & Exchange Badge Counts
+            // Update Header Night Shift, Leave & Exchange Badge Counts
+            const activeNightShiftsCount = scheduledNightShifts.filter(r => r.endDate >= currentActiveDate).length;
+            const activeLeavesCount = approvedLeaves.filter(r => r.endDate >= currentActiveDate).length;
+            const activeExchangesCount = weekendExchanges.filter(x => x.exchangeDate >= currentActiveDate || x.weekendDate >= currentActiveDate).length;
+
+            const nightBadgeEl = document.getElementById('active-night-count');
+            if (nightBadgeEl) nightBadgeEl.innerText = activeNightShiftsCount;
+
             const leaveBadgeEl = document.getElementById('active-leave-count');
-            if (leaveBadgeEl) leaveBadgeEl.innerText = approvedLeaves.length;
+            if (leaveBadgeEl) leaveBadgeEl.innerText = activeLeavesCount;
 
             const exchangeBadgeEl = document.getElementById('active-exchange-count');
-            if (exchangeBadgeEl) exchangeBadgeEl.innerText = weekendExchanges.length;
+            if (exchangeBadgeEl) exchangeBadgeEl.innerText = activeExchangesCount;
         }
 
         // Status Update Trigger
@@ -3201,23 +3338,50 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             }
         }
 
-        // ======================= NIGHT SHIFT MANAGEMENT =======================
-        function getNextWeekendForModerator(mod, fromDateStr) {
-            if (!mod || !mod.weekend || !fromDateStr) return fromDateStr;
-            const [y, m, d] = fromDateStr.split('-').map(Number);
-            const baseDate = new Date(y, m - 1, d);
-            const targetDay = mod.weekend.toLowerCase();
+        // ======================= NIGHT SHIFT MANAGEMENT (ACTIVE & MONTHLY SUMMARY) =======================
+        let activeNightShiftTab = 'active';
+        let monthlyNightShiftMonth = '';
 
+        function switchNightShiftTab(tab) {
+            activeNightShiftTab = tab;
+            const btnActive = document.getElementById('tab-btn-night-active');
+            const btnMonthly = document.getElementById('tab-btn-night-monthly');
+            const tabActive = document.getElementById('night-tab-active');
+            const tabMonthly = document.getElementById('night-tab-monthly');
+
+            if (!btnActive || !btnMonthly || !tabActive || !tabMonthly) return;
+
+            if (tab === 'active') {
+                btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs";
+                btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+                tabActive.classList.remove('hidden');
+                tabMonthly.classList.add('hidden');
+                renderNightShiftList();
+            } else {
+                btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs";
+                btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+                tabMonthly.classList.remove('hidden');
+                tabActive.classList.add('hidden');
+                renderMonthlyNightShiftLog();
+            }
+        }
+
+        function handleMonthlyNightMonthChange(newMonth) {
+            monthlyNightShiftMonth = newMonth || currentActiveMonth;
+            renderMonthlyNightShiftLog();
+        }
+
+        function getNextWeekendForModerator(mod, fromDateStr) {
+            const date = new Date(fromDateStr + 'T00:00:00');
+            const targetDay = mod.weekend.toLowerCase();
+            const daysMap = { sunday: 0, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6 };
+            const targetDayNum = daysMap[targetDay];
+
+            let curr = new Date(date);
             for (let i = 1; i <= 7; i++) {
-                const checkDate = new Date(baseDate);
-                checkDate.setDate(checkDate.getDate() + i);
-                const cy = checkDate.getFullYear();
-                const cm = String(checkDate.getMonth() + 1).padStart(2, '0');
-                const cd = String(checkDate.getDate()).padStart(2, '0');
-                const dateStr = `${cy}-${cm}-${cd}`;
-                const dayName = getDayNameForDate(dateStr);
-                if (dayName.toLowerCase() === targetDay) {
-                    return dateStr;
+                curr.setDate(curr.getDate() + 1);
+                if (curr.getDay() === targetDayNum) {
+                    return formatDateISO(curr);
                 }
             }
             return fromDateStr;
@@ -3241,8 +3405,9 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
 
             if (startDate && nextWeekendDate) {
                 const dates = getDatesInRange(startDate, nextWeekendDate);
-                if (descEl) descEl.innerText = `Auto-calculated to next ${mod.weekend} Off (${nextWeekendDate})`;
-                if (countEl) countEl.innerText = `${dates.length} Days Range`;
+                const nightDutyDays = Math.max(0, dates.length - 1);
+                if (descEl) descEl.innerText = `${nightDutyDays} Night Duties + Next ${mod.weekend} Off (${nextWeekendDate})`;
+                if (countEl) countEl.innerText = `${dates.length} Days Total`;
             }
         }
 
@@ -3260,7 +3425,13 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             document.getElementById('night-start-date').value = customStartDate || currentActiveDate;
             autoCalculateNightEndDate();
 
-            renderNightShiftList();
+            if (!monthlyNightShiftMonth) {
+                monthlyNightShiftMonth = currentActiveMonth || getCurrentMonthStr();
+            }
+            const monthPicker = document.getElementById('monthly-night-month-picker');
+            if (monthPicker) monthPicker.value = monthlyNightShiftMonth;
+
+            switchNightShiftTab('active');
             document.getElementById('night-shift-modal').classList.remove('hidden');
         }
 
@@ -3283,13 +3454,16 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             }
 
             const dates = getDatesInRange(startDate, endDate);
+            let nightDutyDates = [];
             let nightCount = 0;
+
             dates.forEach(d => {
                 const dayName = getDayNameForDate(d);
                 if (dayName.toLowerCase() === mod.weekend.toLowerCase()) {
                     setModeratorStatusForDate(mod, d, 'Weekly Off');
                 } else {
                     setModeratorStatusForDate(mod, d, 'Night Shift');
+                    nightDutyDates.push(d);
                     nightCount++;
                 }
             });
@@ -3302,7 +3476,8 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 startDate,
                 endDate,
                 count: dates.length,
-                nightCount
+                nightCount,
+                nightDutyDates
             };
             scheduledNightShifts.unshift(newRecord);
             saveToLocalStorage();
@@ -3311,48 +3486,242 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`Night Shift assigned for ${mod.name} until next ${mod.weekend} (${startDate} to ${endDate})`);
-            closeNightShiftModal();
+            showToast(`Night Shift assigned for ${mod.name} until next ${mod.weekend} (${startDate} to ${endDate})`, 'success');
         }
 
         function renderNightShiftList() {
             const listEl = document.getElementById('night-shift-records-list');
+            if (!listEl) return;
             listEl.innerHTML = '';
 
-            if (scheduledNightShifts.length === 0) {
-                listEl.innerHTML = '<div class="text-xs text-slate-400 italic py-2">No scheduled night shift ranges recorded yet.</div>';
+            // Filter active or upcoming night shifts (endDate >= currentActiveDate)
+            const activeShifts = scheduledNightShifts.filter(rec => rec.endDate >= currentActiveDate);
+
+            // Update Tab Count Badges
+            const tabActiveBadge = document.getElementById('tab-night-active-count');
+            if (tabActiveBadge) tabActiveBadge.innerText = activeShifts.length;
+
+            const tabMonthlyBadge = document.getElementById('tab-night-monthly-count');
+            if (tabMonthlyBadge) {
+                const monthPrefix = monthlyNightShiftMonth || currentActiveMonth;
+                const inMonth = scheduledNightShifts.filter(r => (r.startDate && r.startDate.startsWith(monthPrefix)) || (r.endDate && r.endDate.startsWith(monthPrefix))).length;
+                tabMonthlyBadge.innerText = inMonth;
+            }
+
+            if (activeShifts.length === 0) {
+                listEl.innerHTML = `
+                    <div class="p-4 text-center text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+                        <i class="fa-solid fa-moon text-indigo-400 text-lg mb-1.5 block"></i>
+                        <p class="font-bold">No active or upcoming night shifts.</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">All completed shifts are safely archived in 
+                            <button type="button" onclick="switchNightShiftTab('monthly')" class="text-indigo-600 dark:text-indigo-400 font-black hover:underline inline-flex items-center gap-1 ml-1">
+                                Monthly Log <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                            </button>
+                        </p>
+                    </div>
+                `;
                 return;
             }
 
-            scheduledNightShifts.forEach((rec, idx) => {
+            activeShifts.forEach((rec) => {
+                const mod = moderators.find(m => m.sl === rec.modSl) || { name: rec.modName, weekend: 'Off' };
+                const isCurrentlyActive = currentActiveDate >= rec.startDate && currentActiveDate < rec.endDate;
+                const isOffDayToday = currentActiveDate === rec.endDate;
+                
+                let statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">🗓️ Upcoming</span>`;
+                if (isCurrentlyActive) {
+                    statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 animate-pulse">🟢 Active Duty Tonight</span>`;
+                } else if (isOffDayToday) {
+                    statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">🗓️ Weekly Off Today</span>`;
+                }
+
                 const div = document.createElement('div');
-                div.className = 'flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs';
+                div.className = 'flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-xs shadow-2xs hover:border-indigo-300 transition';
                 div.innerHTML = `
-                    <div>
-                        <span class="font-extrabold text-slate-900 dark:text-white block text-sm">${rec.modName}</span>
-                        <span class="font-mono text-slate-500">${rec.startDate} ➔ ${rec.endDate} (${rec.count} Days)</span>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-black text-slate-900 dark:text-white text-sm">${rec.modName}</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="font-mono text-slate-500 dark:text-slate-400 text-xs flex flex-wrap items-center gap-2">
+                            <span><i class="fa-solid fa-calendar-range text-slate-400 mr-1"></i> ${rec.startDate} ➔ ${rec.endDate}</span>
+                            <span>•</span>
+                            <span class="font-bold text-indigo-600 dark:text-indigo-400">${rec.nightCount || Math.max(1, rec.count - 1)} Duty Nights</span>
+                            <span>•</span>
+                            <span class="text-amber-600">${mod.weekend} Off</span>
+                        </div>
                     </div>
-                    <button onclick="deleteNightShiftRecord(${idx})" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950 transition" title="Remove Record">
-                        <i class="fa-solid fa-trash"></i>
+                    <button onclick="deleteNightShiftRecord(${rec.id})" class="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition" title="Cancel this night shift schedule">
+                        <i class="fa-solid fa-trash text-sm"></i>
                     </button>
                 `;
                 listEl.appendChild(div);
             });
         }
 
-        function deleteNightShiftRecord(idx) {
+        function deleteNightShiftRecord(id) {
+            const idx = scheduledNightShifts.findIndex(r => r.id === id);
+            if (idx === -1) return;
             const rec = scheduledNightShifts[idx];
-            if (confirm(`Remove Night Shift schedule for ${rec.modName}?`)) {
+
+            if (confirm(`Remove Night Shift schedule for ${rec.modName} (${rec.startDate} to ${rec.endDate})?`)) {
+                const mod = moderators.find(m => m.sl === rec.modSl);
+                if (mod) {
+                    const dates = getDatesInRange(rec.startDate, rec.endDate);
+                    dates.forEach(d => {
+                        const dayName = getDayNameForDate(d);
+                        if (mod.weekend === dayName) {
+                            setModeratorStatusForDate(mod, d, 'Weekly Off');
+                        } else {
+                            setModeratorStatusForDate(mod, d, 'Present');
+                        }
+                    });
+                }
+
                 scheduledNightShifts.splice(idx, 1);
                 saveToLocalStorage();
                 renderNightShiftList();
+                renderMonthlyNightShiftLog();
                 renderDailyTable();
                 if (activeView === 'monthly') renderMonthlyTable();
-                showToast('Removed night shift schedule');
+                showToast(`Removed night shift schedule for ${rec.modName}`);
             }
         }
 
-        // ======================= APPROVED LEAVE MANAGEMENT =======================
+        function renderMonthlyNightShiftLog() {
+            const tbody = document.getElementById('monthly-night-table-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const selectedMonth = monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const year = parseInt(yearStr, 10);
+            const month = parseInt(monthStr, 10);
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const monthNameShort = MONTH_NAMES[month - 1].substring(0, 3);
+
+            let totalShiftsCount = 0;
+            let totalDutyDaysCount = 0;
+
+            const monthlySummary = [];
+
+            moderators.forEach(mod => {
+                const dutyDates = [];
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    const status = getModeratorStatusForDate(mod, dateStr);
+                    if (status === 'Night Shift') {
+                        dutyDates.push(dateStr);
+                    }
+                }
+
+                const relatedRecords = scheduledNightShifts.filter(r => r.modSl === mod.sl && ((r.startDate && r.startDate.startsWith(selectedMonth)) || (r.endDate && r.endDate.startsWith(selectedMonth))));
+
+                if (dutyDates.length > 0 || relatedRecords.length > 0) {
+                    totalShiftsCount += Math.max(1, relatedRecords.length);
+                    totalDutyDaysCount += dutyDates.length;
+                    monthlySummary.push({
+                        mod,
+                        dutyDates,
+                        records: relatedRecords
+                    });
+                }
+            });
+
+            const totShiftsEl = document.getElementById('monthly-night-total-shifts');
+            if (totShiftsEl) totShiftsEl.innerText = totalShiftsCount;
+            const totDaysEl = document.getElementById('monthly-night-total-days');
+            if (totDaysEl) totDaysEl.innerText = totalDutyDaysCount;
+
+            const tabMonthlyBadge = document.getElementById('tab-night-monthly-count');
+            if (tabMonthlyBadge) tabMonthlyBadge.innerText = totalShiftsCount;
+
+            if (monthlySummary.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center py-8 text-slate-400 italic">
+                            No night shift duty records found for ${MONTH_NAMES[month - 1]} ${year}.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            monthlySummary.forEach(item => {
+                const { mod, dutyDates, records } = item;
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
+
+                const datesHtml = dutyDates.length > 0 ? dutyDates.map(d => {
+                    const dayNum = parseInt(d.split('-')[2], 10);
+                    return `<span class="inline-block px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 font-mono font-bold text-[11px] border border-indigo-200/60 dark:border-indigo-800/60">${dayNum} ${monthNameShort}</span>`;
+                }).join(' ') : '<span class="text-slate-400 italic">No duty days logged</span>';
+
+                tr.innerHTML = `
+                    <td class="py-3 px-3">
+                        <div class="flex items-center gap-2">
+                            <span class="font-mono font-bold text-slate-400 text-xs">${String(mod.sl).padStart(2, '0')}</span>
+                            <span class="font-extrabold text-slate-900 dark:text-white text-sm">${mod.name}</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        <span class="px-2 py-0.5 rounded-md font-bold text-xs bg-amber-50 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                            ${mod.weekend}
+                        </span>
+                    </td>
+                    <td class="py-3 px-3 text-center font-mono font-black text-indigo-600 dark:text-indigo-400 text-sm">
+                        ${dutyDates.length} Days
+                    </td>
+                    <td class="py-3 px-3">
+                        <div class="flex flex-wrap gap-1 items-center max-w-md">
+                            ${datesHtml}
+                        </div>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        ${records.length > 0 ? `
+                            <button onclick="deleteNightShiftRecord(${records[0].id})" class="p-1 text-slate-400 hover:text-rose-600 transition" title="Delete Night Shift Schedule">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        ` : '--'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ======================= APPROVED LEAVE MANAGEMENT (ACTIVE & MONTHLY SUMMARY) =======================
+        let activeLeaveTab = 'active';
+        let monthlyLeaveMonth = '';
+
+        function switchLeaveTab(tab) {
+            activeLeaveTab = tab;
+            const btnActive = document.getElementById('tab-btn-leave-active');
+            const btnMonthly = document.getElementById('tab-btn-leave-monthly');
+            const tabActive = document.getElementById('leave-tab-active');
+            const tabMonthly = document.getElementById('leave-tab-monthly');
+
+            if (!btnActive || !btnMonthly || !tabActive || !tabMonthly) return;
+
+            if (tab === 'active') {
+                btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 shadow-xs";
+                btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+                tabActive.classList.remove('hidden');
+                tabMonthly.classList.add('hidden');
+                renderLeaveList();
+            } else {
+                btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 shadow-xs";
+                btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+                tabMonthly.classList.remove('hidden');
+                tabActive.classList.add('hidden');
+                renderMonthlyLeaveLog();
+            }
+        }
+
+        function handleMonthlyLeaveMonthChange(newMonth) {
+            monthlyLeaveMonth = newMonth || currentActiveMonth;
+            renderMonthlyLeaveLog();
+        }
+
         function openLeaveModal(preselectSl = null) {
             const selectEl = document.getElementById('leave-mod-select');
             selectEl.innerHTML = '';
@@ -3368,7 +3737,13 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             document.getElementById('leave-end-date').value = currentActiveDate;
             document.getElementById('leave-reason').value = '';
 
-            renderLeaveList();
+            if (!monthlyLeaveMonth) {
+                monthlyLeaveMonth = currentActiveMonth || getCurrentMonthStr();
+            }
+            const monthPicker = document.getElementById('monthly-leave-month-picker');
+            if (monthPicker) monthPicker.value = monthlyLeaveMonth;
+
+            switchLeaveTab('active');
             document.getElementById('approved-leave-modal').classList.remove('hidden');
         }
 
@@ -3406,7 +3781,8 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 endDate,
                 approvedBy,
                 reason,
-                count: dates.length
+                count: dates.length,
+                leaveDates: dates
             };
             approvedLeaves.unshift(newRecord);
             saveToLocalStorage();
@@ -3415,51 +3791,209 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`Leave sanctioned by ${approvedBy} for ${mod.name}`);
+            showToast(`Leave sanctioned by ${approvedBy} for ${mod.name} (${startDate} to ${endDate})`, 'success');
         }
 
         function renderLeaveList() {
             const listEl = document.getElementById('leave-records-list');
+            if (!listEl) return;
             listEl.innerHTML = '';
 
-            if (approvedLeaves.length === 0) {
-                listEl.innerHTML = '<div class="text-xs text-slate-400 italic py-2">No approved leave records found.</div>';
+            // Filter active or upcoming approved leaves (endDate >= currentActiveDate)
+            const activeLeaves = approvedLeaves.filter(rec => rec.endDate >= currentActiveDate);
+
+            // Update Tab Count Badges
+            const tabActiveBadge = document.getElementById('tab-leave-active-count');
+            if (tabActiveBadge) tabActiveBadge.innerText = activeLeaves.length;
+
+            const tabMonthlyBadge = document.getElementById('tab-leave-monthly-count');
+            if (tabMonthlyBadge) {
+                const monthPrefix = monthlyLeaveMonth || currentActiveMonth;
+                const inMonth = approvedLeaves.filter(r => (r.startDate && r.startDate.startsWith(monthPrefix)) || (r.endDate && r.endDate.startsWith(monthPrefix))).length;
+                tabMonthlyBadge.innerText = inMonth;
+            }
+
+            if (activeLeaves.length === 0) {
+                listEl.innerHTML = `
+                    <div class="p-4 text-center text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+                        <i class="fa-solid fa-plane-departure text-purple-400 text-lg mb-1.5 block"></i>
+                        <p class="font-bold">No active approved leaves currently.</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">All completed leaves are safely archived in 
+                            <button type="button" onclick="switchLeaveTab('monthly')" class="text-purple-600 dark:text-purple-400 font-black hover:underline inline-flex items-center gap-1 ml-1">
+                                Monthly Log <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                            </button>
+                        </p>
+                    </div>
+                `;
                 return;
             }
 
-            approvedLeaves.forEach((rec, idx) => {
+            activeLeaves.forEach((rec) => {
+                const isCurrentlyActive = currentActiveDate >= rec.startDate && currentActiveDate <= rec.endDate;
+                let statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300">🗓️ Upcoming Leave</span>`;
+                if (isCurrentlyActive) {
+                    statusBadge = `<span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 animate-pulse">🟢 On Leave Today</span>`;
+                }
+
                 const div = document.createElement('div');
-                div.className = 'flex items-center justify-between p-2.5 rounded-xl bg-purple-50/60 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 text-xs';
+                div.className = 'flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-xs shadow-2xs hover:border-purple-300 transition';
                 div.innerHTML = `
-                    <div>
+                    <div class="space-y-1">
                         <div class="flex items-center gap-2">
-                            <span class="font-extrabold text-slate-900 dark:text-white text-sm">${rec.modName}</span>
-                            <span class="px-2 py-0.5 rounded-md font-bold text-[10px] bg-purple-100 text-purple-900 dark:bg-purple-900 dark:text-purple-200">
-                                Approved by: ${rec.approvedBy}
+                            <span class="font-black text-slate-900 dark:text-white text-sm">${rec.modName}</span>
+                            <span class="px-2 py-0.5 rounded-md font-black text-[10px] bg-purple-50 text-purple-700 dark:bg-purple-950/70 dark:text-purple-300 border border-purple-200/60 dark:border-purple-800/60">
+                                Approved: ${rec.approvedBy}
                             </span>
+                            ${statusBadge}
                         </div>
-                        <div class="font-mono text-slate-500 mt-0.5">
-                            ${rec.startDate} ➔ ${rec.endDate} (${rec.count} Days) • <i>${rec.reason}</i>
+                        <div class="font-mono text-slate-500 dark:text-slate-400 text-xs flex flex-wrap items-center gap-2">
+                            <span><i class="fa-solid fa-calendar-days text-slate-400 mr-1"></i> ${rec.startDate} ➔ ${rec.endDate} (${rec.count} Days)</span>
+                            <span>•</span>
+                            <span class="italic text-slate-600 dark:text-slate-300">"${rec.reason || 'Official Leave'}"</span>
                         </div>
                     </div>
-                    <button onclick="deleteLeaveRecord(${idx})" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950 transition" title="Remove Leave">
-                        <i class="fa-solid fa-trash"></i>
+                    <button onclick="deleteLeaveRecord(${rec.id})" class="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition" title="Cancel this leave">
+                        <i class="fa-solid fa-trash text-sm"></i>
                     </button>
                 `;
                 listEl.appendChild(div);
             });
         }
 
-        function deleteLeaveRecord(idx) {
+        function deleteLeaveRecord(id) {
+            const idx = approvedLeaves.findIndex(r => r.id === id);
+            if (idx === -1) return;
             const rec = approvedLeaves[idx];
-            if (confirm(`Cancel Approved Leave for ${rec.modName}?`)) {
+
+            if (confirm(`Cancel Approved Leave for ${rec.modName} (${rec.startDate} to ${rec.endDate})?`)) {
+                const mod = moderators.find(m => m.sl === rec.modSl);
+                if (mod) {
+                    const dates = getDatesInRange(rec.startDate, rec.endDate);
+                    dates.forEach(d => {
+                        const dayName = getDayNameForDate(d);
+                        if (mod.weekend === dayName) {
+                            setModeratorStatusForDate(mod, d, 'Weekly Off');
+                        } else {
+                            setModeratorStatusForDate(mod, d, 'Present');
+                        }
+                    });
+                }
+
                 approvedLeaves.splice(idx, 1);
                 saveToLocalStorage();
                 renderLeaveList();
+                renderMonthlyLeaveLog();
                 renderDailyTable();
                 if (activeView === 'monthly') renderMonthlyTable();
-                showToast('Approved leave record cancelled');
+                showToast(`Approved leave record cancelled for ${rec.modName}`);
             }
+        }
+
+        function renderMonthlyLeaveLog() {
+            const tbody = document.getElementById('monthly-leave-table-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const selectedMonth = monthlyLeaveMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const year = parseInt(yearStr, 10);
+            const month = parseInt(monthStr, 10);
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const monthNameShort = MONTH_NAMES[month - 1].substring(0, 3);
+
+            let totalRecordsCount = 0;
+            let totalLeaveDaysCount = 0;
+
+            const monthlySummary = [];
+
+            moderators.forEach(mod => {
+                const leaveDates = [];
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    const status = getModeratorStatusForDate(mod, dateStr);
+                    if (status === 'Leave') {
+                        leaveDates.push(dateStr);
+                    }
+                }
+
+                const relatedRecords = approvedLeaves.filter(r => r.modSl === mod.sl && ((r.startDate && r.startDate.startsWith(selectedMonth)) || (r.endDate && r.endDate.startsWith(selectedMonth))));
+
+                if (leaveDates.length > 0 || relatedRecords.length > 0) {
+                    totalRecordsCount += Math.max(1, relatedRecords.length);
+                    totalLeaveDaysCount += leaveDates.length;
+                    monthlySummary.push({
+                        mod,
+                        leaveDates,
+                        records: relatedRecords
+                    });
+                }
+            });
+
+            const totRecsEl = document.getElementById('monthly-leave-total-records');
+            if (totRecsEl) totRecsEl.innerText = totalRecordsCount;
+            const totDaysEl = document.getElementById('monthly-leave-total-days');
+            if (totDaysEl) totDaysEl.innerText = totalLeaveDaysCount;
+
+            const tabMonthlyBadge = document.getElementById('tab-leave-monthly-count');
+            if (tabMonthlyBadge) tabMonthlyBadge.innerText = totalRecordsCount;
+
+            if (monthlySummary.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center py-8 text-slate-400 italic">
+                            No approved leave records found for ${MONTH_NAMES[month - 1]} ${year}.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            monthlySummary.forEach(item => {
+                const { mod, leaveDates, records } = item;
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
+
+                const approver = records.length > 0 ? records[0].approvedBy : 'Management';
+                const reason = records.length > 0 ? records[0].reason : 'Sanctioned Leave';
+
+                const datesHtml = leaveDates.length > 0 ? leaveDates.map(d => {
+                    const dayNum = parseInt(d.split('-')[2], 10);
+                    return `<span class="inline-block px-1.5 py-0.5 rounded bg-purple-50 dark:bg-purple-950/70 text-purple-700 dark:text-purple-300 font-mono font-bold text-[11px] border border-purple-200/60 dark:border-purple-800/60">${dayNum} ${monthNameShort}</span>`;
+                }).join(' ') : '<span class="text-slate-400 italic">No leave days logged</span>';
+
+                tr.innerHTML = `
+                    <td class="py-3 px-3">
+                        <div class="flex items-center gap-2">
+                            <span class="font-mono font-bold text-slate-400 text-xs">${String(mod.sl).padStart(2, '0')}</span>
+                            <span class="font-extrabold text-slate-900 dark:text-white text-sm">${mod.name}</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        <span class="px-2 py-0.5 rounded-md font-black text-xs bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                            ${approver}
+                        </span>
+                    </td>
+                    <td class="py-3 px-3 text-center font-mono font-black text-purple-600 dark:text-purple-400 text-sm">
+                        ${leaveDates.length} Days
+                    </td>
+                    <td class="py-3 px-3">
+                        <div class="space-y-1">
+                            <div class="flex flex-wrap gap-1 items-center max-w-md">
+                                ${datesHtml}
+                            </div>
+                            <div class="text-[11px] text-slate-400 italic">"${reason}"</div>
+                        </div>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        ${records.length > 0 ? `
+                            <button onclick="deleteLeaveRecord(${records[0].id})" class="p-1 text-slate-400 hover:text-rose-600 transition" title="Delete Leave Record">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        ` : '--'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
         // ======================= WEEKEND EXCHANGE MANAGEMENT =======================
@@ -3820,10 +4354,12 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             }
 
             headerHtml += `
-                    <th class="col-tot py-3 px-2 text-center bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 font-black text-xs">P</th>
-                    <th class="col-tot py-3 px-2 text-center bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 font-black text-xs">Off</th>
-                    <th class="col-tot py-3 px-2 text-center bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 font-black text-xs">A</th>
-                    <th class="col-tot py-3 px-2 text-center bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 font-black text-xs">N</th>
+                    <th class="col-tot py-3 px-2 text-center bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 font-black text-xs" title="Present Days">P</th>
+                    <th class="col-tot py-3 px-2 text-center bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 font-black text-xs" title="Weekly Off Days">Off</th>
+                    <th class="col-tot py-3 px-2 text-center bg-cyan-50 dark:bg-cyan-950/50 text-cyan-700 dark:text-cyan-300 font-black text-xs" title="Weekend Exchange Duty">EX</th>
+                    <th class="col-tot py-3 px-2 text-center bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 font-black text-xs" title="Unexcused Absent">A</th>
+                    <th class="col-tot py-3 px-2 text-center bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 font-black text-xs" title="Night Shift Duty">N</th>
+                    <th class="col-tot py-3 px-2 text-center bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 font-black text-xs" title="Approved Sanctioned Leave">L</th>
                 </tr>
             `;
             thead.innerHTML = headerHtml;
@@ -3831,7 +4367,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             const tbody = document.getElementById('monthly-table-body');
             tbody.innerHTML = '';
 
-            let grandPresent = 0, grandOff = 0, grandAbsent = 0, grandNight = 0;
+            let grandPresent = 0, grandOff = 0, grandExchange = 0, grandAbsent = 0, grandNight = 0, grandLeave = 0;
 
             displayMods.forEach((mod) => {
                 let modPresent = 0, modOff = 0, modExchange = 0, modAbsent = 0, modNight = 0, modLeave = 0, modOutside = 0;
@@ -3898,8 +4434,10 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
 
                 grandPresent += modPresent;
                 grandOff += modOff;
+                grandExchange += modExchange;
                 grandAbsent += modAbsent;
                 grandNight += modNight;
+                grandLeave += modLeave;
 
                 rowHtml += `
                         <td class="col-tot py-2.5 px-2 text-center font-mono font-black text-xs sm:text-sm bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-300">
@@ -3908,11 +4446,17 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                         <td class="col-tot py-2.5 px-2 text-center font-mono font-black text-xs sm:text-sm bg-amber-50/50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-300">
                             ${modOff}
                         </td>
+                        <td class="col-tot py-2.5 px-2 text-center font-mono font-black text-xs sm:text-sm bg-cyan-50/50 dark:bg-cyan-950/20 text-cyan-700 dark:text-cyan-300">
+                            ${modExchange}
+                        </td>
                         <td class="col-tot py-2.5 px-2 text-center font-mono font-black text-xs sm:text-sm bg-rose-50/50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400">
                             ${modAbsent}
                         </td>
                         <td class="col-tot py-2.5 px-2 text-center font-mono font-black text-xs sm:text-sm bg-indigo-50/50 dark:bg-indigo-950/20 text-indigo-700 dark:text-indigo-300">
                             ${modNight}
+                        </td>
+                        <td class="col-tot py-2.5 px-2 text-center font-mono font-black text-xs sm:text-sm bg-purple-50/50 dark:bg-purple-950/20 text-purple-700 dark:text-purple-300">
+                            ${modLeave}
                         </td>
                     </tr>
                 `;
