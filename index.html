@@ -3147,7 +3147,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
 
         function getAbsentNoticeMessage(name, dateStr = currentActiveDate) {
             const dayName = getDayNameForDate(dateStr);
-            return `*Official Absent Notice - Sanvee's by Tony*\n\nDear *${name}*,\n\nYou have been marked *ABSENT* from today's scheduled duty roster (*${dateStr}, ${dayName}*) at Sanvee's by Tony.\n\nAs today is your regular working shift and no prior leave was approved, please state the reason for your absence immediately and contact management.\n\n*প্রিয় ${name},*\nসানভিস বাই টনি-র আজকের (${dateStr}, ${dayName}) নির্ধারিত ডিউটিতে আপনাকে *Absent (অনুপস্থিত)* চিহ্নিত করা হয়েছে। অনুগ্রহ করে অবিলম্বে আপনার অনুপস্থিতির কারণ জানান এবং ম্যানেজমেন্টের সাথে যোগাযোগ করুন।\n\nRegards,\n*Sheikh Shahmiran Manik*\nModerator In-Charge, Sanvee's by Tony`;
+            return `Dear ${name}\n\nYou have been marked absent from today's (${dateStr}, ${dayName}) scheduled duty roster at Sanvee's by Tony. As this is your regular working day and no prior leave was approved, please state the reason for your absence today and contact me immediately.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
         }
 
         function buildWhatsAppURL(phone, name, isAbsentAlert = false, dateStr = currentActiveDate) {
