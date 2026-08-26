@@ -732,76 +732,131 @@
                 </div>
             </section>
 
-            <!-- Clean KPI Summary Cards (4 Cards) -->
-            <section class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 no-print">
+            <!-- Clean KPI Summary Cards (6 Cards: Total, Available Today, Present, Weekly Off, Absent, Night Shift) -->
+            <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 no-print">
                 
-                <!-- Present Card -->
-                <div onclick="filterByStatus('Present')" 
-                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-emerald-500/50 hover:shadow-md transition cursor-pointer">
+                <!-- 1. Total Moderators Card -->
+                <div onclick="resetAllFilters()" 
+                     title="Click to view all moderators"
+                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-4.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-rose-500/50 hover:shadow-md transition cursor-pointer relative overflow-hidden">
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-xs sm:text-sm font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Present</span>
-                            <div class="flex items-baseline gap-2.5 mt-1.5">
-                                <h3 id="count-present" class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono">0</h3>
-                                <span id="pct-present" class="text-xs sm:text-sm font-extrabold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">0%</span>
+                            <span class="text-[11px] sm:text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                                Total Mods
+                            </span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <h3 id="count-total-mods" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">0</h3>
+                                <span class="text-[10px] font-extrabold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md">Total</span>
                             </div>
+                            <p class="text-[11px] text-slate-400 font-bold mt-1 truncate">All Roster Members</p>
                         </div>
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center text-lg sm:text-xl shadow-xs group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Available Today Card (Live Calculated On-Duty Staff) -->
+                <div onclick="filterByStatus('AVAILABLE_TODAY')" 
+                     title="Click to filter Available / Working moderators today"
+                     class="interactive-card group bg-gradient-to-br from-emerald-50/40 via-white to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-900 p-4 sm:p-4.5 rounded-2xl border border-emerald-200/80 dark:border-emerald-800/80 shadow-xs hover:border-emerald-500 hover:shadow-md transition cursor-pointer relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-[11px] sm:text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-wider block">
+                                    Available Today
+                                </span>
+                            </div>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <h3 id="count-available-today" class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-mono">0</h3>
+                                <span id="pct-available-today" class="text-[10px] font-extrabold text-emerald-700 bg-emerald-100 dark:bg-emerald-950/80 dark:text-emerald-300 px-2 py-0.5 rounded-md">0%</span>
+                            </div>
+                            <p id="sub-available-today" class="text-[11px] text-emerald-600/90 dark:text-emerald-400/90 font-bold mt-1 truncate">0 of 0 On Duty</p>
+                        </div>
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-lg sm:text-xl shadow-xs group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Present Card -->
+                <div onclick="filterByStatus('Present')" 
+                     title="Click to filter Present moderators"
+                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-4.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-emerald-500/50 hover:shadow-md transition cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] sm:text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Present</span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <h3 id="count-present" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">0</h3>
+                                <span id="pct-present" class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">0%</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 font-bold mt-1 truncate">Attended Today</p>
+                        </div>
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 flex items-center justify-center text-lg sm:text-xl group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-user-check"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Weekly Off Today Card (Automatic on Weekend Day) -->
+                <!-- 4. Weekly Off Today Card -->
                 <div onclick="filterByStatus('Weekly Off')" 
-                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-amber-500/50 hover:shadow-md transition cursor-pointer">
+                     title="Click to filter Weekly Off moderators"
+                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-4.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-amber-500/50 hover:shadow-md transition cursor-pointer">
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-xs sm:text-sm font-extrabold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Weekly Off</span>
-                            <div class="flex items-baseline gap-2.5 mt-1.5">
-                                <h3 id="count-off-today" class="text-3xl sm:text-4xl font-black text-amber-600 dark:text-amber-400 font-mono">0</h3>
-                                <span class="text-xs sm:text-sm font-extrabold text-amber-600 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-md">Scheduled</span>
+                            <span class="text-[11px] sm:text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-wider block">Weekly Off</span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <h3 id="count-off-today" class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-mono">0</h3>
+                                <span class="text-[10px] font-extrabold text-amber-600 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-md">Scheduled</span>
                             </div>
+                            <p class="text-[11px] text-slate-400 font-bold mt-1 truncate">Rest Day Today</p>
                         </div>
-                        <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 flex items-center justify-center text-lg sm:text-xl group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-umbrella-beach"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Absent Card (Only Working Days Absentees) -->
+                <!-- 5. Absent Card (Automatic WhatsApp Notice Integration) -->
                 <div onclick="filterByStatus('Absent')" 
-                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-rose-500/50 hover:shadow-md transition cursor-pointer relative overflow-hidden">
+                     title="Click to filter Absent moderators (Auto WhatsApp Alert)"
+                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-4.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-rose-500/50 hover:shadow-md transition cursor-pointer relative overflow-hidden">
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-xs sm:text-sm font-extrabold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
-                                Unexcused Absent
+                            <span class="text-[11px] sm:text-xs font-black text-rose-600 dark:text-rose-400 uppercase tracking-wider block">
+                                Absent
                             </span>
-                            <div class="flex items-baseline gap-2.5 mt-1.5">
-                                <h3 id="count-absent" class="text-3xl sm:text-4xl font-black text-rose-600 dark:text-rose-400 font-mono">0</h3>
-                                <span class="text-xs sm:text-sm font-bold text-rose-500">Working Day</span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <h3 id="count-absent" class="text-2xl sm:text-3xl font-black text-rose-600 dark:text-rose-400 font-mono">0</h3>
+                                <span class="text-[10px] font-extrabold text-rose-600 bg-rose-50 dark:bg-rose-950/60 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                                    <i class="fa-brands fa-whatsapp text-emerald-600 text-xs"></i> Auto WA
+                                </span>
                             </div>
+                            <p class="text-[11px] text-rose-500 font-bold mt-1 truncate">Unexcused Absence</p>
                         </div>
-                        <div class="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 flex items-center justify-center text-lg sm:text-xl group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-user-xmark"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Night Shift Card (Interactive: Click to assign date range) -->
+                <!-- 6. Night Shift Card -->
                 <div onclick="openNightShiftModal()" 
-                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-indigo-500/50 hover:shadow-md transition cursor-pointer">
+                     title="Click to manage Night Shifts"
+                     class="interactive-card group bg-white dark:bg-slate-900 p-4 sm:p-4.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-indigo-500/50 hover:shadow-md transition cursor-pointer">
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-xs sm:text-sm font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center gap-1.5">
-                                Night Shift <i class="fa-solid fa-plus-circle text-xs"></i>
+                            <span class="text-[11px] sm:text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block flex items-center gap-1">
+                                Night Shift <i class="fa-solid fa-plus-circle text-[10px]"></i>
                             </span>
-                            <div class="flex items-baseline gap-2.5 mt-1.5">
-                                <h3 id="count-night" class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono">0</h3>
-                                <span class="text-xs sm:text-sm font-extrabold text-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">Manage</span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <h3 id="count-night" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">0</h3>
+                                <span class="text-[10px] font-extrabold text-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">Manage</span>
                             </div>
+                            <p class="text-[11px] text-slate-400 font-bold mt-1 truncate">Night Duty Shift</p>
                         </div>
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 flex items-center justify-center text-xl sm:text-2xl">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 flex items-center justify-center text-lg sm:text-xl">
                             <i class="fa-solid fa-moon"></i>
                         </div>
                     </div>
@@ -831,6 +886,7 @@
                     <select id="filter-status-select" onchange="handleFilterChange()" 
                             class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-slate-800 dark:text-slate-200 font-bold outline-none text-sm cursor-pointer">
                         <option value="ALL">All Statuses</option>
+                        <option value="AVAILABLE_TODAY">⚡ Available Today (On Duty)</option>
                         <option value="Present">🟢 Present</option>
                         <option value="Weekly Off">🏖️ Weekly Off</option>
                         <option value="Weekend Exchange">🔄 Weekend Exchange</option>
@@ -3089,22 +3145,27 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             return parts.length === 1 ? parts[0].substring(0, 2).toUpperCase() : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
         }
 
+        function getAbsentNoticeMessage(name, dateStr = currentActiveDate) {
+            const dayName = getDayNameForDate(dateStr);
+            return `*Official Absent Notice - Sanvee's by Tony*\n\nDear *${name}*,\n\nYou have been marked *ABSENT* from today's scheduled duty roster (*${dateStr}, ${dayName}*) at Sanvee's by Tony.\n\nAs today is your regular working shift and no prior leave was approved, please state the reason for your absence immediately and contact management.\n\n*প্রিয় ${name},*\nসানভিস বাই টনি-র আজকের (${dateStr}, ${dayName}) নির্ধারিত ডিউটিতে আপনাকে *Absent (অনুপস্থিত)* চিহ্নিত করা হয়েছে। অনুগ্রহ করে অবিলম্বে আপনার অনুপস্থিতির কারণ জানান এবং ম্যানেজমেন্টের সাথে যোগাযোগ করুন।\n\nRegards,\n*Sheikh Shahmiran Manik*\nModerator In-Charge, Sanvee's by Tony`;
+        }
+
         function buildWhatsAppURL(phone, name, isAbsentAlert = false, dateStr = currentActiveDate) {
-            const cleanPhone = phone.replace(/[^0-9]/g, '');
+            const cleanPhone = (phone || '').replace(/[^0-9]/g, '');
             const bdPhone = cleanPhone.startsWith('0') ? '88' + cleanPhone : cleanPhone;
             const dayName = getDayNameForDate(dateStr);
 
             let message = `Dear ${name},\n\nI am contacting you regarding your duty shift at Sanvee's by Tony.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
 
             if (isAbsentAlert) {
-                message = `Dear ${name},\n\nYou have been marked absent from today's (${dateStr}, ${dayName}) scheduled duty roster at Sanvee's by Tony. As this is your regular working day and no prior leave was approved, please state the reason for your absence today and contact me immediately.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
+                message = getAbsentNoticeMessage(name, dateStr);
             }
 
             return `https://wa.me/${bdPhone}?text=${encodeURIComponent(message)}`;
         }
 
-        function triggerDirectWhatsApp(phone, name, isAbsentAlert = false) {
-            const url = buildWhatsAppURL(phone, name, isAbsentAlert, currentActiveDate);
+        function triggerDirectWhatsApp(phone, name, isAbsentAlert = false, dateStr = currentActiveDate) {
+            const url = buildWhatsAppURL(phone, name, isAbsentAlert, dateStr);
             window.open(url, '_blank');
         }
 
@@ -3120,8 +3181,19 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             let filtered = moderators.filter((mod, originalIndex) => {
                 mod._originalIndex = originalIndex;
                 const status = getModeratorStatusForDate(mod, currentActiveDate);
+                const isTodayWeekend = mod.weekend === dayName;
 
-                if (filterStatus !== "ALL" && status !== filterStatus) return false;
+                if (filterStatus === "AVAILABLE_TODAY") {
+                    // Available Today means actively on duty (not Weekly Off, not Leave, not Absent)
+                    if (status === 'Weekly Off' || status === 'Leave' || status === 'Absent') {
+                        return false;
+                    }
+                    if (isTodayWeekend && status !== 'Present' && status !== 'Night Shift' && status !== 'Outside Work') {
+                        return false;
+                    }
+                } else if (filterStatus !== "ALL" && status !== filterStatus) {
+                    return false;
+                }
                 if (filterWeekend !== "ALL" && mod.weekend !== filterWeekend) return false;
 
                 if (searchQuery.trim() !== "") {
@@ -3139,7 +3211,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             
             const footerEl = document.getElementById("footer-count-text");
             if (filtered.length !== moderators.length) {
-                const filterLabel = filterStatus !== 'ALL' ? filterStatus : (searchQuery.trim() ? 'Search Results' : 'Filtered');
+                const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? '⚡ Available Today' : (filterStatus !== 'ALL' ? filterStatus : (searchQuery.trim() ? 'Search Results' : 'Filtered'));
                 footerEl.innerHTML = `Showing: <b class="text-rose-600 dark:text-rose-400 font-mono text-base">${filtered.length}</b> of <b class="text-slate-900 dark:text-white font-mono text-base">${moderators.length}</b> Total Moderators (${filterLabel})`;
             } else {
                 footerEl.innerHTML = `Total Active Moderators: <b class="text-slate-900 dark:text-white font-mono text-base">${moderators.length}</b> Members`;
@@ -3185,8 +3257,8 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                                         <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover/name:text-rose-500 opacity-60 group-hover/name:opacity-100 transition no-print"></i>
                                     </button>
                                     ${isUnexcusedAbsent ? `
-                                        <span class="px-2.5 py-0.5 rounded-md text-xs font-black bg-rose-600 text-white animate-pulse no-print">
-                                            ⚠️ Absent
+                                        <span class="px-2.5 py-0.5 rounded-md text-xs font-black bg-rose-600 text-white animate-pulse no-print flex items-center gap-1">
+                                            <i class="fa-brands fa-whatsapp text-white"></i> ⚠️ Absent Notice Sent
                                         </span>
                                     ` : ''}
                                 </div>
@@ -3205,9 +3277,9 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                     <td class="col-daily-phone py-4 px-5">
                         <div class="flex items-center gap-2.5 font-mono text-sm sm:text-base font-bold text-slate-800 dark:text-slate-200">
                             <span>${mod.phone}</span>
-                            <button onclick="triggerDirectWhatsApp('${mod.phone}', '${mod.name}', ${isUnexcusedAbsent})" 
+                            <button onclick="triggerDirectWhatsApp('${mod.phone}', '${mod.name}', ${isUnexcusedAbsent}, '${currentActiveDate}')" 
                                     title="${isUnexcusedAbsent ? 'Send Absent Alert Notice' : 'Chat on WhatsApp'}" 
-                                    class="w-8 h-8 rounded-xl ${isUnexcusedAbsent ? 'bg-rose-600 text-white' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-400'} flex items-center justify-center text-sm sm:text-base transition no-print shadow-xs">
+                                    class="w-8 h-8 rounded-xl ${isUnexcusedAbsent ? 'bg-rose-600 text-white animate-bounce' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-400'} flex items-center justify-center text-sm sm:text-base transition no-print shadow-xs">
                                 <i class="fa-brands fa-whatsapp"></i>
                             </button>
                         </div>
@@ -3231,7 +3303,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                                 ${currentStatus === 'Present' ? 'bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950 dark:text-emerald-300' : ''}
                                 ${currentStatus === 'Weekly Off' ? 'bg-amber-50 text-amber-800 border-amber-300 dark:bg-amber-950 dark:text-amber-300' : ''}
                                 ${currentStatus === 'Weekend Exchange' ? 'bg-cyan-50 text-cyan-800 border-cyan-300 dark:bg-cyan-950 dark:text-cyan-300' : ''}
-                                ${currentStatus === 'Absent' ? 'bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950 dark:text-rose-300' : ''}
+                                ${currentStatus === 'Absent' ? 'bg-rose-50 text-rose-700 border-rose-300 dark:bg-rose-950 dark:text-rose-300 ring-2 ring-rose-500/40' : ''}
                                 ${currentStatus === 'Night Shift' ? 'bg-indigo-50 text-indigo-700 border-indigo-300 dark:bg-indigo-950 dark:text-indigo-300' : ''}
                                 ${currentStatus === 'Leave' ? 'bg-purple-50 text-purple-700 border-purple-300 dark:bg-purple-950 dark:text-purple-300' : ''}
                                 ${currentStatus === 'Outside Work' ? 'bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950 dark:text-amber-300' : ''}
@@ -3239,7 +3311,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                             <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>🏖️ Weekly Off</option>
                             <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>🟢 Present</option>
                             <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>🔄 Weekend Exchange</option>
-                            <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent</option>
+                            <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent (Auto WA Notice)</option>
                             <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>🔵 Night Shift</option>
                             <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>✈️ Approved Leave</option>
                             <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>🟡 Outside Duty</option>
@@ -3270,36 +3342,70 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             updateDailyKPIs();
         }
 
-        // Daily KPI Calculation
+        // Daily KPI Calculation (Total Mods, Available Today, Present, Off, Absent, Night Shift)
         function updateDailyKPIs() {
             const dayName = getDayNameForDate(currentActiveDate);
-            let present = 0, absent = 0, night = 0, offToday = 0, unexcusedCount = 0;
+            let present = 0, absent = 0, night = 0, offToday = 0, leaveCount = 0, outsideCount = 0, unexcusedCount = 0;
 
             moderators.forEach(mod => {
                 const status = getModeratorStatusForDate(mod, currentActiveDate);
                 if (status === 'Present') present++;
-                if (status === 'Night Shift') night++;
+                else if (status === 'Night Shift') night++;
+                else if (status === 'Leave') leaveCount++;
+                else if (status === 'Outside Work') outsideCount++;
                 
                 if (status === 'Weekly Off' || mod.weekend === dayName) {
                     offToday++;
                 }
 
                 if (status === 'Absent') {
+                    absent++;
                     if (mod.weekend !== dayName) {
-                        absent++;
                         unexcusedCount++;
                     }
                 }
             });
 
-            const total = moderators.length || 1;
-            document.getElementById('count-present').innerText = present;
-            document.getElementById('pct-present').innerText = `${Math.round((present/total)*100)}%`;
+            const totalMods = moderators.length;
+            const total = totalMods || 1;
 
+            // 1. Total Active Moderators
+            const totalModsEl = document.getElementById('count-total-mods');
+            if (totalModsEl) totalModsEl.innerText = totalMods;
+
+            // 2. Available Today (Active on Duty: Present + Night Shift + Outside Work, or Total - Off - Leave - Absent)
+            const availableCount = Math.max(0, totalMods - offToday - leaveCount - (unexcusedCount > 0 ? unexcusedCount : absent));
+            const availablePct = Math.round((availableCount / total) * 100);
+
+            const availCountEl = document.getElementById('count-available-today');
+            if (availCountEl) availCountEl.innerText = availableCount;
+
+            const availPctEl = document.getElementById('pct-available-today');
+            if (availPctEl) availPctEl.innerText = `${availablePct}%`;
+
+            const availSubEl = document.getElementById('sub-available-today');
+            if (availSubEl) availSubEl.innerText = `${availableCount} of ${totalMods} On Duty`;
+
+            // 3. Present Count
+            const presentEl = document.getElementById('count-present');
+            if (presentEl) presentEl.innerText = present;
+
+            const pctPresentEl = document.getElementById('pct-present');
+            if (pctPresentEl) pctPresentEl.innerText = `${Math.round((present / total) * 100)}%`;
+
+            // 4. Weekly Off Count
+            const offEl = document.getElementById('count-off-today');
+            if (offEl) offEl.innerText = offToday;
+
+            // 5. Unexcused Absent Count
+            const absentEl = document.getElementById('count-absent');
+            if (absentEl) absentEl.innerText = unexcusedCount > 0 ? unexcusedCount : absent;
+
+            // 6. Night Shift Count
             const activeNightDutyMods = scheduledNightShifts.filter(r => currentActiveDate >= r.startDate && currentActiveDate < r.endDate);
             const nightDisplayCount = activeNightDutyMods.length > 0 ? activeNightDutyMods.length : night;
-            document.getElementById('count-night').innerText = nightDisplayCount;
-            document.getElementById('count-off-today').innerText = offToday;
+            const nightEl = document.getElementById('count-night');
+            if (nightEl) nightEl.innerText = nightDisplayCount;
 
             const unexcusedBtn = document.getElementById('btn-unexcused-alert');
             const unexcusedCountSpan = document.getElementById('unexcused-count');
@@ -3327,7 +3433,7 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
             if (exchangeBadgeEl) exchangeBadgeEl.innerText = activeExchangesCount;
         }
 
-        // Status Update Trigger
+        // Status Update Trigger - Automatic WhatsApp Notice on Absent
         function handleStatusSelect(index, newStatus) {
             const mod = moderators[index];
             setModeratorStatusForDate(mod, currentActiveDate, newStatus);
@@ -3339,9 +3445,10 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 if (mod.weekend === dayName) {
                     showToast(`Notice: ${currentActiveDate} is ${mod.name}'s scheduled Weekly Off (${dayName})`, 'info');
                 } else {
-                    triggerDirectWhatsApp(mod.phone, mod.name, true);
-                    openAbsentAlertModal(mod);
-                    showToast(`Official Absent Notice sent to ${mod.name}`, 'info');
+                    // Automatically dispatch WhatsApp notice to moderator's number
+                    triggerDirectWhatsApp(mod.phone, mod.name, true, currentActiveDate);
+                    openAbsentAlertModal(mod, currentActiveDate);
+                    showToast(`🔴 Absent Notice automatically sent to ${mod.name} on WhatsApp!`, 'success');
                 }
             } else if (newStatus === 'Night Shift') {
                 openNightShiftModal(mod.sl);
@@ -4609,7 +4716,18 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                 renderDailyTable();
             }
 
-            showToast(`Updated ${mod.name} (${dateStr}) to ${newStatus}`);
+            const dayName = getDayNameForDate(dateStr);
+            if (newStatus === 'Absent') {
+                if (mod.weekend === dayName) {
+                    showToast(`Notice: ${dateStr} is ${mod.name}'s scheduled Weekly Off (${dayName})`, 'info');
+                } else {
+                    triggerDirectWhatsApp(mod.phone, mod.name, true, dateStr);
+                    openAbsentAlertModal(mod, dateStr);
+                    showToast(`🔴 Absent Notice automatically sent to ${mod.name} on WhatsApp!`, 'success');
+                }
+            } else {
+                showToast(`Updated ${mod.name} (${dateStr}) to ${newStatus}`);
+            }
         }
 
         // ======================= MONTHLY DATA SHEET RENDERER =======================
@@ -4859,19 +4977,18 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
         }
 
         // WhatsApp Absent Alert Modal Logic
-        function openAbsentAlertModal(mod) {
-            const dayName = getDayNameForDate(currentActiveDate);
+        function openAbsentAlertModal(mod, targetDate = currentActiveDate) {
+            const dayName = getDayNameForDate(targetDate);
             document.getElementById('alert-mod-name').innerText = mod.name;
-            document.getElementById('alert-today-day').innerText = `${currentActiveDate} (${dayName})`;
+            document.getElementById('alert-today-day').innerText = `${targetDate} (${dayName})`;
             document.getElementById('alert-mod-weekend').innerText = mod.weekend;
 
-            const previewText = `Dear ${mod.name},\n\nYou have been marked absent from today's (${currentActiveDate}, ${dayName}) scheduled duty roster at Sanvee's by Tony. As this is your regular working day and no prior leave was approved, please state the reason for your absence today and contact me immediately.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
-            
+            const previewText = getAbsentNoticeMessage(mod.name, targetDate);
             document.getElementById('alert-message-preview').innerText = previewText;
 
             const sendBtn = document.getElementById('alert-send-wa-btn');
             sendBtn.onclick = () => {
-                triggerDirectWhatsApp(mod.phone, mod.name, true);
+                triggerDirectWhatsApp(mod.phone, mod.name, true, targetDate);
                 closeAbsentAlertModal();
             };
 
@@ -4901,8 +5018,8 @@ const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwI8rw
                             <span class="font-extrabold text-slate-900 dark:text-white text-sm block">${m.name}</span>
                             <span class="text-xs text-slate-400 font-mono font-semibold">${m.phone} • Off-Day: ${m.weekend}</span>
                         </div>
-                        <button onclick="triggerDirectWhatsApp('${m.phone}', '${m.name}', true)" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-xs">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Send Notice
+                        <button onclick="triggerDirectWhatsApp('${m.phone}', '${m.name}', true, '${currentActiveDate}')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-xs cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Send Absent Notice
                         </button>
                     `;
                     listEl.appendChild(div);
