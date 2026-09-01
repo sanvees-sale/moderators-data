@@ -409,41 +409,78 @@
             #view-monthly-container {
                 page-break-inside: avoid !important;
                 page-break-after: avoid !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            #view-monthly-container .overflow-x-auto {
+                overflow: visible !important;
+                width: 100% !important;
             }
             #view-monthly-container table {
-                font-size: 6.5pt !important;
+                font-size: 6.8pt !important;
                 table-layout: fixed !important;
                 width: 100% !important;
-                line-height: 1 !important;
+                max-width: 100% !important;
+                line-height: 1.1 !important;
+                border: 1.5px solid #000000 !important;
+                margin: 0 !important;
+            }
+            #view-monthly-container th, 
+            #view-monthly-container td {
+                min-width: 0 !important;
+                padding: 1.5px 0.5px !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+                height: 20px !important;
+                max-height: 20px !important;
+                font-size: 6.8pt !important;
+                line-height: 1.1 !important;
+                vertical-align: middle !important;
+                text-align: center !important;
+                border: 0.8px solid #94a3b8 !important;
             }
             #view-monthly-container th {
-                padding: 2px 0.5px !important;
-                font-size: 6.5pt !important;
-                height: 18px !important;
-                line-height: 1 !important;
+                height: 24px !important;
+                max-height: 24px !important;
+                font-size: 7.2pt !important;
+                background-color: #f1f5f9 !important;
+                color: #000000 !important;
+                font-weight: 900 !important;
+                border-bottom: 2px solid #000000 !important;
             }
-            #view-monthly-container td {
-                padding: 1px 0.5px !important;
-                font-size: 6.2pt !important;
-                height: 16px !important;
-                max-height: 16px !important;
-                line-height: 1 !important;
-            }
-            #view-monthly-container td:nth-child(2) {
+            
+            /* Exact percentage columns to prevent horizontal overflow */
+            .col-m-sl   { width: 3.5% !important; }
+            .col-m-name { width: 14.5% !important; text-align: left !important; padding-left: 4px !important; }
+            .col-m-off  { width: 4.0% !important; }
+            .col-m-day  { width: 2.0% !important; }
+            .col-m-stat { width: 2.66% !important; font-weight: 800 !important; }
+
+            #view-monthly-container td.col-m-name {
                 text-align: left !important;
-                white-space: nowrap !important;
-                font-weight: 700 !important;
-                padding-left: 3px !important;
-                font-size: 6.5pt !important;
+                padding-left: 4px !important;
+                padding-right: 2px !important;
             }
+            #view-monthly-container td.col-m-name span.print-only {
+                font-size: 6.8pt !important;
+                font-weight: 800 !important;
+                color: #000000 !important;
+                white-space: nowrap !important;
+                text-overflow: ellipsis !important;
+                overflow: hidden !important;
+                display: block !important;
+                text-align: left !important;
+            }
+
             #view-monthly-container .matrix-cell-badge {
-                width: 14px !important;
-                height: 14px !important;
+                width: 13.5px !important;
+                height: 13.5px !important;
                 font-size: 5.8pt !important;
                 font-weight: 900 !important;
                 border-radius: 2px !important;
                 border: 0.8px solid #64748b !important;
-                line-height: 14px !important;
+                line-height: 13.5px !important;
                 display: inline-flex !important;
                 align-items: center !important;
                 justify-content: center !important;
@@ -2662,9 +2699,9 @@
             const thead = document.getElementById('monthly-table-head');
             let headerHtml = `
                 <tr class="bg-slate-100/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 font-display font-black uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
-                    <th class="py-3 px-2 text-center align-middle w-12 bg-slate-100 dark:bg-slate-800">SL</th>
-                    <th class="py-3 px-3 text-left align-middle min-w-[150px] bg-slate-100 dark:bg-slate-800">Name</th>
-                    <th class="py-3 px-2 text-center align-middle w-14 bg-slate-100 dark:bg-slate-800">Off</th>
+                    <th class="col-m-sl py-3 px-1 text-center align-middle w-10 sm:w-12 bg-slate-100 dark:bg-slate-800">SL</th>
+                    <th class="col-m-name py-3 px-2 text-left align-middle min-w-[120px] bg-slate-100 dark:bg-slate-800">Name</th>
+                    <th class="col-m-off py-3 px-1 text-center align-middle w-12 sm:w-14 bg-slate-100 dark:bg-slate-800">Off</th>
             `;
 
             for (let d = 1; d <= daysInMonth; d++) {
@@ -2672,7 +2709,7 @@
                 const dayNameShort = getDayNameForDate(dateStr).substring(0, 2);
                 const isTodayColumn = dateStr === currentActiveDate;
                 headerHtml += `
-                    <th class="py-2 px-1 text-center align-middle font-mono w-9 min-w-[32px] border-l border-slate-200 dark:border-slate-700 ${isTodayColumn ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 ring-2 ring-indigo-500/40' : ''}">
+                    <th class="col-m-day py-2 px-0.5 text-center align-middle font-mono border-l border-slate-200 dark:border-slate-700 ${isTodayColumn ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 ring-2 ring-indigo-500/40' : ''}">
                         <div class="text-xs font-black text-slate-900 dark:text-white leading-none">${d}</div>
                         <div class="text-[9px] font-bold text-slate-400 mt-0.5 leading-none">${dayNameShort}</div>
                     </th>
@@ -2680,12 +2717,12 @@
             }
 
             headerHtml += `
-                    <th class="py-3 px-2 text-center align-middle bg-emerald-500/10 text-emerald-600 font-mono font-bold" title="Present">P</th>
-                    <th class="py-3 px-2 text-center align-middle bg-amber-500/10 text-amber-600 font-mono font-bold" title="Weekly Off">Off</th>
-                    <th class="py-3 px-2 text-center align-middle bg-cyan-500/10 text-cyan-600 font-mono font-bold" title="Weekend Exchange">EX</th>
-                    <th class="py-3 px-2 text-center align-middle bg-rose-500/10 text-rose-600 font-mono font-bold" title="Absent">A</th>
-                    <th class="py-3 px-2 text-center align-middle bg-indigo-500/10 text-indigo-600 font-mono font-bold" title="Night Shift">N</th>
-                    <th class="py-3 px-2 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Leave">L</th>
+                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-emerald-500/10 text-emerald-600 font-mono font-bold" title="Present">P</th>
+                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-amber-500/10 text-amber-600 font-mono font-bold" title="Weekly Off">Off</th>
+                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-cyan-500/10 text-cyan-600 font-mono font-bold" title="Weekend Exchange">EX</th>
+                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-rose-500/10 text-rose-600 font-mono font-bold" title="Absent">A</th>
+                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-indigo-500/10 text-indigo-600 font-mono font-bold" title="Night Shift">N</th>
+                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Leave">L</th>
                 </tr>
             `;
             thead.innerHTML = headerHtml;
@@ -2699,18 +2736,21 @@
 
                 let rowHtml = `
                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-slate-500">
+                        <td class="col-m-sl py-2 px-1 text-center align-middle font-mono font-bold text-slate-500">
                             ${String(mod.sl).padStart(2, '0')}
                         </td>
-                        <td class="py-2.5 px-3 align-middle font-display font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                        <td class="col-m-name py-2 px-2 align-middle font-display font-bold text-slate-900 dark:text-white whitespace-nowrap">
                             <button type="button" onclick="focusModeratorMonthly(${mod.sl})" 
-                                    class="text-left font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition flex items-center gap-2 group/mname cursor-pointer">
-                                <span class="w-6 h-6 rounded-lg bg-gradient-to-tr ${avatarTheme.bg} text-white text-[10px] font-black flex items-center justify-center shadow-xs no-print">${getInitials(mod.name)}</span>
+                                    class="no-print text-left font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition flex items-center gap-2 group/mname cursor-pointer">
+                                <span class="w-6 h-6 rounded-lg bg-gradient-to-tr ${avatarTheme.bg} text-white text-[10px] font-black flex items-center justify-center shadow-xs">${getInitials(mod.name)}</span>
                                 <span class="group-hover/mname:underline decoration-indigo-500">${mod.name}</span>
-                                <i class="fa-solid fa-filter text-[10px] text-slate-400 opacity-60 no-print"></i>
+                                <i class="fa-solid fa-filter text-[10px] text-slate-400 opacity-60"></i>
                             </button>
+                            <span class="print-only font-bold text-slate-900" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
+                                ${mod.name}
+                            </span>
                         </td>
-                        <td class="py-2.5 px-2 text-center align-middle font-bold text-amber-600 text-xs">
+                        <td class="col-m-off py-2 px-1 text-center align-middle font-bold text-amber-600 text-xs">
                             ${mod.weekend.substring(0, 3)}
                         </td>
                 `;
@@ -2744,7 +2784,7 @@
                     }
 
                     rowHtml += `
-                        <td class="py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800 ${isTodayColumn ? 'bg-indigo-500/5 dark:bg-indigo-500/10' : ''}">
+                        <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800 ${isTodayColumn ? 'bg-indigo-500/5 dark:bg-indigo-500/10' : ''}">
                             <button type="button" onclick="openStatusPicker(event, ${mod.sl}, '${dateStr}', '${status}')" 
                                     class="w-full h-full flex items-center justify-center p-0.5 rounded-lg hover:ring-2 hover:ring-indigo-500 transition cursor-pointer">
                                 ${badge}
@@ -2754,12 +2794,12 @@
                 }
 
                 rowHtml += `
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-emerald-600 bg-emerald-500/5">${modPresent}</td>
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-amber-600 bg-amber-500/5">${modOff}</td>
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-cyan-600 bg-cyan-500/5">${modExchange}</td>
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-rose-600 bg-rose-500/5">${modAbsent}</td>
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-indigo-600 bg-indigo-500/5">${modNight}</td>
-                        <td class="py-2.5 px-2 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modLeave}</td>
+                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-emerald-600 bg-emerald-500/5">${modPresent}</td>
+                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-amber-600 bg-amber-500/5">${modOff}</td>
+                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-cyan-600 bg-cyan-500/5">${modExchange}</td>
+                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-rose-600 bg-rose-500/5">${modAbsent}</td>
+                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-indigo-600 bg-indigo-500/5">${modNight}</td>
+                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modLeave}</td>
                     </tr>
                 `;
 
