@@ -580,21 +580,50 @@
                 <span id="login-error-text" class="font-medium">Incorrect password. Please try again.</span>
             </div>
 
+            <!-- Role Switcher Tabs -->
+            <div class="flex items-center p-1 rounded-2xl bg-white/[0.08] border border-white/10 mb-5 font-bold text-xs">
+                <button type="button" id="btn-auth-tab-admin" onclick="switchLoginRole('admin')" 
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>In-Charge (Admin)</span>
+                </button>
+                <button type="button" id="btn-auth-tab-moderator" onclick="switchLoginRole('moderator')" 
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Moderator View</span>
+                </button>
+            </div>
+
             <!-- Login Form -->
             <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
-                <div>
+                <!-- Admin Username Field -->
+                <div id="auth-admin-fields">
                     <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
                         Authorized Username
                     </label>
                     <div class="relative">
                         <i class="fa-solid fa-user-shield absolute left-4 top-3.5 text-slate-400 text-sm"></i>
-                        <input type="text" id="login-username" value="admin" required
+                        <input type="text" id="login-username" value="admin"
                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-medium">
                     </div>
                 </div>
 
-                <div>
+                <!-- Moderator Selector Field -->
+                <div id="auth-moderator-fields" class="hidden space-y-1.5">
                     <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
+                        Select Your Profile
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-400 text-sm z-10"></i>
+                        <select id="login-mod-select"
+                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900 border border-white/10 text-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Password / PIN Field -->
+                <div>
+                    <label id="auth-password-label" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
                         Access Password
                     </label>
                     <div class="relative">
@@ -605,6 +634,9 @@
                             <i id="password-toggle-icon" class="fa-solid fa-eye text-sm"></i>
                         </button>
                     </div>
+                    <div id="auth-moderator-hint" class="hidden text-[11px] text-purple-300/80 mt-1.5 ml-1">
+                        💡 Moderator default access PIN: <strong class="font-mono text-purple-200">1234</strong>
+                    </div>
                 </div>
 
                 <div class="flex items-center justify-between pt-1">
@@ -612,13 +644,13 @@
                         <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-white/10 border-white/20 text-indigo-600 focus:ring-indigo-500">
                         <span class="text-xs text-slate-400 font-medium">Remember on this device</span>
                     </label>
-                    <span class="text-xs text-indigo-400 font-mono font-bold">Role: In-Charge</span>
+                    <span id="auth-role-badge" class="text-xs text-indigo-400 font-mono font-bold">Role: In-Charge (Admin)</span>
                 </div>
 
                 <button type="submit" id="btn-login-submit"
                         class="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 hover:from-indigo-500 hover:to-violet-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer">
                     <i class="fa-solid fa-right-to-bracket text-base"></i>
-                    <span>Unlock Dashboard</span>
+                    <span id="btn-login-submit-text">Unlock Dashboard</span>
                 </button>
             </form>
 
@@ -779,6 +811,43 @@
 
         <!-- Main Content Canvas -->
         <main id="main-content-canvas" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 transition-all duration-300">
+            
+            <!-- Moderator View-Only Status Banner -->
+            <div id="moderator-logged-in-banner" class="hidden glass-panel-elevated p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border border-purple-500/20 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-purple-500/10 shadow-lg no-print">
+                <div class="flex items-center gap-3.5">
+                    <div id="mod-banner-avatar" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center font-display font-black text-sm shadow-md flex-shrink-0">
+                        <span id="mod-banner-sl">--</span>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="font-display font-black text-base text-slate-900 dark:text-white" id="mod-banner-name">--</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-400 font-bold text-[10px] border border-amber-500/25">
+                                <i class="fa-solid fa-lock text-[9px] mr-1"></i> View-Only Mode
+                            </span>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 flex flex-wrap items-center gap-3">
+                            <span id="mod-banner-weekend-info">Weekly Off: --</span>
+                            <span id="mod-banner-night-info" class="text-indigo-600 dark:text-indigo-400 font-bold">🌙 Night Duty: Checking...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <button type="button" onclick="openNightShiftRequestModal()" 
+                            class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-95">
+                        <i class="fa-solid fa-calendar-xmark"></i>
+                        <span>Request Shift Change</span>
+                    </button>
+                    <button type="button" onclick="openNightShiftModal()" 
+                            class="px-3 py-2 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-moon"></i>
+                        <span>Night Roster</span>
+                    </button>
+                    <button type="button" onclick="handleLogout()" 
+                            class="px-3 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 font-bold text-xs transition">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
             
             <!-- Official Dedicated Office Print Header (Only visible when printing) -->
             <div id="print-header-banner" class="print-only mb-6">
@@ -1420,20 +1489,26 @@
             <!-- Tab Switcher -->
             <div class="flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-xs">
                 <button type="button" onclick="switchNightShiftTab('active')" id="tab-btn-night-active"
-                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm">
+                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm text-[11px] sm:text-xs">
                     <i class="fa-solid fa-calendar-check"></i>
-                    <span>Active Night Duties (<span id="tab-night-active-count">0</span>)</span>
+                    <span>Active Duties (<span id="tab-night-active-count">0</span>)</span>
                 </button>
                 <button type="button" onclick="switchNightShiftTab('monthly')" id="tab-btn-night-monthly"
-                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs">
                     <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>Monthly Shift Summary (<span id="tab-night-monthly-count">0</span>)</span>
+                    <span>Monthly Roster (<span id="tab-night-monthly-count">0</span>)</span>
+                </button>
+                <button type="button" onclick="switchNightShiftTab('requests')" id="tab-btn-night-requests"
+                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>Requests (<span id="tab-night-requests-count">0</span>)</span>
                 </button>
             </div>
 
             <!-- Active Tab: New Assignment & Active List -->
             <div id="night-tab-active" class="space-y-4">
-                <form onsubmit="handleNightShiftSubmit(event)" class="space-y-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+                <!-- Admin Assignment Form (Hidden for Moderators) -->
+                <form id="night-assign-form" onsubmit="handleNightShiftSubmit(event)" class="space-y-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Select Moderator</label>
@@ -1447,7 +1522,7 @@
                                    class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">End Date (Weekly Off)</label>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">End Date (Day Before Off)</label>
                             <input type="date" id="night-end-date"
                                    class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none">
                         </div>
@@ -1455,13 +1530,24 @@
 
                     <div class="flex items-center justify-between pt-1">
                         <div class="text-[11px] text-slate-500 font-semibold">
-                            <span id="night-calc-desc">-- Night Duties + Off Day</span>
+                            <span id="night-calc-desc">-- Night Duties (Until day before Off)</span>
                         </div>
-                        <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs shadow-md">
+                        <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition active:scale-95">
                             Assign Night Shift
                         </button>
                     </div>
                 </form>
+
+                <!-- Moderator Shift Request Helper Banner -->
+                <div id="night-mod-helper-banner" class="hidden p-3.5 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-xs flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-purple-900 dark:text-purple-200 block">Unable to attend scheduled night shift?</span>
+                        <span class="text-slate-500 dark:text-slate-400 text-[11px]">Submit an official exemption/change request with reasons.</span>
+                    </div>
+                    <button type="button" onclick="openNightShiftRequestModal()" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-xs transition">
+                        Request Exemption
+                    </button>
+                </div>
 
                 <!-- Active Records List -->
                 <div class="space-y-2 max-h-56 overflow-y-auto" id="night-shift-records-list">
@@ -1471,28 +1557,64 @@
 
             <!-- Monthly Tab: Monthly Night Duty Log -->
             <div id="night-tab-monthly" class="hidden space-y-3">
-                <div class="flex items-center justify-between gap-3">
-                    <input type="month" id="monthly-night-month-picker" onchange="handleMonthlyNightMonthChange(this.value)"
-                           class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold font-mono">
-                    <button onclick="printMonthlyNightReport()" class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold">
-                        <i class="fa-solid fa-print mr-1"></i> Print Night Report
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <input type="month" id="monthly-night-month-picker" onchange="handleMonthlyNightMonthChange(this.value)"
+                               class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold font-mono text-slate-900 dark:text-white shadow-sm outline-none">
+                        <button type="button" id="btn-night-auto-assign" onclick="triggerAutoAssignCurrentMonth()" 
+                                title="Automatically calculate and assign 3 moderators per night continuously across the entire month based on weekly off schedules" 
+                                class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800 text-white text-xs font-bold shadow-md hover:shadow-indigo-500/25 flex items-center gap-1.5 transition active:scale-95">
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                            <span>Auto Assign (3/Night)</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 self-end sm:self-auto">
+                        <button type="button" id="btn-night-whatsapp-all" onclick="openNightShiftWhatsAppBatchModal()" 
+                                title="Notify all scheduled night duty moderators via WhatsApp"
+                                class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>WhatsApp All</span>
+                        </button>
+                        <button type="button" onclick="printMonthlyNightReport()" 
+                                class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition active:scale-95">
+                            <i class="fa-solid fa-print"></i>
+                            <span>Print Report</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="max-h-64 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-2xl shadow-inner">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold sticky top-0 z-10 border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="p-2.5 text-center w-12">SL</th>
+                                <th class="p-2.5">Name</th>
+                                <th class="p-2.5 text-center w-24">Off</th>
+                                <th class="p-2.5 text-center w-24">Total Nights</th>
+                                <th class="p-2.5">Duty Dates</th>
+                                <th class="p-2.5 text-center w-28">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthly-night-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Requests Tab: Moderator Exemption / Shift Change Requests -->
+            <div id="night-tab-requests" class="hidden space-y-3">
+                <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <h4 class="font-bold text-xs text-slate-800 dark:text-slate-200">Moderator Shift Exemption Requests</h4>
+                        <p class="text-[11px] text-slate-400">Review requests from staff unable to attend scheduled nights</p>
+                    </div>
+                    <button type="button" onclick="openNightShiftRequestModal()" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>New Request</span>
                     </button>
                 </div>
 
-                <div class="max-h-64 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
-                    <table class="w-full text-left text-xs border-collapse">
-                        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold sticky top-0">
-                            <tr>
-                                <th class="p-2.5 text-center">SL</th>
-                                <th class="p-2.5">Name</th>
-                                <th class="p-2.5 text-center">Off</th>
-                                <th class="p-2.5 text-center">Total Nights</th>
-                                <th class="p-2.5">Duty Dates</th>
-                                <th class="p-2.5 text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="monthly-night-table-body" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
-                    </table>
+                <div id="night-requests-list" class="space-y-2 max-h-64 overflow-y-auto pr-1">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
 
@@ -1733,6 +1855,92 @@
             </div>
 
             <div id="bulk-absent-list" class="space-y-2 max-h-72 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <!-- ======================= 9.5. NIGHT SHIFT WHATSAPP NOTICES MODAL ======================= -->
+    <div id="night-whatsapp-batch-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-md p-4 no-print select-none">
+        <div class="relative w-full max-w-xl rounded-3xl glass-panel-elevated p-6 sm:p-8 space-y-4 shadow-2xl border border-white/15">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-base">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-black text-base text-slate-900 dark:text-white">Night Duty WhatsApp Notices</h3>
+                        <p id="night-whatsapp-modal-subtitle" class="text-[11px] text-slate-400">Send schedule notifications to assigned moderators</p>
+                    </div>
+                </div>
+                <button onclick="closeNightShiftWhatsAppBatchModal()" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <div id="night-whatsapp-batch-list" class="space-y-2.5 max-h-80 overflow-y-auto pr-1"></div>
+            
+            <div class="pt-2 flex items-center justify-between border-t border-slate-200 dark:border-slate-700 text-xs">
+                <span class="text-slate-400 text-[11px]">Click 'Send' to dispatch pre-formatted duty dates notice</span>
+                <button onclick="closeNightShiftWhatsAppBatchModal()" class="px-4 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 font-bold text-slate-700 dark:text-slate-200">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================= 9.6. NIGHT SHIFT EXEMPTION REQUEST MODAL ======================= -->
+    <div id="night-shift-request-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-md p-4 no-print select-none">
+        <div class="relative w-full max-w-lg rounded-3xl glass-panel-elevated p-6 sm:p-8 space-y-4 shadow-2xl border border-white/15">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-base">
+                        <i class="fa-solid fa-hand-holding-hand"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-black text-base text-slate-900 dark:text-white">Night Duty Exemption Request</h3>
+                        <p class="text-[11px] text-slate-400">Submit reason for inability to attend assigned night duty</p>
+                    </div>
+                </div>
+                <button onclick="closeNightShiftRequestModal()" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handleNightShiftRequestSubmit(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Select Moderator</label>
+                    <select id="req-mod-select" onchange="autoFillAssignedDutyDatesForRequest()"
+                            class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-xs outline-none">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Currently Scheduled Night Shift</label>
+                    <input type="text" id="req-assigned-schedule" readonly value="Checking scheduled nights..."
+                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 font-mono font-bold text-xs outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Specific Date(s) You Cannot Attend</label>
+                    <input type="text" id="req-unavailable-dates" placeholder="e.g. Sep 01, 02 (or All Scheduled Dates)" required
+                           class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Reason for Inability / Emergency</label>
+                    <textarea id="req-reason-text" rows="3" required placeholder="Please state your valid reason (Exam, Sickness, Family emergency, etc.)..."
+                              class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between">
+                    <button type="button" onclick="closeNightShiftRequestModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition active:scale-95 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Submit Request & Notify In-Charge</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -2521,8 +2729,9 @@
                 const isOffToday = currentStatus === 'Weekly Off' || isTodayWeekend;
                 const weekendBadgeClass = WEEKEND_BADGE_STYLES[mod.weekend] || 'bg-slate-100 text-slate-800';
                 const avatarTheme = getAvatarTheme(mod.sl);
+                const isMe = (currentUserRole === 'moderator' && mod.sl === currentLoggedInModSl);
 
-                tr.className = `hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20 transition duration-150 ${isUnexcusedAbsent ? 'bg-rose-50/50 dark:bg-rose-950/25' : ''}`;
+                tr.className = `hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20 transition duration-150 ${isMe ? 'ring-2 ring-purple-500/40 bg-purple-50/60 dark:bg-purple-950/30' : (isUnexcusedAbsent ? 'bg-rose-50/50 dark:bg-rose-950/25' : '')}`;
 
                 tr.innerHTML = `
                     <td class="col-daily-sl py-3.5 px-4 text-center font-mono font-bold text-slate-500 dark:text-slate-400 text-xs sm:text-sm align-middle">
@@ -2543,6 +2752,11 @@
                                         <span class="group-hover/name:underline decoration-indigo-500 underline-offset-2">${mod.name}</span>
                                         <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 opacity-60 group-hover/name:opacity-100 no-print"></i>
                                     </button>
+                                    ${isMe ? `
+                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-purple-600 text-white shadow-xs">
+                                            You
+                                        </span>
+                                    ` : ''}
                                     ${isUnexcusedAbsent ? `
                                         <span class="px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-600 text-white animate-pulse no-print flex items-center gap-1 shadow-xs">
                                             <i class="fa-brands fa-whatsapp"></i> Alert Sent
@@ -2583,39 +2797,62 @@
                     </td>
 
                     <td class="col-daily-status py-3.5 px-4 text-center align-middle">
-                        <div class="flex items-center justify-center">
-                            <select onchange="handleStatusSelect(${mod._originalIndex}, this.value)" 
-                                    class="no-print w-full max-w-[200px] px-3 py-2 text-center rounded-xl text-xs sm:text-sm font-display font-bold border outline-none cursor-pointer transition shadow-xs
-                                    ${currentStatus === 'Present' ? 'status-pill-present' : ''}
-                                    ${currentStatus === 'Weekly Off' ? 'status-pill-off' : ''}
-                                    ${currentStatus === 'Weekend Exchange' ? 'status-pill-exchange' : ''}
-                                    ${currentStatus === 'Absent' ? 'status-pill-absent ring-2 ring-rose-500/40' : ''}
-                                    ${currentStatus === 'Night Shift' ? 'status-pill-night' : ''}
-                                    ${currentStatus === 'Leave' ? 'status-pill-leave' : ''}
-                                    ${currentStatus === 'Outside Work' ? 'bg-slate-100 text-slate-800' : ''}">
-                                <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>🏖️ Weekly Off</option>
-                                <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>🟢 Present</option>
-                                <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>🔄 Weekend Exchange</option>
-                                <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent (Auto WA)</option>
-                                <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>🔵 Night Shift</option>
-                                <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>✈️ Approved Leave</option>
-                                <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>🟡 Outside Duty</option>
-                            </select>
-                        </div>
+                        ${currentUserRole === 'moderator' ? `
+                            <div class="inline-flex items-center justify-center px-3.5 py-1.5 rounded-xl font-display font-bold text-xs border
+                                ${currentStatus === 'Present' ? 'status-pill-present' : ''}
+                                ${currentStatus === 'Weekly Off' ? 'status-pill-off' : ''}
+                                ${currentStatus === 'Weekend Exchange' ? 'status-pill-exchange' : ''}
+                                ${currentStatus === 'Absent' ? 'status-pill-absent' : ''}
+                                ${currentStatus === 'Night Shift' ? 'status-pill-night' : ''}
+                                ${currentStatus === 'Leave' ? 'status-pill-leave' : ''}
+                                ${currentStatus === 'Outside Work' ? 'bg-slate-100 text-slate-800' : ''}">
+                                ${currentStatus === 'Weekly Off' ? '🏖️ Weekly Off' : ''}
+                                ${currentStatus === 'Present' ? '🟢 Present' : ''}
+                                ${currentStatus === 'Weekend Exchange' ? '🔄 Weekend Exchange' : ''}
+                                ${currentStatus === 'Absent' ? '🔴 Absent' : ''}
+                                ${currentStatus === 'Night Shift' ? '🌙 Night Shift' : ''}
+                                ${currentStatus === 'Leave' ? '✈️ Leave' : ''}
+                                ${currentStatus === 'Outside Work' ? '🟡 Outside Duty' : ''}
+                            </div>
+                        ` : `
+                            <div class="flex items-center justify-center">
+                                <select onchange="handleStatusSelect(${mod._originalIndex}, this.value)" 
+                                        class="no-print w-full max-w-[200px] px-3 py-2 text-center rounded-xl text-xs sm:text-sm font-display font-bold border outline-none cursor-pointer transition shadow-xs
+                                        ${currentStatus === 'Present' ? 'status-pill-present' : ''}
+                                        ${currentStatus === 'Weekly Off' ? 'status-pill-off' : ''}
+                                        ${currentStatus === 'Weekend Exchange' ? 'status-pill-exchange' : ''}
+                                        ${currentStatus === 'Absent' ? 'status-pill-absent ring-2 ring-rose-500/40' : ''}
+                                        ${currentStatus === 'Night Shift' ? 'status-pill-night' : ''}
+                                        ${currentStatus === 'Leave' ? 'status-pill-leave' : ''}
+                                        ${currentStatus === 'Outside Work' ? 'bg-slate-100 text-slate-800' : ''}">
+                                    <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>🏖️ Weekly Off</option>
+                                    <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>🟢 Present</option>
+                                    <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>🔄 Weekend Exchange</option>
+                                    <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent (Auto WA)</option>
+                                    <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>🔵 Night Shift</option>
+                                    <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>✈️ Approved Leave</option>
+                                    <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>🟡 Outside Duty</option>
+                                </select>
+                            </div>
+                        `}
                         <div class="print-only font-bold text-center">
                             <span>${currentStatus}</span>
                         </div>
                     </td>
 
-                    <td class="py-3.5 px-4 text-center align-middle no-print">
-                        <div class="flex items-center justify-center gap-1.5">
-                            <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
-                                <i class="fa-solid fa-pen text-xs"></i>
-                            </button>
-                            <button onclick="deleteModerator(${mod._originalIndex})" title="Delete" class="w-8 h-8 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-600 flex items-center justify-center transition cursor-pointer">
-                                <i class="fa-solid fa-trash text-xs"></i>
-                            </button>
-                        </div>
+                    <td class="col-daily-actions py-3.5 px-4 text-center align-middle no-print">
+                        ${currentUserRole === 'moderator' ? `
+                            <span class="text-slate-300 dark:text-slate-600 font-mono text-xs">--</span>
+                        ` : `
+                            <div class="flex items-center justify-center gap-1.5">
+                                <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
+                                    <i class="fa-solid fa-pen text-xs"></i>
+                                </button>
+                                <button onclick="deleteModerator(${mod._originalIndex})" title="Delete" class="w-8 h-8 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-600 flex items-center justify-center transition cursor-pointer">
+                                    <i class="fa-solid fa-trash text-xs"></i>
+                                </button>
+                            </div>
+                        `}
                     </td>
                 `;
 
@@ -2910,6 +3147,11 @@
 
         function openStatusPicker(event, modSl, dateStr, currentStatus) {
             event.stopPropagation();
+            if (currentUserRole === 'moderator') {
+                const mod = moderators.find(m => m.sl === modSl);
+                showToast(`${mod ? mod.name : 'Moderator'}: ${currentStatus} on ${dateStr} (View-Only)`, 'info');
+                return;
+            }
             const mod = moderators.find(m => m.sl === modSl);
             if (!mod) return;
 
@@ -2965,134 +3207,96 @@
             }
         }
 
-        // ======================= NIGHT SHIFTS & LEAVES MODULES =======================
+        // ======================= NIGHT SHIFTS MODULE (AUTO ASSIGN & WHATSAPP) =======================
+        const NIGHT_EXEMPT_NAMES = ['sajedul', 'kowshiq', 'najmul', 'sujon', 'sami'];
+        
+        function isModeratorNightExempt(mod) {
+            if (!mod) return false;
+            if (mod.isNightExempt !== undefined) return mod.isNightExempt;
+            const nameLower = (mod.name || '').toLowerCase();
+            return NIGHT_EXEMPT_NAMES.some(kw => nameLower.includes(kw));
+        }
+
         let activeNightShiftTab = 'active';
         let monthlyNightShiftMonth = '';
+        let nightShiftRequests = JSON.parse(localStorage.getItem('sanvees_night_shift_requests') || '[]');
+
+        function saveNightShiftRequests() {
+            localStorage.setItem('sanvees_night_shift_requests', JSON.stringify(nightShiftRequests));
+        }
 
         function switchNightShiftTab(tab) {
             activeNightShiftTab = tab;
             const btnActive = document.getElementById('tab-btn-night-active');
             const btnMonthly = document.getElementById('tab-btn-night-monthly');
+            const btnRequests = document.getElementById('tab-btn-night-requests');
             const tabActive = document.getElementById('night-tab-active');
             const tabMonthly = document.getElementById('night-tab-monthly');
+            const tabRequests = document.getElementById('night-tab-requests');
+
+            const inactiveClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs";
+            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm text-[11px] sm:text-xs font-bold";
+
+            if (btnActive) btnActive.className = inactiveClass;
+            if (btnMonthly) btnMonthly.className = inactiveClass;
+            if (btnRequests) btnRequests.className = inactiveClass;
+
+            if (tabActive) tabActive.classList.add('hidden');
+            if (tabMonthly) tabMonthly.classList.add('hidden');
+            if (tabRequests) tabRequests.classList.add('hidden');
 
             if (tab === 'active') {
-                btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm";
-                btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
-                tabActive.classList.remove('hidden');
-                tabMonthly.classList.add('hidden');
+                if (btnActive) btnActive.className = activeClass;
+                if (tabActive) tabActive.classList.remove('hidden');
                 renderNightShiftList();
-            } else {
-                btnMonthly.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm";
-                btnActive.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
-                tabMonthly.classList.remove('hidden');
-                tabActive.classList.add('hidden');
+            } else if (tab === 'monthly') {
+                if (btnMonthly) btnMonthly.className = activeClass;
+                if (tabMonthly) tabMonthly.classList.remove('hidden');
                 const picker = document.getElementById('monthly-night-month-picker');
-                if (picker && !picker.value) picker.value = currentActiveMonth || getCurrentMonthStr();
+                if (picker && !picker.value) picker.value = monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
                 renderMonthlyNightShiftLog();
+            } else if (tab === 'requests') {
+                if (btnRequests) btnRequests.className = activeClass;
+                if (tabRequests) tabRequests.classList.remove('hidden');
+                renderNightShiftRequestsList();
             }
-        }
-
-        function printMonthlyNightReport() {
-            const picker = document.getElementById('monthly-night-month-picker');
-            const selectedMonth = (picker && picker.value) || monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
-            const [yearStr, monthStr] = selectedMonth.split('-');
-            const month = parseInt(monthStr, 10);
-            const monthName = MONTH_NAMES[month - 1] || monthStr;
-            const daysInMonth = new Date(parseInt(yearStr, 10), month, 0).getDate();
-
-            let rowsHtml = '';
-            let count = 0;
-            moderators.forEach((mod) => {
-                const dutyDates = [];
-                for (let d = 1; d <= daysInMonth; d++) {
-                    const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
-                    if (getModeratorStatusForDate(mod, dateStr) === 'Night Shift') {
-                        dutyDates.push(String(d).padStart(2, '0'));
-                    }
-                }
-
-                if (dutyDates.length > 0) {
-                    count++;
-                    rowsHtml += `
-                        <tr>
-                            <td style="text-align: center; font-family: monospace; font-weight: bold; width: 8%;">${String(count).padStart(2, '0')}</td>
-                            <td style="font-weight: bold; text-align: left; padding-left: 8px; width: 28%;">${mod.name}</td>
-                            <td style="text-align: center; color: #b45309; font-weight: bold; width: 14%;">${mod.weekend}</td>
-                            <td style="text-align: center; font-family: monospace; font-weight: bold; color: #4338ca; width: 12%;">${dutyDates.length}</td>
-                            <td style="text-align: left; font-family: monospace; font-size: 8pt; padding-left: 8px; width: 26%;">${dutyDates.join(', ')}</td>
-                            <td style="text-align: center; width: 12%;">--</td>
-                        </tr>
-                    `;
-                }
-            });
-
-            if (count === 0) {
-                showToast('No night shift records found for ' + monthName + ' ' + yearStr);
-                return;
-            }
-
-            const targetContainer = document.getElementById('view-night-report-container');
-            targetContainer.innerHTML = `
-                <div style="border: 2px solid #000; border-radius: 8px; padding: 12px 18px; text-align: center; margin-bottom: 12px; background-color: #f8fafc;">
-                    <h1 style="font-size: 20pt; font-weight: 900; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 1px; color: #000; font-family: 'Outfit', sans-serif;">
-                        SANVEE'S BY TONY
-                    </h1>
-                    <div style="font-size: 11pt; font-weight: 800; text-transform: uppercase; color: #4338ca; margin-bottom: 6px;">
-                        Monthly Night Shift Duty Report (${monthName} ${yearStr})
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold; color: #334155; border-top: 1.5px solid #94a3b8; padding-top: 6px;">
-                        <span>Month: ${monthName} ${yearStr}</span>
-                        <span>Total Assigned Staff: ${count} Members</span>
-                        <span>In-Charge: Sheikh Shahmiran Manik</span>
-                    </div>
-                </div>
-                <table style="width: 100%; border-collapse: collapse; border: 1.5px solid #000;">
-                    <thead>
-                        <tr style="background-color: #f1f5f9; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000;">
-                            <th style="width: 8%; text-align: center; padding: 6px;">SL</th>
-                            <th style="width: 28%; text-align: left; padding: 6px 8px;">Moderator Name</th>
-                            <th style="width: 14%; text-align: center; padding: 6px;">Weekly Off</th>
-                            <th style="width: 12%; text-align: center; padding: 6px;">Total Nights</th>
-                            <th style="width: 26%; text-align: left; padding: 6px 8px;">Duty Dates (${monthName})</th>
-                            <th style="width: 12%; text-align: center; padding: 6px;">Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${rowsHtml}
-                    </tbody>
-                </table>
-            `;
-
-            let printStyle = document.getElementById('dynamic-print-orientation-style');
-            if (!printStyle) {
-                printStyle = document.createElement('style');
-                printStyle.id = 'dynamic-print-orientation-style';
-                document.head.appendChild(printStyle);
-            }
-            printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 8mm 6mm; } }`;
-
-            document.body.classList.add('print-night-active');
-            window.print();
-
-            setTimeout(() => {
-                document.body.classList.remove('print-night-active');
-            }, 1000);
         }
 
         function openNightShiftModal(preselectSl = null) {
             const selectEl = document.getElementById('night-mod-select');
-            selectEl.innerHTML = '';
-            moderators.forEach(m => {
-                const opt = document.createElement('option');
-                opt.value = m.sl;
-                opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
-                if (preselectSl && m.sl === preselectSl) opt.selected = true;
-                selectEl.appendChild(opt);
-            });
+            if (selectEl) {
+                selectEl.innerHTML = '';
 
-            document.getElementById('night-start-date').value = currentActiveDate;
+                // Group: eligible first, followed by exempt seniors
+                const sorted = [...moderators].sort((a, b) => {
+                    const aEx = isModeratorNightExempt(a);
+                    const bEx = isModeratorNightExempt(b);
+                    if (aEx !== bEx) return aEx ? 1 : -1;
+                    return a.sl - b.sl;
+                });
+
+                sorted.forEach(m => {
+                    const isEx = isModeratorNightExempt(m);
+                    const opt = document.createElement('option');
+                    opt.value = m.sl;
+                    opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)${isEx ? ' [Senior - Night Exempt]' : ''}`;
+                    if (isEx) {
+                        opt.style.color = '#94a3b8';
+                    }
+                    if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                    selectEl.appendChild(opt);
+                });
+
+                if (!preselectSl) {
+                    const firstEligible = sorted.find(m => !isModeratorNightExempt(m));
+                    if (firstEligible) selectEl.value = firstEligible.sl;
+                }
+            }
+
+            const startInput = document.getElementById('night-start-date');
+            if (startInput) startInput.value = currentActiveDate;
             autoCalculateNightEndDate();
+            applyRolePermissions();
             switchNightShiftTab('active');
             document.getElementById('night-shift-modal').classList.remove('hidden');
         }
@@ -3102,7 +3306,9 @@
         }
 
         function autoCalculateNightEndDate() {
-            const sl = parseInt(document.getElementById('night-mod-select').value, 10);
+            const selectEl = document.getElementById('night-mod-select');
+            if (!selectEl) return;
+            const sl = parseInt(selectEl.value, 10);
             const mod = moderators.find(m => m.sl === sl);
             const startInput = document.getElementById('night-start-date');
             const endInput = document.getElementById('night-end-date');
@@ -3111,12 +3317,17 @@
             if (!mod || !startInput || !endInput) return;
             const startDate = startInput.value || currentActiveDate;
             const nextWeekendDate = getNextWeekendForModerator(mod, startDate);
-            endInput.value = nextWeekendDate;
+            
+            // Duty runs until the day BEFORE weekly off
+            const [ny, nm, nd] = nextWeekendDate.split('-').map(Number);
+            const dayBeforeOff = new Date(ny, nm - 1, nd - 1);
+            const endFormatted = `${dayBeforeOff.getFullYear()}-${String(dayBeforeOff.getMonth() + 1).padStart(2, '0')}-${String(dayBeforeOff.getDate()).padStart(2, '0')}`;
+            endInput.value = endFormatted;
 
-            if (startDate && nextWeekendDate) {
-                const dates = getDatesInRange(startDate, nextWeekendDate);
-                const nightDutyDays = Math.max(0, dates.length - 1);
-                if (descEl) descEl.innerText = `${nightDutyDays} Night Duties + Next ${mod.weekend} Off (${nextWeekendDate})`;
+            if (startDate && endFormatted) {
+                const dates = getDatesInRange(startDate, endFormatted);
+                const nightDutyDays = dates.length;
+                if (descEl) descEl.innerText = `${nightDutyDays} Night Duties (Until day before ${mod.weekend} Off: ${nextWeekendDate})`;
             }
         }
 
@@ -3172,9 +3383,10 @@
                 id: Date.now(),
                 modSl: mod.sl,
                 modName: mod.name,
+                modPhone: mod.phone,
                 startDate,
                 endDate,
-                count: dates.length,
+                count: nightDutyDates.length,
                 nightCount: nightDutyDates.length,
                 nightDutyDates
             });
@@ -3184,7 +3396,7 @@
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`Night Shift assigned for ${mod.name}`, 'success');
+            showToast(`🌙 Night Shift assigned for ${mod.name} (${nightDutyDates.length} nights)`, 'success');
             closeNightShiftModal();
         }
 
@@ -3193,25 +3405,42 @@
             if (!listEl) return;
             listEl.innerHTML = '';
 
-            const activeShifts = scheduledNightShifts.filter(rec => rec.endDate > currentActiveDate);
-            document.getElementById('tab-night-active-count').innerText = activeShifts.length;
+            const activeShifts = scheduledNightShifts.filter(rec => rec.endDate >= currentActiveDate);
+            const activeCountEl = document.getElementById('tab-night-active-count');
+            if (activeCountEl) activeCountEl.innerText = activeShifts.length;
 
             if (activeShifts.length === 0) {
-                listEl.innerHTML = `<div class="p-4 text-center text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-2xl">No active night shifts scheduled.</div>`;
+                listEl.innerHTML = `<div class="p-4 text-center text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-2xl">No active night shifts scheduled for today.</div>`;
                 return;
             }
 
             activeShifts.forEach(rec => {
+                const isMe = (currentUserRole === 'moderator' && rec.modSl === currentLoggedInModSl);
                 const div = document.createElement('div');
-                div.className = 'flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs';
+                div.className = `flex items-center justify-between p-3 rounded-2xl border text-xs shadow-xs transition ${isMe ? 'bg-purple-50 dark:bg-purple-950/40 border-purple-500/40' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'}`;
                 div.innerHTML = `
                     <div>
-                        <div class="font-bold text-slate-900 dark:text-white text-sm">${rec.modName}</div>
-                        <div class="font-mono text-slate-400 text-[11px]">${rec.startDate} ➔ ${rec.endDate} (${rec.nightCount || rec.count - 1} Duty Nights)</div>
+                        <div class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                            <span>${rec.modName}</span>
+                            ${isMe ? '<span class="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold">You</span>' : ''}
+                            <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
+                        </div>
+                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">📅 ${rec.startDate} ➔ ${rec.endDate}</div>
                     </div>
-                    <button onclick="deleteNightShiftRecord(${rec.id})" class="p-2 text-slate-400 hover:text-rose-600">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="triggerNightShiftWhatsApp(${rec.modSl}, '${rec.startDate}', '${rec.endDate}', ${rec.nightCount || rec.count})" 
+                                title="Send WhatsApp Notice" 
+                                class="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 transition">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </button>
+                        ${currentUserRole === 'admin' ? `
+                            <button type="button" onclick="deleteNightShiftRecord(${rec.id})" 
+                                    title="Delete Record" 
+                                    class="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-500/10 transition">
+                                <i class="fa-solid fa-trash text-sm"></i>
+                            </button>
+                        ` : ''}
+                    </div>
                 `;
                 listEl.appendChild(div);
             });
@@ -3221,9 +3450,19 @@
             const idx = scheduledNightShifts.findIndex(r => r.id === id);
             if (idx === -1) return;
             if (confirm(`Remove Night Shift schedule for ${scheduledNightShifts[idx].modName}?`)) {
+                const rec = scheduledNightShifts[idx];
+                const mod = moderators.find(m => m.sl === rec.modSl);
+                if (mod && rec.nightDutyDates) {
+                    rec.nightDutyDates.forEach(d => {
+                        const dayName = getDayNameForDate(d);
+                        attendanceHistory[d] = attendanceHistory[d] || {};
+                        attendanceHistory[d][String(mod.sl)] = (mod.weekend === dayName) ? 'Weekly Off' : 'Present';
+                    });
+                }
                 scheduledNightShifts.splice(idx, 1);
                 saveToLocalStorage();
                 renderNightShiftList();
+                renderMonthlyNightShiftLog();
                 renderDailyTable();
                 if (activeView === 'monthly') renderMonthlyTable();
                 showToast('Night shift schedule removed');
@@ -3235,6 +3474,182 @@
             renderMonthlyNightShiftLog();
         }
 
+        // ======================= AUTOMATED MONTHLY NIGHT ROSTER GENERATOR (3 MODERATORS/NIGHT) =======================
+        function autoAssignMonthlyNightShifts(targetMonthStr) {
+            const selectedMonth = targetMonthStr || monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const year = parseInt(yearStr, 10);
+            const month = parseInt(monthStr, 10);
+            const monthName = MONTH_NAMES[month - 1] || monthStr;
+            const daysInMonth = new Date(year, month, 0).getDate();
+
+            // Filter eligible moderators (exclude senior 5: Sajedul, Kowshiq, Najmul, Sujon, Sami)
+            const eligibleMods = moderators.filter(m => !isModeratorNightExempt(m));
+            if (eligibleMods.length < 3) {
+                showToast('At least 3 eligible moderators required for night shift roster!', 'error');
+                return;
+            }
+
+            // 1. Reset all prior 'Night Shift' entries for this month in attendance history
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
+                initAttendanceForDate(dateStr);
+                moderators.forEach(m => {
+                    if (attendanceHistory[dateStr][String(m.sl)] === 'Night Shift') {
+                        const dayName = getDayNameForDate(dateStr);
+                        attendanceHistory[dateStr][String(m.sl)] = (m.weekend === dayName) ? 'Weekly Off' : 'Present';
+                    }
+                });
+            }
+
+            // 2. Remove old scheduled night shifts overlapping this month
+            scheduledNightShifts = scheduledNightShifts.filter(rec => {
+                if (!rec.startDate || !rec.endDate) return true;
+                const [sy, sm] = rec.startDate.split('-');
+                const [ey, em] = rec.endDate.split('-');
+                const recStartMonth = `${sy}-${sm}`;
+                const recEndMonth = `${ey}-${em}`;
+                return recStartMonth !== selectedMonth && recEndMonth !== selectedMonth;
+            });
+
+            // 3. Multi-slot allocation (3 concurrent moderators on night duty every night)
+            const NUM_SLOTS = 3;
+            const newRecords = [];
+            const assignmentCounts = {};
+            eligibleMods.forEach(m => { assignmentCounts[m.sl] = 0; });
+
+            const dayAssignments = {};
+            for (let d = 1; d <= daysInMonth; d++) {
+                dayAssignments[d] = new Set();
+            }
+
+            for (let slot = 0; slot < NUM_SLOTS; slot++) {
+                let curDay = 1;
+
+                while (curDay <= daysInMonth) {
+                    const curDateStr = `${yearStr}-${monthStr}-${String(curDay).padStart(2, '0')}`;
+                    const curDayName = getDayNameForDate(curDateStr);
+                    const curDayIdx = DAYS_MAP.indexOf(curDayName);
+
+                    // Candidates must not have off-day today and not already assigned on curDay
+                    const available = eligibleMods.filter(m => {
+                        if (m.weekend.toLowerCase() === curDayName.toLowerCase()) return false;
+                        if (dayAssignments[curDay].has(m.sl)) return false;
+                        return true;
+                    });
+
+                    if (available.length === 0) {
+                        curDay++;
+                        continue;
+                    }
+
+                    // Pick candidate with fewest assignments in month, diversifying slots
+                    let bestMod = null;
+                    let bestScore = -999999;
+
+                    available.forEach(m => {
+                        const mOffIdx = DAYS_MAP.indexOf(m.weekend);
+                        const daysUntilOff = (mOffIdx - curDayIdx + 7) % 7; // 1 to 6
+                        const count = assignmentCounts[m.sl] || 0;
+
+                        let score = - (count * 1000);
+                        score += (daysUntilOff * 15);
+                        if (curDay === 1) {
+                            score += ((m.sl % NUM_SLOTS === slot) ? 40 : 0);
+                        }
+                        score -= (m.sl * 0.05);
+
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMod = m;
+                        }
+                    });
+
+                    if (!bestMod) bestMod = available[0];
+
+                    // Calculate duty dates from curDay until day before next weekly off
+                    const nextOffDateStr = getNextWeekendForModerator(bestMod, curDateStr);
+                    const [offY, offM, offD] = nextOffDateStr.split('-').map(Number);
+
+                    const dutyDates = [];
+                    let tempDate = new Date(year, month - 1, curDay);
+                    const targetOffDate = new Date(offY, offM - 1, offD);
+
+                    while (tempDate < targetOffDate && tempDate.getMonth() === (month - 1)) {
+                        const dy = tempDate.getFullYear();
+                        const dm = String(tempDate.getMonth() + 1).padStart(2, '0');
+                        const dd = String(tempDate.getDate()).padStart(2, '0');
+                        const dayNum = tempDate.getDate();
+
+                        if (!dayAssignments[dayNum].has(bestMod.sl)) {
+                            dutyDates.push(`${dy}-${dm}-${dd}`);
+                            dayAssignments[dayNum].add(bestMod.sl);
+                        }
+                        tempDate.setDate(tempDate.getDate() + 1);
+                    }
+
+                    if (dutyDates.length === 0) {
+                        curDay++;
+                    } else {
+                        dutyDates.forEach(dStr => {
+                            setModeratorStatusForDate(bestMod, dStr, 'Night Shift');
+                        });
+
+                        assignmentCounts[bestMod.sl] = (assignmentCounts[bestMod.sl] || 0) + 1;
+
+                        if (offM === month && offY === year && offD <= daysInMonth) {
+                            setModeratorStatusForDate(bestMod, nextOffDateStr, 'Weekly Off');
+                        }
+
+                        const firstDate = dutyDates[0];
+                        const lastDate = dutyDates[dutyDates.length - 1];
+
+                        newRecords.push({
+                            id: Date.now() + newRecords.length + Math.random(),
+                            modSl: bestMod.sl,
+                            modName: bestMod.name,
+                            modPhone: bestMod.phone,
+                            weekend: bestMod.weekend,
+                            startDate: firstDate,
+                            endDate: lastDate,
+                            nextOffDate: nextOffDateStr,
+                            count: dutyDates.length,
+                            nightCount: dutyDates.length,
+                            nightDutyDates: dutyDates
+                        });
+
+                        if (offM === month && offY === year) {
+                            curDay = offD; // Next moderator starts on this moderator's off day
+                        } else {
+                            curDay = daysInMonth + 1;
+                        }
+                    }
+                }
+            }
+
+            scheduledNightShifts = [...newRecords, ...scheduledNightShifts];
+
+            saveToLocalStorage();
+            renderMonthlyNightShiftLog();
+            renderNightShiftList();
+            renderNightShiftRequestsList();
+            renderDailyTable();
+            if (activeView === 'monthly') renderMonthlyTable();
+
+            showToast(`✨ Night roster auto-assigned for ${monthName} ${yearStr} (3 moderators/night across ${newRecords.length} duty blocks)!`, 'success');
+        }
+
+        function triggerAutoAssignCurrentMonth() {
+            const selectedMonth = monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const month = parseInt(monthStr, 10);
+            const monthName = MONTH_NAMES[month - 1] || monthStr;
+
+            if (confirm(`Automatically calculate and assign Night Shift Duty for ${monthName} ${yearStr}?\n\n• Exactly 3 moderators will work simultaneously every single night.\n• Duty schedule will run until the day before weekly off.\n• 5 Senior Moderators (Sajedul, Kowshiq, Najmul, Sujon, Sami) are exempted.\n• Continuous monthly distribution.`)) {
+                autoAssignMonthlyNightShifts(selectedMonth);
+            }
+        }
+
         function renderMonthlyNightShiftLog() {
             const tbody = document.getElementById('monthly-night-table-body');
             if (!tbody) return;
@@ -3244,26 +3659,481 @@
             const [yearStr, monthStr] = selectedMonth.split('-');
             const daysInMonth = new Date(parseInt(yearStr, 10), parseInt(monthStr, 10), 0).getDate();
 
-            moderators.forEach((mod, idx) => {
+            const assignedEntries = [];
+
+            moderators.forEach((mod) => {
+                const dutyDates = [];
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
+                    if (getModeratorStatusForDate(mod, dateStr) === 'Night Shift') {
+                        dutyDates.push(dateStr);
+                    }
+                }
+
+                if (dutyDates.length > 0) {
+                    assignedEntries.push({
+                        mod,
+                        dutyDates,
+                        firstDate: dutyDates[0],
+                        lastDate: dutyDates[dutyDates.length - 1],
+                        totalNights: dutyDates.length
+                    });
+                }
+            });
+
+            // Sort chronologically by first duty date in this month
+            assignedEntries.sort((a, b) => a.firstDate.localeCompare(b.firstDate) || a.mod.sl - b.mod.sl);
+
+            const countEl = document.getElementById('tab-night-monthly-count');
+            if (countEl) countEl.innerText = assignedEntries.length;
+
+            if (assignedEntries.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-8 text-center text-xs text-slate-400">
+                            <div class="max-w-sm mx-auto space-y-2">
+                                <i class="fa-solid fa-moon text-2xl text-slate-300 dark:text-slate-600 block"></i>
+                                <p>No night shift duties scheduled for <strong class="text-slate-700 dark:text-slate-300 font-mono">${selectedMonth}</strong>.</p>
+                                <button type="button" onclick="triggerAutoAssignCurrentMonth()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                                    <span>Auto Assign Month Roster</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            assignedEntries.forEach((item, index) => {
+                const slStr = String(index + 1).padStart(2, '0'); // Sequential 01, 02, 03...
+                const datesFormatted = item.dutyDates.map(d => d.split('-')[2]).join(', ');
+                const isEx = isModeratorNightExempt(item.mod);
+                const isMe = (currentUserRole === 'moderator' && item.mod.sl === currentLoggedInModSl);
+
+                const tr = document.createElement('tr');
+                tr.className = `hover:bg-slate-50 dark:hover:bg-slate-800/50 transition border-b border-slate-100 dark:border-slate-800/80 ${isMe ? 'bg-purple-50/60 dark:bg-purple-950/30' : ''}`;
+                tr.innerHTML = `
+                    <td class="p-2.5 text-center font-mono font-bold text-slate-600 dark:text-slate-400">${slStr}</td>
+                    <td class="p-2.5">
+                        <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                            <span>${item.mod.name}</span>
+                            ${isMe ? '<span class="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold">You</span>' : ''}
+                            ${isEx ? '<span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-medium">Exempt Override</span>' : ''}
+                        </div>
+                        <div class="text-[10px] text-slate-400 font-mono flex items-center gap-1">
+                            <i class="fa-solid fa-phone text-[9px]"></i>
+                            <span>${item.mod.phone}</span>
+                        </div>
+                    </td>
+                    <td class="p-2.5 text-center">
+                        <span class="inline-block px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-400 font-bold text-xs">
+                            ${item.mod.weekend}
+                        </span>
+                    </td>
+                    <td class="p-2.5 text-center font-mono font-black text-indigo-600 dark:text-indigo-400 text-sm">
+                        ${item.totalNights}
+                    </td>
+                    <td class="p-2.5 font-mono text-[11px] text-slate-600 dark:text-slate-300">
+                        <span class="font-bold text-slate-900 dark:text-slate-100">${item.firstDate.split('-')[2]} ➔ ${item.lastDate.split('-')[2]}</span>
+                        <span class="text-[10px] text-slate-400 block">(${datesFormatted})</span>
+                    </td>
+                    <td class="p-2.5 text-center">
+                        <button type="button" onclick="triggerNightShiftWhatsApp(${item.mod.sl}, '${item.firstDate}', '${item.lastDate}', ${item.totalNights})" 
+                                title="Send Night Shift Duty Notice to ${item.mod.name} via WhatsApp" 
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold text-xs shadow-xs transition active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 dark:text-emerald-400 text-sm"></i>
+                            <span>WhatsApp</span>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ======================= NIGHT SHIFT EXEMPTION REQUEST SYSTEM =======================
+        function openNightShiftRequestModal(preselectSl = null) {
+            const selectEl = document.getElementById('req-mod-select');
+            if (selectEl) {
+                selectEl.innerHTML = '';
+                const currentMod = getLoggedInModerator();
+                const targetSl = preselectSl || (currentMod ? currentMod.sl : null);
+
+                moderators.forEach(m => {
+                    const opt = document.createElement('option');
+                    opt.value = m.sl;
+                    opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
+                    if (targetSl && m.sl === targetSl) opt.selected = true;
+                    selectEl.appendChild(opt);
+                });
+
+                if (currentUserRole === 'moderator' && currentMod) {
+                    selectEl.value = currentMod.sl;
+                    selectEl.disabled = true;
+                } else {
+                    selectEl.disabled = false;
+                }
+            }
+
+            autoFillAssignedDutyDatesForRequest();
+            const unavailInput = document.getElementById('req-unavailable-dates');
+            const reasonInput = document.getElementById('req-reason-text');
+            if (unavailInput) unavailInput.value = '';
+            if (reasonInput) reasonInput.value = '';
+
+            document.getElementById('night-shift-request-modal').classList.remove('hidden');
+        }
+
+        function closeNightShiftRequestModal() {
+            document.getElementById('night-shift-request-modal')?.classList.add('hidden');
+        }
+
+        function autoFillAssignedDutyDatesForRequest() {
+            const selectEl = document.getElementById('req-mod-select');
+            const scheduleInput = document.getElementById('req-assigned-schedule');
+            if (!selectEl || !scheduleInput) return;
+
+            const sl = parseInt(selectEl.value, 10);
+            const mod = moderators.find(m => m.sl === sl);
+            if (!mod) return;
+
+            const selectedMonth = monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const daysInMonth = new Date(parseInt(yearStr, 10), parseInt(monthStr, 10), 0).getDate();
+
+            const assignedDates = [];
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
+                if (getModeratorStatusForDate(mod, dateStr) === 'Night Shift') {
+                    assignedDates.push(String(d).padStart(2, '0'));
+                }
+            }
+
+            if (assignedDates.length > 0) {
+                scheduleInput.value = `${selectedMonth}: ${assignedDates[0]} to ${assignedDates[assignedDates.length - 1]} (${assignedDates.length} Nights: ${assignedDates.join(', ')})`;
+            } else {
+                scheduleInput.value = `No scheduled night shift in ${selectedMonth}`;
+            }
+        }
+
+        function handleNightShiftRequestSubmit(e) {
+            e.preventDefault();
+            const selectEl = document.getElementById('req-mod-select');
+            const sl = parseInt(selectEl.value, 10);
+            const mod = moderators.find(m => m.sl === sl);
+            if (!mod) return;
+
+            const schedule = document.getElementById('req-assigned-schedule').value;
+            const unavailableDates = document.getElementById('req-unavailable-dates').value.trim();
+            const reason = document.getElementById('req-reason-text').value.trim();
+
+            const newReq = {
+                id: Date.now(),
+                modSl: mod.sl,
+                modName: mod.name,
+                modPhone: mod.phone,
+                modWeekend: mod.weekend,
+                assignedSchedule: schedule,
+                unavailableDates,
+                reason,
+                createdAt: new Date().toLocaleDateString('en-GB') + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                status: 'Pending'
+            };
+
+            nightShiftRequests.unshift(newReq);
+            saveNightShiftRequests();
+            renderNightShiftRequestsList();
+            closeNightShiftRequestModal();
+
+            // WhatsApp notice to In-Charge Manik Sir
+            const adminPhone = '8801781597973';
+            const waMsg = `Assalamualaykum Sir,\n\nI am submitting a Night Shift Exemption / Reschedule Request.\n\n👤 Moderator: ${mod.name} (SL: ${String(mod.sl).padStart(2, '0')})\n📅 Scheduled Shift: ${schedule}\n⚠️ Cannot Attend Dates: ${unavailableDates}\n📝 Reason: ${reason}\n\nPlease review my request and approve if possible.\n\nThank you,\n${mod.name}\n${mod.phone}`;
+            
+            window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(waMsg)}`, '_blank');
+            showToast(`✅ Exemption request submitted! Notification sent to In-Charge Manik Sir.`, 'success');
+        }
+
+        function renderNightShiftRequestsList() {
+            const listEl = document.getElementById('night-requests-list');
+            const countEl = document.getElementById('tab-night-requests-count');
+            const pendingCount = nightShiftRequests.filter(r => r.status === 'Pending').length;
+            if (countEl) countEl.innerText = pendingCount;
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            if (nightShiftRequests.length === 0) {
+                listEl.innerHTML = `<div class="p-6 text-center text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-2xl">No shift exemption requests submitted yet.</div>`;
+                return;
+            }
+
+            nightShiftRequests.forEach(req => {
+                const div = document.createElement('div');
+                div.className = `p-3.5 rounded-2xl border text-xs shadow-xs space-y-2 transition ${req.status === 'Approved' ? 'bg-emerald-500/10 border-emerald-500/30' : (req.status === 'Rejected' ? 'bg-rose-500/10 border-rose-500/30 opacity-70' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700')}`;
+                div.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 font-mono font-bold flex items-center justify-center text-[10px]">${String(req.modSl).padStart(2, '0')}</span>
+                            <span class="font-bold text-slate-900 dark:text-white text-sm">${req.modName}</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${req.status === 'Approved' ? 'bg-emerald-500/20 text-emerald-600' : (req.status === 'Rejected' ? 'bg-rose-500/20 text-rose-600' : 'bg-amber-500/20 text-amber-600')}">${req.status}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400 font-mono">${req.createdAt}</span>
+                    </div>
+                    <div class="text-[11px] text-slate-600 dark:text-slate-300 font-medium bg-slate-50 dark:bg-slate-900/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <div><strong>Unavailable Dates:</strong> <span class="text-rose-600 dark:text-rose-400 font-bold">${req.unavailableDates}</span></div>
+                        <div class="mt-1"><strong>Reason:</strong> <span>${req.reason}</span></div>
+                        <div class="mt-1 text-slate-400 text-[10px]"><strong>Current Shift:</strong> ${req.assignedSchedule}</div>
+                    </div>
+                    <div class="flex items-center justify-end gap-2 pt-1">
+                        <button type="button" onclick="triggerDirectWhatsApp('${req.modPhone}', '${req.modName}')" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 font-bold text-[11px] hover:bg-emerald-500/20 flex items-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> Chat
+                        </button>
+                        ${currentUserRole === 'admin' ? `
+                            ${req.status === 'Pending' ? `
+                                <button type="button" onclick="approveNightShiftRequest(${req.id})" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] shadow-xs">
+                                    <i class="fa-solid fa-check mr-1"></i> Approve
+                                </button>
+                                <button type="button" onclick="rejectNightShiftRequest(${req.id})" class="px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 font-bold text-[11px]">
+                                    Reject
+                                </button>
+                            ` : `
+                                <button type="button" onclick="deleteNightShiftRequest(${req.id})" class="px-2 py-1 text-slate-400 hover:text-rose-600 text-[11px]">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            `}
+                        ` : ''}
+                    </div>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+
+        function approveNightShiftRequest(reqId) {
+            const req = nightShiftRequests.find(r => r.id === reqId);
+            if (!req) return;
+            req.status = 'Approved';
+            saveNightShiftRequests();
+            renderNightShiftRequestsList();
+            showToast(`✅ Request approved for ${req.modName}. You can now reassign or adjust their shift.`, 'success');
+        }
+
+        function rejectNightShiftRequest(reqId) {
+            const req = nightShiftRequests.find(r => r.id === reqId);
+            if (!req) return;
+            req.status = 'Rejected';
+            saveNightShiftRequests();
+            renderNightShiftRequestsList();
+            showToast(`Request rejected for ${req.modName}`, 'info');
+        }
+
+        function deleteNightShiftRequest(reqId) {
+            const idx = nightShiftRequests.findIndex(r => r.id === reqId);
+            if (idx !== -1) {
+                nightShiftRequests.splice(idx, 1);
+                saveNightShiftRequests();
+                renderNightShiftRequestsList();
+                showToast('Request record deleted', 'info');
+            }
+        }
+
+        // ======================= NIGHT SHIFT WHATSAPP INTEGRATION =======================
+        function buildNightShiftWhatsAppMessage(mod, startDate, endDate, totalNights) {
+            const startDay = getDayNameForDate(startDate);
+            const endDay = getDayNameForDate(endDate);
+            const nextOffDate = getNextWeekendForModerator(mod, startDate);
+            
+            return `Dear ${mod.name},\n\nYou have been scheduled for Night Shift Duty at Sanvee's by Tony.\n\n📅 Duty Period: ${startDate} (${startDay}) to ${endDate} (${endDay})\n🌙 Total Duty Nights: ${totalNights} Nights\n🏖️ Upcoming Weekly Off: ${mod.weekend} (${nextOffDate})\n\nPlease be prepared for your scheduled night duty and maintain proper roster handover.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
+        }
+
+        function buildNightShiftWhatsAppURL(mod, startDate, endDate, totalNights) {
+            const cleanPhone = (mod.phone || '').replace(/[^0-9]/g, '');
+            const bdPhone = cleanPhone.startsWith('0') ? '88' + cleanPhone : cleanPhone;
+            const message = buildNightShiftWhatsAppMessage(mod, startDate, endDate, totalNights);
+            return `https://wa.me/${bdPhone}?text=${encodeURIComponent(message)}`;
+        }
+
+        function triggerNightShiftWhatsApp(modSl, startDate, endDate, totalNights) {
+            const mod = moderators.find(m => m.sl === modSl);
+            if (!mod) return;
+            const url = buildNightShiftWhatsAppURL(mod, startDate, endDate, totalNights);
+            window.open(url, '_blank');
+            showToast(`📱 WhatsApp duty notice prepared for ${mod.name}!`, 'success');
+        }
+
+        function openNightShiftWhatsAppBatchModal() {
+            const selectedMonth = monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const month = parseInt(monthStr, 10);
+            const monthName = MONTH_NAMES[month - 1] || monthStr;
+            const daysInMonth = new Date(parseInt(yearStr, 10), month, 0).getDate();
+
+            const listEl = document.getElementById('night-whatsapp-batch-list');
+            const subtitleEl = document.getElementById('night-whatsapp-modal-subtitle');
+            if (subtitleEl) subtitleEl.innerText = `Night shift schedule notices for ${monthName} ${yearStr}`;
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const assignedEntries = [];
+            moderators.forEach((mod) => {
                 const dutyDates = [];
                 for (let d = 1; d <= daysInMonth; d++) {
                     const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
                     if (getModeratorStatusForDate(mod, dateStr) === 'Night Shift') dutyDates.push(dateStr);
                 }
-
                 if (dutyDates.length > 0) {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td class="p-2 text-center font-mono">${String(idx + 1).padStart(2, '0')}</td>
-                        <td class="p-2 font-bold">${mod.name}</td>
-                        <td class="p-2 text-center font-bold text-amber-600">${mod.weekend}</td>
-                        <td class="p-2 text-center font-mono font-bold text-indigo-600">${dutyDates.length}</td>
-                        <td class="p-2 font-mono text-[10px] text-slate-500">${dutyDates.map(d => d.split('-')[2]).join(', ')}</td>
-                        <td class="p-2 text-center">--</td>
-                    `;
-                    tbody.appendChild(tr);
+                    assignedEntries.push({
+                        mod,
+                        dutyDates,
+                        firstDate: dutyDates[0],
+                        lastDate: dutyDates[dutyDates.length - 1],
+                        totalNights: dutyDates.length
+                    });
                 }
             });
+
+            assignedEntries.sort((a, b) => a.firstDate.localeCompare(b.firstDate) || a.mod.sl - b.mod.sl);
+
+            if (assignedEntries.length === 0) {
+                listEl.innerHTML = `
+                    <div class="p-6 text-center text-xs text-slate-400 space-y-2">
+                        <p>No night duties scheduled for ${monthName} ${yearStr}.</p>
+                        <button type="button" onclick="closeNightShiftWhatsAppBatchModal(); triggerAutoAssignCurrentMonth();" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs">
+                            Auto Assign Now
+                        </button>
+                    </div>
+                `;
+            } else {
+                assignedEntries.forEach((item, index) => {
+                    const slStr = String(index + 1).padStart(2, '0');
+                    const div = document.createElement('div');
+                    div.className = "flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs shadow-xs";
+                    div.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-mono font-bold flex items-center justify-center text-xs">${slStr}</span>
+                            <div>
+                                <div class="font-bold text-slate-900 dark:text-white text-sm">${item.mod.name}</div>
+                                <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="triggerNightShiftWhatsApp(${item.mod.sl}, '${item.firstDate}', '${item.lastDate}', ${item.totalNights})" 
+                                class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Send Notice</span>
+                        </button>
+                    `;
+                    listEl.appendChild(div);
+                });
+            }
+
+            document.getElementById('night-whatsapp-batch-modal')?.classList.remove('hidden');
+        }
+
+        function closeNightShiftWhatsAppBatchModal() {
+            document.getElementById('night-whatsapp-batch-modal')?.classList.add('hidden');
+        }
+
+        // ======================= PRINT NIGHT SHIFT REPORT =======================
+        function printMonthlyNightReport() {
+            const picker = document.getElementById('monthly-night-month-picker');
+            const selectedMonth = (picker && picker.value) || monthlyNightShiftMonth || currentActiveMonth || getCurrentMonthStr();
+            const [yearStr, monthStr] = selectedMonth.split('-');
+            const month = parseInt(monthStr, 10);
+            const monthName = MONTH_NAMES[month - 1] || monthStr;
+            const daysInMonth = new Date(parseInt(yearStr, 10), month, 0).getDate();
+
+            const assignedEntries = [];
+            moderators.forEach((mod) => {
+                const dutyDates = [];
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
+                    if (getModeratorStatusForDate(mod, dateStr) === 'Night Shift') {
+                        dutyDates.push(String(d).padStart(2, '0'));
+                    }
+                }
+
+                if (dutyDates.length > 0) {
+                    assignedEntries.push({
+                        mod,
+                        dutyDates,
+                        firstDateNum: parseInt(dutyDates[0], 10),
+                        totalNights: dutyDates.length
+                    });
+                }
+            });
+
+            assignedEntries.sort((a, b) => a.firstDateNum - b.firstDateNum || a.mod.sl - b.mod.sl);
+
+            if (assignedEntries.length === 0) {
+                showToast('No night shift records found for ' + monthName + ' ' + yearStr);
+                return;
+            }
+
+            let rowsHtml = '';
+            assignedEntries.forEach((item, index) => {
+                const slStr = String(index + 1).padStart(2, '0');
+                const firstDay = item.dutyDates[0];
+                const lastDay = item.dutyDates[item.dutyDates.length - 1];
+                rowsHtml += `
+                    <tr>
+                        <td style="text-align: center; font-family: monospace; font-weight: bold; width: 8%; padding: 6px;">${slStr}</td>
+                        <td style="font-weight: bold; text-align: left; padding: 6px 8px; width: 28%;">${item.mod.name}</td>
+                        <td style="text-align: center; color: #b45309; font-weight: bold; width: 14%; padding: 6px;">${item.mod.weekend}</td>
+                        <td style="text-align: center; font-family: monospace; font-weight: bold; color: #4338ca; width: 12%; padding: 6px;">${item.totalNights}</td>
+                        <td style="text-align: left; font-family: monospace; font-size: 8.5pt; padding: 6px 8px; width: 26%;">
+                            ${firstDay} to ${lastDay} (${item.dutyDates.join(', ')})
+                        </td>
+                        <td style="text-align: center; width: 12%; font-size: 8pt; color: #475569; padding: 6px;">Sanctioned Night</td>
+                    </tr>
+                `;
+            });
+
+            const targetContainer = document.getElementById('view-night-report-container');
+            targetContainer.innerHTML = `
+                <div style="border: 2px solid #000; border-radius: 8px; padding: 12px 18px; text-align: center; margin-bottom: 12px; background-color: #f8fafc;">
+                    <h1 style="font-size: 20pt; font-weight: 900; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 1px; color: #000; font-family: 'Outfit', sans-serif;">
+                        SANVEE'S BY TONY
+                    </h1>
+                    <div style="font-size: 11pt; font-weight: 800; text-transform: uppercase; color: #4338ca; margin-bottom: 6px;">
+                        Monthly Night Shift Duty Report (${monthName} ${yearStr})
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold; color: #334155; border-top: 1.5px solid #94a3b8; padding-top: 6px;">
+                        <span>Month: ${monthName} ${yearStr}</span>
+                        <span>Total Assigned Staff: ${assignedEntries.length} Members</span>
+                        <span>In-Charge: Sheikh Shahmiran Manik</span>
+                    </div>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; border: 1.5px solid #000;">
+                    <thead>
+                        <tr style="background-color: #f1f5f9; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000;">
+                            <th style="width: 8%; text-align: center; padding: 6px;">SL</th>
+                            <th style="width: 28%; text-align: left; padding: 6px 8px;">Moderator Name</th>
+                            <th style="width: 14%; text-align: center; padding: 6px;">Weekly Off</th>
+                            <th style="width: 12%; text-align: center; padding: 6px;">Total Nights</th>
+                            <th style="width: 26%; text-align: left; padding: 6px 8px;">Duty Dates (${monthName})</th>
+                            <th style="width: 12%; text-align: center; padding: 6px;">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rowsHtml}
+                    </tbody>
+                </table>
+            `;
+
+            let printStyle = document.getElementById('dynamic-print-orientation-style');
+            if (!printStyle) {
+                printStyle = document.createElement('style');
+                printStyle.id = 'dynamic-print-orientation-style';
+                document.head.appendChild(printStyle);
+            }
+            printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 8mm 6mm; } }`;
+
+            document.body.classList.add('print-night-active');
+            window.print();
+
+            setTimeout(() => {
+                document.body.classList.remove('print-night-active');
+            }, 1000);
         }
 
         // ======================= LEAVES LOGIC =======================
@@ -3818,7 +4688,7 @@
             }
         }
 
-        // ======================= AUTH & PASSWORDS =======================
+        // ======================= AUTH & ROLE-BASED ACCESS CONTROL =======================
         const AUTH_CONFIG = {
             username: "admin",
             defaultPassword: "@Manik1243",
@@ -3835,9 +4705,119 @@
             }
         };
 
+        let currentLoginRole = 'admin'; // 'admin' | 'moderator'
+        let currentUserRole = localStorage.getItem('sanvees_user_role') || sessionStorage.getItem('sanvees_user_role') || 'admin';
+        let currentLoggedInModSl = parseInt(localStorage.getItem('sanvees_logged_in_mod_sl') || sessionStorage.getItem('sanvees_logged_in_mod_sl'), 10) || null;
+
+        function switchLoginRole(role) {
+            currentLoginRole = role;
+            const btnAdmin = document.getElementById('btn-auth-tab-admin');
+            const btnMod = document.getElementById('btn-auth-tab-moderator');
+            const adminFields = document.getElementById('auth-admin-fields');
+            const modFields = document.getElementById('auth-moderator-fields');
+            const pwdLabel = document.getElementById('auth-password-label');
+            const modHint = document.getElementById('auth-moderator-hint');
+            const roleBadge = document.getElementById('auth-role-badge');
+            const submitText = document.getElementById('btn-login-submit-text');
+            const errorBanner = document.getElementById('login-error-banner');
+            if (errorBanner) errorBanner.classList.add('hidden');
+
+            if (role === 'admin') {
+                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md";
+                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
+                if (adminFields) adminFields.classList.remove('hidden');
+                if (modFields) modFields.classList.add('hidden');
+                if (pwdLabel) pwdLabel.innerText = "Access Password";
+                if (modHint) modHint.classList.add('hidden');
+                if (roleBadge) {
+                    roleBadge.innerText = "Role: In-Charge (Admin)";
+                    roleBadge.className = "text-xs text-indigo-400 font-mono font-bold";
+                }
+                if (submitText) submitText.innerText = "Unlock Dashboard";
+            } else {
+                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md";
+                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
+                if (adminFields) adminFields.classList.add('hidden');
+                if (modFields) modFields.classList.remove('hidden');
+                if (pwdLabel) pwdLabel.innerText = "Moderator PIN";
+                if (modHint) modHint.classList.remove('hidden');
+                if (roleBadge) {
+                    roleBadge.innerText = "Role: Moderator (View-Only)";
+                    roleBadge.className = "text-xs text-purple-400 font-mono font-bold";
+                }
+                if (submitText) submitText.innerText = "Open Moderator Portal";
+                populateLoginModeratorSelect();
+            }
+        }
+
+        function populateLoginModeratorSelect() {
+            const selectEl = document.getElementById('login-mod-select');
+            if (!selectEl) return;
+            selectEl.innerHTML = '';
+            moderators.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m.sl;
+                opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
+                selectEl.appendChild(opt);
+            });
+        }
+
+        function getLoggedInModerator() {
+            if (currentUserRole !== 'moderator' || !currentLoggedInModSl) return null;
+            return moderators.find(m => m.sl === currentLoggedInModSl) || null;
+        }
+
+        function applyRolePermissions() {
+            const modBanner = document.getElementById('moderator-logged-in-banner');
+            const nightAssignForm = document.getElementById('night-assign-form');
+            const nightModHelperBanner = document.getElementById('night-mod-helper-banner');
+            const autoAssignBtn = document.getElementById('btn-night-auto-assign');
+            const addModBtn = document.getElementById('btn-add-moderator');
+
+            const currentMod = getLoggedInModerator();
+
+            if (currentUserRole === 'moderator' && currentMod) {
+                if (modBanner) {
+                    modBanner.classList.remove('hidden');
+                    document.getElementById('mod-banner-sl').innerText = String(currentMod.sl).padStart(2, '0');
+                    document.getElementById('mod-banner-name').innerText = currentMod.name;
+                    document.getElementById('mod-banner-weekend-info').innerText = `Weekly Off: ${currentMod.weekend} • Join: ${currentMod.join}`;
+                    
+                    // Check current month night duty
+                    const selectedMonth = currentActiveMonth || getCurrentMonthStr();
+                    const [yearStr, monthStr] = selectedMonth.split('-');
+                    const daysInMonth = new Date(parseInt(yearStr, 10), parseInt(monthStr, 10), 0).getDate();
+                    const myDutyDays = [];
+                    for (let d = 1; d <= daysInMonth; d++) {
+                        const dStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
+                        if (getModeratorStatusForDate(currentMod, dStr) === 'Night Shift') myDutyDays.push(dStr.split('-')[2]);
+                    }
+
+                    const nightInfoEl = document.getElementById('mod-banner-night-info');
+                    if (nightInfoEl) {
+                        if (myDutyDays.length > 0) {
+                            nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
+                        } else {
+                            nightInfoEl.innerHTML = `🌙 No night duty scheduled this month`;
+                        }
+                    }
+                }
+                if (nightAssignForm) nightAssignForm.classList.add('hidden');
+                if (nightModHelperBanner) nightModHelperBanner.classList.remove('hidden');
+                if (autoAssignBtn) autoAssignBtn.classList.add('hidden');
+                if (addModBtn) addModBtn.classList.add('hidden');
+            } else {
+                if (modBanner) modBanner.classList.add('hidden');
+                if (nightAssignForm) nightAssignForm.classList.remove('hidden');
+                if (nightModHelperBanner) nightModHelperBanner.classList.add('hidden');
+                if (autoAssignBtn) autoAssignBtn.classList.remove('hidden');
+                if (addModBtn) addModBtn.classList.remove('hidden');
+            }
+        }
+
         function isAuthenticated() {
-            return localStorage.getItem(AUTH_CONFIG.storageKey) === "AUTHENTICATED" || 
-                   sessionStorage.getItem(AUTH_CONFIG.storageKey) === "AUTHENTICATED";
+            const token = localStorage.getItem(AUTH_CONFIG.storageKey) || sessionStorage.getItem(AUTH_CONFIG.storageKey);
+            return token === "AUTHENTICATED" || token === "MODERATOR_AUTHENTICATED";
         }
 
         function checkAuthStatus() {
@@ -3846,9 +4826,11 @@
             if (isAuthenticated()) {
                 loginScreen.classList.add('hidden');
                 mainApp.classList.remove('hidden');
+                applyRolePermissions();
             } else {
                 loginScreen.classList.remove('hidden');
                 mainApp.classList.add('hidden');
+                populateLoginModeratorSelect();
             }
         }
 
@@ -3866,32 +4848,87 @@
 
         function handleLoginSubmit(e) {
             e.preventDefault();
-            const userInput = document.getElementById('login-username').value.trim();
             const passInput = document.getElementById('login-password').value;
             const rememberMe = document.getElementById('login-remember-me').checked;
             const errorBanner = document.getElementById('login-error-banner');
+            const errorText = document.getElementById('login-error-text');
             const submitBtn = document.getElementById('btn-login-submit');
 
-            if (userInput.toLowerCase() === AUTH_CONFIG.username.toLowerCase() && passInput === AUTH_CONFIG.getPassword()) {
-                errorBanner.classList.add('hidden');
-                if (rememberMe) localStorage.setItem(AUTH_CONFIG.storageKey, "AUTHENTICATED");
-                else sessionStorage.setItem(AUTH_CONFIG.storageKey, "AUTHENTICATED");
+            if (currentLoginRole === 'admin') {
+                const userInput = document.getElementById('login-username').value.trim();
+                const validUsers = [AUTH_CONFIG.username.toLowerCase(), 'manik'];
+                if (validUsers.includes(userInput.toLowerCase()) && passInput === AUTH_CONFIG.getPassword()) {
+                    errorBanner.classList.add('hidden');
+                    currentUserRole = 'admin';
+                    currentLoggedInModSl = null;
+                    localStorage.setItem('sanvees_user_role', 'admin');
+                    localStorage.removeItem('sanvees_logged_in_mod_sl');
 
-                submitBtn.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Access Granted...</span>`;
-                submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-emerald-600 text-white font-display font-bold text-sm tracking-wide shadow-glow-emerald";
+                    if (rememberMe) localStorage.setItem(AUTH_CONFIG.storageKey, "AUTHENTICATED");
+                    else sessionStorage.setItem(AUTH_CONFIG.storageKey, "AUTHENTICATED");
 
-                setTimeout(() => {
-                    checkAuthStatus();
-                    showToast("Welcome! Access Granted to Executive Portal", "success");
-                    submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Unlock Dashboard</span>`;
-                    submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 hover:from-indigo-500 hover:to-violet-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
-                }, 350);
+                    submitBtn.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Access Granted...</span>`;
+                    submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-emerald-600 text-white font-display font-bold text-sm tracking-wide shadow-glow-emerald";
 
+                    setTimeout(() => {
+                        checkAuthStatus();
+                        applyRolePermissions();
+                        renderDailyTable();
+                        if (activeView === 'monthly') renderMonthlyTable();
+                        showToast("Welcome! Access Granted to In-Charge Portal", "success");
+                        submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Unlock Dashboard</span>`;
+                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 hover:from-indigo-500 hover:to-violet-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
+                    }, 350);
+                } else {
+                    errorBanner.classList.remove('hidden');
+                    errorText.innerText = "Incorrect admin password. Please try again.";
+                    const pwdInput = document.getElementById('login-password');
+                    pwdInput.value = '';
+                    pwdInput.focus();
+                }
             } else {
-                errorBanner.classList.remove('hidden');
-                const pwdInput = document.getElementById('login-password');
-                pwdInput.value = '';
-                pwdInput.focus();
+                // Moderator Login
+                const modSl = parseInt(document.getElementById('login-mod-select').value, 10);
+                const mod = moderators.find(m => m.sl === modSl);
+                if (!mod) {
+                    errorBanner.classList.remove('hidden');
+                    errorText.innerText = "Please select a valid moderator.";
+                    return;
+                }
+
+                // Accept '1234' or last 4 digits of phone or admin password
+                const modPin = passInput.trim();
+                const validModPins = ['1234', mod.phone.slice(-4), AUTH_CONFIG.getPassword()];
+                
+                if (validModPins.includes(modPin) || modPin === '1234') {
+                    errorBanner.classList.add('hidden');
+                    currentUserRole = 'moderator';
+                    currentLoggedInModSl = mod.sl;
+                    localStorage.setItem('sanvees_user_role', 'moderator');
+                    localStorage.setItem('sanvees_logged_in_mod_sl', String(mod.sl));
+
+                    if (rememberMe) localStorage.setItem(AUTH_CONFIG.storageKey, "MODERATOR_AUTHENTICATED");
+                    else sessionStorage.setItem(AUTH_CONFIG.storageKey, "MODERATOR_AUTHENTICATED");
+
+                    submitBtn.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Welcome ${mod.name}...</span>`;
+                    submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-emerald-600 text-white font-display font-bold text-sm tracking-wide shadow-glow-emerald";
+
+                    setTimeout(() => {
+                        checkAuthStatus();
+                        applyRolePermissions();
+                        renderDailyTable();
+                        if (activeView === 'monthly') renderMonthlyTable();
+                        showToast(`👋 Welcome ${mod.name}! (View-Only Portal)`, "success");
+                        submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Open Moderator Portal</span>`;
+                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
+                    }, 350);
+                } else {
+                    errorBanner.classList.remove('hidden');
+                    errorText.innerText = "Incorrect PIN. Default moderator PIN is 1234.";
+                    const pwdInput = document.getElementById('login-password');
+                    pwdInput.value = '';
+                    pwdInput.focus();
+                }
             }
         }
 
@@ -3899,6 +4936,12 @@
             if (confirm("Log out from Sanvee's by Tony Portal?")) {
                 localStorage.removeItem(AUTH_CONFIG.storageKey);
                 sessionStorage.removeItem(AUTH_CONFIG.storageKey);
+                localStorage.removeItem('sanvees_user_role');
+                localStorage.removeItem('sanvees_logged_in_mod_sl');
+                sessionStorage.removeItem('sanvees_user_role');
+                sessionStorage.removeItem('sanvees_logged_in_mod_sl');
+                currentUserRole = 'admin';
+                currentLoggedInModSl = null;
                 document.getElementById('login-password').value = '';
                 checkAuthStatus();
                 showToast("Logged out securely.", "info");
@@ -4115,6 +5158,8 @@
                 closeStatusPicker();
                 closeModal();
                 closeNightShiftModal();
+                closeNightShiftRequestModal();
+                closeNightShiftWhatsAppBatchModal();
                 closeLeaveModal();
                 closeAbsentAlertModal();
                 closeBulkUnexcusedModal();
@@ -4134,9 +5179,13 @@
             loadFromLocalStorage();
             initFirebaseConnection(false);
             updateDateUI();
-            document.getElementById('selected-month-picker').value = currentActiveMonth;
-            renderDailyTable();
+            const monthPicker = document.getElementById('selected-month-picker');
+            if (monthPicker) monthPicker.value = currentActiveMonth;
+            populateLoginModeratorSelect();
             checkAuthStatus();
+            applyRolePermissions();
+            renderDailyTable();
+            renderNightShiftRequestsList();
         });
     </script>
 </body>
