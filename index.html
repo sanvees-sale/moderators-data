@@ -486,6 +486,51 @@
                 justify-content: center !important;
                 margin: 0 auto !important;
             }
+
+            /* Dedicated Modal Reports Print Modes */
+            body.print-night-active #view-daily-container,
+            body.print-night-active #view-monthly-container,
+            body.print-night-active #print-header-banner,
+            body.print-night-active #view-leave-report-container,
+            body.print-night-active #night-shift-modal,
+            body.print-night-active #approved-leave-modal {
+                display: none !important;
+            }
+            body.print-night-active #view-night-report-container {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            body.print-leave-active #view-daily-container,
+            body.print-leave-active #view-monthly-container,
+            body.print-leave-active #print-header-banner,
+            body.print-leave-active #view-night-report-container,
+            body.print-leave-active #night-shift-modal,
+            body.print-leave-active #approved-leave-modal {
+                display: none !important;
+            }
+            body.print-leave-active #view-leave-report-container {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            .print-report-target table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                border: 1.5px solid #000000 !important;
+                margin-top: 8px !important;
+            }
+            .print-report-target th, .print-report-target td {
+                border: 1px solid #94a3b8 !important;
+                padding: 6px 8px !important;
+                font-size: 8.5pt !important;
+            }
+            .print-report-target th {
+                background-color: #f1f5f9 !important;
+                font-weight: 800 !important;
+                text-transform: uppercase !important;
+                border-bottom: 2px solid #000000 !important;
+            }
         }
         @media screen {
             .print-only { display: none !important; }
@@ -1202,6 +1247,12 @@
                     </div>
                 </section>
             </div>
+
+            <!-- ======================= C. DEDICATED NIGHT SHIFT PRINT REPORT ======================= -->
+            <div id="view-night-report-container" class="hidden print-report-target"></div>
+
+            <!-- ======================= D. DEDICATED APPROVED LEAVE PRINT REPORT ======================= -->
+            <div id="view-leave-report-container" class="hidden print-report-target"></div>
 
         </main>
     </div>
@@ -2965,12 +3016,12 @@
                     count++;
                     rowsHtml += `
                         <tr>
-                            <td style="text-align: center; font-family: monospace; font-weight: bold;">${String(count).padStart(2, '0')}</td>
-                            <td style="font-weight: bold; text-align: left; padding-left: 8px;">${mod.name}</td>
-                            <td style="text-align: center; color: #b45309; font-weight: bold;">${mod.weekend}</td>
-                            <td style="text-align: center; font-family: monospace; font-weight: bold; color: #4338ca;">${dutyDates.length}</td>
-                            <td style="text-align: left; font-family: monospace; font-size: 8pt; padding-left: 8px;">${dutyDates.join(', ')}</td>
-                            <td style="text-align: center;">--</td>
+                            <td style="text-align: center; font-family: monospace; font-weight: bold; width: 8%;">${String(count).padStart(2, '0')}</td>
+                            <td style="font-weight: bold; text-align: left; padding-left: 8px; width: 28%;">${mod.name}</td>
+                            <td style="text-align: center; color: #b45309; font-weight: bold; width: 14%;">${mod.weekend}</td>
+                            <td style="text-align: center; font-family: monospace; font-weight: bold; color: #4338ca; width: 12%;">${dutyDates.length}</td>
+                            <td style="text-align: left; font-family: monospace; font-size: 8pt; padding-left: 8px; width: 26%;">${dutyDates.join(', ')}</td>
+                            <td style="text-align: center; width: 12%;">--</td>
                         </tr>
                     `;
                 }
@@ -2981,68 +3032,56 @@
                 return;
             }
 
-            const printWin = window.open('', '_blank', 'width=950,height=750');
-            if (!printWin) {
-                alert('Please allow popups for printing reports.');
-                return;
-            }
+            const targetContainer = document.getElementById('view-night-report-container');
+            targetContainer.innerHTML = `
+                <div style="border: 2px solid #000; border-radius: 8px; padding: 12px 18px; text-align: center; margin-bottom: 12px; background-color: #f8fafc;">
+                    <h1 style="font-size: 20pt; font-weight: 900; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 1px; color: #000; font-family: 'Outfit', sans-serif;">
+                        SANVEE'S BY TONY
+                    </h1>
+                    <div style="font-size: 11pt; font-weight: 800; text-transform: uppercase; color: #4338ca; margin-bottom: 6px;">
+                        Monthly Night Shift Duty Report (${monthName} ${yearStr})
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold; color: #334155; border-top: 1.5px solid #94a3b8; padding-top: 6px;">
+                        <span>Month: ${monthName} ${yearStr}</span>
+                        <span>Total Assigned Staff: ${count} Members</span>
+                        <span>In-Charge: Sheikh Shahmiran Manik</span>
+                    </div>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; border: 1.5px solid #000;">
+                    <thead>
+                        <tr style="background-color: #f1f5f9; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000;">
+                            <th style="width: 8%; text-align: center; padding: 6px;">SL</th>
+                            <th style="width: 28%; text-align: left; padding: 6px 8px;">Moderator Name</th>
+                            <th style="width: 14%; text-align: center; padding: 6px;">Weekly Off</th>
+                            <th style="width: 12%; text-align: center; padding: 6px;">Total Nights</th>
+                            <th style="width: 26%; text-align: left; padding: 6px 8px;">Duty Dates (${monthName})</th>
+                            <th style="width: 12%; text-align: center; padding: 6px;">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rowsHtml}
+                    </tbody>
+                </table>
+                <div style="margin-top: 28px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold;">
+                    <div>Generated on: ${new Date().toLocaleDateString('en-GB')}</div>
+                    <div style="border-top: 1px solid #000; padding-top: 4px; width: 180px; text-align: center;">Authorized Signature</div>
+                </div>
+            `;
 
-            printWin.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Night Shift Report - ${monthName} ${yearStr}</title>
-                    <style>
-                        @page { size: A4 portrait; margin: 10mm 8mm; }
-                        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 16px; color: #000; font-size: 9pt; }
-                        .header-box { border: 2px solid #000; border-radius: 8px; padding: 12px 18px; text-align: center; margin-bottom: 16px; background-color: #f8fafc; }
-                        .header-box h1 { font-size: 18pt; font-weight: 900; margin: 0 0 4px 0; letter-spacing: 1px; }
-                        .header-box h2 { font-size: 11pt; font-weight: 700; margin: 0 0 8px 0; color: #4338ca; text-transform: uppercase; }
-                        .header-meta { display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; border-top: 1px solid #cbd5e1; padding-top: 6px; }
-                        table { width: 100%; border-collapse: collapse; border: 1.5px solid #000; margin-top: 10px; }
-                        th, td { border: 1px solid #94a3b8; padding: 6px 8px; font-size: 8.5pt; }
-                        th { background-color: #f1f5f9; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000; }
-                        .footer { margin-top: 32px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header-box">
-                        <h1>SANVEE'S BY TONY</h1>
-                        <h2>Monthly Night Shift Duty Report (${monthName} ${yearStr})</h2>
-                        <div class="header-meta">
-                            <span>Month: ${monthName} ${yearStr}</span>
-                            <span>Total Assigned Staff: ${count} Members</span>
-                            <span>In-Charge: Sheikh Shahmiran Manik</span>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 8%; text-align: center;">SL</th>
-                                <th style="width: 30%; text-align: left; padding-left: 8px;">Moderator Name</th>
-                                <th style="width: 15%; text-align: center;">Weekly Off</th>
-                                <th style="width: 12%; text-align: center;">Total Nights</th>
-                                <th style="width: 25%; text-align: left; padding-left: 8px;">Duty Dates (${monthName})</th>
-                                <th style="width: 10%; text-align: center;">Remarks</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${rowsHtml}
-                        </tbody>
-                    </table>
-                    <div class="footer">
-                        <div>Generated on: ${new Date().toLocaleDateString('en-GB')}</div>
-                        <div style="border-top: 1px solid #000; padding-top: 4px; width: 180px; text-align: center;">Authorized Signature</div>
-                    </div>
-                    <script>
-                        window.onload = function() {
-                            window.print();
-                        };
-                    <\/script>
-                </body>
-                </html>
-            `);
-            printWin.document.close();
+            let printStyle = document.getElementById('dynamic-print-orientation-style');
+            if (!printStyle) {
+                printStyle = document.createElement('style');
+                printStyle.id = 'dynamic-print-orientation-style';
+                document.head.appendChild(printStyle);
+            }
+            printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 8mm 6mm; } }`;
+
+            document.body.classList.add('print-night-active');
+            window.print();
+
+            setTimeout(() => {
+                document.body.classList.remove('print-night-active');
+            }, 1000);
         }
 
         function openNightShiftModal(preselectSl = null) {
@@ -3282,12 +3321,12 @@
                     count++;
                     rowsHtml += `
                         <tr>
-                            <td style="text-align: center; font-family: monospace; font-weight: bold;">${String(count).padStart(2, '0')}</td>
-                            <td style="font-weight: bold; text-align: left; padding-left: 8px;">${mod.name}</td>
-                            <td style="text-align: center; font-weight: bold; color: #7e22ce;">Sheikh Shahmiran Manik</td>
-                            <td style="text-align: center; font-family: monospace; font-weight: bold; color: #7e22ce;">${leaveDates.length}</td>
-                            <td style="text-align: left; font-family: monospace; font-size: 8pt; padding-left: 8px;">${leaveDates.join(', ')}</td>
-                            <td style="text-align: left; padding-left: 8px;">Official Approved Leave</td>
+                            <td style="text-align: center; font-family: monospace; font-weight: bold; width: 8%;">${String(count).padStart(2, '0')}</td>
+                            <td style="font-weight: bold; text-align: left; padding-left: 8px; width: 28%;">${mod.name}</td>
+                            <td style="text-align: center; font-weight: bold; color: #7e22ce; width: 20%;">Sheikh Shahmiran Manik</td>
+                            <td style="text-align: center; font-family: monospace; font-weight: bold; color: #7e22ce; width: 12%;">${leaveDates.length}</td>
+                            <td style="text-align: left; font-family: monospace; font-size: 8pt; padding-left: 8px; width: 20%;">${leaveDates.join(', ')}</td>
+                            <td style="text-align: left; padding-left: 8px; width: 12%;">Sanctioned Leave</td>
                         </tr>
                     `;
                 }
@@ -3298,68 +3337,56 @@
                 return;
             }
 
-            const printWin = window.open('', '_blank', 'width=950,height=750');
-            if (!printWin) {
-                alert('Please allow popups for printing reports.');
-                return;
-            }
+            const targetContainer = document.getElementById('view-leave-report-container');
+            targetContainer.innerHTML = `
+                <div style="border: 2px solid #000; border-radius: 8px; padding: 12px 18px; text-align: center; margin-bottom: 12px; background-color: #f8fafc;">
+                    <h1 style="font-size: 20pt; font-weight: 900; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 1px; color: #000; font-family: 'Outfit', sans-serif;">
+                        SANVEE'S BY TONY
+                    </h1>
+                    <div style="font-size: 11pt; font-weight: 800; text-transform: uppercase; color: #7e22ce; margin-bottom: 6px;">
+                        Approved Leaves Management Report (${monthName} ${yearStr})
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold; color: #334155; border-top: 1.5px solid #94a3b8; padding-top: 6px;">
+                        <span>Month: ${monthName} ${yearStr}</span>
+                        <span>Total Staff on Leave: ${count} Members</span>
+                        <span>In-Charge: Sheikh Shahmiran Manik</span>
+                    </div>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; border: 1.5px solid #000;">
+                    <thead>
+                        <tr style="background-color: #f1f5f9; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000;">
+                            <th style="width: 8%; text-align: center; padding: 6px;">SL</th>
+                            <th style="width: 28%; text-align: left; padding: 6px 8px;">Moderator Name</th>
+                            <th style="width: 20%; text-align: center; padding: 6px;">Approved By</th>
+                            <th style="width: 12%; text-align: center; padding: 6px;">Total Days</th>
+                            <th style="width: 20%; text-align: left; padding: 6px 8px;">Leave Dates (${monthName})</th>
+                            <th style="width: 12%; text-align: left; padding: 6px 8px;">Reason / Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rowsHtml}
+                    </tbody>
+                </table>
+                <div style="margin-top: 28px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold;">
+                    <div>Generated on: ${new Date().toLocaleDateString('en-GB')}</div>
+                    <div style="border-top: 1px solid #000; padding-top: 4px; width: 180px; text-align: center;">Authorized Signature</div>
+                </div>
+            `;
 
-            printWin.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Approved Leave Report - ${monthName} ${yearStr}</title>
-                    <style>
-                        @page { size: A4 portrait; margin: 10mm 8mm; }
-                        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 16px; color: #000; font-size: 9pt; }
-                        .header-box { border: 2px solid #000; border-radius: 8px; padding: 12px 18px; text-align: center; margin-bottom: 16px; background-color: #f8fafc; }
-                        .header-box h1 { font-size: 18pt; font-weight: 900; margin: 0 0 4px 0; letter-spacing: 1px; }
-                        .header-box h2 { font-size: 11pt; font-weight: 700; margin: 0 0 8px 0; color: #7e22ce; text-transform: uppercase; }
-                        .header-meta { display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; border-top: 1px solid #cbd5e1; padding-top: 6px; }
-                        table { width: 100%; border-collapse: collapse; border: 1.5px solid #000; margin-top: 10px; }
-                        th, td { border: 1px solid #94a3b8; padding: 6px 8px; font-size: 8.5pt; }
-                        th { background-color: #f1f5f9; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000; }
-                        .footer { margin-top: 32px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header-box">
-                        <h1>SANVEE'S BY TONY</h1>
-                        <h2>Approved Leaves Management Report (${monthName} ${yearStr})</h2>
-                        <div class="header-meta">
-                            <span>Month: ${monthName} ${yearStr}</span>
-                            <span>Total Staff on Leave: ${count} Members</span>
-                            <span>In-Charge: Sheikh Shahmiran Manik</span>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 8%; text-align: center;">SL</th>
-                                <th style="width: 28%; text-align: left; padding-left: 8px;">Moderator Name</th>
-                                <th style="width: 20%; text-align: center;">Approved By</th>
-                                <th style="width: 12%; text-align: center;">Total Days</th>
-                                <th style="width: 20%; text-align: left; padding-left: 8px;">Leave Dates (${monthName})</th>
-                                <th style="width: 12%; text-align: left; padding-left: 8px;">Reason / Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${rowsHtml}
-                        </tbody>
-                    </table>
-                    <div class="footer">
-                        <div>Generated on: ${new Date().toLocaleDateString('en-GB')}</div>
-                        <div style="border-top: 1px solid #000; padding-top: 4px; width: 180px; text-align: center;">Authorized Signature</div>
-                    </div>
-                    <script>
-                        window.onload = function() {
-                            window.print();
-                        };
-                    <\/script>
-                </body>
-                </html>
-            `);
-            printWin.document.close();
+            let printStyle = document.getElementById('dynamic-print-orientation-style');
+            if (!printStyle) {
+                printStyle = document.createElement('style');
+                printStyle.id = 'dynamic-print-orientation-style';
+                document.head.appendChild(printStyle);
+            }
+            printStyle.innerHTML = `@media print { @page { size: A4 portrait; margin: 8mm 6mm; } }`;
+
+            document.body.classList.add('print-leave-active');
+            window.print();
+
+            setTimeout(() => {
+                document.body.classList.remove('print-leave-active');
+            }, 1000);
         }
 
         function openLeaveModal(preselectSl = null) {
