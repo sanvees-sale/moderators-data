@@ -319,16 +319,48 @@
             justify-content: center;
             width: 26px;
             height: 26px;
-            border-radius: 7px;
-            font-weight: 800;
+            border-radius: 6px;
+            font-weight: 900;
             font-size: 11px;
             font-family: 'JetBrains Mono', monospace;
+            color: #ffffff !important;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
+            user-select: none;
         }
         .matrix-cell-badge:hover {
             transform: scale(1.18);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
             z-index: 10;
+        }
+        .matrix-badge-present {
+            background-color: #10b981;
+            box-shadow: 0 1px 3px rgba(16, 185, 129, 0.35);
+        }
+        .matrix-badge-off {
+            background-color: #f59e0b;
+            box-shadow: 0 1px 3px rgba(245, 158, 11, 0.35);
+            font-size: 9px;
+        }
+        .matrix-badge-exchange {
+            background-color: #0891b2;
+            box-shadow: 0 1px 3px rgba(8, 145, 178, 0.35);
+            font-size: 9px;
+        }
+        .matrix-badge-absent {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            box-shadow: 0 1px 4px rgba(225, 29, 72, 0.45);
+        }
+        .matrix-badge-night {
+            background-color: #4f46e5;
+            box-shadow: 0 1px 3px rgba(79, 70, 229, 0.35);
+        }
+        .matrix-badge-leave {
+            background-color: #9333ea;
+            box-shadow: 0 1px 3px rgba(147, 51, 234, 0.35);
+        }
+        .matrix-badge-outside {
+            background-color: #475569;
+            box-shadow: 0 1px 3px rgba(71, 85, 105, 0.35);
         }
 
         /* Complete Formal Office Print Styling (A4 Portrait & Single-Page Landscape Optimized) */
@@ -418,6 +450,10 @@
             }
 
             /* --- MONTHLY MATRIX PRINT STYLING (GUARANTEED 1-PAGE A4 LANDSCAPE) --- */
+            @page {
+                size: landscape;
+                margin: 4mm 4mm;
+            }
             #view-monthly-container {
                 page-break-inside: avoid !important;
                 page-break-after: avoid !important;
@@ -430,13 +466,15 @@
                 width: 100% !important;
             }
             #view-monthly-container table {
-                font-size: 6.8pt !important;
+                font-size: 7pt !important;
                 table-layout: fixed !important;
                 width: 100% !important;
                 max-width: 100% !important;
                 line-height: 1.1 !important;
                 border: 1.5px solid #000000 !important;
                 margin: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             #view-monthly-container th, 
             #view-monthly-container td {
@@ -444,17 +482,17 @@
                 padding: 1.5px 0.5px !important;
                 overflow: hidden !important;
                 box-sizing: border-box !important;
-                height: 20px !important;
+                height: 18px !important;
                 max-height: 20px !important;
-                font-size: 6.8pt !important;
+                font-size: 7pt !important;
                 line-height: 1.1 !important;
                 vertical-align: middle !important;
                 text-align: center !important;
                 border: 0.8px solid #94a3b8 !important;
             }
             #view-monthly-container th {
-                height: 24px !important;
-                max-height: 24px !important;
+                height: 22px !important;
+                max-height: 22px !important;
                 font-size: 7.2pt !important;
                 background-color: #f1f5f9 !important;
                 color: #000000 !important;
@@ -462,12 +500,12 @@
                 border-bottom: 2px solid #000000 !important;
             }
             
-            /* Exact percentage columns to prevent horizontal overflow */
-            .col-m-sl   { width: 3.5% !important; }
-            .col-m-name { width: 14.5% !important; text-align: left !important; padding-left: 4px !important; }
-            .col-m-off  { width: 4.0% !important; }
-            .col-m-day  { width: 2.0% !important; }
-            .col-m-stat { width: 2.66% !important; font-weight: 800 !important; }
+            /* Exact percentage columns to prevent horizontal overflow in Landscape */
+            .col-m-sl   { width: 3.2% !important; }
+            .col-m-name { width: 14.8% !important; text-align: left !important; padding-left: 4px !important; }
+            .col-m-off  { width: 3.8% !important; }
+            .col-m-day  { width: 2.1% !important; }
+            .col-m-stat { width: 2.4% !important; font-weight: 800 !important; }
 
             #view-monthly-container td.col-m-name {
                 text-align: left !important;
@@ -475,7 +513,7 @@
                 padding-right: 2px !important;
             }
             #view-monthly-container td.col-m-name span.print-only {
-                font-size: 6.8pt !important;
+                font-size: 7pt !important;
                 font-weight: 800 !important;
                 color: #000000 !important;
                 white-space: nowrap !important;
@@ -486,17 +524,57 @@
             }
 
             #view-monthly-container .matrix-cell-badge {
-                width: 13.5px !important;
-                height: 13.5px !important;
-                font-size: 5.8pt !important;
+                width: 14px !important;
+                height: 14px !important;
+                font-size: 6.5pt !important;
                 font-weight: 900 !important;
-                border-radius: 2px !important;
-                border: 0.8px solid #64748b !important;
-                line-height: 13.5px !important;
+                border-radius: 2.5px !important;
+                line-height: 14px !important;
                 display: inline-flex !important;
                 align-items: center !important;
                 justify-content: center !important;
                 margin: 0 auto !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            #view-monthly-container .matrix-badge-present {
+                background-color: #10b981 !important;
+                color: #ffffff !important;
+                border: 0.5px solid #059669 !important;
+            }
+            #view-monthly-container .matrix-badge-off {
+                background-color: #f59e0b !important;
+                color: #ffffff !important;
+                border: 0.5px solid #d97706 !important;
+                font-size: 4.8pt !important;
+            }
+            #view-monthly-container .matrix-badge-exchange {
+                background-color: #0891b2 !important;
+                color: #ffffff !important;
+                border: 0.5px solid #0e7490 !important;
+                font-size: 4.8pt !important;
+            }
+            #view-monthly-container .matrix-badge-absent {
+                background-color: #e11d48 !important;
+                color: #ffffff !important;
+                border: 0.5px solid #be123c !important;
+            }
+            #view-monthly-container .matrix-badge-night {
+                background-color: #4f46e5 !important;
+                color: #ffffff !important;
+                border: 0.5px solid #4338ca !important;
+            }
+            #view-monthly-container .matrix-badge-leave {
+                background-color: #9333ea !important;
+                color: #ffffff !important;
+                border: 0.5px solid #7e22ce !important;
+            }
+            #view-monthly-container .matrix-badge-outside {
+                background-color: #475569 !important;
+                color: #ffffff !important;
+                border: 0.5px solid #334155 !important;
             }
 
             /* Dedicated Modal Reports Print Modes */
@@ -3129,24 +3207,24 @@
                     let badge = '';
                     if (status === 'Present') {
                         modPresent++;
-                        badge = `<span class="matrix-cell-badge bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 border border-emerald-500/40 shadow-xs ring-1 ring-emerald-500/20">P</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-present">P</span>`;
                     } else if (status === 'Weekly Off') {
                         modOff++;
-                        badge = `<span class="matrix-cell-badge bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/40 shadow-xs ring-1 ring-amber-500/20 text-[10px]">OFF</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-off">OFF</span>`;
                     } else if (status === 'Weekend Exchange') {
                         modExchange++;
-                        badge = `<span class="matrix-cell-badge bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border border-cyan-500/40 shadow-xs ring-1 ring-cyan-500/20 text-[10px]">EX</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-exchange">EX</span>`;
                     } else if (status === 'Absent') {
                         modAbsent++;
-                        badge = `<span class="matrix-cell-badge bg-gradient-to-tr from-rose-600 to-red-600 text-white shadow-rose-500/30 shadow-sm border border-rose-400/30">A</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-absent">A</span>`;
                     } else if (status === 'Night Shift') {
                         modNight++;
-                        badge = `<span class="matrix-cell-badge bg-indigo-500/20 text-indigo-800 dark:text-indigo-300 border border-indigo-500/40 shadow-xs ring-1 ring-indigo-500/20">N</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-night">N</span>`;
                     } else if (status === 'Leave') {
                         modLeave++;
-                        badge = `<span class="matrix-cell-badge bg-purple-500/20 text-purple-800 dark:text-purple-300 border border-purple-500/40 shadow-xs ring-1 ring-purple-500/20">L</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-leave">L</span>`;
                     } else {
-                        badge = `<span class="matrix-cell-badge bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">O</span>`;
+                        badge = `<span class="matrix-cell-badge matrix-badge-outside">O</span>`;
                     }
 
                     if (currentUserRole === 'moderator') {
@@ -5503,6 +5581,7 @@
 
             if (activeView === 'daily') {
                 printStyle.innerHTML = `
+                    @page { size: A4 portrait; margin: 8mm 6mm; }
                     @media print {
                         @page { size: A4 portrait; margin: 8mm 6mm; }
                         #print-header-banner { padding: 10px 16px !important; margin-bottom: 5mm !important; }
@@ -5512,9 +5591,10 @@
                 `;
             } else {
                 printStyle.innerHTML = `
+                    @page { size: landscape; margin: 4mm 4mm; }
                     @media print {
-                        @page { size: A4 landscape; margin: 3mm 3mm; }
-                        #print-header-banner { padding: 3px 8px !important; margin-bottom: 2mm !important; border-width: 1.5px !important; }
+                        @page { size: landscape; margin: 4mm 4mm; }
+                        #print-header-banner { padding: 4px 10px !important; margin-bottom: 2mm !important; border-width: 1.5px !important; }
                         #print-header-banner h1 { font-size: 13pt !important; line-height: 1.1 !important; margin: 0 !important; }
                         #print-header-subtitle { font-size: 8.5pt !important; margin-top: 1px !important; }
                         #print-header-banner div:last-child { font-size: 7pt !important; margin-top: 2px !important; padding-top: 2px !important; }
@@ -5579,6 +5659,7 @@
             populateLoginModeratorSelect();
             checkAuthStatus();
             applyRolePermissions();
+            applyPrintOrientationSettings();
             renderDailyTable();
             renderNightShiftRequestsList();
         });
