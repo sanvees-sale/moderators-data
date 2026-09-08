@@ -2252,13 +2252,13 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Duty Date (Will Work)</label>
-                        <input type="date" id="exchange-duty-date" required
+                        <input type="date" id="exchange-duty-date" required onchange="updateExchangeDayLabels()"
                                class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none">
                         <span id="exchange-duty-day-label" class="text-[10px] text-emerald-600 font-bold mt-0.5 block">--</span>
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Exchange Off Date (Takes Off)</label>
-                        <input type="date" id="exchange-off-date" required
+                        <input type="date" id="exchange-off-date" required onchange="updateExchangeDayLabels()"
                                class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none">
                         <span id="exchange-off-day-label" class="text-[10px] text-cyan-600 font-bold mt-0.5 block">--</span>
                     </div>
@@ -2889,6 +2889,7 @@
                     m.id = 'mod_' + (cleanPhone || Date.now()) + '_' + idx + '_' + Math.random().toString(36).substring(2, 7);
                 }
                 m._tempSortIdx = idx;
+                m._oldSl = m.sl;
             });
 
             moderators.sort((a, b) => {
@@ -2901,10 +2902,63 @@
                 return (a._tempSortIdx || 0) - (b._tempSortIdx || 0);
             });
 
+            const slMapping = {};
             moderators.forEach((m, index) => {
+                const oldSl = m._oldSl;
+                const newSl = index + 1;
                 delete m._tempSortIdx;
-                m.sl = index + 1;
+                delete m._oldSl;
+                m.sl = newSl;
+                if (oldSl !== undefined && oldSl !== null && oldSl !== newSl) {
+                    slMapping[oldSl] = newSl;
+                }
             });
+
+            // Prevent data corruption: remap all records keyed by moderator SL when serials change
+            if (Object.keys(slMapping).length > 0) {
+                if (attendanceHistory && typeof attendanceHistory === 'object') {
+                    Object.keys(attendanceHistory).forEach(date => {
+                        const dayRecords = attendanceHistory[date];
+                        if (dayRecords && typeof dayRecords === 'object') {
+                            const newDayRecords = {};
+                            Object.keys(dayRecords).forEach(oldKey => {
+                                const mappedKey = slMapping[oldKey] ? String(slMapping[oldKey]) : oldKey;
+                                newDayRecords[mappedKey] = dayRecords[oldKey];
+                            });
+                            attendanceHistory[date] = newDayRecords;
+                        }
+                    });
+                }
+
+                if (Array.isArray(scheduledNightShifts)) {
+                    scheduledNightShifts.forEach(item => {
+                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
+                        if (item.sl && slMapping[item.sl]) item.sl = slMapping[item.sl];
+                    });
+                }
+
+                if (Array.isArray(approvedLeaves)) {
+                    approvedLeaves.forEach(item => {
+                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
+                    });
+                }
+
+                if (Array.isArray(weekendExchanges)) {
+                    weekendExchanges.forEach(item => {
+                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
+                    });
+                }
+
+                if (Array.isArray(nightShiftRequests)) {
+                    nightShiftRequests.forEach(item => {
+                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
+                    });
+                }
+
+                if (typeof currentLoggedInModSl !== 'undefined' && currentLoggedInModSl && slMapping[currentLoggedInModSl]) {
+                    currentLoggedInModSl = slMapping[currentLoggedInModSl];
+                }
+            }
         }
 
         function calculatePredictedSlForWeekend(targetWeekend, ignoreIndex = -1) {
@@ -3033,7 +3087,8 @@
             moderators.forEach(mod => {
                 const key = String(mod.sl);
                 if (!attendanceHistory[dateStr][key]) {
-                    attendanceHistory[dateStr][key] = (mod.weekend === dayName) ? 'Weekly Off' : 'Present';
+                    const isWeekend = mod.weekend && dayName && mod.weekend.toLowerCase() === dayName.toLowerCase();
+                    attendanceHistory[dateStr][key] = isWeekend ? 'Weekly Off' : 'Present';
                 }
             });
         }
@@ -3116,9 +3171,20 @@
             if (navLabel) navLabel.innerText = isToday ? 'Today' : `${currentActiveDate} (${dayName.substring(0, 3)})`;
         }
 
+        function syncActiveMonthFromDate() {
+            const newMonth = currentActiveDate.substring(0, 7);
+            if (newMonth !== currentActiveMonth) {
+                currentActiveMonth = newMonth;
+                const mPicker = document.getElementById('selected-month-picker');
+                if (mPicker) mPicker.value = currentActiveMonth;
+                if (activeView === 'monthly') renderMonthlyTable();
+            }
+        }
+
         function handleDatePickerChange(val) {
             if (!val) return;
             currentActiveDate = val;
+            syncActiveMonthFromDate();
             initAttendanceForDate(currentActiveDate);
             updateDateUI();
             renderDailyTable();
@@ -3135,6 +3201,7 @@
             const newD = String(dateObj.getDate()).padStart(2, '0');
             currentActiveDate = `${newY}-${newM}-${newD}`;
 
+            syncActiveMonthFromDate();
             initAttendanceForDate(currentActiveDate);
             updateDateUI();
             renderDailyTable();
@@ -3142,6 +3209,7 @@
 
         function jumpToToday() {
             currentActiveDate = getTodayDateStr();
+            syncActiveMonthFromDate();
             initAttendanceForDate(currentActiveDate);
             updateDateUI();
             renderDailyTable();
@@ -3244,9 +3312,9 @@
             let count = 0;
 
             moderators.forEach((mod) => {
-                const isTodayWeekend = mod.weekend === dayName;
+                const isTodayWeekend = mod.weekend && dayName && mod.weekend.toLowerCase() === dayName.toLowerCase();
                 const currentStatus = getModeratorStatusForDate(mod, currentActiveDate);
-                if (!isTodayWeekend && currentStatus !== 'Leave' && currentStatus !== 'Night Shift') {
+                if (!isTodayWeekend && currentStatus !== 'Leave' && currentStatus !== 'Night Shift' && currentStatus !== 'Weekend Exchange') {
                     setModeratorStatusForDate(mod, currentActiveDate, 'Present');
                     count++;
                 }
@@ -3270,22 +3338,23 @@
             let filtered = moderators.filter((mod, originalIndex) => {
                 mod._originalIndex = originalIndex;
                 const status = getModeratorStatusForDate(mod, currentActiveDate);
-                const isTodayWeekend = mod.weekend === dayName;
+                const isTodayWeekend = mod.weekend && dayName && mod.weekend.toLowerCase() === dayName.toLowerCase();
 
                 if (filterStatus === "AVAILABLE_TODAY") {
-                    if (status === 'Weekly Off' || status === 'Leave' || status === 'Absent') return false;
+                    if (status === 'Weekly Off' || status === 'Leave' || status === 'Absent' || status === 'Weekend Exchange') return false;
                     if (isTodayWeekend && status !== 'Present' && status !== 'Night Shift' && status !== 'Outside Work') return false;
                 } else if (filterStatus !== "ALL" && status !== filterStatus) {
                     return false;
                 }
-                if (filterWeekend !== "ALL" && mod.weekend !== filterWeekend) return false;
+                if (filterWeekend !== "ALL" && (mod.weekend || '').toLowerCase() !== filterWeekend.toLowerCase()) return false;
 
                 if (searchQuery.trim() !== "") {
                     const q = searchQuery.toLowerCase();
                     const matchName = (mod.name || "").toLowerCase().includes(q);
                     const matchPhone = (mod.phone || "").toLowerCase().includes(q);
                     const matchSl = String(mod.sl || "").includes(q);
-                    if (!matchName && !matchPhone && !matchSl) return false;
+                    const matchWeekend = (mod.weekend || "").toLowerCase().includes(q);
+                    if (!matchName && !matchPhone && !matchSl && !matchWeekend) return false;
                 }
 
                 return true;
@@ -3307,7 +3376,7 @@
             filtered.forEach((mod, renderIndex) => {
                 const tr = document.createElement("tr");
                 const currentStatus = getModeratorStatusForDate(mod, currentActiveDate);
-                const isTodayWeekend = mod.weekend === dayName;
+                const isTodayWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
                 const isUnexcusedAbsent = currentStatus === 'Absent' && !isTodayWeekend;
                 const isOffToday = currentStatus === 'Weekly Off' || isTodayWeekend;
                 const weekendBadgeClass = WEEKEND_BADGE_STYLES[mod.weekend] || 'bg-slate-100 text-slate-800';
@@ -3468,15 +3537,19 @@
 
             moderators.forEach(mod => {
                 const status = getModeratorStatusForDate(mod, currentActiveDate);
+                const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+
                 if (status === 'Present') present++;
                 else if (status === 'Night Shift') night++;
                 else if (status === 'Leave') leaveCount++;
                 
-                if (status === 'Weekly Off' || mod.weekend === dayName) offToday++;
+                if (status === 'Weekly Off' || status === 'Weekend Exchange' || (isWeekend && status !== 'Present' && status !== 'Night Shift' && status !== 'Outside Work')) {
+                    offToday++;
+                }
 
                 if (status === 'Absent') {
                     absent++;
-                    if (mod.weekend !== dayName) unexcusedCount++;
+                    if (!isWeekend) unexcusedCount++;
                 }
             });
 
@@ -3515,14 +3588,14 @@
                 }
             }
 
-            const activeNightDutyMods = scheduledNightShifts.filter(r => currentActiveDate >= r.startDate && currentActiveDate < r.endDate);
+            const activeNightDutyMods = scheduledNightShifts.filter(r => currentActiveDate >= r.startDate && currentActiveDate <= r.endDate);
             const effectiveNight = activeNightDutyMods.length > 0 ? activeNightDutyMods.length : night;
             animateNumber('count-night', effectiveNight);
 
             // Update Header Operations Counts
-            const activeNightShiftsCount = scheduledNightShifts.filter(r => r.endDate > currentActiveDate).length;
+            const activeNightShiftsCount = scheduledNightShifts.filter(r => r.endDate >= currentActiveDate).length;
             const activeLeavesCount = approvedLeaves.filter(r => r.endDate >= currentActiveDate).length;
-            const activeExchangesCount = weekendExchanges.filter(x => x.exchangeDate >= currentActiveDate || x.weekendDate >= currentActiveDate).length;
+            const activeExchangesCount = weekendExchanges.filter(x => (x.dutyDate && x.dutyDate >= currentActiveDate) || (x.offDate && x.offDate >= currentActiveDate)).length;
 
             animateNumber('active-night-count', activeNightShiftsCount);
             animateNumber('active-leave-count', activeLeavesCount);
@@ -3540,14 +3613,14 @@
             renderDailyTable();
 
             const dayName = getDayNameForDate(currentActiveDate);
+            const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
 
             if (newStatus === 'Absent') {
-                if (mod.weekend === dayName) {
+                if (isWeekend) {
                     showToast(`Notice: ${currentActiveDate} is ${mod.name}'s scheduled Weekly Off`, 'info');
                 } else {
-                    triggerDirectWhatsApp(mod.phone, mod.name, true, currentActiveDate);
                     openAbsentAlertModal(mod, currentActiveDate);
-                    showToast(`🔴 Absent Notice sent to ${mod.name} on WhatsApp!`, 'success');
+                    showToast(`🔴 Absent status set. Confirm WhatsApp alert in modal.`, 'info');
                 }
             } else if (newStatus === 'Night Shift') {
                 openNightShiftModal(mod.sl);
@@ -3639,6 +3712,7 @@
 
             const tbody = document.getElementById('monthly-table-body');
             tbody.innerHTML = '';
+            let tbodyHtml = '';
 
             displayMods.forEach((mod) => {
                 let modPresent = 0, modOff = 0, modExchange = 0, modAbsent = 0, modNight = 0, modLeave = 0;
@@ -3723,7 +3797,7 @@
                     </tr>
                 `;
 
-                tbody.innerHTML += rowHtml;
+                tbodyHtml += rowHtml;
 
                 if (isSingleMod && displayMods.length === 1) {
                     const originalIdx = moderators.findIndex(m => m.sl === mod.sl);
@@ -3760,6 +3834,8 @@
                     document.getElementById('single-mod-stat-leave').innerText = modLeave;
                 }
             });
+
+            tbody.innerHTML = tbodyHtml;
 
             document.getElementById('monthly-footer-count').innerText = isSingleMod ? `Showing 1 of ${moderators.length} Members` : `Showing ${moderators.length} of ${moderators.length} Members`;
             setupMatrixCrosshairs();
@@ -3911,10 +3987,10 @@
             if (currentActiveDate === dateStr) renderDailyTable();
 
             const dayName = getDayNameForDate(dateStr);
-            if (newStatus === 'Absent' && mod.weekend !== dayName) {
-                triggerDirectWhatsApp(mod.phone, mod.name, true, dateStr);
+            const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+            if (newStatus === 'Absent' && !isWeekend) {
                 openAbsentAlertModal(mod, dateStr);
-                showToast(`🔴 Absent Notice sent to ${mod.name} on WhatsApp!`, 'success');
+                showToast(`🔴 Absent status set. Confirm WhatsApp alert in modal.`, 'info');
             } else {
                 showToast(`Updated ${mod.name} to ${newStatus}`);
             }
@@ -4204,7 +4280,8 @@
                     rec.nightDutyDates.forEach(d => {
                         const dayName = getDayNameForDate(d);
                         attendanceHistory[d] = attendanceHistory[d] || {};
-                        attendanceHistory[d][String(mod.sl)] = (mod.weekend === dayName) ? 'Weekly Off' : 'Present';
+                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        attendanceHistory[d][String(mod.sl)] = isWeekend ? 'Weekly Off' : 'Present';
                     });
                 }
                 scheduledNightShifts.splice(idx, 1);
@@ -4960,6 +5037,7 @@
 
             setTimeout(() => {
                 document.body.classList.remove('print-night-active');
+                applyPrintOrientationSettings();
             }, 1000);
         }
 
@@ -5079,6 +5157,7 @@
 
             setTimeout(() => {
                 document.body.classList.remove('print-leave-active');
+                applyPrintOrientationSettings();
             }, 1000);
         }
 
@@ -5099,6 +5178,8 @@
 
             document.getElementById('leave-start-date').value = currentActiveDate;
             document.getElementById('leave-end-date').value = currentActiveDate;
+            const reasonInput = document.getElementById('leave-reason');
+            if (reasonInput) reasonInput.value = '';
             switchLeaveTab('active');
             document.getElementById('approved-leave-modal').classList.remove('hidden');
         }
@@ -5159,7 +5240,8 @@
                 return;
             }
 
-            activeLeaves.forEach((rec, idx) => {
+            activeLeaves.forEach((rec) => {
+                if (!rec.id) rec.id = Date.now() + Math.floor(Math.random() * 10000);
                 const div = document.createElement('div');
                 div.className = 'flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs';
                 div.innerHTML = `
@@ -5167,7 +5249,7 @@
                         <div class="font-bold text-slate-900 dark:text-white text-sm">${rec.modName}</div>
                         <div class="font-mono text-slate-400 text-[11px]">${rec.startDate} ➔ ${rec.endDate} • ${rec.reason}</div>
                     </div>
-                    <button onclick="deleteLeaveRecord(${idx})" class="p-2 text-slate-400 hover:text-rose-600">
+                    <button onclick="deleteLeaveRecord(${rec.id})" class="p-2 text-slate-400 hover:text-rose-600">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 `;
@@ -5175,19 +5257,35 @@
             });
         }
 
-        function deleteLeaveRecord(idx) {
+        function deleteLeaveRecord(id) {
             if (currentUserRole === 'moderator') {
                 showToast('Deleting leave records is restricted to In-Charge Admin.', 'info');
                 return;
             }
+            const idx = approvedLeaves.findIndex(r => r.id === id);
+            if (idx === -1) return;
             const rec = approvedLeaves[idx];
             if (confirm(`Remove approved leave for ${rec.modName}?`)) {
+                const mod = moderators.find(m => m.sl === rec.modSl);
+                if (mod) {
+                    const dates = getDatesInRange(rec.startDate, rec.endDate);
+                    dates.forEach(d => {
+                        const dayName = getDayNameForDate(d);
+                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        const cur = getModeratorStatusForDate(mod, d);
+                        if (cur === 'Leave') {
+                            setModeratorStatusForDate(mod, d, isWeekend ? 'Weekly Off' : 'Present');
+                        }
+                    });
+                }
                 approvedLeaves.splice(idx, 1);
                 saveToLocalStorage();
                 renderLeaveList();
+                renderMonthlyLeaveLog();
                 renderDailyTable();
+                updateDailyKPIs();
                 if (activeView === 'monthly') renderMonthlyTable();
-                showToast('Leave record removed');
+                showToast('Leave record removed and roster restored');
             }
         }
 
@@ -5204,6 +5302,7 @@
             const selectedMonth = monthlyLeaveMonth || currentActiveMonth || getCurrentMonthStr();
             const [yearStr, monthStr] = selectedMonth.split('-');
             const daysInMonth = new Date(parseInt(yearStr, 10), parseInt(monthStr, 10), 0).getDate();
+            let matchCount = 0;
 
             moderators.forEach((mod, idx) => {
                 const leaveDates = [];
@@ -5213,6 +5312,7 @@
                 }
 
                 if (leaveDates.length > 0) {
+                    matchCount++;
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td class="p-2 text-center font-mono">${String(idx + 1).padStart(2, '0')}</td>
@@ -5225,6 +5325,13 @@
                     tbody.appendChild(tr);
                 }
             });
+
+            const monthlyTabCount = document.getElementById('tab-leave-monthly-count');
+            if (monthlyTabCount) monthlyTabCount.innerText = matchCount;
+
+            if (matchCount === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-xs text-slate-400">No sanctioned leaves recorded for ${selectedMonth}.</td></tr>`;
+            }
         }
 
         // ======================= WEEKEND EXCHANGE LOGIC =======================
@@ -5351,7 +5458,8 @@
                 return;
             }
 
-            weekendExchanges.forEach((rec, idx) => {
+            weekendExchanges.forEach((rec) => {
+                if (!rec.id) rec.id = Date.now() + Math.floor(Math.random() * 10000);
                 const div = document.createElement('div');
                 div.className = 'flex items-center justify-between p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs';
                 div.innerHTML = `
@@ -5359,7 +5467,7 @@
                         <div class="font-bold text-slate-900 dark:text-white">${rec.modName}</div>
                         <div class="font-mono text-slate-400 text-[11px]">Duty: ${rec.dutyDate} ➔ Off: ${rec.offDate}</div>
                     </div>
-                    <button onclick="deleteExchangeRecord(${idx})" class="p-1.5 text-slate-400 hover:text-rose-600">
+                    <button onclick="deleteExchangeRecord(${rec.id})" class="p-1.5 text-slate-400 hover:text-rose-600">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 `;
@@ -5367,19 +5475,34 @@
             });
         }
 
-        function deleteExchangeRecord(idx) {
+        function deleteExchangeRecord(id) {
             if (currentUserRole === 'moderator') {
                 showToast('Deleting weekend exchange records is restricted to In-Charge Admin.', 'info');
                 return;
             }
+            const idx = weekendExchanges.findIndex(r => r.id === id);
+            if (idx === -1) return;
             const rec = weekendExchanges[idx];
             if (confirm(`Remove Weekend Exchange record for ${rec.modName}?`)) {
+                const mod = moderators.find(m => m.sl === rec.modSl);
+                if (mod) {
+                    // Revert dutyDate: dutyDate was originally their Weekly Off day
+                    const dutyDayName = getDayNameForDate(rec.dutyDate);
+                    const isDutyWeekend = mod.weekend && dutyDayName && (mod.weekend.toLowerCase() === dutyDayName.toLowerCase());
+                    setModeratorStatusForDate(mod, rec.dutyDate, isDutyWeekend ? 'Weekly Off' : 'Present');
+
+                    // Revert offDate: offDate was originally their regular working day
+                    const offDayName = getDayNameForDate(rec.offDate);
+                    const isOffWeekend = mod.weekend && offDayName && (mod.weekend.toLowerCase() === offDayName.toLowerCase());
+                    setModeratorStatusForDate(mod, rec.offDate, isOffWeekend ? 'Weekly Off' : 'Present');
+                }
                 weekendExchanges.splice(idx, 1);
                 saveToLocalStorage();
                 renderExchangeList();
                 renderDailyTable();
+                updateDailyKPIs();
                 if (activeView === 'monthly') renderMonthlyTable();
-                showToast('Weekend exchange removed');
+                showToast('Weekend exchange removed and roster restored');
             }
         }
 
@@ -5436,7 +5559,7 @@
             const listEl = document.getElementById('bulk-absent-list');
             listEl.innerHTML = "";
 
-            const unexcused = moderators.filter(m => getModeratorStatusForDate(m, currentActiveDate) === 'Absent' && m.weekend !== dayName);
+            const unexcused = moderators.filter(m => getModeratorStatusForDate(m, currentActiveDate) === 'Absent' && !(m.weekend && dayName && m.weekend.toLowerCase() === dayName.toLowerCase()));
 
             if (unexcused.length === 0) {
                 listEl.innerHTML = `<div class="text-center py-6 text-slate-400 font-semibold">No unexcused absentees on ${currentActiveDate}.</div>`;
@@ -5565,11 +5688,34 @@
                 return;
             }
             const mod = moderators[index];
+            if (!mod) return;
+            const deletedSl = mod.sl;
             if (confirm(`Are you sure you want to remove ${mod.name} (SL #${String(mod.sl).padStart(2, '0')})?`)) {
+                // Clean up deleted moderator's records across all state data
+                if (attendanceHistory && typeof attendanceHistory === 'object') {
+                    const delKey = String(deletedSl);
+                    Object.keys(attendanceHistory).forEach(d => {
+                        if (attendanceHistory[d]) delete attendanceHistory[d][delKey];
+                    });
+                }
+                if (Array.isArray(scheduledNightShifts)) {
+                    scheduledNightShifts = scheduledNightShifts.filter(s => s.modSl !== deletedSl && s.sl !== deletedSl);
+                }
+                if (Array.isArray(approvedLeaves)) {
+                    approvedLeaves = approvedLeaves.filter(l => l.modSl !== deletedSl);
+                }
+                if (Array.isArray(weekendExchanges)) {
+                    weekendExchanges = weekendExchanges.filter(e => e.modSl !== deletedSl);
+                }
+                if (Array.isArray(nightShiftRequests)) {
+                    nightShiftRequests = nightShiftRequests.filter(r => r.modSl !== deletedSl);
+                }
+
                 moderators.splice(index, 1);
                 sortAndReindexModerators();
                 saveToLocalStorage();
                 renderDailyTable();
+                updateDailyKPIs();
                 if (activeView === 'monthly') renderMonthlyTable();
                 showToast(`Removed ${mod.name}`);
             }
