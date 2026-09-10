@@ -133,7 +133,7 @@
                 radial-gradient(circle at 80% 75%, rgba(244, 63, 94, 0.08) 0%, transparent 40%);
         }
 
-        /* Animated Ambient Floating Orbs */
+        /* Animated Ambient Floating Orbs (Hardware Accelerated) */
         .aurora-orb {
             position: absolute;
             border-radius: 50%;
@@ -141,6 +141,8 @@
             pointer-events: none;
             opacity: 0.45;
             mix-blend-mode: screen;
+            will-change: transform;
+            transform: translateZ(0);
         }
         .aurora-orb-1 {
             top: 5%;
@@ -278,18 +280,19 @@
             box-shadow: 0 24px 48px -12px rgba(99, 102, 241, 0.4), 0 0 0 1px rgba(129, 140, 248, 0.3);
         }
 
-        /* View Transition Animation */
+        /* View Transition Animation (Smooth 60fps) */
         .view-fade-slide {
-            animation: viewFadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: viewFadeSlideUp 0.16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            will-change: opacity, transform;
         }
         @keyframes viewFadeSlideUp {
             0% {
                 opacity: 0;
-                transform: translateY(12px) scale(0.995);
+                transform: translateY(6px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
@@ -492,7 +495,47 @@
             box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.15);
         }
 
-        /* Monthly Matrix Cells */
+        /* Monthly Matrix Cells (GPU Accelerated & Fast Layout) */
+        #monthly-matrix-table {
+            table-layout: fixed !important;
+            contain: layout paint style;
+        }
+        #monthly-matrix-table th.col-m-day,
+        #monthly-matrix-table td.col-m-day {
+            width: 32px !important;
+            min-width: 32px !important;
+            max-width: 32px !important;
+            box-sizing: border-box;
+        }
+        #monthly-matrix-table th.col-m-stat,
+        #monthly-matrix-table td.col-m-stat {
+            width: 34px !important;
+            min-width: 34px !important;
+            max-width: 34px !important;
+            box-sizing: border-box;
+        }
+        #monthly-matrix-table th.col-m-sl,
+        #monthly-matrix-table td.col-m-sl {
+            width: 38px !important;
+            min-width: 38px !important;
+            max-width: 38px !important;
+            box-sizing: border-box;
+        }
+        #monthly-matrix-table th.col-m-name,
+        #monthly-matrix-table td.col-m-name {
+            width: 140px !important;
+            min-width: 140px !important;
+            max-width: 160px !important;
+            box-sizing: border-box;
+        }
+        #monthly-matrix-table th.col-m-off,
+        #monthly-matrix-table td.col-m-off {
+            width: 44px !important;
+            min-width: 44px !important;
+            max-width: 44px !important;
+            box-sizing: border-box;
+        }
+
         .matrix-cell-badge {
             display: inline-flex;
             align-items: center;
@@ -504,12 +547,13 @@
             font-size: 11px;
             font-family: 'JetBrains Mono', monospace;
             color: #ffffff !important;
-            transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+            transition: transform 0.12s ease;
+            contain: layout style;
+            will-change: transform;
             user-select: none;
         }
         .matrix-cell-badge:hover {
-            transform: scale(1.28) !important;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35) !important;
+            transform: scale(1.22) !important;
             z-index: 30;
         }
         .matrix-badge-present {
@@ -528,8 +572,7 @@
         }
         .matrix-badge-absent {
             background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
-            box-shadow: 0 2px 6px rgba(225, 29, 72, 0.55);
-            animation: pulseWarning 2s infinite ease-in-out;
+            box-shadow: 0 2px 6px rgba(225, 29, 72, 0.45);
         }
         .matrix-badge-night {
             background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
@@ -566,12 +609,12 @@
                 left: 36px !important;
                 z-index: 15 !important;
                 background-color: #ffffff;
-                box-shadow: 4px 0 12px -3px rgba(0, 0, 0, 0.08);
+                box-shadow: 2px 0 6px -2px rgba(0, 0, 0, 0.08);
             }
             .dark #view-monthly-container th.col-m-name,
             .dark #view-monthly-container td.col-m-name {
                 background-color: #0a101f;
-                box-shadow: 4px 0 14px -3px rgba(0, 0, 0, 0.55);
+                box-shadow: 2px 0 8px -2px rgba(0, 0, 0, 0.5);
             }
             #view-monthly-container thead th.col-m-sl,
             #view-monthly-container thead th.col-m-name {
@@ -1242,8 +1285,8 @@
             </div>
         </header>
 
-        <!-- Main Content Canvas -->
-        <main id="main-content-canvas" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 transition-all duration-300">
+        <!-- Main Content Canvas (Zero-Jank Direct Sizing) -->
+        <main id="main-content-canvas" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
             
             <!-- Moderator View-Only Status Banner -->
             <div id="moderator-logged-in-banner" class="hidden glass-panel-elevated p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border border-purple-500/20 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-purple-500/10 shadow-lg no-print">
@@ -1347,7 +1390,7 @@
                 <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 no-print">
                     
                     <!-- 1. Total Moderators -->
-                    <div class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[148px]" style="--card-glow: rgba(99, 102, 241, 0.22);">
+                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[148px] cursor-pointer hover:scale-[1.02] transition-transform" style="--card-glow: rgba(99, 102, 241, 0.22);">
                         <div class="flex items-center justify-center gap-2 w-full">
                             <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-indigo-500/15 to-violet-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-users"></i>
@@ -1365,7 +1408,7 @@
                     </div>
 
                     <!-- 2. Available Today -->
-                    <div class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[158px]" style="--card-glow: rgba(6, 182, 212, 0.22);">
+                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[158px] cursor-pointer hover:scale-[1.02] transition-transform" style="--card-glow: rgba(6, 182, 212, 0.22);">
                         <div class="flex items-center justify-center gap-2 w-full">
                             <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-500/15 to-sky-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-briefcase"></i>
@@ -1389,7 +1432,7 @@
                     </div>
 
                     <!-- 3. Present Today -->
-                    <div class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[158px]" style="--card-glow: rgba(16, 185, 129, 0.28);">
+                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[158px] cursor-pointer hover:scale-[1.02] transition-transform" style="--card-glow: rgba(16, 185, 129, 0.28);">
                         <div class="flex items-center justify-center gap-2 w-full">
                             <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-emerald-500/15 to-teal-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-circle-check"></i>
@@ -1414,7 +1457,7 @@
                     </div>
 
                     <!-- 4. Weekly Off Today -->
-                    <div class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[148px]" style="--card-glow: rgba(245, 158, 11, 0.22);">
+                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[148px] cursor-pointer hover:scale-[1.02] transition-transform" style="--card-glow: rgba(245, 158, 11, 0.22);">
                         <div class="flex items-center justify-center gap-2 w-full">
                             <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-amber-500/15 to-orange-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/20 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-umbrella-beach"></i>
@@ -1422,7 +1465,7 @@
                             <span class="text-[11px] font-black text-amber-700 dark:text-amber-400 uppercase tracking-wider">Weekly Off</span>
                         </div>
                         <div class="my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-amber-600 dark:text-amber-400 font-mono tracking-tight" id="count-off-today">5</div>
+                            <div class="font-display font-black text-3xl sm:text-4xl text-amber-600 dark:text-amber-400 font-mono tracking-tight" id="count-off-today">2</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
                             <span class="text-[10px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 leading-none">
@@ -1477,7 +1520,7 @@
                         <button onclick="filterByChip('ALL')" id="chip-filter-all"
                                 class="filter-chip active inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50 hover:text-indigo-600">
                             <i class="fa-solid fa-layer-group text-xs"></i>
-                            <span>All (26)</span>
+                            <span id="chip-filter-all-label">All (26)</span>
                         </button>
                         <button onclick="filterByChip('AVAILABLE_TODAY')" id="chip-filter-available"
                                 class="filter-chip inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50 hover:text-indigo-600">
@@ -1748,7 +1791,7 @@
                     </div>
 
                     <div class="overflow-x-auto w-full">
-                        <table id="monthly-matrix-table" class="w-full text-left border-collapse text-xs">
+                        <table id="monthly-matrix-table" class="w-full text-left border-collapse text-xs table-fixed">
                             <thead id="monthly-table-head">
                                 <!-- Populated dynamically by JS -->
                             </thead>
@@ -2583,16 +2626,18 @@
             { sl: 12, name: "Fahim Howlader", weekend: "Monday", phone: "01887474044", join: "08-08-2026", id: "mod_01887474044_11_hmq5y", status: "Present", notes: "" },
             { sl: 13, name: "Sami", weekend: "Tuesday", phone: "01407914895", join: "05-01-2026", id: "mod_01602871511_12_xwcp7", status: "Present", notes: "" },
             { sl: 14, name: "Hamim", weekend: "Tuesday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_14_to2nh", status: "Present", notes: "" },
-            { sl: 15, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
-            { sl: 16, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
-            { sl: 17, name: "Najmul Islam", weekend: "Thursday", phone: "01782417078", join: "17-05-2023", id: "mod_01782417078_18_m1u5q", status: "Present", notes: "" },
-            { sl: 18, name: "Zubayer Mridha", weekend: "Thursday", phone: "01611955763", join: "12-08-2026", id: "mod_01611955763_19_qdz6h", status: "Present", notes: "" },
-            { sl: 19, name: "Naim Khan", weekend: "Thursday", phone: "01615354665", join: "09-01-2025", id: "mod_01615354665_20_unaug", status: "Present", notes: "" },
-            { sl: 20, name: "Sahil Sheikh", weekend: "Friday", phone: "01407722355", join: "01-12-2024", id: "mod_01407722355_21_gghnk", status: "Present", notes: "" },
-            { sl: 21, name: "Rezaul Karim", weekend: "Friday", phone: "01626429771", join: "05-01-2026", id: "mod_01626429771_22_zxcoi", status: "Present", notes: "" },
-            { sl: 22, name: "Piyal Sarker", weekend: "Friday", phone: "01705952384", join: "04-01-2026", id: "mod_01705952384_23_xu0wv", status: "Present", notes: "" },
-            { sl: 23, name: "Tonmoy", weekend: "Friday", phone: "01921080031", join: "11-02-2026", id: "mod_01921080031_24_v2gtv", status: "Present", notes: "" },
-            { sl: 24, name: "Masud Rana", weekend: "Friday", phone: "01792791593", join: "25-08-2026", id: "mod_01792791593_25_domdj", status: "Present", notes: "" }
+            { sl: 15, name: "Biplob", weekend: "Tuesday", phone: "01926994536", join: "07-09-2026", id: "mod_01926994536_5t6ii", status: "Present", notes: "" },
+            { sl: 16, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
+            { sl: 17, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
+            { sl: 18, name: "Najmul Islam", weekend: "Thursday", phone: "01782417078", join: "17-05-2023", id: "mod_01782417078_18_m1u5q", status: "Present", notes: "" },
+            { sl: 19, name: "Zubayer Mridha", weekend: "Thursday", phone: "01611955763", join: "12-08-2026", id: "mod_01611955763_19_qdz6h", status: "Present", notes: "" },
+            { sl: 20, name: "Naim Khan", weekend: "Thursday", phone: "01615354665", join: "09-01-2025", id: "mod_01615354665_20_unaug", status: "Present", notes: "" },
+            { sl: 21, name: "Sahil Sheikh", weekend: "Friday", phone: "01407722355", join: "01-12-2024", id: "mod_01407722355_21_gghnk", status: "Present", notes: "" },
+            { sl: 22, name: "Rezaul Karim", weekend: "Friday", phone: "01626429771", join: "05-01-2026", id: "mod_01626429771_22_zxcoi", status: "Present", notes: "" },
+            { sl: 23, name: "Piyal Sarker", weekend: "Friday", phone: "01705952384", join: "04-01-2026", id: "mod_01705952384_23_xu0wv", status: "Present", notes: "" },
+            { sl: 24, name: "Tonmoy", weekend: "Friday", phone: "01921080031", join: "11-02-2026", id: "mod_01921080031_24_v2gtv", status: "Present", notes: "" },
+            { sl: 25, name: "Masud Rana", weekend: "Friday", phone: "01792791593", join: "25-08-2026", id: "mod_01792791593_25_domdj", status: "Present", notes: "" },
+            { sl: 26, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
         ];
 
         let moderators = [];
@@ -3002,10 +3047,14 @@
             }
         }
 
+        const _dayNameCache = {};
         function getDayNameForDate(dateStr) {
+            if (_dayNameCache[dateStr]) return _dayNameCache[dateStr];
             const [y, m, d] = dateStr.split('-').map(Number);
             const dateObj = new Date(y, m - 1, d);
-            return DAYS_MAP[dateObj.getDay()];
+            const name = DAYS_MAP[dateObj.getDay()];
+            _dayNameCache[dateStr] = name;
+            return name;
         }
 
         function getTodayDateStr() {
@@ -3090,13 +3139,18 @@
 
         function getModeratorKey(mod) {
             if (!mod) return '';
-            if (mod.id) return String(mod.id);
-            if (mod.phone) return 'mod_' + String(mod.phone).replace(/\D/g, '');
-            return 'mod_sl_' + String(mod.sl);
+            if (mod._cachedKey) return mod._cachedKey;
+            if (mod.id) mod._cachedKey = String(mod.id);
+            else if (mod.phone) mod._cachedKey = 'mod_' + String(mod.phone).replace(/\D/g, '');
+            else mod._cachedKey = 'mod_sl_' + String(mod.sl);
+            return mod._cachedKey;
         }
 
+        let _hasSanitizedAttendance = false;
         function sanitizeAndMigrateAttendanceHistory() {
+            if (_hasSanitizedAttendance) return;
             if (!attendanceHistory || typeof attendanceHistory !== 'object' || !Array.isArray(moderators) || moderators.length === 0) return;
+            _hasSanitizedAttendance = true;
 
             let modified = false;
 
@@ -3243,6 +3297,9 @@
         }
 
         function initAttendanceForDate(dateStr) {
+            if (attendanceHistory[dateStr] && !Array.isArray(attendanceHistory[dateStr]) && attendanceHistory[dateStr]._initialized) {
+                return;
+            }
             if (!attendanceHistory[dateStr] || Array.isArray(attendanceHistory[dateStr])) {
                 sanitizeAndMigrateAttendanceHistory();
             }
@@ -3250,21 +3307,24 @@
                 attendanceHistory[dateStr] = {};
             }
             const dayName = getDayNameForDate(dateStr);
-            moderators.forEach(mod => {
+            const dayRecords = attendanceHistory[dateStr];
+            for (let i = 0; i < moderators.length; i++) {
+                const mod = moderators[i];
                 const modKey = getModeratorKey(mod);
                 const slKey = String(mod.sl);
-                const hasRecord = (attendanceHistory[dateStr][modKey] !== undefined) || (attendanceHistory[dateStr][slKey] !== undefined);
+                const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[slKey] !== undefined);
                 if (!hasRecord) {
-                    const isWeekend = mod.weekend && dayName && mod.weekend.toLowerCase() === dayName.toLowerCase();
+                    const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
                     const defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
-                    attendanceHistory[dateStr][modKey] = defaultStatus;
-                    attendanceHistory[dateStr][slKey] = defaultStatus;
-                } else if (attendanceHistory[dateStr][modKey] !== undefined) {
-                    attendanceHistory[dateStr][slKey] = attendanceHistory[dateStr][modKey];
-                } else if (attendanceHistory[dateStr][slKey] !== undefined) {
-                    attendanceHistory[dateStr][modKey] = attendanceHistory[dateStr][slKey];
+                    dayRecords[modKey] = defaultStatus;
+                    dayRecords[slKey] = defaultStatus;
+                } else if (dayRecords[modKey] !== undefined) {
+                    dayRecords[slKey] = dayRecords[modKey];
+                } else if (dayRecords[slKey] !== undefined) {
+                    dayRecords[modKey] = dayRecords[slKey];
                 }
-            });
+            }
+            dayRecords._initialized = true;
         }
 
         function getModeratorStatusForDate(mod, dateStr) {
@@ -3302,7 +3362,7 @@
             saveToLocalStorage();
         }
 
-        // ======================= VIEW & NAVIGATION HANDLERS =======================
+        // ======================= VIEW & NAVIGATION HANDLERS (60FPS INSTANT) =======================
         function switchView(view) {
             activeView = view;
             const dailyBtn = document.getElementById('btn-view-daily');
@@ -3311,42 +3371,37 @@
             const monthlyContainer = document.getElementById('view-monthly-container');
             const mainCanvas = document.getElementById('main-content-canvas');
 
+            const dockDaily = document.getElementById('dock-btn-daily');
+            const dockMonthly = document.getElementById('dock-btn-monthly');
+
             if (view === 'daily') {
-                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm cursor-pointer";
-                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm cursor-pointer";
+                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+                if (dockDaily) dockDaily.className = "flex flex-col items-center gap-1 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] cursor-pointer";
+                if (dockMonthly) dockMonthly.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
+
+                if (monthlyContainer) monthlyContainer.classList.add('hidden');
                 if (dailyContainer) {
                     dailyContainer.classList.remove('hidden');
                     dailyContainer.classList.remove('view-fade-slide');
-                    void dailyContainer.offsetWidth; // trigger reflow
-                    dailyContainer.classList.add('view-fade-slide');
+                    requestAnimationFrame(() => dailyContainer.classList.add('view-fade-slide'));
                 }
-                if (monthlyContainer) monthlyContainer.classList.add('hidden');
-                if (mainCanvas) mainCanvas.className = "flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 transition-all duration-300";
+                if (mainCanvas) mainCanvas.className = "flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8";
                 renderDailyTable();
             } else {
-                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm cursor-pointer";
-                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm cursor-pointer";
+                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+                if (dockMonthly) dockMonthly.className = "flex flex-col items-center gap-1 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] cursor-pointer";
+                if (dockDaily) dockDaily.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
+
+                if (dailyContainer) dailyContainer.classList.add('hidden');
                 if (monthlyContainer) {
                     monthlyContainer.classList.remove('hidden');
                     monthlyContainer.classList.remove('view-fade-slide');
-                    void monthlyContainer.offsetWidth; // trigger reflow
-                    monthlyContainer.classList.add('view-fade-slide');
+                    requestAnimationFrame(() => monthlyContainer.classList.add('view-fade-slide'));
                 }
-                if (dailyContainer) dailyContainer.classList.add('hidden');
-                if (mainCanvas) mainCanvas.className = "flex-1 max-w-[98%] xl:max-w-[98%] 2xl:max-w-[98%] w-full mx-auto px-2 sm:px-4 lg:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8 transition-all duration-300";
+                if (mainCanvas) mainCanvas.className = "flex-1 max-w-[98%] xl:max-w-[98%] 2xl:max-w-[98%] w-full mx-auto px-2 sm:px-4 lg:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8";
                 renderMonthlyTable();
-            }
-
-            const dockDaily = document.getElementById('dock-btn-daily');
-            const dockMonthly = document.getElementById('dock-btn-monthly');
-            if (dockDaily && dockMonthly) {
-                if (view === 'daily') {
-                    dockDaily.className = "flex flex-col items-center gap-1 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] cursor-pointer";
-                    dockMonthly.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
-                } else {
-                    dockMonthly.className = "flex flex-col items-center gap-1 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] cursor-pointer";
-                    dockDaily.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
-                }
             }
 
             applyPrintOrientationSettings();
@@ -3391,7 +3446,7 @@
 
         function navigateDay(offset) {
             const [y, m, d] = currentActiveDate.split('-').map(Number);
-            const dateObj = new Date(y, m - 1, d);
+            const dateObj = new Date(y, m - 1, d, 12, 0, 0);
             dateObj.setDate(dateObj.getDate() + offset);
 
             const newY = dateObj.getFullYear();
@@ -3539,8 +3594,7 @@
                 const isTodayWeekend = mod.weekend && dayName && mod.weekend.toLowerCase() === dayName.toLowerCase();
 
                 if (filterStatus === "AVAILABLE_TODAY") {
-                    if (status === 'Weekly Off' || status === 'Leave' || status === 'Absent' || status === 'Weekend Exchange') return false;
-                    if (isTodayWeekend && status !== 'Present' && status !== 'Night Shift' && status !== 'Outside Work') return false;
+                    if (status !== 'Present' && status !== 'Night Shift' && status !== 'Outside Work') return false;
                 } else if (filterStatus !== "ALL" && status !== filterStatus) {
                     return false;
                 }
@@ -3715,7 +3769,7 @@
             updateDailyKPIs();
         }
 
-        // Animated Counter Helper with pulse bump
+        // Animated Counter Helper (Zero-Jank Raf)
         function animateNumber(elementId, newVal) {
             const el = document.getElementById(elementId);
             if (!el) return;
@@ -3723,29 +3777,32 @@
             if (el.innerText !== strVal) {
                 el.innerText = strVal;
                 el.classList.remove('animate-counter-bump');
-                void el.offsetWidth; // trigger reflow
-                el.classList.add('animate-counter-bump');
+                requestAnimationFrame(() => el.classList.add('animate-counter-bump'));
             }
         }
 
         // Daily KPI Calculations
         function updateDailyKPIs() {
             const dayName = getDayNameForDate(currentActiveDate);
-            let present = 0, absent = 0, night = 0, offToday = 0, leaveCount = 0, unexcusedCount = 0;
+            let present = 0, absent = 0, night = 0, offToday = 0, leaveCount = 0, unexcusedCount = 0, exchangeCount = 0, outsideCount = 0;
 
             moderators.forEach(mod => {
                 const status = getModeratorStatusForDate(mod, currentActiveDate);
                 const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
 
-                if (status === 'Present') present++;
-                else if (status === 'Night Shift') night++;
-                else if (status === 'Leave') leaveCount++;
-                
-                if (status === 'Weekly Off' || status === 'Weekend Exchange' || (isWeekend && status !== 'Present' && status !== 'Night Shift' && status !== 'Outside Work')) {
+                if (status === 'Present') {
+                    present++;
+                } else if (status === 'Night Shift') {
+                    night++;
+                } else if (status === 'Weekly Off') {
                     offToday++;
-                }
-
-                if (status === 'Absent') {
+                } else if (status === 'Leave') {
+                    leaveCount++;
+                } else if (status === 'Weekend Exchange') {
+                    exchangeCount++;
+                } else if (status === 'Outside Work') {
+                    outsideCount++;
+                } else if (status === 'Absent') {
                     absent++;
                     if (!isWeekend) unexcusedCount++;
                 }
@@ -3756,7 +3813,8 @@
 
             animateNumber('count-total-mods', totalMods);
 
-            const availableCount = Math.max(0, totalMods - offToday - leaveCount - (unexcusedCount > 0 ? unexcusedCount : absent));
+            // On Duty: all actively working on roster today (Present + Night Duty + Outside Duty)
+            const availableCount = present + night + outsideCount;
             const availablePct = Math.round((availableCount / total) * 100);
 
             animateNumber('count-available-today', availableCount);
@@ -3773,22 +3831,19 @@
             if (barPres) barPres.style.width = `${presentPct}%`;
 
             animateNumber('count-off-today', offToday);
-            const effectiveAbsent = unexcusedCount > 0 ? unexcusedCount : absent;
-            animateNumber('count-absent', effectiveAbsent);
+            animateNumber('count-absent', absent);
 
             // Bento Absent Card Highlight Glow when absent > 0
             const absentCard = document.getElementById('card-bento-absent');
             if (absentCard) {
-                if (effectiveAbsent > 0) {
+                if (absent > 0) {
                     absentCard.classList.add('ring-2', 'ring-rose-500', 'shadow-glow-rose');
                 } else {
                     absentCard.classList.remove('ring-2', 'ring-rose-500', 'shadow-glow-rose');
                 }
             }
 
-            const activeNightDutyMods = scheduledNightShifts.filter(r => currentActiveDate >= r.startDate && currentActiveDate <= r.endDate);
-            const effectiveNight = activeNightDutyMods.length > 0 ? activeNightDutyMods.length : night;
-            animateNumber('count-night', effectiveNight);
+            animateNumber('count-night', night);
 
             // Update Header Operations Counts
             const activeNightShiftsCount = scheduledNightShifts.filter(r => r.endDate >= currentActiveDate).length;
@@ -3799,6 +3854,10 @@
             animateNumber('active-leave-count', activeLeavesCount);
             animateNumber('active-exchange-count', activeExchangesCount);
             animateNumber('unexcused-count', unexcusedCount);
+
+            // Update All Filter Chip label dynamically
+            const chipAllLabel = document.getElementById('chip-filter-all-label');
+            if (chipAllLabel) chipAllLabel.innerText = `All (${totalMods})`;
         }
 
         function handleStatusSelect(index, newStatus) {
@@ -3831,25 +3890,41 @@
             }
         }
 
-        // ======================= MONTHLY ATTENDANCE SHEET RENDERER =======================
+        // ======================= MONTHLY ATTENDANCE SHEET RENDERER (60FPS ULTRA FAST) =======================
+        const MATRIX_BADGE_MAP = {
+            'Present': '<span class="matrix-cell-badge matrix-badge-present">P</span>',
+            'Weekly Off': '<span class="matrix-cell-badge matrix-badge-off">OFF</span>',
+            'Weekend Exchange': '<span class="matrix-cell-badge matrix-badge-exchange">EX</span>',
+            'Absent': '<span class="matrix-cell-badge matrix-badge-absent">A</span>',
+            'Night Shift': '<span class="matrix-cell-badge matrix-badge-night">N</span>',
+            'Leave': '<span class="matrix-cell-badge matrix-badge-leave">L</span>'
+        };
+        const MATRIX_BADGE_OUTSIDE = '<span class="matrix-cell-badge matrix-badge-outside">O</span>';
+
         function renderMonthlyTable() {
             const [yearStr, monthStr] = currentActiveMonth.split('-');
             const year = parseInt(yearStr, 10);
             const month = parseInt(monthStr, 10);
             const monthName = MONTH_NAMES[month - 1];
 
-            document.getElementById('monthly-sheet-label').innerText = `${monthName} ${year}`;
-            document.getElementById('selected-month-picker').value = currentActiveMonth;
+            const labelEl = document.getElementById('monthly-sheet-label');
+            if (labelEl) labelEl.innerText = `${monthName} ${year}`;
+            const pickerEl = document.getElementById('selected-month-picker');
+            if (pickerEl) pickerEl.value = currentActiveMonth;
 
-            // Sync monthly filter dropdown
+            // Sync monthly filter dropdown efficiently
             const modSelect = document.getElementById('monthly-mod-select');
             if (modSelect) {
-                let optionsHtml = `<option value="ALL">All Moderators (${moderators.length})</option>`;
-                moderators.forEach(m => {
-                    const isSelected = String(m.sl) === String(selectedMonthlyModSl) ? 'selected' : '';
-                    optionsHtml += `<option value="${m.sl}" ${isSelected}>${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)</option>`;
-                });
-                modSelect.innerHTML = optionsHtml;
+                if (modSelect._cachedCount !== moderators.length) {
+                    let optionsHtml = `<option value="ALL">All Moderators (${moderators.length})</option>`;
+                    for (let i = 0; i < moderators.length; i++) {
+                        const m = moderators[i];
+                        optionsHtml += `<option value="${m.sl}">${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)</option>`;
+                    }
+                    modSelect.innerHTML = optionsHtml;
+                    modSelect._cachedCount = moderators.length;
+                }
+                modSelect.value = String(selectedMonthlyModSl);
             }
 
             const clearBtn = document.getElementById('btn-clear-monthly-mod-filter');
@@ -3875,109 +3950,136 @@
             }
 
             const daysInMonth = new Date(year, month, 0).getDate();
+            const monthPadded = String(month).padStart(2, '0');
+            const monthPrefix = `${year}-${monthPadded}-`;
 
-            const thead = document.getElementById('monthly-table-head');
-            let headerHtml = `
-                <tr class="bg-slate-100/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 font-display font-black uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
-                    <th class="col-m-sl py-3 px-1 text-center align-middle w-10 sm:w-12 bg-slate-100 dark:bg-slate-800">SL</th>
-                    <th class="col-m-name py-3 px-2 text-left align-middle min-w-[120px] bg-slate-100 dark:bg-slate-800">Name</th>
-                    <th class="col-m-off py-3 px-1 text-center align-middle w-12 sm:w-14 bg-slate-100 dark:bg-slate-800">Off</th>
-            `;
-
+            // 1. Pre-initialize and cache all 31 days for this month in a single sub-millisecond pass
+            const monthDayRecords = [];
             for (let d = 1; d <= daysInMonth; d++) {
-                const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-                const dayNameShort = getDayNameForDate(dateStr).substring(0, 2);
-                const isTodayColumn = dateStr === currentActiveDate;
-                headerHtml += `
-                    <th class="col-m-day py-2 px-0.5 text-center align-middle font-mono border-l border-slate-200 dark:border-slate-700 ${isTodayColumn ? 'matrix-today-header' : ''}" data-day="${d}">
-                        <div class="text-xs font-black text-slate-900 dark:text-white leading-none">${d}</div>
-                        <div class="text-[9px] font-bold text-slate-400 dark:text-slate-300 mt-0.5 leading-none">${dayNameShort}</div>
-                        ${isTodayColumn ? '<div class="text-[7.5px] font-black uppercase tracking-tighter text-indigo-600 dark:text-indigo-300 mt-0.5 flex items-center justify-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping inline-block"></span>Today</div>' : ''}
-                    </th>
-                `;
+                const dateStr = `${monthPrefix}${String(d).padStart(2, '0')}`;
+                initAttendanceForDate(dateStr);
+                monthDayRecords[d] = {
+                    dateStr,
+                    dayRecords: attendanceHistory[dateStr],
+                    dayName: getDayNameForDate(dateStr),
+                    dayNameShort: getDayNameForDate(dateStr).substring(0, 2),
+                    isToday: (dateStr === currentActiveDate)
+                };
             }
 
-            headerHtml += `
-                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-emerald-500/10 text-emerald-600 font-mono font-bold" title="Present">P</th>
-                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-amber-500/10 text-amber-600 font-mono font-bold" title="Weekly Off">Off</th>
-                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-cyan-500/10 text-cyan-600 font-mono font-bold" title="Weekend Exchange">EX</th>
-                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-rose-500/10 text-rose-600 font-mono font-bold" title="Absent">A</th>
-                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-indigo-500/10 text-indigo-600 font-mono font-bold" title="Night Shift">N</th>
-                    <th class="col-m-stat py-3 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Leave">L</th>
-                </tr>
-            `;
-            thead.innerHTML = headerHtml;
+            // 2. Generate Table Header (only if active month or selection changed)
+            const thead = document.getElementById('monthly-table-head');
+            const theadCacheKey = `${currentActiveMonth}-${daysInMonth}-${currentActiveDate}`;
+            if (thead && thead._renderedKey !== theadCacheKey) {
+                let headerHtml = `
+                    <tr class="bg-slate-100/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 font-display font-black uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
+                        <th class="col-m-sl py-2.5 px-1 text-center align-middle bg-slate-100 dark:bg-slate-800">SL</th>
+                        <th class="col-m-name py-2.5 px-2 text-left align-middle bg-slate-100 dark:bg-slate-800">Name</th>
+                        <th class="col-m-off py-2.5 px-1 text-center align-middle bg-slate-100 dark:bg-slate-800">Off</th>
+                `;
 
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dayInfo = monthDayRecords[d];
+                    headerHtml += `
+                        <th class="col-m-day py-1.5 px-0.5 text-center align-middle font-mono border-l border-slate-200 dark:border-slate-700 ${dayInfo.isToday ? 'matrix-today-header' : ''}" data-day="${d}">
+                            <div class="text-xs font-black text-slate-900 dark:text-white leading-none">${d}</div>
+                            <div class="text-[9px] font-bold text-slate-400 dark:text-slate-300 mt-0.5 leading-none">${dayInfo.dayNameShort}</div>
+                            ${dayInfo.isToday ? '<div class="text-[7.5px] font-black uppercase tracking-tighter text-indigo-600 dark:text-indigo-300 mt-0.5 flex items-center justify-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping inline-block"></span>Today</div>' : ''}
+                        </th>
+                    `;
+                }
+
+                headerHtml += `
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-emerald-500/10 text-emerald-600 font-mono font-bold" title="Present">P</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-amber-500/10 text-amber-600 font-mono font-bold" title="Weekly Off">Off</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-cyan-500/10 text-cyan-600 font-mono font-bold" title="Weekend Exchange">EX</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-rose-500/10 text-rose-600 font-mono font-bold" title="Absent">A</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-indigo-500/10 text-indigo-600 font-mono font-bold" title="Night Shift">N</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Leave">L</th>
+                    </tr>
+                `;
+                thead.innerHTML = headerHtml;
+                thead._renderedKey = theadCacheKey;
+            }
+
+            // 3. Fast Body Construction
             const tbody = document.getElementById('monthly-table-body');
-            tbody.innerHTML = '';
+            if (!tbody) return;
             let tbodyHtml = '';
+            const isModeratorRole = (currentUserRole === 'moderator');
 
-            displayMods.forEach((mod) => {
+            for (let mIdx = 0; mIdx < displayMods.length; mIdx++) {
+                const mod = displayMods[mIdx];
                 let modPresent = 0, modOff = 0, modExchange = 0, modAbsent = 0, modNight = 0, modLeave = 0;
                 const avatarTheme = getAvatarTheme(mod.sl);
+                const modKey = getModeratorKey(mod);
+                const slKey = String(mod.sl);
+                const modWeekendLower = (mod.weekend || '').toLowerCase();
 
                 let rowHtml = `
-                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
-                        <td class="col-m-sl py-2 px-1 text-center align-middle font-mono font-bold text-slate-500">
+                    <tr class="hover:bg-slate-50/70 dark:hover:bg-slate-800/30 transition-colors duration-150">
+                        <td class="col-m-sl py-1.5 px-1 text-center align-middle font-mono font-bold text-slate-500">
                             ${String(mod.sl).padStart(2, '0')}
                         </td>
-                        <td class="col-m-name py-2 px-2 align-middle font-display font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                        <td class="col-m-name py-1.5 px-2 align-middle font-display font-bold text-slate-900 dark:text-white whitespace-nowrap">
                             <button type="button" onclick="focusModeratorMonthly(${mod.sl})" 
                                     class="no-print text-left font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition flex items-center gap-2 group/mname cursor-pointer">
                                 <span class="w-6 h-6 rounded-lg bg-gradient-to-tr ${avatarTheme.bg} text-white text-[10px] font-black flex items-center justify-center shadow-xs">${getInitials(mod.name)}</span>
-                                <span class="group-hover/mname:underline decoration-indigo-500">${mod.name}</span>
-                                <i class="fa-solid fa-filter text-[10px] text-slate-400 opacity-60"></i>
+                                <span class="group-hover/mname:underline decoration-indigo-500 truncate max-w-[100px] sm:max-w-[130px] inline-block">${mod.name}</span>
+                                <i class="fa-solid fa-filter text-[10px] text-slate-400 opacity-50"></i>
                             </button>
                             <span class="print-only font-bold text-slate-900" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
                                 ${mod.name}
                             </span>
                         </td>
-                        <td class="col-m-off py-2 px-1 text-center align-middle font-bold text-amber-600 text-xs">
-                            ${mod.weekend.substring(0, 3)}
+                        <td class="col-m-off py-1.5 px-1 text-center align-middle font-bold text-amber-600 text-xs">
+                            ${mod.weekend ? mod.weekend.substring(0, 3) : '--'}
                         </td>
                 `;
 
                 for (let d = 1; d <= daysInMonth; d++) {
-                    const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-                    const status = getModeratorStatusForDate(mod, dateStr);
-                    const isTodayColumn = dateStr === currentActiveDate;
+                    const dayInfo = monthDayRecords[d];
+                    const dayRecords = dayInfo.dayRecords;
 
-                    let badge = '';
-                    if (status === 'Present') {
-                        modPresent++;
-                        badge = `<span class="matrix-cell-badge matrix-badge-present">P</span>`;
-                    } else if (status === 'Weekly Off') {
-                        modOff++;
-                        badge = `<span class="matrix-cell-badge matrix-badge-off">OFF</span>`;
-                    } else if (status === 'Weekend Exchange') {
-                        modExchange++;
-                        badge = `<span class="matrix-cell-badge matrix-badge-exchange">EX</span>`;
-                    } else if (status === 'Absent') {
-                        modAbsent++;
-                        badge = `<span class="matrix-cell-badge matrix-badge-absent">A</span>`;
-                    } else if (status === 'Night Shift') {
-                        modNight++;
-                        badge = `<span class="matrix-cell-badge matrix-badge-night">N</span>`;
-                    } else if (status === 'Leave') {
-                        modLeave++;
-                        badge = `<span class="matrix-cell-badge matrix-badge-leave">L</span>`;
-                    } else {
-                        badge = `<span class="matrix-cell-badge matrix-badge-outside">O</span>`;
+                    let status = null;
+                    if (dayRecords) {
+                        if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
+                            status = dayRecords[modKey];
+                        } else if (mod.phone && dayRecords[mod.phone] !== undefined) {
+                            status = dayRecords[mod.phone];
+                        } else if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
+                            status = dayRecords[slKey];
+                        }
                     }
 
-                    if (currentUserRole === 'moderator') {
+                    if (!status) {
+                        const isWeekend = modWeekendLower && (modWeekendLower === dayInfo.dayName.toLowerCase());
+                        status = isWeekend ? 'Weekly Off' : 'Present';
+                    }
+
+                    if (status === 'Present') modPresent++;
+                    else if (status === 'Weekly Off') modOff++;
+                    else if (status === 'Weekend Exchange') modExchange++;
+                    else if (status === 'Absent') modAbsent++;
+                    else if (status === 'Night Shift') modNight++;
+                    else if (status === 'Leave') modLeave++;
+
+                    const badge = MATRIX_BADGE_MAP[status] || MATRIX_BADGE_OUTSIDE;
+                    const todayClass = dayInfo.isToday ? ' matrix-today-col' : '';
+
+                    if (isModeratorRole) {
                         rowHtml += `
-                            <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800 ${isTodayColumn ? 'matrix-today-col' : ''}" data-day="${d}">
-                                <div class="w-full h-full flex items-center justify-center p-0.5 select-none" title="${mod.name}: ${status} on ${dateStr}">
+                            <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800${todayClass}" data-day="${d}">
+                                <div class="w-full h-full flex items-center justify-center select-none" title="${mod.name}: ${status} on ${dayInfo.dateStr}">
                                     ${badge}
                                 </div>
                             </td>
                         `;
                     } else {
                         rowHtml += `
-                            <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800 ${isTodayColumn ? 'matrix-today-col' : ''}" data-day="${d}">
-                                <button type="button" onclick="openStatusPicker(event, ${mod.sl}, '${dateStr}', '${status}')" 
-                                        class="w-full h-full flex items-center justify-center p-0.5 rounded-lg hover:ring-2 hover:ring-indigo-500 transition cursor-pointer">
+                            <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800${todayClass}" data-day="${d}">
+                                <button type="button" onclick="openStatusPicker(event, ${mod.sl}, '${dayInfo.dateStr}', '${status}')" 
+                                        class="w-full h-full flex items-center justify-center rounded-lg hover:ring-2 hover:ring-indigo-500 cursor-pointer">
                                     ${badge}
                                 </button>
                             </td>
@@ -3986,12 +4088,12 @@
                 }
 
                 rowHtml += `
-                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-emerald-600 bg-emerald-500/5">${modPresent}</td>
-                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-amber-600 bg-amber-500/5">${modOff}</td>
-                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-cyan-600 bg-cyan-500/5">${modExchange}</td>
-                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-rose-600 bg-rose-500/5">${modAbsent}</td>
-                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-indigo-600 bg-indigo-500/5">${modNight}</td>
-                        <td class="col-m-stat py-2 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modLeave}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-emerald-600 bg-emerald-500/5">${modPresent}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-amber-600 bg-amber-500/5">${modOff}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-cyan-600 bg-cyan-500/5">${modExchange}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-rose-600 bg-rose-500/5">${modAbsent}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-indigo-600 bg-indigo-500/5">${modNight}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modLeave}</td>
                     </tr>
                 `;
 
@@ -3999,13 +4101,20 @@
 
                 if (isSingleMod && displayMods.length === 1) {
                     const originalIdx = moderators.findIndex(m => m.sl === mod.sl);
-                    document.getElementById('single-mod-avatar').innerText = getInitials(mod.name);
-                    document.getElementById('single-mod-name').innerText = mod.name;
-                    document.getElementById('single-mod-sl').innerText = `SL: ${String(mod.sl).padStart(2, '0')}`;
-                    document.getElementById('single-mod-weekend').innerText = `${mod.weekend} Off`;
-                    document.getElementById('single-mod-phone').innerText = mod.phone;
-                    document.getElementById('single-mod-join').innerText = mod.join;
-                    document.getElementById('single-mod-tenure').innerText = calculateTenure(mod.join, currentActiveDate);
+                    const avatarEl = document.getElementById('single-mod-avatar');
+                    if (avatarEl) avatarEl.innerText = getInitials(mod.name);
+                    const nameEl = document.getElementById('single-mod-name');
+                    if (nameEl) nameEl.innerText = mod.name;
+                    const slEl = document.getElementById('single-mod-sl');
+                    if (slEl) slEl.innerText = `SL: ${String(mod.sl).padStart(2, '0')}`;
+                    const wkEl = document.getElementById('single-mod-weekend');
+                    if (wkEl) wkEl.innerText = `${mod.weekend} Off`;
+                    const phEl = document.getElementById('single-mod-phone');
+                    if (phEl) phEl.innerText = mod.phone;
+                    const joinEl = document.getElementById('single-mod-join');
+                    if (joinEl) joinEl.innerText = mod.join;
+                    const tenureEl = document.getElementById('single-mod-tenure');
+                    if (tenureEl) tenureEl.innerText = calculateTenure(mod.join, currentActiveDate);
                     
                     const waBtn = document.getElementById('single-mod-wa-btn');
                     const editBtn = document.getElementById('single-mod-edit-btn');
@@ -4031,23 +4140,25 @@
                     document.getElementById('single-mod-stat-night').innerText = modNight;
                     document.getElementById('single-mod-stat-leave').innerText = modLeave;
                 }
-            });
+            }
 
             tbody.innerHTML = tbodyHtml;
 
-            document.getElementById('monthly-footer-count').innerText = isSingleMod ? `Showing 1 of ${moderators.length} Members` : `Showing ${moderators.length} of ${moderators.length} Members`;
+            const footerCountEl = document.getElementById('monthly-footer-count');
+            if (footerCountEl) {
+                footerCountEl.innerText = isSingleMod ? `Showing 1 of ${moderators.length} Members` : `Showing ${moderators.length} of ${moderators.length} Members`;
+            }
             setupMatrixCrosshairs();
         }
 
-        // ======================= MATRIX HIGHLIGHT & CROSSHAIR SYSTEM =======================
+        // ======================= MATRIX HIGHLIGHT & CROSSHAIR SYSTEM (THROTTLED) =======================
         function setupMatrixCrosshairs() {
             const table = document.getElementById('monthly-matrix-table');
-            if (!table) return;
-
-            if (table._hasCrosshairListeners) return;
+            if (!table || table._hasCrosshairListeners) return;
             table._hasCrosshairListeners = true;
 
             let currentHighlightedDay = null;
+            let rafId = null;
 
             table.addEventListener('mouseover', (e) => {
                 const cell = e.target.closest('.col-m-day');
@@ -4055,36 +4166,38 @@
                 const day = cell.getAttribute('data-day');
                 if (!day || day === currentHighlightedDay) return;
 
-                // Clear previous highlights
-                if (currentHighlightedDay) {
-                    const prevCells = table.querySelectorAll(`[data-day="${currentHighlightedDay}"]`);
-                    prevCells.forEach(el => {
-                        el.classList.remove('matrix-col-highlight');
-                        el.classList.remove('matrix-header-highlight');
-                    });
-                }
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(() => {
+                    if (currentHighlightedDay) {
+                        const prevCells = table.querySelectorAll(`[data-day="${currentHighlightedDay}"]`);
+                        for (let i = 0; i < prevCells.length; i++) {
+                            prevCells[i].classList.remove('matrix-col-highlight', 'matrix-header-highlight');
+                        }
+                    }
 
-                currentHighlightedDay = day;
-                const allDayCells = table.querySelectorAll(`[data-day="${day}"]`);
-                allDayCells.forEach(el => {
-                    if (el.tagName === 'TH') {
-                        el.classList.add('matrix-header-highlight');
-                    } else if (!el.classList.contains('matrix-today-col')) {
-                        el.classList.add('matrix-col-highlight');
+                    currentHighlightedDay = day;
+                    const allDayCells = table.querySelectorAll(`[data-day="${day}"]`);
+                    for (let i = 0; i < allDayCells.length; i++) {
+                        const el = allDayCells[i];
+                        if (el.tagName === 'TH') {
+                            el.classList.add('matrix-header-highlight');
+                        } else if (!el.classList.contains('matrix-today-col')) {
+                            el.classList.add('matrix-col-highlight');
+                        }
                     }
                 });
-            });
+            }, { passive: true });
 
             table.addEventListener('mouseleave', () => {
+                if (rafId) cancelAnimationFrame(rafId);
                 if (currentHighlightedDay) {
                     const prevCells = table.querySelectorAll(`[data-day="${currentHighlightedDay}"]`);
-                    prevCells.forEach(el => {
-                        el.classList.remove('matrix-col-highlight');
-                        el.classList.remove('matrix-header-highlight');
-                    });
+                    for (let i = 0; i < prevCells.length; i++) {
+                        prevCells[i].classList.remove('matrix-col-highlight', 'matrix-header-highlight');
+                    }
                     currentHighlightedDay = null;
                 }
-            });
+            }, { passive: true });
         }
 
         function scrollToTodayColumn() {
@@ -6519,7 +6632,7 @@
             moderators.forEach((m, idx) => {
                 const status = getModeratorStatusForDate(m, currentActiveDate);
                 const tenure = calculateTenure(m.join, currentActiveDate);
-                csv += `${idx + 1},"${m.name}","${m.weekend}","${m.phone}","${m.join}","${tenure}","${status}"\n`;
+                csv += `${m.sl},"${m.name}","${m.weekend}","${m.phone}","${m.join}","${tenure}","${status}"\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
