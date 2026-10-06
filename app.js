@@ -755,20 +755,37 @@
             activeView = view;
             const dailyBtn = document.getElementById('btn-view-daily');
             const monthlyBtn = document.getElementById('btn-view-monthly');
+            const appointmentBtn = document.getElementById('btn-view-appointment');
             const dailyContainer = document.getElementById('view-daily-container');
             const monthlyContainer = document.getElementById('view-monthly-container');
+            const appointmentContainer = document.getElementById('view-appointment-container');
             const mainCanvas = document.getElementById('main-content-canvas');
 
             const dockDaily = document.getElementById('dock-btn-daily');
             const dockMonthly = document.getElementById('dock-btn-monthly');
+            const dockAppointment = document.getElementById('dock-btn-appointment');
+
+            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
+            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+
+            const activeDockClass = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
+            const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
+
+            if (dailyBtn) dailyBtn.className = inactiveBtnClass;
+            if (monthlyBtn) monthlyBtn.className = inactiveBtnClass;
+            if (appointmentBtn) appointmentBtn.className = inactiveBtnClass;
+
+            if (dockDaily) dockDaily.className = inactiveDockClass;
+            if (dockMonthly) dockMonthly.className = inactiveDockClass;
+            if (dockAppointment) dockAppointment.className = inactiveDockClass;
+
+            if (dailyContainer) dailyContainer.classList.add('hidden');
+            if (monthlyContainer) monthlyContainer.classList.add('hidden');
+            if (appointmentContainer) appointmentContainer.classList.add('hidden');
 
             if (view === 'daily') {
-                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
-                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
-                if (dockDaily) dockDaily.className = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
-                if (dockMonthly) dockMonthly.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
-
-                if (monthlyContainer) monthlyContainer.classList.add('hidden');
+                if (dailyBtn) dailyBtn.className = activeBtnClass;
+                if (dockDaily) dockDaily.className = activeDockClass;
                 if (dailyContainer) {
                     dailyContainer.classList.remove('hidden');
                     dailyContainer.classList.remove('view-fade-slide');
@@ -776,13 +793,9 @@
                 }
                 if (mainCanvas) mainCanvas.className = "flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8";
                 renderDailyTable();
-            } else {
-                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
-                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
-                if (dockMonthly) dockMonthly.className = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
-                if (dockDaily) dockDaily.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
-
-                if (dailyContainer) dailyContainer.classList.add('hidden');
+            } else if (view === 'monthly') {
+                if (monthlyBtn) monthlyBtn.className = activeBtnClass;
+                if (dockMonthly) dockMonthly.className = activeDockClass;
                 if (monthlyContainer) {
                     monthlyContainer.classList.remove('hidden');
                     monthlyContainer.classList.remove('view-fade-slide');
@@ -790,10 +803,431 @@
                 }
                 if (mainCanvas) mainCanvas.className = "flex-1 max-w-[98%] xl:max-w-[98%] 2xl:max-w-[98%] w-full mx-auto px-2 sm:px-4 lg:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8";
                 renderMonthlyTable();
+            } else if (view === 'appointment') {
+                if (appointmentBtn) appointmentBtn.className = activeBtnClass;
+                if (dockAppointment) dockAppointment.className = activeDockClass;
+                if (appointmentContainer) {
+                    appointmentContainer.classList.remove('hidden');
+                    appointmentContainer.classList.remove('view-fade-slide');
+                    requestAnimationFrame(() => appointmentContainer.classList.add('view-fade-slide'));
+                }
+                if (mainCanvas) mainCanvas.className = "flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8";
+                initAppointmentView();
             }
 
             applyPrintOrientationSettings();
             applyRolePermissions();
+        }
+
+        // ======================= APPOINTMENT LETTER & COMPANY PAD ENGINE =======================
+        const DEFAULT_APPOINTMENT_STATE = {
+            selectedModSl: "",
+            candidateName: "Md Sharif Hossain",
+            salutation: "Sharif Hossain",
+            issueDate: "2026-08-18",
+            effectiveDate: "2026-08-09",
+            reference: "SBT/HR/2026/01",
+            subject: "Appointment as Moderator",
+            trainingSalary: "10,000 BDT",
+            basicSalary: "14000 BDT",
+            noticePeriod: "two months",
+            signatory: "General Manager",
+            company: "Sanvee's By Tony",
+            location: "Head Office",
+            padMode: "with-bg",
+            font: "sans",
+            zoom: 1.0
+        };
+
+        let appointmentState = { ...DEFAULT_APPOINTMENT_STATE };
+
+        function formatToDisplayDate(dateStr) {
+            if (!dateStr) return "";
+            if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) return dateStr;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            return dateStr;
+        }
+
+        function formatToFormalDate(dateStr) {
+            if (!dateStr) return "";
+            let d, m, y;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                y = parts[0];
+                m = parseInt(parts[1], 10) - 1;
+                d = parts[2];
+            } else if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                d = parts[0];
+                m = parseInt(parts[1], 10) - 1;
+                y = parts[2];
+            } else {
+                return dateStr;
+            }
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            const mName = monthNames[m] || 'Month';
+            return `${d} ${mName}, ${y}`;
+        }
+
+        function parseToInputDate(dateStr) {
+            if (!dateStr) return "";
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+            if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            return "";
+        }
+
+        function initAppointmentView() {
+            const selectEl = document.getElementById('appointment-mod-select');
+            if (selectEl) {
+                const currentVal = selectEl.value;
+                selectEl.innerHTML = `
+                    <option value="">-- Choose Moderator to Auto-Fill --</option>
+                    <option value="custom">✍️ Custom Candidate (Manual Entry)</option>
+                `;
+                moderators.forEach(mod => {
+                    const opt = document.createElement('option');
+                    opt.value = String(mod.sl);
+                    opt.innerText = `[SL ${mod.sl}] ${mod.name} (Joined: ${mod.join || '--'})`;
+                    selectEl.appendChild(opt);
+                });
+                if (currentVal) selectEl.value = currentVal;
+            }
+
+            const nameInput = document.getElementById('appointment-input-name');
+            if (nameInput && !nameInput.value) {
+                resetAppointmentToDefault();
+            } else {
+                updateAppointmentPreview();
+            }
+            resetAppointmentZoom();
+        }
+
+        function handleAppointmentModSelect(modSl) {
+            if (!modSl || modSl === 'custom') {
+                appointmentState.selectedModSl = 'custom';
+                const pillSl = document.getElementById('app-info-sl');
+                const pillName = document.getElementById('app-info-name');
+                const pillPhone = document.getElementById('app-info-phone');
+                const pillJoin = document.getElementById('app-info-join');
+                if (pillSl) pillSl.innerText = '--';
+                if (pillName) pillName.innerText = 'Custom Entry';
+                if (pillPhone) pillPhone.innerText = 'Phone: Manual';
+                if (pillJoin) pillJoin.innerText = 'Manual';
+                return;
+            }
+
+            const mod = moderators.find(m => String(m.sl) === String(modSl));
+            if (!mod) return;
+
+            appointmentState.selectedModSl = String(mod.sl);
+            appointmentState.candidateName = mod.name;
+            
+            let salutation = mod.name.trim();
+            if (salutation.toLowerCase().startsWith('md ') || salutation.toLowerCase().startsWith('md. ')) {
+                salutation = salutation.substring(3).trim();
+            }
+            appointmentState.salutation = salutation;
+
+            const todayStr = getTodayDateStr();
+            appointmentState.issueDate = todayStr;
+            
+            if (mod.join) {
+                appointmentState.effectiveDate = parseToInputDate(mod.join);
+            } else {
+                appointmentState.effectiveDate = todayStr;
+            }
+
+            const year = todayStr.substring(0, 4) || '2026';
+            appointmentState.reference = `SBT/HR/${year}/MOD-${String(mod.sl).padStart(2, '0')}`;
+
+            const nameIn = document.getElementById('appointment-input-name');
+            const salutationIn = document.getElementById('appointment-input-salutation');
+            const dateIn = document.getElementById('appointment-input-date');
+            const effectiveDateIn = document.getElementById('appointment-input-effective-date');
+            const refIn = document.getElementById('appointment-input-ref');
+
+            if (nameIn) nameIn.value = appointmentState.candidateName;
+            if (salutationIn) salutationIn.value = appointmentState.salutation;
+            if (dateIn) dateIn.value = appointmentState.issueDate;
+            if (effectiveDateIn) effectiveDateIn.value = appointmentState.effectiveDate;
+            if (refIn) refIn.value = appointmentState.reference;
+
+            const pillSl = document.getElementById('app-info-sl');
+            const pillName = document.getElementById('app-info-name');
+            const pillPhone = document.getElementById('app-info-phone');
+            const pillJoin = document.getElementById('app-info-join');
+            if (pillSl) pillSl.innerText = `#${mod.sl}`;
+            if (pillName) pillName.innerText = mod.name;
+            if (pillPhone) pillPhone.innerText = `Phone: ${mod.phone || '--'}`;
+            if (pillJoin) pillJoin.innerText = mod.join || '--';
+
+            updateAppointmentPreview();
+            showToast(`Appointment Letter ready for ${mod.name}`, 'success');
+        }
+
+        function handleAppointmentInputUpdate() {
+            const nameIn = document.getElementById('appointment-input-name');
+            const salutationIn = document.getElementById('appointment-input-salutation');
+            const dateIn = document.getElementById('appointment-input-date');
+            const effectiveDateIn = document.getElementById('appointment-input-effective-date');
+            const refIn = document.getElementById('appointment-input-ref');
+            const subjectIn = document.getElementById('appointment-input-subject');
+            const trainingSalaryIn = document.getElementById('appointment-input-training-salary');
+            const basicSalaryIn = document.getElementById('appointment-input-basic-salary');
+            const noticePeriodIn = document.getElementById('appointment-input-notice-period');
+            const signatoryIn = document.getElementById('appointment-input-signatory');
+            const locationIn = document.getElementById('appointment-input-location');
+
+            if (nameIn) appointmentState.candidateName = nameIn.value;
+            if (salutationIn) appointmentState.salutation = salutationIn.value;
+            if (dateIn) appointmentState.issueDate = dateIn.value;
+            if (effectiveDateIn) appointmentState.effectiveDate = effectiveDateIn.value;
+            if (refIn) appointmentState.reference = refIn.value;
+            if (subjectIn) appointmentState.subject = subjectIn.value;
+            if (trainingSalaryIn) appointmentState.trainingSalary = trainingSalaryIn.value;
+            if (basicSalaryIn) appointmentState.basicSalary = basicSalaryIn.value;
+            if (noticePeriodIn) appointmentState.noticePeriod = noticePeriodIn.value;
+            if (signatoryIn) appointmentState.signatory = signatoryIn.value;
+            if (locationIn) appointmentState.location = locationIn.value;
+
+            updateAppointmentPreview();
+        }
+
+        function updateAppointmentPreview() {
+            const sheetDate = document.getElementById('sheet-date');
+            const sheetRef = document.getElementById('sheet-ref');
+            const sheetCandidateName = document.getElementById('sheet-candidate-name');
+            const sheetSubject = document.getElementById('sheet-subject');
+            const sheetSalutation = document.getElementById('sheet-salutation');
+            const sheetEffectiveDate = document.getElementById('sheet-effective-date');
+            const sheetNoticePeriod = document.getElementById('sheet-notice-period');
+            const sheetTrainingSalary = document.getElementById('sheet-training-salary');
+            const sheetBasicSalary = document.getElementById('sheet-basic-salary');
+            const sheetSignatory = document.getElementById('sheet-signatory');
+            const sheetLocation = document.getElementById('sheet-location');
+
+            if (sheetDate) sheetDate.innerText = formatToDisplayDate(appointmentState.issueDate);
+            if (sheetRef) sheetRef.innerText = appointmentState.reference || 'SBT/HR/2026/01';
+            if (sheetCandidateName) sheetCandidateName.innerText = appointmentState.candidateName || 'Candidate Name';
+            if (sheetSubject) sheetSubject.innerText = appointmentState.subject || 'Appointment as Moderator';
+            if (sheetSalutation) sheetSalutation.innerText = appointmentState.salutation || appointmentState.candidateName || 'Candidate';
+            if (sheetEffectiveDate) sheetEffectiveDate.innerText = formatToFormalDate(appointmentState.effectiveDate);
+            if (sheetNoticePeriod) sheetNoticePeriod.innerText = appointmentState.noticePeriod || 'two months';
+            if (sheetTrainingSalary) sheetTrainingSalary.innerText = appointmentState.trainingSalary || '10,000 BDT';
+            if (sheetBasicSalary) sheetBasicSalary.innerText = appointmentState.basicSalary || '14000 BDT';
+            if (sheetSignatory) sheetSignatory.innerText = appointmentState.signatory || 'General Manager';
+            if (sheetLocation) sheetLocation.innerText = appointmentState.location || 'Head Office';
+        }
+
+        function setAppointmentPadMode(mode) {
+            appointmentState.padMode = mode;
+            const sheet = document.getElementById('appointment-letter-sheet');
+            const btnWithBg = document.getElementById('btn-pad-mode-with-bg');
+            const btnBlank = document.getElementById('btn-pad-mode-blank');
+            const hint = document.getElementById('pad-mode-hint');
+
+            if (mode === 'with-bg') {
+                if (sheet) {
+                    sheet.classList.remove('pad-mode-blank');
+                    sheet.classList.add('pad-mode-with-bg');
+                }
+                if (btnWithBg) {
+                    btnWithBg.className = "p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (btnBlank) {
+                    btnBlank.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (hint) {
+                    hint.innerText = '"With Company Pad" renders the full colorful Sanvee\'s logo and watermark for printing on blank paper.';
+                }
+            } else {
+                if (sheet) {
+                    sheet.classList.remove('pad-mode-with-bg');
+                    sheet.classList.add('pad-mode-blank');
+                }
+                if (btnBlank) {
+                    btnBlank.className = "p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (btnWithBg) {
+                    btnWithBg.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (hint) {
+                    hint.innerText = '"Blank Pad" mode is for printing text onto pre-printed company stationery sheets loaded in the printer.';
+                }
+            }
+        }
+
+        function setAppointmentFont(font) {
+            appointmentState.font = font;
+            const sheet = document.getElementById('appointment-letter-sheet');
+            const btnSans = document.getElementById('btn-font-sans');
+            const btnSerif = document.getElementById('btn-font-serif');
+
+            if (font === 'serif') {
+                if (sheet) sheet.classList.add('font-serif');
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
+            } else {
+                if (sheet) sheet.classList.remove('font-serif');
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
+            }
+        }
+
+        function changeAppointmentZoom(delta) {
+            appointmentState.zoom = Math.min(1.4, Math.max(0.5, (appointmentState.zoom || 1.0) + delta));
+            applyAppointmentZoom();
+        }
+
+        function resetAppointmentZoom() {
+            const container = document.querySelector('.appointment-preview-column');
+            if (container && container.clientWidth < 820) {
+                appointmentState.zoom = Math.max(0.45, Math.min(1.0, (container.clientWidth - 40) / 794));
+            } else {
+                appointmentState.zoom = 1.0;
+            }
+            applyAppointmentZoom();
+        }
+
+        function applyAppointmentZoom() {
+            const sheet = document.getElementById('appointment-letter-sheet');
+            const label = document.getElementById('appointment-zoom-label');
+            const z = appointmentState.zoom || 1.0;
+            if (sheet) {
+                sheet.style.transform = `scale(${z})`;
+                const wrapper = document.querySelector('.appointment-sheet-wrapper');
+                if (wrapper) {
+                    const scaledHeight = 1123 * z;
+                    wrapper.style.minHeight = `${scaledHeight + 40}px`;
+                }
+            }
+            if (label) {
+                label.innerText = `${Math.round(z * 100)}%`;
+            }
+        }
+
+        function resetAppointmentToDefault() {
+            appointmentState = { ...DEFAULT_APPOINTMENT_STATE };
+            const todayStr = getTodayDateStr();
+            appointmentState.issueDate = todayStr;
+            const year = todayStr.substring(0, 4) || '2026';
+            appointmentState.reference = `SBT/HR/${year}/01`;
+
+            const nameIn = document.getElementById('appointment-input-name');
+            const salutationIn = document.getElementById('appointment-input-salutation');
+            const dateIn = document.getElementById('appointment-input-date');
+            const effectiveDateIn = document.getElementById('appointment-input-effective-date');
+            const refIn = document.getElementById('appointment-input-ref');
+            const subjectIn = document.getElementById('appointment-input-subject');
+            const trainingSalaryIn = document.getElementById('appointment-input-training-salary');
+            const basicSalaryIn = document.getElementById('appointment-input-basic-salary');
+            const noticePeriodIn = document.getElementById('appointment-input-notice-period');
+            const signatoryIn = document.getElementById('appointment-input-signatory');
+            const locationIn = document.getElementById('appointment-input-location');
+            const modSelect = document.getElementById('appointment-mod-select');
+
+            if (nameIn) nameIn.value = appointmentState.candidateName;
+            if (salutationIn) salutationIn.value = appointmentState.salutation;
+            if (dateIn) dateIn.value = appointmentState.issueDate;
+            if (effectiveDateIn) effectiveDateIn.value = appointmentState.effectiveDate;
+            if (refIn) refIn.value = appointmentState.reference;
+            if (subjectIn) subjectIn.value = appointmentState.subject;
+            if (trainingSalaryIn) trainingSalaryIn.value = appointmentState.trainingSalary;
+            if (basicSalaryIn) basicSalaryIn.value = appointmentState.basicSalary;
+            if (noticePeriodIn) noticePeriodIn.value = appointmentState.noticePeriod;
+            if (signatoryIn) signatoryIn.value = appointmentState.signatory;
+            if (locationIn) locationIn.value = appointmentState.location;
+            if (modSelect) modSelect.value = "";
+
+            const pillSl = document.getElementById('app-info-sl');
+            const pillName = document.getElementById('app-info-name');
+            const pillPhone = document.getElementById('app-info-phone');
+            const pillJoin = document.getElementById('app-info-join');
+            if (pillSl) pillSl.innerText = '--';
+            if (pillName) pillName.innerText = 'Custom Entry';
+            if (pillPhone) pillPhone.innerText = 'Phone: --';
+            if (pillJoin) pillJoin.innerText = '--';
+
+            setAppointmentPadMode('with-bg');
+            setAppointmentFont('sans');
+            updateAppointmentPreview();
+            showToast('Appointment template reset to default', 'info');
+        }
+
+        function copyAppointmentText() {
+            const text = `Appointment Letter
+Date: ${formatToDisplayDate(appointmentState.issueDate)}
+Reference: ${appointmentState.reference}
+
+To:
+${appointmentState.candidateName}
+
+Subject: ${appointmentState.subject}
+
+Dear ${appointmentState.salutation},
+
+We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from ${formatToFormalDate(appointmentState.effectiveDate)}. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least ${appointmentState.noticePeriod} earlier.
+
+Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get ${appointmentState.trainingSalary} for the first month since it will be your training period. After your first month on duty, you will get your basic salary ${appointmentState.basicSalary} per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+
+Thank you,
+
+Signature: _________________
+${appointmentState.signatory}
+Sanvee's By Tony
+${appointmentState.location}`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Appointment letter copied to clipboard!', 'success');
+            }).catch(() => {
+                showToast('Failed to copy text', 'error');
+            });
+        }
+
+        function printAppointmentLetter() {
+            if (currentUserRole === 'moderator') {
+                showToast('Printing is restricted to In-Charge Admin.', 'info');
+                return;
+            }
+
+            document.body.classList.add('print-appointment-active');
+            if (appointmentState.padMode === 'blank') {
+                document.body.classList.add('pad-mode-blank');
+                document.body.classList.remove('pad-mode-with-bg');
+            } else {
+                document.body.classList.add('pad-mode-with-bg');
+                document.body.classList.remove('pad-mode-blank');
+            }
+
+            applyPrintOrientationSettings();
+
+            window.print();
+
+            setTimeout(() => {
+                document.body.classList.remove('print-appointment-active');
+                document.body.classList.remove('pad-mode-with-bg');
+                document.body.classList.remove('pad-mode-blank');
+                applyPrintOrientationSettings();
+            }, 1000);
+        }
+
+        function generateAppointmentForModerator(modSl) {
+            switchView('appointment');
+            const selectEl = document.getElementById('appointment-mod-select');
+            if (selectEl) {
+                selectEl.value = String(modSl);
+                handleAppointmentModSelect(modSl);
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function updateDateUI() {
@@ -1137,6 +1571,9 @@
                             <span class="text-slate-300 dark:text-slate-600 font-mono text-xs">--</span>
                         ` : `
                             <div class="flex items-center justify-center gap-1.5">
+                                <button onclick="generateAppointmentForModerator(${mod.sl})" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
+                                    <i class="fa-solid fa-file-signature text-xs"></i>
+                                </button>
                                 <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-pen text-xs"></i>
                                 </button>
@@ -4082,7 +4519,15 @@
                 document.head.appendChild(printStyle);
             }
 
-            if (activeView === 'daily') {
+            if (activeView === 'appointment' || document.body.classList.contains('print-appointment-active')) {
+                printStyle.innerHTML = `
+                    @page { size: A4 portrait; margin: 0; }
+                    @media print {
+                        @page { size: A4 portrait; margin: 0; }
+                        html, body { margin: 0 !important; padding: 0 !important; width: 210mm !important; height: 297mm !important; }
+                    }
+                `;
+            } else if (activeView === 'daily') {
                 printStyle.innerHTML = `
                     @page { size: A4 portrait; margin: 8mm 6mm; }
                     @media print {
@@ -4151,6 +4596,7 @@
             const actionCommands = [
                 { id: 'act-daily', title: 'Daily Roster View', subtitle: 'View and mark daily attendance roster', icon: 'fa-calendar-day', color: 'text-indigo-500', action: () => { switchView('daily'); closeCommandPalette(); } },
                 { id: 'act-monthly', title: 'Monthly Matrix Sheet', subtitle: 'View full monthly 30/31-day matrix sheet', icon: 'fa-table-cells', color: 'text-purple-500', action: () => { switchView('monthly'); closeCommandPalette(); } },
+                { id: 'act-appointment', title: 'Appointment Letter Generator', subtitle: 'Create & print appointment letter on official company pad', icon: 'fa-file-signature', color: 'text-amber-500', action: () => { switchView('appointment'); closeCommandPalette(); } },
                 { id: 'act-today', title: 'Jump to Today', subtitle: 'Set active date to current calendar day', icon: 'fa-clock-rotate-left', color: 'text-cyan-500', action: () => { jumpToToday(); closeCommandPalette(); } },
                 { id: 'act-bulk-present', title: 'Mark All On-Duty Present', subtitle: 'One-click bulk mark for all scheduled moderators', icon: 'fa-bolt', color: 'text-emerald-500', action: () => { bulkMarkAllPresent(); closeCommandPalette(); } },
                 { id: 'act-add', title: 'Add New Moderator', subtitle: 'Register moderator profile into serialized roster', icon: 'fa-user-plus', color: 'text-indigo-500', action: () => { openAddModal(); closeCommandPalette(); } },
@@ -4325,4 +4771,5 @@
             renderDailyTable();
             renderNightShiftRequestsList();
             initSpotlightCards();
+            initAppointmentView();
         });

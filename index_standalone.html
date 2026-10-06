@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
@@ -113,8 +113,9 @@
         }
     </script>
 
+        <!-- Custom Executive Design Stylesheet (style.css) -->
     <style>
-        /* Custom Executive Scrollbar */
+/* Custom Executive Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.35); border-radius: 10px; }
@@ -1024,11 +1025,217 @@
                 text-transform: uppercase !important;
                 border-bottom: 2px solid #000000 !important;
             }
+
+            /* Dedicated Appointment Letter Print Modes */
+            body.print-appointment-active #view-daily-container,
+            body.print-appointment-active #view-monthly-container,
+            body.print-appointment-active #print-header-banner,
+            body.print-appointment-active #view-night-report-container,
+            body.print-appointment-active #view-leave-report-container,
+            body.print-appointment-active #night-shift-modal,
+            body.print-appointment-active #approved-leave-modal,
+            body.print-appointment-active #mobile-bottom-dock,
+            body.print-appointment-active .glass-header,
+            body.print-appointment-active header,
+            body.print-appointment-active .no-print,
+            body.print-appointment-active .appointment-controls-column {
+                display: none !important;
+            }
+
+            body.print-appointment-active {
+                background: #ffffff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+            }
+
+            body.print-appointment-active #main-app-wrapper,
+            body.print-appointment-active main,
+            body.print-appointment-active #view-appointment-container {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            body.print-appointment-active .appointment-sheet-wrapper {
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+                overflow: visible !important;
+            }
+
+            body.print-appointment-active .appointment-preview-column {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            body.print-appointment-active #appointment-letter-sheet {
+                transform: none !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                max-height: 297mm !important;
+                margin: 0 !important;
+                padding: 48mm 23mm 20mm 23mm !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+                page-break-before: avoid !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body.print-appointment-active.pad-mode-with-bg #appointment-letter-sheet {
+                background-image: url('company_pad.jpg') !important;
+                background-size: 100% 100% !important;
+                background-position: center top !important;
+                background-repeat: no-repeat !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body.print-appointment-active.pad-mode-blank #appointment-letter-sheet {
+                background-image: none !important;
+                background: #ffffff !important;
+            }
         }
         @media screen {
             .print-only { display: none !important; }
         }
-    </style>
+
+        /* ==========================================================================
+           APPOINTMENT LETTER & COMPANY PAD WORKSPACE STYLING (SCREEN)
+           ========================================================================== */
+        .appointment-sheet-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.25rem 0;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .appointment-a4-sheet {
+            position: relative;
+            width: 794px;
+            min-height: 1123px;
+            background-color: #ffffff;
+            background-size: 100% 100%;
+            background-position: center top;
+            background-repeat: no-repeat;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            padding: 185px 85px 75px 85px;
+            box-sizing: border-box;
+            color: #0f172a;
+            font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
+            transform-origin: top center;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+        }
+
+        .appointment-a4-sheet.pad-mode-with-bg {
+            background-image: url('company_pad.jpg');
+        }
+
+        .appointment-a4-sheet.pad-mode-blank {
+            background-image: none !important;
+            background-color: #ffffff !important;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .appointment-a4-sheet.font-serif {
+            font-family: 'Times New Roman', Times, Georgia, serif;
+        }
+
+        .appointment-letter-title {
+            text-align: center;
+            font-size: 18pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            color: #000000;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .appointment-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 11pt;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .appointment-recipient-block {
+            margin-bottom: 18px;
+            font-size: 11.5pt;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        .appointment-subject-line {
+            font-size: 12pt;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 18px;
+        }
+
+        .appointment-salutation {
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 14px;
+        }
+
+        .appointment-paragraph {
+            font-size: 11pt;
+            line-height: 1.68;
+            text-align: justify;
+            color: #0f172a;
+            margin-bottom: 16px;
+            text-justify: inter-word;
+        }
+
+        .appointment-closing {
+            font-size: 11pt;
+            color: #000000;
+            margin-top: 24px;
+            margin-bottom: 35px;
+        }
+
+        .appointment-signatory-block {
+            font-size: 11pt;
+            line-height: 1.45;
+            color: #000000;
+        }
+
+        .appointment-signature-line {
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .appointment-signatory-name {
+            font-weight: 800;
+        }
+
+        .appointment-signatory-company {
+            font-weight: 800;
+        }
+
+        .appointment-signatory-office {
+            font-weight: 800;
+        }
+</style>
+
 </head>
 <body class="min-h-screen relative antialiased selection:bg-indigo-500 selection:text-white font-sans">
 
@@ -1141,7 +1348,7 @@
                         </button>
                     </div>
                     <div id="auth-moderator-hint" class="hidden text-[11px] text-amber-300/90 mt-1.5 ml-1">
-                        💡 Moderator default access PIN: <strong class="font-mono text-amber-200">1234</strong>
+                        ðŸ’¡ Moderator default access PIN: <strong class="font-mono text-amber-200">1234</strong>
                     </div>
                 </div>
 
@@ -1178,7 +1385,7 @@
             </div>
 
             <div class="mt-4 text-center text-xs text-slate-500">
-                <span>Sanvee's by Tony • Sheikh Shahmiran Manik</span>
+                <span>Sanvee's by Tony â€¢ Sheikh Shahmiran Manik</span>
             </div>
         </div>
     </div>
@@ -1208,7 +1415,7 @@
                         </div>
                         <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
                             <span id="nav-live-clock" class="font-mono text-slate-700 dark:text-slate-300">--:--:--</span>
-                            <span>•</span>
+                            <span>â€¢</span>
                             <span id="nav-active-date-label">Today</span>
                         </div>
                     </div>
@@ -1226,6 +1433,11 @@
                                 class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
                             <i class="fa-solid fa-table-cells text-sm"></i>
                             <span>Monthly Matrix</span>
+                        </button>
+                        <button onclick="switchView('appointment')" id="btn-view-appointment"
+                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                            <i class="fa-solid fa-file-signature text-sm"></i>
+                            <span>Appointment Letter</span>
                         </button>
                     </div>
 
@@ -1266,6 +1478,13 @@
 
                         <!-- Dropdown Menu -->
                         <div id="operations-dropdown-menu" class="hidden absolute right-0 mt-2 w-64 p-2 rounded-2xl glass-panel-elevated shadow-2xl z-50 space-y-1 text-xs font-semibold">
+                            <button onclick="switchView('appointment'); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
+                                <span class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-file-signature text-amber-500"></i>
+                                    <span>Appointment Letter (Pad)</span>
+                                </span>
+                                <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold text-[10px]">PAD</span>
+                            </button>
                             <button onclick="openNightShiftModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
                                     <i class="fa-solid fa-moon text-indigo-400"></i>
@@ -1313,8 +1532,12 @@
                         <div id="admin-dropdown-menu" class="hidden absolute right-0 mt-2 w-56 p-2 rounded-2xl glass-panel-elevated shadow-2xl z-50 space-y-1 text-xs font-semibold">
                             <div class="px-3 py-2 border-b border-slate-200 dark:border-slate-700">
                                 <div class="font-bold text-slate-900 dark:text-white">Sheikh Shahmiran Manik</div>
-                                <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">In-Charge • Admin</div>
+                                <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">In-Charge â€¢ Admin</div>
                             </div>
+                            <button onclick="switchView('appointment'); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
+                                <i class="fa-solid fa-file-signature text-amber-500"></i>
+                                <span>Appointment Letters</span>
+                            </button>
                             <button onclick="handlePrintReport(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
                                 <i class="fa-solid fa-print text-indigo-500"></i>
                                 <span>Print A4 Roster</span>
@@ -1369,7 +1592,7 @@
                         </div>
                         <div class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 flex flex-wrap items-center gap-3">
                             <span id="mod-banner-weekend-info">Weekly Off: --</span>
-                            <span id="mod-banner-night-info" class="text-indigo-600 dark:text-indigo-400 font-bold">🌙 Night Duty: Checking...</span>
+                            <span id="mod-banner-night-info" class="text-indigo-600 dark:text-indigo-400 font-bold">ðŸŒ™ Night Duty: Checking...</span>
                         </div>
                     </div>
                 </div>
@@ -1682,7 +1905,7 @@
                             </span>
                         </div>
                         <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            Auto-Ordered: <b class="text-sky-600 dark:text-sky-400">Sat ➔ Fri</b>
+                            Auto-Ordered: <b class="text-sky-600 dark:text-sky-400">Sat âž” Fri</b>
                         </div>
                     </div>
 
@@ -1797,9 +2020,9 @@
                                 </div>
                                 <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
                                     <span>Phone: <b id="single-mod-phone" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
-                                    <span>•</span>
+                                    <span>â€¢</span>
                                     <span>Joined: <b id="single-mod-join" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
-                                    <span>•</span>
+                                    <span>â€¢</span>
                                     <span class="text-indigo-600 font-bold">Service: <b id="single-mod-tenure" class="font-mono">--</b></span>
                                 </div>
                             </div>
@@ -1899,6 +2122,403 @@
                 </section>
             </div>
 
+            <!-- ======================= E. APPOINTMENT LETTER & COMPANY PAD WORKSPACE ======================= -->
+            <div id="view-appointment-container" class="hidden space-y-6">
+                
+                <!-- Top Executive Banner & Controls Bar (no-print) -->
+                <section class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-600 p-[2px] shadow-[0_0_20px_rgba(245,158,11,0.4)] flex-shrink-0">
+                            <div class="w-full h-full bg-[#050A18] rounded-[14px] flex items-center justify-center">
+                                <i class="fa-solid fa-file-signature text-amber-400 text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2.5">
+                                <h3 class="font-display font-black text-lg sm:text-xl text-slate-900 dark:text-white">
+                                    Official Appointment Letter Portal
+                                </h3>
+                                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-extrabold text-[10px] border border-amber-500/30 uppercase tracking-wider">
+                                    Company Pad (A4)
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
+                                Sanvee's by Tony â€¢ Live Letterhead Pad Generation, Real-Time Editing & Instant Print
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <!-- Reset to Template Default -->
+                        <button type="button" onclick="resetAppointmentToDefault()" title="Reset to standard template"
+                                class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
+                            <i class="fa-solid fa-rotate-left text-xs"></i>
+                            <span>Reset</span>
+                        </button>
+
+                        <!-- Copy Letter Text -->
+                        <button type="button" onclick="copyAppointmentText()" title="Copy letter text to clipboard"
+                                class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
+                            <i class="fa-solid fa-copy text-xs text-sky-400"></i>
+                            <span>Copy Text</span>
+                        </button>
+
+                        <!-- Print Appointment Letter Button -->
+                        <button type="button" onclick="printAppointmentLetter()" id="btn-print-appointment"
+                                class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-display font-black text-xs sm:text-sm tracking-wide shadow-[0_0_25px_rgba(245,158,11,0.55)] active:scale-95 transition inline-flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-print text-sm"></i>
+                            <span>Print Appointment Letter (A4)</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Workspace Grid: Left Configuration & Right Live A4 Canvas -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Left Configuration Panel (Col-span 5) -->
+                    <div class="lg:col-span-5 xl:col-span-4 space-y-5 no-print appointment-controls-column">
+                        
+                        <!-- 1. Moderator Selector & Fast Fill -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-4 border border-amber-500/20 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-user-check text-amber-500"></i>
+                                    <span>Select Moderator</span>
+                                </span>
+                                <span class="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
+                                    Auto-Fill
+                                </span>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                                    Choose Moderator Profile
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-users absolute left-3.5 top-3.5 text-amber-500 text-xs pointer-events-none"></i>
+                                    <select id="appointment-mod-select" onchange="handleAppointmentModSelect(this.value)"
+                                            class="w-full pl-9 pr-8 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none transition cursor-pointer">
+                                        <!-- Injected dynamically by JS -->
+                                    </select>
+                                </div>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
+                                    Selecting a profile fills their verified name and joining date. You can manually edit any field below.
+                                </p>
+                            </div>
+
+                            <!-- Selected Member Summary Pill -->
+                            <div id="appointment-mod-info-pill" class="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between gap-3 text-xs">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 font-black flex items-center justify-center font-mono text-xs" id="app-info-sl">
+                                        --
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900 dark:text-white" id="app-info-name">Custom Entry</div>
+                                        <div class="text-[10px] text-slate-500 dark:text-slate-400 font-mono" id="app-info-phone">Phone: --</div>
+                                    </div>
+                                </div>
+                                <div class="text-right text-[10px] font-mono">
+                                    <span class="text-slate-500 dark:text-slate-400">Join: </span>
+                                    <b class="text-amber-600 dark:text-amber-400" id="app-info-join">--</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Manual Inputs & Candidate Details (Custom Entry) -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-4 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-pen-to-square text-sky-500"></i>
+                                    <span>Candidate & Letter Details</span>
+                                </span>
+                                <span class="text-[10px] text-slate-500 font-semibold">Editable</span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Candidate Full Name (To:)
+                                    </label>
+                                    <input type="text" id="appointment-input-name" placeholder="e.g. Md Sharif Hossain"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Salutation Name (Dear...)
+                                    </label>
+                                    <input type="text" id="appointment-input-salutation" placeholder="e.g. Sharif Hossain"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Letter Issue Date
+                                        </label>
+                                        <input type="date" id="appointment-input-date"
+                                               onchange="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Effective Joining Date
+                                        </label>
+                                        <input type="date" id="appointment-input-effective-date"
+                                               onchange="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Reference Number
+                                    </label>
+                                    <input type="text" id="appointment-input-ref" placeholder="e.g. SBT/HR/2026/01"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Subject / Designation
+                                    </label>
+                                    <input type="text" id="appointment-input-subject" value="Appointment as Moderator"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Remuneration & Conditions -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-4 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-coins text-emerald-500"></i>
+                                    <span>Remuneration & Conditions</span>
+                                </span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            1st Month Training
+                                        </label>
+                                        <input type="text" id="appointment-input-training-salary" value="10,000 BDT"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Basic Monthly Salary
+                                        </label>
+                                        <input type="text" id="appointment-input-basic-salary" value="14000 BDT"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Resignation Notice Period
+                                    </label>
+                                    <input type="text" id="appointment-input-notice-period" value="two months"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Signatory Role
+                                        </label>
+                                        <input type="text" id="appointment-input-signatory" value="General Manager"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Branch / Office
+                                        </label>
+                                        <input type="text" id="appointment-input-location" value="Head Office"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Letterhead Pad Display & Typography Settings -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-3.5 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-palette text-purple-500"></i>
+                                    <span>Pad Display & Print Mode</span>
+                                </span>
+                            </div>
+
+                            <!-- Pad Mode Switcher -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-2">
+                                    Letterhead Background Mode
+                                </label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" onclick="setAppointmentPadMode('with-bg')" id="btn-pad-mode-with-bg"
+                                            class="p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer">
+                                        <i class="fa-solid fa-file-image text-sm"></i>
+                                        <span>With Company Pad</span>
+                                    </button>
+                                    <button type="button" onclick="setAppointmentPadMode('blank')" id="btn-pad-mode-blank"
+                                            class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer">
+                                        <i class="fa-solid fa-file-lines text-sm"></i>
+                                        <span>Blank Pad (Physical)</span>
+                                    </button>
+                                </div>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5" id="pad-mode-hint">
+                                    "With Company Pad" renders the full colorful Sanvee's logo and watermark. "Blank Pad" prints text only onto pre-printed stationery.
+                                </p>
+                            </div>
+
+                            <!-- Font selector -->
+                            <div class="pt-2 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-600 dark:text-slate-400">Typography Font</span>
+                                <div class="flex items-center gap-1">
+                                    <button type="button" onclick="setAppointmentFont('sans')" id="btn-font-sans"
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30">
+                                        Sans-Serif
+                                    </button>
+                                    <button type="button" onclick="setAppointmentFont('serif')" id="btn-font-serif"
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300">
+                                        Serif
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: Live A4 Company Pad Preview (Col-span 7 / 8) -->
+                    <div class="lg:col-span-7 xl:col-span-8 flex flex-col items-center appointment-preview-column">
+                        
+                        <!-- Toolbar Above Sheet (Zoom & Print Actions) -->
+                        <div class="w-full max-w-[794px] mb-3 px-3 py-2 rounded-2xl glass-panel flex flex-wrap items-center justify-between gap-3 text-xs no-print">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span>Live A4 Pad Preview</span>
+                                </span>
+                                <span class="text-[11px] text-slate-400 font-mono hidden sm:inline">â€¢ Sanvee's Official Stationery</span>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <!-- Zoom Controls -->
+                                <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+                                    <button type="button" onclick="changeAppointmentZoom(-0.1)" title="Zoom Out"
+                                            class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                        <i class="fa-solid fa-minus text-[10px]"></i>
+                                    </button>
+                                    <span id="appointment-zoom-label" class="px-1.5 font-mono font-bold text-[11px] text-slate-700 dark:text-slate-300">100%</span>
+                                    <button type="button" onclick="changeAppointmentZoom(0.1)" title="Zoom In"
+                                            class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                        <i class="fa-solid fa-plus text-[10px]"></i>
+                                    </button>
+                                    <button type="button" onclick="resetAppointmentZoom()" title="Reset Zoom"
+                                            class="px-1.5 py-0.5 rounded-lg text-[10px] font-bold text-slate-500 hover:text-slate-300 transition">
+                                        Fit
+                                    </button>
+                                </div>
+
+                                <!-- Quick Print Button -->
+                                <button type="button" onclick="printAppointmentLetter()"
+                                        class="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer">
+                                    <i class="fa-solid fa-print text-xs"></i>
+                                    <span>Print</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live Sheet Container -->
+                        <div class="appointment-sheet-wrapper">
+                            
+                            <!-- The Official A4 Letterhead Sheet -->
+                            <div id="appointment-letter-sheet" class="appointment-a4-sheet pad-mode-with-bg">
+                                
+                                <!-- Document Title -->
+                                <div class="appointment-letter-title">
+                                    Appointment Letter
+                                </div>
+
+                                <!-- Meta Row: Date & Reference -->
+                                <div class="appointment-meta-row">
+                                    <div>
+                                        Date: <span id="sheet-date" class="font-bold">18-08-2026</span>
+                                    </div>
+                                    <div>
+                                        Reference: <span id="sheet-ref" class="font-bold">SBT/HR/2026/01</span>
+                                    </div>
+                                </div>
+
+                                <!-- Recipient Block -->
+                                <div class="appointment-recipient-block">
+                                    <div>To:</div>
+                                    <div id="sheet-candidate-name" class="font-bold text-[12pt] mt-0.5">
+                                        Md Sharif Hossain
+                                    </div>
+                                </div>
+
+                                <!-- Subject Line -->
+                                <div class="appointment-subject-line">
+                                    Subject: <span id="sheet-subject">Appointment as Moderator</span>
+                                </div>
+
+                                <!-- Salutation -->
+                                <div class="appointment-salutation">
+                                    Dear <span id="sheet-salutation">Sharif Hossain</span>,
+                                </div>
+
+                                <!-- Paragraph 1 -->
+                                <div class="appointment-paragraph">
+                                    We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from <b id="sheet-effective-date">09 August, 2026</b>. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least <span id="sheet-notice-period" class="font-semibold">two months</span> earlier.
+                                </div>
+
+                                <!-- Paragraph 2 -->
+                                <div class="appointment-paragraph">
+                                    Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get <b id="sheet-training-salary">10,000 BDT</b> for the first month since it will be your training period. After your first month on duty, you will get your basic salary <b id="sheet-basic-salary">14000 BDT</b> per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+                                </div>
+
+                                <!-- Closing -->
+                                <div class="appointment-closing">
+                                    Thank you,
+                                </div>
+
+                                <!-- Signatory Block -->
+                                <div class="appointment-signatory-block">
+                                    <div class="appointment-signature-line">
+                                        Signature: _________________
+                                    </div>
+                                    <div id="sheet-signatory" class="appointment-signatory-name">
+                                        General Manager
+                                    </div>
+                                    <div class="appointment-signatory-company">
+                                        Sanvee's By Tony
+                                    </div>
+                                    <div id="sheet-location" class="appointment-signatory-office">
+                                        Head Office
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <!-- ======================= C. DEDICATED NIGHT SHIFT PRINT REPORT ======================= -->
             <div id="view-night-report-container" class="hidden print-report-target"></div>
 
@@ -1916,6 +2536,10 @@
             <button type="button" onclick="switchView('monthly')" id="dock-btn-monthly" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
                 <i class="fa-solid fa-table-cells text-base"></i>
                 <span>Monthly</span>
+            </button>
+            <button type="button" onclick="switchView('appointment')" id="dock-btn-appointment" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
+                <i class="fa-solid fa-file-signature text-base"></i>
+                <span>Letter</span>
             </button>
             <button type="button" onclick="openCommandPalette()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
                 <i class="fa-solid fa-magnifying-glass text-base text-indigo-500"></i>
@@ -1943,7 +2567,7 @@
                     </div>
                     <div>
                         <h3 class="font-display font-black text-lg text-slate-900 dark:text-white">Firebase Realtime Cloud Sync</h3>
-                        <p class="text-xs text-slate-400 font-medium">Singapore Server • asia-southeast1</p>
+                        <p class="text-xs text-slate-400 font-medium">Singapore Server â€¢ asia-southeast1</p>
                     </div>
                 </div>
                 <button onclick="closeFirebaseModal()" class="text-slate-400 hover:text-white p-1">
@@ -1955,7 +2579,7 @@
             <div id="firebase-modal-status-banner" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                 <div class="flex items-center justify-between">
                     <div class="font-bold text-xs text-slate-900 dark:text-white" id="firebase-modal-status-text">
-                        🟢 Connected to Realtime Database
+                        ðŸŸ¢ Connected to Realtime Database
                     </div>
                     <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="firebase-last-sync-time" class="font-bold text-indigo-500">Just Now</span></span>
                 </div>
@@ -1968,7 +2592,7 @@
             <form onsubmit="handleSaveFirebaseConfig(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                        🔥 Firebase Realtime Database URL:
+                        ðŸ”¥ Firebase Realtime Database URL:
                     </label>
                     <input type="text" id="firebase-input-config" placeholder="https://moderators-data-73dcf-default-rtdb.asia-southeast1.firebasedatabase.app"
                            class="w-full px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
@@ -2005,7 +2629,7 @@
                     </div>
                     <div>
                         <h3 id="modal-title" class="font-display font-black text-lg text-slate-900 dark:text-white">Add Moderator</h3>
-                        <p class="text-xs text-slate-400 font-medium">Automatic SL serialization (Sat ➔ Fri)</p>
+                        <p class="text-xs text-slate-400 font-medium">Automatic SL serialization (Sat âž” Fri)</p>
                     </div>
                 </div>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1">
@@ -2679,7 +3303,7 @@
             <div onclick="event.stopPropagation()" class="relative w-full max-w-xl rounded-3xl glass-panel-elevated shadow-2xl border border-white/20 overflow-hidden animate-modal-pop">
                 <!-- Search Box -->
                 <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70">
-                    <i class="fa-solid fa-magnifying-glass text-indigo-500 text-sm"></i>
+                    <i class="fa-solid fa-magnifying-glass text-sky-400 text-sm"></i>
                     <input type="text" id="palette-search-input" oninput="handlePaletteInput(this.value)" onkeydown="handlePaletteKeydown(event)"
                            placeholder="Type a moderator name, phone, or command... (e.g. 'Sefat', 'Monthly', 'Mark')"
                            class="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-sm font-semibold outline-none">
@@ -2692,18 +3316,19 @@
                 <!-- Footer -->
                 <div class="px-4 py-2.5 bg-slate-50/80 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-[11px] text-slate-500">
                     <div class="flex items-center gap-2">
-                        <span>Navigate <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↓</kbd></span>
-                        <span>• Select <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↵</kbd></span>
+                        <span>Navigate <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">â†‘</kbd><kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">â†“</kbd></span>
+                        <span>â€¢ Select <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">â†µ</kbd></span>
                     </div>
-                    <span class="font-bold text-indigo-500">Sanvee's Spotlight Search</span>
+                    <span class="font-bold text-sky-400">Sanvee's Spotlight Search</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ======================= 12. JAVASCRIPT BUSINESS LOGIC & ENGINE ======================= -->
+        <!-- Production Application Logic Engine (app.js) -->
     <script>
-        // Official Verified Moderator List
+// Official Verified Moderator List
         const DEFAULT_MODERATORS = [
             { sl: 1, name: "Sefat Karim", weekend: "Saturday", phone: "01781597973", join: "01-01-2026", id: "mod_01781597973_0_oiq5n", status: "Present", notes: "" },
             { sl: 2, name: "Akram", weekend: "Saturday", phone: "01871976484", join: "08-03-2024", id: "mod_01871976484_1_6annd", status: "Present", notes: "" },
@@ -2834,7 +3459,7 @@
                     updateFirebaseStatusUI(false, `Sync Error: ${err.message}`);
                 });
 
-                if (showNotification) showToast("🔥 Connected to Firebase Realtime Database!", "success");
+                if (showNotification) showToast("ðŸ”¥ Connected to Firebase Realtime Database!", "success");
 
             } catch (err) {
                 isFirebaseConnected = false;
@@ -2891,7 +3516,7 @@
         function updateFirebaseStatusUI(connected, text) {
             const statusEl = document.getElementById('firebase-modal-status-text');
             if (statusEl) {
-                statusEl.innerText = connected ? `🟢 ${text}` : `⚪ ${text}`;
+                statusEl.innerText = connected ? `ðŸŸ¢ ${text}` : `âšª ${text}`;
                 statusEl.className = connected ? "font-bold text-xs text-emerald-600 dark:text-emerald-400" : "font-bold text-xs text-slate-500";
             }
         }
@@ -3460,20 +4085,37 @@
             activeView = view;
             const dailyBtn = document.getElementById('btn-view-daily');
             const monthlyBtn = document.getElementById('btn-view-monthly');
+            const appointmentBtn = document.getElementById('btn-view-appointment');
             const dailyContainer = document.getElementById('view-daily-container');
             const monthlyContainer = document.getElementById('view-monthly-container');
+            const appointmentContainer = document.getElementById('view-appointment-container');
             const mainCanvas = document.getElementById('main-content-canvas');
 
             const dockDaily = document.getElementById('dock-btn-daily');
             const dockMonthly = document.getElementById('dock-btn-monthly');
+            const dockAppointment = document.getElementById('dock-btn-appointment');
+
+            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
+            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+
+            const activeDockClass = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
+            const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
+
+            if (dailyBtn) dailyBtn.className = inactiveBtnClass;
+            if (monthlyBtn) monthlyBtn.className = inactiveBtnClass;
+            if (appointmentBtn) appointmentBtn.className = inactiveBtnClass;
+
+            if (dockDaily) dockDaily.className = inactiveDockClass;
+            if (dockMonthly) dockMonthly.className = inactiveDockClass;
+            if (dockAppointment) dockAppointment.className = inactiveDockClass;
+
+            if (dailyContainer) dailyContainer.classList.add('hidden');
+            if (monthlyContainer) monthlyContainer.classList.add('hidden');
+            if (appointmentContainer) appointmentContainer.classList.add('hidden');
 
             if (view === 'daily') {
-                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
-                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
-                if (dockDaily) dockDaily.className = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
-                if (dockMonthly) dockMonthly.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
-
-                if (monthlyContainer) monthlyContainer.classList.add('hidden');
+                if (dailyBtn) dailyBtn.className = activeBtnClass;
+                if (dockDaily) dockDaily.className = activeDockClass;
                 if (dailyContainer) {
                     dailyContainer.classList.remove('hidden');
                     dailyContainer.classList.remove('view-fade-slide');
@@ -3481,13 +4123,9 @@
                 }
                 if (mainCanvas) mainCanvas.className = "flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8";
                 renderDailyTable();
-            } else {
-                if (monthlyBtn) monthlyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
-                if (dailyBtn) dailyBtn.className = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
-                if (dockMonthly) dockMonthly.className = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
-                if (dockDaily) dockDaily.className = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
-
-                if (dailyContainer) dailyContainer.classList.add('hidden');
+            } else if (view === 'monthly') {
+                if (monthlyBtn) monthlyBtn.className = activeBtnClass;
+                if (dockMonthly) dockMonthly.className = activeDockClass;
                 if (monthlyContainer) {
                     monthlyContainer.classList.remove('hidden');
                     monthlyContainer.classList.remove('view-fade-slide');
@@ -3495,10 +4133,431 @@
                 }
                 if (mainCanvas) mainCanvas.className = "flex-1 max-w-[98%] xl:max-w-[98%] 2xl:max-w-[98%] w-full mx-auto px-2 sm:px-4 lg:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8";
                 renderMonthlyTable();
+            } else if (view === 'appointment') {
+                if (appointmentBtn) appointmentBtn.className = activeBtnClass;
+                if (dockAppointment) dockAppointment.className = activeDockClass;
+                if (appointmentContainer) {
+                    appointmentContainer.classList.remove('hidden');
+                    appointmentContainer.classList.remove('view-fade-slide');
+                    requestAnimationFrame(() => appointmentContainer.classList.add('view-fade-slide'));
+                }
+                if (mainCanvas) mainCanvas.className = "flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8";
+                initAppointmentView();
             }
 
             applyPrintOrientationSettings();
             applyRolePermissions();
+        }
+
+        // ======================= APPOINTMENT LETTER & COMPANY PAD ENGINE =======================
+        const DEFAULT_APPOINTMENT_STATE = {
+            selectedModSl: "",
+            candidateName: "Md Sharif Hossain",
+            salutation: "Sharif Hossain",
+            issueDate: "2026-08-18",
+            effectiveDate: "2026-08-09",
+            reference: "SBT/HR/2026/01",
+            subject: "Appointment as Moderator",
+            trainingSalary: "10,000 BDT",
+            basicSalary: "14000 BDT",
+            noticePeriod: "two months",
+            signatory: "General Manager",
+            company: "Sanvee's By Tony",
+            location: "Head Office",
+            padMode: "with-bg",
+            font: "sans",
+            zoom: 1.0
+        };
+
+        let appointmentState = { ...DEFAULT_APPOINTMENT_STATE };
+
+        function formatToDisplayDate(dateStr) {
+            if (!dateStr) return "";
+            if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) return dateStr;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            return dateStr;
+        }
+
+        function formatToFormalDate(dateStr) {
+            if (!dateStr) return "";
+            let d, m, y;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                y = parts[0];
+                m = parseInt(parts[1], 10) - 1;
+                d = parts[2];
+            } else if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                d = parts[0];
+                m = parseInt(parts[1], 10) - 1;
+                y = parts[2];
+            } else {
+                return dateStr;
+            }
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            const mName = monthNames[m] || 'Month';
+            return `${d} ${mName}, ${y}`;
+        }
+
+        function parseToInputDate(dateStr) {
+            if (!dateStr) return "";
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+            if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) {
+                const parts = dateStr.split('-');
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            return "";
+        }
+
+        function initAppointmentView() {
+            const selectEl = document.getElementById('appointment-mod-select');
+            if (selectEl) {
+                const currentVal = selectEl.value;
+                selectEl.innerHTML = `
+                    <option value="">-- Choose Moderator to Auto-Fill --</option>
+                    <option value="custom">âœï¸ Custom Candidate (Manual Entry)</option>
+                `;
+                moderators.forEach(mod => {
+                    const opt = document.createElement('option');
+                    opt.value = String(mod.sl);
+                    opt.innerText = `[SL ${mod.sl}] ${mod.name} (Joined: ${mod.join || '--'})`;
+                    selectEl.appendChild(opt);
+                });
+                if (currentVal) selectEl.value = currentVal;
+            }
+
+            const nameInput = document.getElementById('appointment-input-name');
+            if (nameInput && !nameInput.value) {
+                resetAppointmentToDefault();
+            } else {
+                updateAppointmentPreview();
+            }
+            resetAppointmentZoom();
+        }
+
+        function handleAppointmentModSelect(modSl) {
+            if (!modSl || modSl === 'custom') {
+                appointmentState.selectedModSl = 'custom';
+                const pillSl = document.getElementById('app-info-sl');
+                const pillName = document.getElementById('app-info-name');
+                const pillPhone = document.getElementById('app-info-phone');
+                const pillJoin = document.getElementById('app-info-join');
+                if (pillSl) pillSl.innerText = '--';
+                if (pillName) pillName.innerText = 'Custom Entry';
+                if (pillPhone) pillPhone.innerText = 'Phone: Manual';
+                if (pillJoin) pillJoin.innerText = 'Manual';
+                return;
+            }
+
+            const mod = moderators.find(m => String(m.sl) === String(modSl));
+            if (!mod) return;
+
+            appointmentState.selectedModSl = String(mod.sl);
+            appointmentState.candidateName = mod.name;
+            
+            let salutation = mod.name.trim();
+            if (salutation.toLowerCase().startsWith('md ') || salutation.toLowerCase().startsWith('md. ')) {
+                salutation = salutation.substring(3).trim();
+            }
+            appointmentState.salutation = salutation;
+
+            const todayStr = getTodayDateStr();
+            appointmentState.issueDate = todayStr;
+            
+            if (mod.join) {
+                appointmentState.effectiveDate = parseToInputDate(mod.join);
+            } else {
+                appointmentState.effectiveDate = todayStr;
+            }
+
+            const year = todayStr.substring(0, 4) || '2026';
+            appointmentState.reference = `SBT/HR/${year}/MOD-${String(mod.sl).padStart(2, '0')}`;
+
+            const nameIn = document.getElementById('appointment-input-name');
+            const salutationIn = document.getElementById('appointment-input-salutation');
+            const dateIn = document.getElementById('appointment-input-date');
+            const effectiveDateIn = document.getElementById('appointment-input-effective-date');
+            const refIn = document.getElementById('appointment-input-ref');
+
+            if (nameIn) nameIn.value = appointmentState.candidateName;
+            if (salutationIn) salutationIn.value = appointmentState.salutation;
+            if (dateIn) dateIn.value = appointmentState.issueDate;
+            if (effectiveDateIn) effectiveDateIn.value = appointmentState.effectiveDate;
+            if (refIn) refIn.value = appointmentState.reference;
+
+            const pillSl = document.getElementById('app-info-sl');
+            const pillName = document.getElementById('app-info-name');
+            const pillPhone = document.getElementById('app-info-phone');
+            const pillJoin = document.getElementById('app-info-join');
+            if (pillSl) pillSl.innerText = `#${mod.sl}`;
+            if (pillName) pillName.innerText = mod.name;
+            if (pillPhone) pillPhone.innerText = `Phone: ${mod.phone || '--'}`;
+            if (pillJoin) pillJoin.innerText = mod.join || '--';
+
+            updateAppointmentPreview();
+            showToast(`Appointment Letter ready for ${mod.name}`, 'success');
+        }
+
+        function handleAppointmentInputUpdate() {
+            const nameIn = document.getElementById('appointment-input-name');
+            const salutationIn = document.getElementById('appointment-input-salutation');
+            const dateIn = document.getElementById('appointment-input-date');
+            const effectiveDateIn = document.getElementById('appointment-input-effective-date');
+            const refIn = document.getElementById('appointment-input-ref');
+            const subjectIn = document.getElementById('appointment-input-subject');
+            const trainingSalaryIn = document.getElementById('appointment-input-training-salary');
+            const basicSalaryIn = document.getElementById('appointment-input-basic-salary');
+            const noticePeriodIn = document.getElementById('appointment-input-notice-period');
+            const signatoryIn = document.getElementById('appointment-input-signatory');
+            const locationIn = document.getElementById('appointment-input-location');
+
+            if (nameIn) appointmentState.candidateName = nameIn.value;
+            if (salutationIn) appointmentState.salutation = salutationIn.value;
+            if (dateIn) appointmentState.issueDate = dateIn.value;
+            if (effectiveDateIn) appointmentState.effectiveDate = effectiveDateIn.value;
+            if (refIn) appointmentState.reference = refIn.value;
+            if (subjectIn) appointmentState.subject = subjectIn.value;
+            if (trainingSalaryIn) appointmentState.trainingSalary = trainingSalaryIn.value;
+            if (basicSalaryIn) appointmentState.basicSalary = basicSalaryIn.value;
+            if (noticePeriodIn) appointmentState.noticePeriod = noticePeriodIn.value;
+            if (signatoryIn) appointmentState.signatory = signatoryIn.value;
+            if (locationIn) appointmentState.location = locationIn.value;
+
+            updateAppointmentPreview();
+        }
+
+        function updateAppointmentPreview() {
+            const sheetDate = document.getElementById('sheet-date');
+            const sheetRef = document.getElementById('sheet-ref');
+            const sheetCandidateName = document.getElementById('sheet-candidate-name');
+            const sheetSubject = document.getElementById('sheet-subject');
+            const sheetSalutation = document.getElementById('sheet-salutation');
+            const sheetEffectiveDate = document.getElementById('sheet-effective-date');
+            const sheetNoticePeriod = document.getElementById('sheet-notice-period');
+            const sheetTrainingSalary = document.getElementById('sheet-training-salary');
+            const sheetBasicSalary = document.getElementById('sheet-basic-salary');
+            const sheetSignatory = document.getElementById('sheet-signatory');
+            const sheetLocation = document.getElementById('sheet-location');
+
+            if (sheetDate) sheetDate.innerText = formatToDisplayDate(appointmentState.issueDate);
+            if (sheetRef) sheetRef.innerText = appointmentState.reference || 'SBT/HR/2026/01';
+            if (sheetCandidateName) sheetCandidateName.innerText = appointmentState.candidateName || 'Candidate Name';
+            if (sheetSubject) sheetSubject.innerText = appointmentState.subject || 'Appointment as Moderator';
+            if (sheetSalutation) sheetSalutation.innerText = appointmentState.salutation || appointmentState.candidateName || 'Candidate';
+            if (sheetEffectiveDate) sheetEffectiveDate.innerText = formatToFormalDate(appointmentState.effectiveDate);
+            if (sheetNoticePeriod) sheetNoticePeriod.innerText = appointmentState.noticePeriod || 'two months';
+            if (sheetTrainingSalary) sheetTrainingSalary.innerText = appointmentState.trainingSalary || '10,000 BDT';
+            if (sheetBasicSalary) sheetBasicSalary.innerText = appointmentState.basicSalary || '14000 BDT';
+            if (sheetSignatory) sheetSignatory.innerText = appointmentState.signatory || 'General Manager';
+            if (sheetLocation) sheetLocation.innerText = appointmentState.location || 'Head Office';
+        }
+
+        function setAppointmentPadMode(mode) {
+            appointmentState.padMode = mode;
+            const sheet = document.getElementById('appointment-letter-sheet');
+            const btnWithBg = document.getElementById('btn-pad-mode-with-bg');
+            const btnBlank = document.getElementById('btn-pad-mode-blank');
+            const hint = document.getElementById('pad-mode-hint');
+
+            if (mode === 'with-bg') {
+                if (sheet) {
+                    sheet.classList.remove('pad-mode-blank');
+                    sheet.classList.add('pad-mode-with-bg');
+                }
+                if (btnWithBg) {
+                    btnWithBg.className = "p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (btnBlank) {
+                    btnBlank.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (hint) {
+                    hint.innerText = '"With Company Pad" renders the full colorful Sanvee\'s logo and watermark for printing on blank paper.';
+                }
+            } else {
+                if (sheet) {
+                    sheet.classList.remove('pad-mode-with-bg');
+                    sheet.classList.add('pad-mode-blank');
+                }
+                if (btnBlank) {
+                    btnBlank.className = "p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (btnWithBg) {
+                    btnWithBg.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                }
+                if (hint) {
+                    hint.innerText = '"Blank Pad" mode is for printing text onto pre-printed company stationery sheets loaded in the printer.';
+                }
+            }
+        }
+
+        function setAppointmentFont(font) {
+            appointmentState.font = font;
+            const sheet = document.getElementById('appointment-letter-sheet');
+            const btnSans = document.getElementById('btn-font-sans');
+            const btnSerif = document.getElementById('btn-font-serif');
+
+            if (font === 'serif') {
+                if (sheet) sheet.classList.add('font-serif');
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
+            } else {
+                if (sheet) sheet.classList.remove('font-serif');
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
+            }
+        }
+
+        function changeAppointmentZoom(delta) {
+            appointmentState.zoom = Math.min(1.4, Math.max(0.5, (appointmentState.zoom || 1.0) + delta));
+            applyAppointmentZoom();
+        }
+
+        function resetAppointmentZoom() {
+            const container = document.querySelector('.appointment-preview-column');
+            if (container && container.clientWidth < 820) {
+                appointmentState.zoom = Math.max(0.45, Math.min(1.0, (container.clientWidth - 40) / 794));
+            } else {
+                appointmentState.zoom = 1.0;
+            }
+            applyAppointmentZoom();
+        }
+
+        function applyAppointmentZoom() {
+            const sheet = document.getElementById('appointment-letter-sheet');
+            const label = document.getElementById('appointment-zoom-label');
+            const z = appointmentState.zoom || 1.0;
+            if (sheet) {
+                sheet.style.transform = `scale(${z})`;
+                const wrapper = document.querySelector('.appointment-sheet-wrapper');
+                if (wrapper) {
+                    const scaledHeight = 1123 * z;
+                    wrapper.style.minHeight = `${scaledHeight + 40}px`;
+                }
+            }
+            if (label) {
+                label.innerText = `${Math.round(z * 100)}%`;
+            }
+        }
+
+        function resetAppointmentToDefault() {
+            appointmentState = { ...DEFAULT_APPOINTMENT_STATE };
+            const todayStr = getTodayDateStr();
+            appointmentState.issueDate = todayStr;
+            const year = todayStr.substring(0, 4) || '2026';
+            appointmentState.reference = `SBT/HR/${year}/01`;
+
+            const nameIn = document.getElementById('appointment-input-name');
+            const salutationIn = document.getElementById('appointment-input-salutation');
+            const dateIn = document.getElementById('appointment-input-date');
+            const effectiveDateIn = document.getElementById('appointment-input-effective-date');
+            const refIn = document.getElementById('appointment-input-ref');
+            const subjectIn = document.getElementById('appointment-input-subject');
+            const trainingSalaryIn = document.getElementById('appointment-input-training-salary');
+            const basicSalaryIn = document.getElementById('appointment-input-basic-salary');
+            const noticePeriodIn = document.getElementById('appointment-input-notice-period');
+            const signatoryIn = document.getElementById('appointment-input-signatory');
+            const locationIn = document.getElementById('appointment-input-location');
+            const modSelect = document.getElementById('appointment-mod-select');
+
+            if (nameIn) nameIn.value = appointmentState.candidateName;
+            if (salutationIn) salutationIn.value = appointmentState.salutation;
+            if (dateIn) dateIn.value = appointmentState.issueDate;
+            if (effectiveDateIn) effectiveDateIn.value = appointmentState.effectiveDate;
+            if (refIn) refIn.value = appointmentState.reference;
+            if (subjectIn) subjectIn.value = appointmentState.subject;
+            if (trainingSalaryIn) trainingSalaryIn.value = appointmentState.trainingSalary;
+            if (basicSalaryIn) basicSalaryIn.value = appointmentState.basicSalary;
+            if (noticePeriodIn) noticePeriodIn.value = appointmentState.noticePeriod;
+            if (signatoryIn) signatoryIn.value = appointmentState.signatory;
+            if (locationIn) locationIn.value = appointmentState.location;
+            if (modSelect) modSelect.value = "";
+
+            const pillSl = document.getElementById('app-info-sl');
+            const pillName = document.getElementById('app-info-name');
+            const pillPhone = document.getElementById('app-info-phone');
+            const pillJoin = document.getElementById('app-info-join');
+            if (pillSl) pillSl.innerText = '--';
+            if (pillName) pillName.innerText = 'Custom Entry';
+            if (pillPhone) pillPhone.innerText = 'Phone: --';
+            if (pillJoin) pillJoin.innerText = '--';
+
+            setAppointmentPadMode('with-bg');
+            setAppointmentFont('sans');
+            updateAppointmentPreview();
+            showToast('Appointment template reset to default', 'info');
+        }
+
+        function copyAppointmentText() {
+            const text = `Appointment Letter
+Date: ${formatToDisplayDate(appointmentState.issueDate)}
+Reference: ${appointmentState.reference}
+
+To:
+${appointmentState.candidateName}
+
+Subject: ${appointmentState.subject}
+
+Dear ${appointmentState.salutation},
+
+We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from ${formatToFormalDate(appointmentState.effectiveDate)}. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least ${appointmentState.noticePeriod} earlier.
+
+Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get ${appointmentState.trainingSalary} for the first month since it will be your training period. After your first month on duty, you will get your basic salary ${appointmentState.basicSalary} per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+
+Thank you,
+
+Signature: _________________
+${appointmentState.signatory}
+Sanvee's By Tony
+${appointmentState.location}`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Appointment letter copied to clipboard!', 'success');
+            }).catch(() => {
+                showToast('Failed to copy text', 'error');
+            });
+        }
+
+        function printAppointmentLetter() {
+            if (currentUserRole === 'moderator') {
+                showToast('Printing is restricted to In-Charge Admin.', 'info');
+                return;
+            }
+
+            document.body.classList.add('print-appointment-active');
+            if (appointmentState.padMode === 'blank') {
+                document.body.classList.add('pad-mode-blank');
+                document.body.classList.remove('pad-mode-with-bg');
+            } else {
+                document.body.classList.add('pad-mode-with-bg');
+                document.body.classList.remove('pad-mode-blank');
+            }
+
+            applyPrintOrientationSettings();
+
+            window.print();
+
+            setTimeout(() => {
+                document.body.classList.remove('print-appointment-active');
+                document.body.classList.remove('pad-mode-with-bg');
+                document.body.classList.remove('pad-mode-blank');
+                applyPrintOrientationSettings();
+            }, 1000);
+        }
+
+        function generateAppointmentForModerator(modSl) {
+            switchView('appointment');
+            const selectEl = document.getElementById('appointment-mod-select');
+            if (selectEl) {
+                selectEl.value = String(modSl);
+                handleAppointmentModSelect(modSl);
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function updateDateUI() {
@@ -3670,7 +4729,7 @@
             saveToLocalStorage();
             renderDailyTable();
             updateDailyKPIs();
-            showToast(`⚡ ${count} on-duty moderators marked as Present!`, 'success');
+            showToast(`âš¡ ${count} on-duty moderators marked as Present!`, 'success');
         }
 
         // ======================= DAILY ROSTER RENDERER =======================
@@ -3710,7 +4769,7 @@
             
             const footerEl = document.getElementById("footer-count-text");
             if (filtered.length !== moderators.length) {
-                const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? '⚡ On Duty Today' : (filterStatus !== 'ALL' ? filterStatus : 'Filtered');
+                const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? 'âš¡ On Duty Today' : (filterStatus !== 'ALL' ? filterStatus : 'Filtered');
                 footerEl.innerHTML = `Showing: <b class="text-indigo-600 font-mono">${filtered.length}</b> of <b class="font-mono">${moderators.length}</b> Total Moderators (${filterLabel})`;
             } else {
                 footerEl.innerHTML = `Total Active Moderators: <b class="font-mono">${moderators.length}</b> Members`;
@@ -3821,14 +4880,14 @@
                                         ${currentStatus === 'Night Shift' ? 'status-pill-night' : ''}
                                         ${currentStatus === 'Leave' ? 'status-pill-leave' : ''}
                                         ${currentStatus === 'Outside Work' ? 'bg-slate-100 text-slate-800' : ''}">
-                                    <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>🏖️ Weekly Off</option>
-                                    <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>🟢 Present</option>
-                                    <option value="Extra Duty" ${currentStatus === 'Extra Duty' ? 'selected' : ''}>⚡ Extra Duty</option>
-                                    <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>🔄 Weekend Exchange</option>
-                                    <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent (Auto WA)</option>
-                                    <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>🌙 Night Shift</option>
-                                    <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>✈️ Approved Leave</option>
-                                    <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>💼 Outside Duty</option>
+                                    <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>ðŸ–ï¸ Weekly Off</option>
+                                    <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>ðŸŸ¢ Present</option>
+                                    <option value="Extra Duty" ${currentStatus === 'Extra Duty' ? 'selected' : ''}>âš¡ Extra Duty</option>
+                                    <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>ðŸ”„ Weekend Exchange</option>
+                                    <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>ðŸ”´ Absent (Auto WA)</option>
+                                    <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>ðŸŒ™ Night Shift</option>
+                                    <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>âœˆï¸ Approved Leave</option>
+                                    <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>ðŸ’¼ Outside Duty</option>
                                 </select>
                             </div>
                         `}
@@ -3842,6 +4901,9 @@
                             <span class="text-slate-300 dark:text-slate-600 font-mono text-xs">--</span>
                         ` : `
                             <div class="flex items-center justify-center gap-1.5">
+                                <button onclick="generateAppointmentForModerator(${mod.sl})" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
+                                    <i class="fa-solid fa-file-signature text-xs"></i>
+                                </button>
                                 <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-pen text-xs"></i>
                                 </button>
@@ -3969,7 +5031,7 @@
                     showToast(`Notice: ${currentActiveDate} is ${mod.name}'s scheduled Weekly Off`, 'info');
                 } else {
                     openAbsentAlertModal(mod, currentActiveDate);
-                    showToast(`🔴 Absent status set. Confirm WhatsApp alert in modal.`, 'info');
+                    showToast(`ðŸ”´ Absent status set. Confirm WhatsApp alert in modal.`, 'info');
                 }
             } else if (newStatus === 'Night Shift') {
                 openNightShiftModal(mod.sl);
@@ -3978,7 +5040,7 @@
             } else if (newStatus === 'Weekend Exchange') {
                 openExchangeModal(mod.sl, currentActiveDate);
             } else if (newStatus === 'Extra Duty') {
-                showToast(`⚡ Extra Duty recorded for ${mod.name}`, 'success');
+                showToast(`âš¡ Extra Duty recorded for ${mod.name}`, 'success');
             } else {
                 showToast(`Status updated to ${newStatus}`);
             }
@@ -4304,7 +5366,7 @@
                 setTimeout(() => {
                     todayHeader.classList.remove('ring-4', 'ring-indigo-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
                 }, 1800);
-                showToast("🎯 Focused on Today's Column", "info");
+                showToast("ðŸŽ¯ Focused on Today's Column", "info");
             } else {
                 showToast("Notice: Today's date is not within the currently viewed month.", "info");
             }
@@ -4351,7 +5413,7 @@
 
             document.getElementById('popover-mod-name').innerText = mod.name;
             const dayName = getDayNameForDate(dateStr);
-            document.getElementById('popover-date-info').innerText = `${dateStr} (${dayName}) • Current: ${currentStatus}`;
+            document.getElementById('popover-date-info').innerText = `${dateStr} (${dayName}) â€¢ Current: ${currentStatus}`;
 
             const popover = document.getElementById('status-picker-popover');
             const backdrop = document.getElementById('status-picker-backdrop');
@@ -4397,7 +5459,7 @@
             const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
             if (newStatus === 'Absent' && !isWeekend) {
                 openAbsentAlertModal(mod, dateStr);
-                showToast(`🔴 Absent status set. Confirm WhatsApp alert in modal.`, 'info');
+                showToast(`ðŸ”´ Absent status set. Confirm WhatsApp alert in modal.`, 'info');
             } else {
                 showToast(`Updated ${mod.name} to ${newStatus}`);
             }
@@ -4536,7 +5598,7 @@
 
             if (startDate && endDate) {
                 if (startDate > endDate) {
-                    descEl.innerHTML = '<span class="text-rose-500 font-bold">⚠️ Start Date cannot be after End Date</span>';
+                    descEl.innerHTML = '<span class="text-rose-500 font-bold">âš ï¸ Start Date cannot be after End Date</span>';
                     return;
                 }
                 const dates = getDatesInRange(startDate, endDate);
@@ -4621,7 +5683,7 @@
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`🌙 Night Shift assigned for ${mod.name} (${nightDutyDates.length} nights)`, 'success');
+            showToast(`ðŸŒ™ Night Shift assigned for ${mod.name} (${nightDutyDates.length} nights)`, 'success');
             closeNightShiftModal();
         }
 
@@ -4650,7 +5712,7 @@
                             ${isMe ? '<span class="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold">You</span>' : ''}
                             <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
                         </div>
-                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">📅 ${rec.startDate} ➔ ${rec.endDate}</div>
+                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">ðŸ“… ${rec.startDate} âž” ${rec.endDate}</div>
                     </div>
                     <div class="flex items-center gap-1.5">
                         ${currentUserRole === 'admin' ? `
@@ -4709,7 +5771,7 @@
                 return;
             }
 
-            if (!force && !confirm("Are you sure you want to clear ALL scheduled Night Shifts?\n\n• All night shift duty records will be removed.\n• All attendance cells with 'Night Shift' status will be reset back to regular status (Present / Weekly Off).\n• You can then assign all night duties manually.")) {
+            if (!force && !confirm("Are you sure you want to clear ALL scheduled Night Shifts?\n\nâ€¢ All night shift duty records will be removed.\nâ€¢ All attendance cells with 'Night Shift' status will be reset back to regular status (Present / Weekly Off).\nâ€¢ You can then assign all night duties manually.")) {
                 return;
             }
 
@@ -4742,7 +5804,7 @@
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast("🧹 All Night Shifts cleared! Ready for manual assignment.", "success");
+            showToast("ðŸ§¹ All Night Shifts cleared! Ready for manual assignment.", "success");
         }
 
         function handleMonthlyNightMonthChange(newMonth) {
@@ -4920,7 +5982,7 @@
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`✨ Night roster auto-assigned for ${monthName} ${yearStr} (3 moderators/night across ${newRecords.length} duty blocks)!`, 'success');
+            showToast(`âœ¨ Night roster auto-assigned for ${monthName} ${yearStr} (3 moderators/night across ${newRecords.length} duty blocks)!`, 'success');
         }
 
         function triggerAutoAssignCurrentMonth() {
@@ -4933,7 +5995,7 @@
             const month = parseInt(monthStr, 10);
             const monthName = MONTH_NAMES[month - 1] || monthStr;
 
-            if (confirm(`Automatically calculate and assign Night Shift Duty for ${monthName} ${yearStr}?\n\n• Exactly 3 moderators will work simultaneously every single night.\n• Duty schedule will run until the day before weekly off.\n• 5 Senior Moderators (Sajedul, Kowshiq, Najmul, Sujon, Sami) are exempted.\n• Continuous monthly distribution.`)) {
+            if (confirm(`Automatically calculate and assign Night Shift Duty for ${monthName} ${yearStr}?\n\nâ€¢ Exactly 3 moderators will work simultaneously every single night.\nâ€¢ Duty schedule will run until the day before weekly off.\nâ€¢ 5 Senior Moderators (Sajedul, Kowshiq, Najmul, Sujon, Sami) are exempted.\nâ€¢ Continuous monthly distribution.`)) {
                 autoAssignMonthlyNightShifts(selectedMonth);
             }
         }
@@ -5023,7 +6085,7 @@
                         ${item.totalNights}
                     </td>
                     <td class="p-2.5 font-mono text-[11px] text-slate-600 dark:text-slate-300">
-                        <span class="font-bold text-slate-900 dark:text-slate-100">${item.firstDate.split('-')[2]} ➔ ${item.lastDate.split('-')[2]}</span>
+                        <span class="font-bold text-slate-900 dark:text-slate-100">${item.firstDate.split('-')[2]} âž” ${item.lastDate.split('-')[2]}</span>
                         <span class="text-[10px] text-slate-400 block">(${datesFormatted})</span>
                     </td>
                     <td class="p-2.5 text-center">
@@ -5137,7 +6199,7 @@
             renderNightShiftRequestsList();
             closeNightShiftRequestModal();
 
-            showToast(`✅ Exemption request submitted directly to In-Charge Manik Sir!`, 'success');
+            showToast(`âœ… Exemption request submitted directly to In-Charge Manik Sir!`, 'success');
         }
 
         function renderNightShiftRequestsList() {
@@ -5213,7 +6275,7 @@
             req.status = 'Approved';
             saveNightShiftRequests();
             renderNightShiftRequestsList();
-            showToast(`✅ Request approved for ${req.modName}. You can now reassign or adjust their shift.`, 'success');
+            showToast(`âœ… Request approved for ${req.modName}. You can now reassign or adjust their shift.`, 'success');
         }
 
         function rejectNightShiftRequest(reqId) {
@@ -5249,7 +6311,7 @@
             const endDay = getDayNameForDate(endDate);
             const nextOffDate = getNextWeekendForModerator(mod, startDate);
             
-            return `Dear ${mod.name},\n\nYou have been scheduled for Night Shift Duty at Sanvee's by Tony.\n\n📅 Duty Period: ${startDate} (${startDay}) to ${endDate} (${endDay})\n🌙 Total Duty Nights: ${totalNights} Nights\n🏖️ Upcoming Weekly Off: ${mod.weekend} (${nextOffDate})\n\nPlease be prepared for your scheduled night duty and maintain proper roster handover.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
+            return `Dear ${mod.name},\n\nYou have been scheduled for Night Shift Duty at Sanvee's by Tony.\n\nðŸ“… Duty Period: ${startDate} (${startDay}) to ${endDate} (${endDay})\nðŸŒ™ Total Duty Nights: ${totalNights} Nights\nðŸ–ï¸ Upcoming Weekly Off: ${mod.weekend} (${nextOffDate})\n\nPlease be prepared for your scheduled night duty and maintain proper roster handover.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
         }
 
         function buildNightShiftWhatsAppURL(mod, startDate, endDate, totalNights) {
@@ -5268,7 +6330,7 @@
             if (!mod) return;
             const url = buildNightShiftWhatsAppURL(mod, startDate, endDate, totalNights);
             window.open(url, '_blank');
-            showToast(`📱 WhatsApp duty notice prepared for ${mod.name}!`, 'success');
+            showToast(`ðŸ“± WhatsApp duty notice prepared for ${mod.name}!`, 'success');
         }
 
         function openNightShiftWhatsAppBatchModal() {
@@ -5328,7 +6390,7 @@
                             <div>
                                 <div class="font-bold text-slate-900 dark:text-white text-sm">${item.mod.name}</div>
                                 <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
+                                    ðŸ“… ${item.firstDate} âž” ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> â€¢ Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
                                 </div>
                             </div>
                         </div>
@@ -5684,7 +6746,7 @@
                                 Approved by: ${approverLabel}
                             </span>
                         </div>
-                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">${rec.startDate} ➔ ${rec.endDate} • ${rec.reason}</div>
+                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">${rec.startDate} âž” ${rec.endDate} â€¢ ${rec.reason}</div>
                     </div>
                     <button onclick="deleteLeaveRecord(${rec.id})" class="p-2 text-slate-400 hover:text-rose-600">
                         <i class="fa-solid fa-trash"></i>
@@ -5903,8 +6965,8 @@
         function updateExchangeDayLabels() {
             const dutyVal = document.getElementById('exchange-duty-date').value;
             const offVal = document.getElementById('exchange-off-date').value;
-            if (dutyVal) document.getElementById('exchange-duty-day-label').innerText = `Duty: ${dutyVal} (${getDayNameForDate(dutyVal)}) ➔ Set to Present`;
-            if (offVal) document.getElementById('exchange-off-day-label').innerText = `Off: ${offVal} (${getDayNameForDate(offVal)}) ➔ Set to Exchange`;
+            if (dutyVal) document.getElementById('exchange-duty-day-label').innerText = `Duty: ${dutyVal} (${getDayNameForDate(dutyVal)}) âž” Set to Present`;
+            if (offVal) document.getElementById('exchange-off-day-label').innerText = `Off: ${offVal} (${getDayNameForDate(offVal)}) âž” Set to Exchange`;
         }
 
         function handleExchangeSubmit(e) {
@@ -5957,7 +7019,7 @@
                 div.innerHTML = `
                     <div>
                         <div class="font-bold text-slate-900 dark:text-white">${rec.modName}</div>
-                        <div class="font-mono text-slate-400 text-[11px]">Duty: ${rec.dutyDate} ➔ Off: ${rec.offDate}</div>
+                        <div class="font-mono text-slate-400 text-[11px]">Duty: ${rec.dutyDate} âž” Off: ${rec.offDate}</div>
                     </div>
                     <button onclick="deleteExchangeRecord(${rec.id})" class="p-1.5 text-slate-400 hover:text-rose-600">
                         <i class="fa-solid fa-trash"></i>
@@ -6062,7 +7124,7 @@
                     div.innerHTML = `
                         <div>
                             <span class="font-bold text-slate-900 dark:text-white text-sm block">${m.name}</span>
-                            <span class="text-xs text-slate-400 font-mono">${m.phone} • Off: ${m.weekend}</span>
+                            <span class="text-xs text-slate-400 font-mono">${m.phone} â€¢ Off: ${m.weekend}</span>
                         </div>
                         <button onclick="triggerDirectWhatsApp('${m.phone}', '${m.name}', true, '${currentActiveDate}')" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5">
                             <i class="fa-brands fa-whatsapp"></i> Send Notice
@@ -6369,7 +7431,7 @@
                     if (currentMod) {
                         document.getElementById('mod-banner-sl').innerText = String(currentMod.sl).padStart(2, '0');
                         document.getElementById('mod-banner-name').innerText = currentMod.name;
-                        document.getElementById('mod-banner-weekend-info').innerText = `Weekly Off: ${currentMod.weekend} • Join: ${currentMod.join}`;
+                        document.getElementById('mod-banner-weekend-info').innerText = `Weekly Off: ${currentMod.weekend} â€¢ Join: ${currentMod.join}`;
                         
                         // Check current month night duty
                         const selectedMonth = currentActiveMonth || getCurrentMonthStr();
@@ -6384,9 +7446,9 @@
                         const nightInfoEl = document.getElementById('mod-banner-night-info');
                         if (nightInfoEl) {
                             if (myDutyDays.length > 0) {
-                                nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
+                                nightInfoEl.innerHTML = `ðŸŒ™ Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
                             } else {
-                                nightInfoEl.innerHTML = `🌙 No night duty scheduled this month`;
+                                nightInfoEl.innerHTML = `ðŸŒ™ No night duty scheduled this month`;
                             }
                         }
                     }
@@ -6547,7 +7609,7 @@
                         applyRolePermissions();
                         renderDailyTable();
                         if (activeView === 'monthly') renderMonthlyTable();
-                        showToast(`👋 Welcome ${mod.name}! (View-Only Portal)`, "success");
+                        showToast(`ðŸ‘‹ Welcome ${mod.name}! (View-Only Portal)`, "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Open Moderator Portal</span>`;
                         submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
                     }, 350);
@@ -6787,7 +7849,15 @@
                 document.head.appendChild(printStyle);
             }
 
-            if (activeView === 'daily') {
+            if (activeView === 'appointment' || document.body.classList.contains('print-appointment-active')) {
+                printStyle.innerHTML = `
+                    @page { size: A4 portrait; margin: 0; }
+                    @media print {
+                        @page { size: A4 portrait; margin: 0; }
+                        html, body { margin: 0 !important; padding: 0 !important; width: 210mm !important; height: 297mm !important; }
+                    }
+                `;
+            } else if (activeView === 'daily') {
                 printStyle.innerHTML = `
                     @page { size: A4 portrait; margin: 8mm 6mm; }
                     @media print {
@@ -6856,6 +7926,7 @@
             const actionCommands = [
                 { id: 'act-daily', title: 'Daily Roster View', subtitle: 'View and mark daily attendance roster', icon: 'fa-calendar-day', color: 'text-indigo-500', action: () => { switchView('daily'); closeCommandPalette(); } },
                 { id: 'act-monthly', title: 'Monthly Matrix Sheet', subtitle: 'View full monthly 30/31-day matrix sheet', icon: 'fa-table-cells', color: 'text-purple-500', action: () => { switchView('monthly'); closeCommandPalette(); } },
+                { id: 'act-appointment', title: 'Appointment Letter Generator', subtitle: 'Create & print appointment letter on official company pad', icon: 'fa-file-signature', color: 'text-amber-500', action: () => { switchView('appointment'); closeCommandPalette(); } },
                 { id: 'act-today', title: 'Jump to Today', subtitle: 'Set active date to current calendar day', icon: 'fa-clock-rotate-left', color: 'text-cyan-500', action: () => { jumpToToday(); closeCommandPalette(); } },
                 { id: 'act-bulk-present', title: 'Mark All On-Duty Present', subtitle: 'One-click bulk mark for all scheduled moderators', icon: 'fa-bolt', color: 'text-emerald-500', action: () => { bulkMarkAllPresent(); closeCommandPalette(); } },
                 { id: 'act-add', title: 'Add New Moderator', subtitle: 'Register moderator profile into serialized roster', icon: 'fa-user-plus', color: 'text-indigo-500', action: () => { openAddModal(); closeCommandPalette(); } },
@@ -6880,7 +7951,7 @@
             ).map(m => ({
                 id: `mod-${m.sl}`,
                 title: `${String(m.sl).padStart(2, '0')} - ${m.name}`,
-                subtitle: `${m.weekend} Off • ${m.phone} • Joined ${m.join}`,
+                subtitle: `${m.weekend} Off â€¢ ${m.phone} â€¢ Joined ${m.join}`,
                 icon: 'fa-user',
                 color: 'text-indigo-600 dark:text-indigo-400',
                 action: () => {
@@ -6958,13 +8029,13 @@
                 switchLoginRole('admin');
                 document.getElementById('login-username').value = 'admin';
                 document.getElementById('login-password').value = '@Manik1243';
-                showToast("⚡ Filled In-Charge Admin credentials", "info");
+                showToast("âš¡ Filled In-Charge Admin credentials", "info");
             } else {
                 switchLoginRole('moderator');
                 const select = document.getElementById('login-mod-select');
                 if (select && select.options.length > 0) select.selectedIndex = 0;
                 document.getElementById('login-password').value = '1234';
-                showToast("👤 Filled Moderator View credentials (PIN: 1234)", "info");
+                showToast("ðŸ‘¤ Filled Moderator View credentials (PIN: 1234)", "info");
             }
         }
 
@@ -7030,7 +8101,9 @@
             renderDailyTable();
             renderNightShiftRequestsList();
             initSpotlightCards();
+            initAppointmentView();
         });
-    </script>
+</script>
+
 </body>
 </html>

@@ -314,6 +314,11 @@
                             <i class="fa-solid fa-table-cells text-sm"></i>
                             <span>Monthly Matrix</span>
                         </button>
+                        <button onclick="switchView('appointment')" id="btn-view-appointment"
+                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                            <i class="fa-solid fa-file-signature text-sm"></i>
+                            <span>Appointment Letter</span>
+                        </button>
                     </div>
 
                     <button type="button" onclick="openCommandPalette()" title="Search & Quick Actions (Ctrl+K)"
@@ -353,6 +358,13 @@
 
                         <!-- Dropdown Menu -->
                         <div id="operations-dropdown-menu" class="hidden absolute right-0 mt-2 w-64 p-2 rounded-2xl glass-panel-elevated shadow-2xl z-50 space-y-1 text-xs font-semibold">
+                            <button onclick="switchView('appointment'); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
+                                <span class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-file-signature text-amber-500"></i>
+                                    <span>Appointment Letter (Pad)</span>
+                                </span>
+                                <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold text-[10px]">PAD</span>
+                            </button>
                             <button onclick="openNightShiftModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
                                     <i class="fa-solid fa-moon text-indigo-400"></i>
@@ -402,6 +414,10 @@
                                 <div class="font-bold text-slate-900 dark:text-white">Sheikh Shahmiran Manik</div>
                                 <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">In-Charge • Admin</div>
                             </div>
+                            <button onclick="switchView('appointment'); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
+                                <i class="fa-solid fa-file-signature text-amber-500"></i>
+                                <span>Appointment Letters</span>
+                            </button>
                             <button onclick="handlePrintReport(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
                                 <i class="fa-solid fa-print text-indigo-500"></i>
                                 <span>Print A4 Roster</span>
@@ -986,6 +1002,403 @@
                 </section>
             </div>
 
+            <!-- ======================= E. APPOINTMENT LETTER & COMPANY PAD WORKSPACE ======================= -->
+            <div id="view-appointment-container" class="hidden space-y-6">
+                
+                <!-- Top Executive Banner & Controls Bar (no-print) -->
+                <section class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-600 p-[2px] shadow-[0_0_20px_rgba(245,158,11,0.4)] flex-shrink-0">
+                            <div class="w-full h-full bg-[#050A18] rounded-[14px] flex items-center justify-center">
+                                <i class="fa-solid fa-file-signature text-amber-400 text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2.5">
+                                <h3 class="font-display font-black text-lg sm:text-xl text-slate-900 dark:text-white">
+                                    Official Appointment Letter Portal
+                                </h3>
+                                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-extrabold text-[10px] border border-amber-500/30 uppercase tracking-wider">
+                                    Company Pad (A4)
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
+                                Sanvee's by Tony • Live Letterhead Pad Generation, Real-Time Editing & Instant Print
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <!-- Reset to Template Default -->
+                        <button type="button" onclick="resetAppointmentToDefault()" title="Reset to standard template"
+                                class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
+                            <i class="fa-solid fa-rotate-left text-xs"></i>
+                            <span>Reset</span>
+                        </button>
+
+                        <!-- Copy Letter Text -->
+                        <button type="button" onclick="copyAppointmentText()" title="Copy letter text to clipboard"
+                                class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
+                            <i class="fa-solid fa-copy text-xs text-sky-400"></i>
+                            <span>Copy Text</span>
+                        </button>
+
+                        <!-- Print Appointment Letter Button -->
+                        <button type="button" onclick="printAppointmentLetter()" id="btn-print-appointment"
+                                class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-display font-black text-xs sm:text-sm tracking-wide shadow-[0_0_25px_rgba(245,158,11,0.55)] active:scale-95 transition inline-flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-print text-sm"></i>
+                            <span>Print Appointment Letter (A4)</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Workspace Grid: Left Configuration & Right Live A4 Canvas -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Left Configuration Panel (Col-span 5) -->
+                    <div class="lg:col-span-5 xl:col-span-4 space-y-5 no-print appointment-controls-column">
+                        
+                        <!-- 1. Moderator Selector & Fast Fill -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-4 border border-amber-500/20 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-user-check text-amber-500"></i>
+                                    <span>Select Moderator</span>
+                                </span>
+                                <span class="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
+                                    Auto-Fill
+                                </span>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                                    Choose Moderator Profile
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-users absolute left-3.5 top-3.5 text-amber-500 text-xs pointer-events-none"></i>
+                                    <select id="appointment-mod-select" onchange="handleAppointmentModSelect(this.value)"
+                                            class="w-full pl-9 pr-8 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none transition cursor-pointer">
+                                        <!-- Injected dynamically by JS -->
+                                    </select>
+                                </div>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
+                                    Selecting a profile fills their verified name and joining date. You can manually edit any field below.
+                                </p>
+                            </div>
+
+                            <!-- Selected Member Summary Pill -->
+                            <div id="appointment-mod-info-pill" class="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between gap-3 text-xs">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 font-black flex items-center justify-center font-mono text-xs" id="app-info-sl">
+                                        --
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900 dark:text-white" id="app-info-name">Custom Entry</div>
+                                        <div class="text-[10px] text-slate-500 dark:text-slate-400 font-mono" id="app-info-phone">Phone: --</div>
+                                    </div>
+                                </div>
+                                <div class="text-right text-[10px] font-mono">
+                                    <span class="text-slate-500 dark:text-slate-400">Join: </span>
+                                    <b class="text-amber-600 dark:text-amber-400" id="app-info-join">--</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Manual Inputs & Candidate Details (Custom Entry) -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-4 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-pen-to-square text-sky-500"></i>
+                                    <span>Candidate & Letter Details</span>
+                                </span>
+                                <span class="text-[10px] text-slate-500 font-semibold">Editable</span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Candidate Full Name (To:)
+                                    </label>
+                                    <input type="text" id="appointment-input-name" placeholder="e.g. Md Sharif Hossain"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Salutation Name (Dear...)
+                                    </label>
+                                    <input type="text" id="appointment-input-salutation" placeholder="e.g. Sharif Hossain"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Letter Issue Date
+                                        </label>
+                                        <input type="date" id="appointment-input-date"
+                                               onchange="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Effective Joining Date
+                                        </label>
+                                        <input type="date" id="appointment-input-effective-date"
+                                               onchange="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Reference Number
+                                    </label>
+                                    <input type="text" id="appointment-input-ref" placeholder="e.g. SBT/HR/2026/01"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Subject / Designation
+                                    </label>
+                                    <input type="text" id="appointment-input-subject" value="Appointment as Moderator"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Remuneration & Conditions -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-4 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-coins text-emerald-500"></i>
+                                    <span>Remuneration & Conditions</span>
+                                </span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            1st Month Training
+                                        </label>
+                                        <input type="text" id="appointment-input-training-salary" value="10,000 BDT"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Basic Monthly Salary
+                                        </label>
+                                        <input type="text" id="appointment-input-basic-salary" value="14000 BDT"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        Resignation Notice Period
+                                    </label>
+                                    <input type="text" id="appointment-input-notice-period" value="two months"
+                                           oninput="handleAppointmentInputUpdate()"
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Signatory Role
+                                        </label>
+                                        <input type="text" id="appointment-input-signatory" value="General Manager"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Branch / Office
+                                        </label>
+                                        <input type="text" id="appointment-input-location" value="Head Office"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Letterhead Pad Display & Typography Settings -->
+                        <div class="glass-panel p-5 rounded-3xl space-y-3.5 shadow-md">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
+                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-palette text-purple-500"></i>
+                                    <span>Pad Display & Print Mode</span>
+                                </span>
+                            </div>
+
+                            <!-- Pad Mode Switcher -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-2">
+                                    Letterhead Background Mode
+                                </label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" onclick="setAppointmentPadMode('with-bg')" id="btn-pad-mode-with-bg"
+                                            class="p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer">
+                                        <i class="fa-solid fa-file-image text-sm"></i>
+                                        <span>With Company Pad</span>
+                                    </button>
+                                    <button type="button" onclick="setAppointmentPadMode('blank')" id="btn-pad-mode-blank"
+                                            class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer">
+                                        <i class="fa-solid fa-file-lines text-sm"></i>
+                                        <span>Blank Pad (Physical)</span>
+                                    </button>
+                                </div>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5" id="pad-mode-hint">
+                                    "With Company Pad" renders the full colorful Sanvee's logo and watermark. "Blank Pad" prints text only onto pre-printed stationery.
+                                </p>
+                            </div>
+
+                            <!-- Font selector -->
+                            <div class="pt-2 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-600 dark:text-slate-400">Typography Font</span>
+                                <div class="flex items-center gap-1">
+                                    <button type="button" onclick="setAppointmentFont('sans')" id="btn-font-sans"
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30">
+                                        Sans-Serif
+                                    </button>
+                                    <button type="button" onclick="setAppointmentFont('serif')" id="btn-font-serif"
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300">
+                                        Serif
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: Live A4 Company Pad Preview (Col-span 7 / 8) -->
+                    <div class="lg:col-span-7 xl:col-span-8 flex flex-col items-center appointment-preview-column">
+                        
+                        <!-- Toolbar Above Sheet (Zoom & Print Actions) -->
+                        <div class="w-full max-w-[794px] mb-3 px-3 py-2 rounded-2xl glass-panel flex flex-wrap items-center justify-between gap-3 text-xs no-print">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span>Live A4 Pad Preview</span>
+                                </span>
+                                <span class="text-[11px] text-slate-400 font-mono hidden sm:inline">• Sanvee's Official Stationery</span>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <!-- Zoom Controls -->
+                                <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+                                    <button type="button" onclick="changeAppointmentZoom(-0.1)" title="Zoom Out"
+                                            class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                        <i class="fa-solid fa-minus text-[10px]"></i>
+                                    </button>
+                                    <span id="appointment-zoom-label" class="px-1.5 font-mono font-bold text-[11px] text-slate-700 dark:text-slate-300">100%</span>
+                                    <button type="button" onclick="changeAppointmentZoom(0.1)" title="Zoom In"
+                                            class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                        <i class="fa-solid fa-plus text-[10px]"></i>
+                                    </button>
+                                    <button type="button" onclick="resetAppointmentZoom()" title="Reset Zoom"
+                                            class="px-1.5 py-0.5 rounded-lg text-[10px] font-bold text-slate-500 hover:text-slate-300 transition">
+                                        Fit
+                                    </button>
+                                </div>
+
+                                <!-- Quick Print Button -->
+                                <button type="button" onclick="printAppointmentLetter()"
+                                        class="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer">
+                                    <i class="fa-solid fa-print text-xs"></i>
+                                    <span>Print</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live Sheet Container -->
+                        <div class="appointment-sheet-wrapper">
+                            
+                            <!-- The Official A4 Letterhead Sheet -->
+                            <div id="appointment-letter-sheet" class="appointment-a4-sheet pad-mode-with-bg">
+                                
+                                <!-- Document Title -->
+                                <div class="appointment-letter-title">
+                                    Appointment Letter
+                                </div>
+
+                                <!-- Meta Row: Date & Reference -->
+                                <div class="appointment-meta-row">
+                                    <div>
+                                        Date: <span id="sheet-date" class="font-bold">18-08-2026</span>
+                                    </div>
+                                    <div>
+                                        Reference: <span id="sheet-ref" class="font-bold">SBT/HR/2026/01</span>
+                                    </div>
+                                </div>
+
+                                <!-- Recipient Block -->
+                                <div class="appointment-recipient-block">
+                                    <div>To:</div>
+                                    <div id="sheet-candidate-name" class="font-bold text-[12pt] mt-0.5">
+                                        Md Sharif Hossain
+                                    </div>
+                                </div>
+
+                                <!-- Subject Line -->
+                                <div class="appointment-subject-line">
+                                    Subject: <span id="sheet-subject">Appointment as Moderator</span>
+                                </div>
+
+                                <!-- Salutation -->
+                                <div class="appointment-salutation">
+                                    Dear <span id="sheet-salutation">Sharif Hossain</span>,
+                                </div>
+
+                                <!-- Paragraph 1 -->
+                                <div class="appointment-paragraph">
+                                    We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from <b id="sheet-effective-date">09 August, 2026</b>. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least <span id="sheet-notice-period" class="font-semibold">two months</span> earlier.
+                                </div>
+
+                                <!-- Paragraph 2 -->
+                                <div class="appointment-paragraph">
+                                    Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get <b id="sheet-training-salary">10,000 BDT</b> for the first month since it will be your training period. After your first month on duty, you will get your basic salary <b id="sheet-basic-salary">14000 BDT</b> per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+                                </div>
+
+                                <!-- Closing -->
+                                <div class="appointment-closing">
+                                    Thank you,
+                                </div>
+
+                                <!-- Signatory Block -->
+                                <div class="appointment-signatory-block">
+                                    <div class="appointment-signature-line">
+                                        Signature: _________________
+                                    </div>
+                                    <div id="sheet-signatory" class="appointment-signatory-name">
+                                        General Manager
+                                    </div>
+                                    <div class="appointment-signatory-company">
+                                        Sanvee's By Tony
+                                    </div>
+                                    <div id="sheet-location" class="appointment-signatory-office">
+                                        Head Office
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <!-- ======================= C. DEDICATED NIGHT SHIFT PRINT REPORT ======================= -->
             <div id="view-night-report-container" class="hidden print-report-target"></div>
 
@@ -1003,6 +1416,10 @@
             <button type="button" onclick="switchView('monthly')" id="dock-btn-monthly" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
                 <i class="fa-solid fa-table-cells text-base"></i>
                 <span>Monthly</span>
+            </button>
+            <button type="button" onclick="switchView('appointment')" id="dock-btn-appointment" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
+                <i class="fa-solid fa-file-signature text-base"></i>
+                <span>Letter</span>
             </button>
             <button type="button" onclick="openCommandPalette()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
                 <i class="fa-solid fa-magnifying-glass text-base text-indigo-500"></i>
