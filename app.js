@@ -12,8 +12,8 @@
             { sl: 10, name: "Mosharof Hossain", weekend: "Monday", phone: "01927917924", join: "01-01-2026", id: "mod_01927917924_9_upf8q", status: "Present", notes: "" },
             { sl: 11, name: "Md Raihan", weekend: "Monday", phone: "01931070660", join: "27-06-2026", id: "mod_01931070660_10_5tzb7", status: "Present", notes: "" },
             { sl: 12, name: "Fahim Howlader", weekend: "Monday", phone: "01887474044", join: "08-08-2026", id: "mod_01887474044_11_hmq5y", status: "Present", notes: "" },
-            { sl: 13, name: "Sami", weekend: "Tuesday", phone: "01407914895", join: "05-01-2026", id: "mod_01602871511_12_xwcp7", status: "Present", notes: "" },
-            { sl: 14, name: "Hamim", weekend: "Tuesday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_14_to2nh", status: "Present", notes: "" },
+            { sl: 13, name: "Sami", weekend: "Tuesday", phone: "01407914895", join: "05-01-2026", id: "mod_01407914895_13_xwcp7", status: "Present", notes: "" },
+            { sl: 14, name: "Hamim", weekend: "Tuesday", phone: "01602871511", join: "05-01-2026", id: "mod_01602871511_14_to2nh", status: "Present", notes: "" },
             { sl: 15, name: "Biplob", weekend: "Tuesday", phone: "01926994536", join: "07-09-2026", id: "mod_01926994536_5t6ii", status: "Present", notes: "" },
             { sl: 16, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
             { sl: 17, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
@@ -28,7 +28,7 @@
             { sl: 26, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
         ];
 
-        let moderators = [];
+        let moderators = [...DEFAULT_MODERATORS];
         let attendanceHistory = {}; 
         let scheduledNightShifts = [];
         let approvedLeaves = [];
@@ -542,33 +542,23 @@
 
             let modified = false;
 
-            // Accurate mapping from legacy 26-moderator list indices to active 24 moderators
-            const old26ToModMap = {
-                1: moderators.find(m => m.sl === 1),
-                2: moderators.find(m => m.sl === 2),
-                3: moderators.find(m => m.sl === 3),
-                4: moderators.find(m => m.sl === 4),
-                5: moderators.find(m => m.sl === 5),
-                6: moderators.find(m => m.sl === 6),
-                7: moderators.find(m => m.sl === 7),
-                8: moderators.find(m => m.sl === 8),
-                9: moderators.find(m => m.sl === 9),
-                10: moderators.find(m => m.sl === 10),
-                11: moderators.find(m => m.sl === 11),
-                12: moderators.find(m => m.sl === 12),
-                13: moderators.find(m => m.sl === 13),
-                15: moderators.find(m => m.sl === 14), // Hamim
-                16: moderators.find(m => m.sl === 15), // Kowshiq
-                17: moderators.find(m => m.sl === 16), // Sahil (Forever)
-                19: moderators.find(m => m.sl === 17), // Najmul Islam
-                20: moderators.find(m => m.sl === 18), // Zubayer Mridha
-                21: moderators.find(m => m.sl === 19), // Naim Khan
-                22: moderators.find(m => m.sl === 20), // Sahil Sheikh
-                23: moderators.find(m => m.sl === 21), // Rezaul Karim
-                24: moderators.find(m => m.sl === 22), // Piyal Sarker
-                25: moderators.find(m => m.sl === 23), // Tonmoy
-                26: moderators.find(m => m.sl === 24)  // Masud Rana
-            };
+            // Robust 1-to-1 mapping for standard 26 moderators; fallback mapping for legacy 24 schema
+            const isLegacy24Schema = (moderators.length === 24);
+            const old26ToModMap = {};
+            if (isLegacy24Schema) {
+                const legacy24Map = {
+                    1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10,
+                    11: 11, 12: 12, 13: 13, 14: 14, 15: 14, 16: 15, 17: 16, 18: 17, 19: 17,
+                    20: 18, 21: 19, 22: 20, 23: 21, 24: 22, 25: 23, 26: 24
+                };
+                Object.keys(legacy24Map).forEach(k => {
+                    old26ToModMap[k] = moderators.find(m => m.sl === legacy24Map[k]);
+                });
+            } else {
+                for (let i = 1; i <= moderators.length; i++) {
+                    old26ToModMap[i] = moderators.find(m => m.sl === i) || moderators[i - 1];
+                }
+            }
 
             Object.keys(attendanceHistory).forEach(dateStr => {
                 const dayRecords = attendanceHistory[dateStr];
@@ -585,26 +575,26 @@
                     modified = true;
                     const newDayRecords = {};
 
-                    if (isOld26Array || (hasOld26Keys && moderators.length === 24)) {
+                    if (isOld26Array || hasOld26Keys || hasOnlyNumericKeys) {
                         Object.keys(old26ToModMap).forEach(oldIdxStr => {
                             const oldIdx = parseInt(oldIdxStr, 10);
                             const targetMod = old26ToModMap[oldIdx];
                             if (!targetMod) return;
 
-                            let status = isArray ? dayRecords[oldIdx] : dayRecords[oldIdxStr];
+                            let status = isArray ? (dayRecords[oldIdx] || dayRecords[oldIdx - 1]) : dayRecords[oldIdxStr];
                             const modKey = getModeratorKey(targetMod);
                             const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
 
                             // Check approved leaves (by dates array or startDate..endDate range)
                             const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl === targetMod.sl || l.modPhone === targetMod.phone || l.modName === targetMod.name);
+                                const isMod = (l.modSl ? l.modSl === targetMod.sl : (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modName === targetMod.name)));
                                 if (!isMod) return false;
                                 return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                             });
 
                             // Check scheduled night shifts
                             const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl === targetMod.sl || s.modPhone === targetMod.phone || s.modName === targetMod.name);
+                                const isMod = (s.modSl ? s.modSl === targetMod.sl : (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modName === targetMod.name)));
                                 if (!isMod) return false;
                                 return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
                             });
@@ -615,10 +605,10 @@
                                 status = 'Night Shift';
                             }
                             // Check weekend exchanges
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === targetMod.sl || x.modPhone === targetMod.phone) && x.dutyDate === dateStr)) {
+                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.dutyDate === dateStr)) {
                                 status = 'Present';
                             }
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === targetMod.sl || x.modPhone === targetMod.phone) && x.offDate === dateStr)) {
+                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.offDate === dateStr)) {
                                 status = 'Weekly Off';
                             }
                             // Re-align default status so scheduled day off strictly applies
@@ -637,13 +627,13 @@
                             const isScheduledWeekend = m.weekend && dayName && (m.weekend.toLowerCase() === dayName.toLowerCase());
 
                             const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl === m.sl || l.modPhone === m.phone || l.modName === m.name);
+                                const isMod = (l.modSl ? l.modSl === m.sl : (l.modId ? l.modId === m.id : (l.modPhone === m.phone || l.modName === m.name)));
                                 if (!isMod) return false;
                                 return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                             });
 
                             const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl === m.sl || s.modPhone === m.phone || s.modName === m.name);
+                                const isMod = (s.modSl ? s.modSl === m.sl : (s.modId ? s.modId === m.id : (s.modPhone === m.phone || s.modName === m.name)));
                                 if (!isMod) return false;
                                 return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
                             });
@@ -652,9 +642,9 @@
                                 status = 'Leave';
                             } else if (hasNightShift) {
                                 status = 'Night Shift';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === m.sl || x.modPhone === m.phone) && x.dutyDate === dateStr)) {
+                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.dutyDate === dateStr)) {
                                 status = 'Present';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === m.sl || x.modPhone === m.phone) && x.offDate === dateStr)) {
+                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.offDate === dateStr)) {
                                 status = 'Weekly Off';
                             } else if (!status || status === 'Present' || status === 'Weekly Off') {
                                 status = isScheduledWeekend ? 'Weekly Off' : 'Present';
@@ -703,7 +693,36 @@
                 const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[slKey] !== undefined);
                 if (!hasRecord) {
                     const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
-                    const defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
+                    let defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
+
+                    // Check approved leave for this date
+                    const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
+                        const isMod = (l.modSl ? l.modSl === mod.sl : (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modName === mod.name)));
+                        if (!isMod) return false;
+                        return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
+                    });
+
+                    // Check scheduled night shift for this date
+                    const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
+                        const isMod = (s.modSl ? s.modSl === mod.sl : (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modName === mod.name)));
+                        if (!isMod) return false;
+                        return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
+                    });
+
+                    // Check weekend exchange
+                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.dutyDate === dateStr);
+                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.offDate === dateStr);
+
+                    if (hasApprovedLeave) {
+                        defaultStatus = 'Leave';
+                    } else if (hasNightShift) {
+                        defaultStatus = 'Night Shift';
+                    } else if (hasExchangeDuty) {
+                        defaultStatus = 'Present';
+                    } else if (hasExchangeOff) {
+                        defaultStatus = 'Weekly Off';
+                    }
+
                     dayRecords[modKey] = defaultStatus;
                     dayRecords[slKey] = defaultStatus;
                 } else if (dayRecords[modKey] !== undefined) {
@@ -731,11 +750,11 @@
             if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
                 return dayRecords[modKey];
             }
-            if (mod.phone && dayRecords[mod.phone] !== undefined) {
-                return dayRecords[mod.phone];
-            }
             if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
                 return dayRecords[slKey];
+            }
+            if (mod.phone && dayRecords[mod.phone] !== undefined) {
+                return dayRecords[mod.phone];
             }
 
             return defaultStatus;
@@ -904,7 +923,7 @@
 
             const nameInput = document.getElementById('appointment-input-name');
             if (nameInput && !nameInput.value) {
-                resetAppointmentToDefault();
+                resetAppointmentToDefault(true);
             } else {
                 updateAppointmentPreview();
             }
@@ -1115,7 +1134,7 @@
             }
         }
 
-        function resetAppointmentToDefault() {
+        function resetAppointmentToDefault(quiet = false) {
             appointmentState = { ...DEFAULT_APPOINTMENT_STATE };
             const todayStr = getTodayDateStr();
             appointmentState.issueDate = todayStr;
@@ -1160,7 +1179,9 @@
             setAppointmentPadMode('with-bg');
             setAppointmentFont('sans');
             updateAppointmentPreview();
-            showToast('Appointment template reset to default', 'info');
+            if (!quiet) {
+                showToast('Appointment template reset to default', 'info');
+            }
         }
 
         function copyAppointmentText() {
@@ -1729,10 +1750,13 @@ ${appointmentState.location}`;
         const MATRIX_BADGE_OUTSIDE = '<span class="matrix-cell-badge matrix-badge-outside">O</span>';
 
         function renderMonthlyTable() {
+            if (!currentActiveMonth || !currentActiveMonth.includes('-')) {
+                currentActiveMonth = getCurrentMonthStr();
+            }
             const [yearStr, monthStr] = currentActiveMonth.split('-');
-            const year = parseInt(yearStr, 10);
-            const month = parseInt(monthStr, 10);
-            const monthName = MONTH_NAMES[month - 1];
+            const year = parseInt(yearStr, 10) || new Date().getFullYear();
+            const month = parseInt(monthStr, 10) || (new Date().getMonth() + 1);
+            const monthName = MONTH_NAMES[month - 1] || 'Current Month';
 
             const labelEl = document.getElementById('monthly-sheet-label');
             if (labelEl) labelEl.innerText = `${monthName} ${year}`;
@@ -4401,10 +4425,12 @@ ${appointmentState.location}`;
 
         function startLiveClock() {
             const clockEl = document.getElementById('nav-live-clock');
-            setInterval(() => {
+            const updateClock = () => {
                 const now = new Date();
                 if (clockEl) clockEl.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            }, 1000);
+            };
+            updateClock();
+            setInterval(updateClock, 1000);
         }
 
         function toggleOperationsMenu(forcedState) {
@@ -4756,7 +4782,7 @@ ${appointmentState.location}`;
         });
 
         // Initialize on DOM Ready
-        window.addEventListener('DOMContentLoaded', () => {
+        function initApp() {
             initTheme();
             startLiveClock();
             loadFromLocalStorage();
@@ -4768,8 +4794,15 @@ ${appointmentState.location}`;
             checkAuthStatus();
             applyRolePermissions();
             applyPrintOrientationSettings();
-            renderDailyTable();
+            if (activeView === 'monthly') {
+                switchView('monthly');
+            } else if (activeView === 'appointment') {
+                switchView('appointment');
+            } else {
+                switchView('daily');
+            }
             renderNightShiftRequestsList();
             initSpotlightCards();
-            initAppointmentView();
-        });
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);

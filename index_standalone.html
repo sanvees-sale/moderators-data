@@ -657,19 +657,21 @@
             #view-monthly-container th.col-m-name,
             #view-monthly-container td.col-m-name {
                 position: sticky !important;
-                left: 36px !important;
+                left: 38px !important;
                 z-index: 15 !important;
                 background-color: #ffffff;
-                box-shadow: 2px 0 6px -2px rgba(0, 0, 0, 0.08);
+                box-shadow: 4px 0 10px -2px rgba(0, 0, 0, 0.12);
+                border-right: 1px solid rgba(203, 213, 225, 0.8) !important;
             }
             .dark #view-monthly-container th.col-m-name,
             .dark #view-monthly-container td.col-m-name {
                 background-color: #0a101f;
-                box-shadow: 2px 0 8px -2px rgba(0, 0, 0, 0.5);
+                box-shadow: 4px 0 12px -2px rgba(0, 0, 0, 0.6);
+                border-right: 1px solid rgba(56, 189, 248, 0.22) !important;
             }
             #view-monthly-container thead th.col-m-sl,
             #view-monthly-container thead th.col-m-name {
-                z-index: 25 !important;
+                z-index: 30 !important;
                 background-color: #f1f5f9 !important;
             }
             .dark #view-monthly-container thead th.col-m-sl,
@@ -1080,7 +1082,7 @@
                 min-height: 297mm !important;
                 max-height: 297mm !important;
                 margin: 0 !important;
-                padding: 48mm 23mm 20mm 23mm !important;
+                padding: 45mm 20mm 24mm 20mm !important;
                 box-shadow: none !important;
                 border: none !important;
                 border-radius: 0 !important;
@@ -1130,8 +1132,8 @@
             background-position: center top;
             background-repeat: no-repeat;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.1);
-            border-radius: 6px;
-            padding: 185px 85px 75px 85px;
+            border-radius: 8px;
+            padding: 170px 75px 85px 75px;
             box-sizing: border-box;
             color: #0f172a;
             font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
@@ -1155,66 +1157,66 @@
 
         .appointment-letter-title {
             text-align: center;
-            font-size: 18pt;
+            font-size: 15.5pt;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             color: #000000;
             text-decoration: underline;
-            text-underline-offset: 5px;
+            text-underline-offset: 4px;
         }
 
         .appointment-meta-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            font-size: 11pt;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-
-        .appointment-recipient-block {
-            margin-bottom: 18px;
-            font-size: 11.5pt;
-            color: #000000;
-            line-height: 1.4;
-        }
-
-        .appointment-subject-line {
-            font-size: 12pt;
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 18px;
-        }
-
-        .appointment-salutation {
-            font-size: 11.5pt;
+            font-size: 10pt;
             font-weight: 700;
             color: #000000;
             margin-bottom: 14px;
         }
 
-        .appointment-paragraph {
+        .appointment-recipient-block {
+            margin-bottom: 14px;
+            font-size: 10.5pt;
+            color: #000000;
+            line-height: 1.35;
+        }
+
+        .appointment-subject-line {
             font-size: 11pt;
-            line-height: 1.68;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 14px;
+        }
+
+        .appointment-salutation {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .appointment-paragraph {
+            font-size: 9.8pt;
+            line-height: 1.54;
             text-align: justify;
             color: #0f172a;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-justify: inter-word;
         }
 
         .appointment-closing {
-            font-size: 11pt;
+            font-size: 10pt;
             color: #000000;
-            margin-top: 24px;
-            margin-bottom: 35px;
+            margin-top: 16px;
+            margin-bottom: 24px;
         }
 
         .appointment-signatory-block {
-            font-size: 11pt;
-            line-height: 1.45;
+            font-size: 10pt;
+            line-height: 1.35;
             color: #000000;
         }
 
@@ -1234,7 +1236,8 @@
         .appointment-signatory-office {
             font-weight: 800;
         }
-</style>
+    </style>
+    <style id="dynamic-print-orientation-style"></style>
 
 </head>
 <body class="min-h-screen relative antialiased selection:bg-indigo-500 selection:text-white font-sans">
@@ -1348,7 +1351,7 @@
                         </button>
                     </div>
                     <div id="auth-moderator-hint" class="hidden text-[11px] text-amber-300/90 mt-1.5 ml-1">
-                        ðŸ’¡ Moderator default access PIN: <strong class="font-mono text-amber-200">1234</strong>
+                        💡 Moderator default access PIN: <strong class="font-mono text-amber-200">1234</strong>
                     </div>
                 </div>
 
@@ -1385,7 +1388,7 @@
             </div>
 
             <div class="mt-4 text-center text-xs text-slate-500">
-                <span>Sanvee's by Tony â€¢ Sheikh Shahmiran Manik</span>
+                <span>Sanvee's by Tony • Sheikh Shahmiran Manik</span>
             </div>
         </div>
     </div>
@@ -1415,7 +1418,7 @@
                         </div>
                         <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
                             <span id="nav-live-clock" class="font-mono text-slate-700 dark:text-slate-300">--:--:--</span>
-                            <span>â€¢</span>
+                            <span>•</span>
                             <span id="nav-active-date-label">Today</span>
                         </div>
                     </div>
@@ -1532,7 +1535,7 @@
                         <div id="admin-dropdown-menu" class="hidden absolute right-0 mt-2 w-56 p-2 rounded-2xl glass-panel-elevated shadow-2xl z-50 space-y-1 text-xs font-semibold">
                             <div class="px-3 py-2 border-b border-slate-200 dark:border-slate-700">
                                 <div class="font-bold text-slate-900 dark:text-white">Sheikh Shahmiran Manik</div>
-                                <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">In-Charge â€¢ Admin</div>
+                                <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">In-Charge • Admin</div>
                             </div>
                             <button onclick="switchView('appointment'); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
                                 <i class="fa-solid fa-file-signature text-amber-500"></i>
@@ -1592,7 +1595,7 @@
                         </div>
                         <div class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 flex flex-wrap items-center gap-3">
                             <span id="mod-banner-weekend-info">Weekly Off: --</span>
-                            <span id="mod-banner-night-info" class="text-indigo-600 dark:text-indigo-400 font-bold">ðŸŒ™ Night Duty: Checking...</span>
+                            <span id="mod-banner-night-info" class="text-indigo-600 dark:text-indigo-400 font-bold">🌙 Night Duty: Checking...</span>
                         </div>
                     </div>
                 </div>
@@ -1905,7 +1908,7 @@
                             </span>
                         </div>
                         <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            Auto-Ordered: <b class="text-sky-600 dark:text-sky-400">Sat âž” Fri</b>
+                            Auto-Ordered: <b class="text-sky-600 dark:text-sky-400">Sat ➔ Fri</b>
                         </div>
                     </div>
 
@@ -2020,9 +2023,9 @@
                                 </div>
                                 <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
                                     <span>Phone: <b id="single-mod-phone" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
-                                    <span>â€¢</span>
+                                    <span>•</span>
                                     <span>Joined: <b id="single-mod-join" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
-                                    <span>â€¢</span>
+                                    <span>•</span>
                                     <span class="text-indigo-600 font-bold">Service: <b id="single-mod-tenure" class="font-mono">--</b></span>
                                 </div>
                             </div>
@@ -2143,7 +2146,7 @@
                                 </span>
                             </div>
                             <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
-                                Sanvee's by Tony â€¢ Live Letterhead Pad Generation, Real-Time Editing & Instant Print
+                                Sanvee's by Tony • Live Letterhead Pad Generation, Real-Time Editing & Instant Print
                             </p>
                         </div>
                     </div>
@@ -2410,7 +2413,7 @@
                                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                                     <span>Live A4 Pad Preview</span>
                                 </span>
-                                <span class="text-[11px] text-slate-400 font-mono hidden sm:inline">â€¢ Sanvee's Official Stationery</span>
+                                <span class="text-[11px] text-slate-400 font-mono hidden sm:inline">• Sanvee's Official Stationery</span>
                             </div>
 
                             <div class="flex items-center gap-2">
@@ -2567,7 +2570,7 @@
                     </div>
                     <div>
                         <h3 class="font-display font-black text-lg text-slate-900 dark:text-white">Firebase Realtime Cloud Sync</h3>
-                        <p class="text-xs text-slate-400 font-medium">Singapore Server â€¢ asia-southeast1</p>
+                        <p class="text-xs text-slate-400 font-medium">Singapore Server • asia-southeast1</p>
                     </div>
                 </div>
                 <button onclick="closeFirebaseModal()" class="text-slate-400 hover:text-white p-1">
@@ -2579,7 +2582,7 @@
             <div id="firebase-modal-status-banner" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                 <div class="flex items-center justify-between">
                     <div class="font-bold text-xs text-slate-900 dark:text-white" id="firebase-modal-status-text">
-                        ðŸŸ¢ Connected to Realtime Database
+                        🟢 Connected to Realtime Database
                     </div>
                     <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="firebase-last-sync-time" class="font-bold text-indigo-500">Just Now</span></span>
                 </div>
@@ -2592,7 +2595,7 @@
             <form onsubmit="handleSaveFirebaseConfig(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                        ðŸ”¥ Firebase Realtime Database URL:
+                        🔥 Firebase Realtime Database URL:
                     </label>
                     <input type="text" id="firebase-input-config" placeholder="https://moderators-data-73dcf-default-rtdb.asia-southeast1.firebasedatabase.app"
                            class="w-full px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
@@ -2629,7 +2632,7 @@
                     </div>
                     <div>
                         <h3 id="modal-title" class="font-display font-black text-lg text-slate-900 dark:text-white">Add Moderator</h3>
-                        <p class="text-xs text-slate-400 font-medium">Automatic SL serialization (Sat âž” Fri)</p>
+                        <p class="text-xs text-slate-400 font-medium">Automatic SL serialization (Sat ➔ Fri)</p>
                     </div>
                 </div>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1">
@@ -3316,8 +3319,8 @@
                 <!-- Footer -->
                 <div class="px-4 py-2.5 bg-slate-50/80 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-[11px] text-slate-500">
                     <div class="flex items-center gap-2">
-                        <span>Navigate <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">â†‘</kbd><kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">â†“</kbd></span>
-                        <span>â€¢ Select <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">â†µ</kbd></span>
+                        <span>Navigate <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↓</kbd></span>
+                        <span>• Select <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↵</kbd></span>
                     </div>
                     <span class="font-bold text-sky-400">Sanvee's Spotlight Search</span>
                 </div>
@@ -3342,8 +3345,8 @@
             { sl: 10, name: "Mosharof Hossain", weekend: "Monday", phone: "01927917924", join: "01-01-2026", id: "mod_01927917924_9_upf8q", status: "Present", notes: "" },
             { sl: 11, name: "Md Raihan", weekend: "Monday", phone: "01931070660", join: "27-06-2026", id: "mod_01931070660_10_5tzb7", status: "Present", notes: "" },
             { sl: 12, name: "Fahim Howlader", weekend: "Monday", phone: "01887474044", join: "08-08-2026", id: "mod_01887474044_11_hmq5y", status: "Present", notes: "" },
-            { sl: 13, name: "Sami", weekend: "Tuesday", phone: "01407914895", join: "05-01-2026", id: "mod_01602871511_12_xwcp7", status: "Present", notes: "" },
-            { sl: 14, name: "Hamim", weekend: "Tuesday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_14_to2nh", status: "Present", notes: "" },
+            { sl: 13, name: "Sami", weekend: "Tuesday", phone: "01407914895", join: "05-01-2026", id: "mod_01407914895_13_xwcp7", status: "Present", notes: "" },
+            { sl: 14, name: "Hamim", weekend: "Tuesday", phone: "01602871511", join: "05-01-2026", id: "mod_01602871511_14_to2nh", status: "Present", notes: "" },
             { sl: 15, name: "Biplob", weekend: "Tuesday", phone: "01926994536", join: "07-09-2026", id: "mod_01926994536_5t6ii", status: "Present", notes: "" },
             { sl: 16, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
             { sl: 17, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
@@ -3358,7 +3361,7 @@
             { sl: 26, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
         ];
 
-        let moderators = [];
+        let moderators = [...DEFAULT_MODERATORS];
         let attendanceHistory = {}; 
         let scheduledNightShifts = [];
         let approvedLeaves = [];
@@ -3459,7 +3462,7 @@
                     updateFirebaseStatusUI(false, `Sync Error: ${err.message}`);
                 });
 
-                if (showNotification) showToast("ðŸ”¥ Connected to Firebase Realtime Database!", "success");
+                if (showNotification) showToast("🔥 Connected to Firebase Realtime Database!", "success");
 
             } catch (err) {
                 isFirebaseConnected = false;
@@ -3516,7 +3519,7 @@
         function updateFirebaseStatusUI(connected, text) {
             const statusEl = document.getElementById('firebase-modal-status-text');
             if (statusEl) {
-                statusEl.innerText = connected ? `ðŸŸ¢ ${text}` : `âšª ${text}`;
+                statusEl.innerText = connected ? `🟢 ${text}` : `⚪ ${text}`;
                 statusEl.className = connected ? "font-bold text-xs text-emerald-600 dark:text-emerald-400" : "font-bold text-xs text-slate-500";
             }
         }
@@ -3872,33 +3875,23 @@
 
             let modified = false;
 
-            // Accurate mapping from legacy 26-moderator list indices to active 24 moderators
-            const old26ToModMap = {
-                1: moderators.find(m => m.sl === 1),
-                2: moderators.find(m => m.sl === 2),
-                3: moderators.find(m => m.sl === 3),
-                4: moderators.find(m => m.sl === 4),
-                5: moderators.find(m => m.sl === 5),
-                6: moderators.find(m => m.sl === 6),
-                7: moderators.find(m => m.sl === 7),
-                8: moderators.find(m => m.sl === 8),
-                9: moderators.find(m => m.sl === 9),
-                10: moderators.find(m => m.sl === 10),
-                11: moderators.find(m => m.sl === 11),
-                12: moderators.find(m => m.sl === 12),
-                13: moderators.find(m => m.sl === 13),
-                15: moderators.find(m => m.sl === 14), // Hamim
-                16: moderators.find(m => m.sl === 15), // Kowshiq
-                17: moderators.find(m => m.sl === 16), // Sahil (Forever)
-                19: moderators.find(m => m.sl === 17), // Najmul Islam
-                20: moderators.find(m => m.sl === 18), // Zubayer Mridha
-                21: moderators.find(m => m.sl === 19), // Naim Khan
-                22: moderators.find(m => m.sl === 20), // Sahil Sheikh
-                23: moderators.find(m => m.sl === 21), // Rezaul Karim
-                24: moderators.find(m => m.sl === 22), // Piyal Sarker
-                25: moderators.find(m => m.sl === 23), // Tonmoy
-                26: moderators.find(m => m.sl === 24)  // Masud Rana
-            };
+            // Robust 1-to-1 mapping for standard 26 moderators; fallback mapping for legacy 24 schema
+            const isLegacy24Schema = (moderators.length === 24);
+            const old26ToModMap = {};
+            if (isLegacy24Schema) {
+                const legacy24Map = {
+                    1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10,
+                    11: 11, 12: 12, 13: 13, 14: 14, 15: 14, 16: 15, 17: 16, 18: 17, 19: 17,
+                    20: 18, 21: 19, 22: 20, 23: 21, 24: 22, 25: 23, 26: 24
+                };
+                Object.keys(legacy24Map).forEach(k => {
+                    old26ToModMap[k] = moderators.find(m => m.sl === legacy24Map[k]);
+                });
+            } else {
+                for (let i = 1; i <= moderators.length; i++) {
+                    old26ToModMap[i] = moderators.find(m => m.sl === i) || moderators[i - 1];
+                }
+            }
 
             Object.keys(attendanceHistory).forEach(dateStr => {
                 const dayRecords = attendanceHistory[dateStr];
@@ -3915,26 +3908,26 @@
                     modified = true;
                     const newDayRecords = {};
 
-                    if (isOld26Array || (hasOld26Keys && moderators.length === 24)) {
+                    if (isOld26Array || hasOld26Keys || hasOnlyNumericKeys) {
                         Object.keys(old26ToModMap).forEach(oldIdxStr => {
                             const oldIdx = parseInt(oldIdxStr, 10);
                             const targetMod = old26ToModMap[oldIdx];
                             if (!targetMod) return;
 
-                            let status = isArray ? dayRecords[oldIdx] : dayRecords[oldIdxStr];
+                            let status = isArray ? (dayRecords[oldIdx] || dayRecords[oldIdx - 1]) : dayRecords[oldIdxStr];
                             const modKey = getModeratorKey(targetMod);
                             const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
 
                             // Check approved leaves (by dates array or startDate..endDate range)
                             const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl === targetMod.sl || l.modPhone === targetMod.phone || l.modName === targetMod.name);
+                                const isMod = (l.modSl ? l.modSl === targetMod.sl : (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modName === targetMod.name)));
                                 if (!isMod) return false;
                                 return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                             });
 
                             // Check scheduled night shifts
                             const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl === targetMod.sl || s.modPhone === targetMod.phone || s.modName === targetMod.name);
+                                const isMod = (s.modSl ? s.modSl === targetMod.sl : (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modName === targetMod.name)));
                                 if (!isMod) return false;
                                 return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
                             });
@@ -3945,10 +3938,10 @@
                                 status = 'Night Shift';
                             }
                             // Check weekend exchanges
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === targetMod.sl || x.modPhone === targetMod.phone) && x.dutyDate === dateStr)) {
+                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.dutyDate === dateStr)) {
                                 status = 'Present';
                             }
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === targetMod.sl || x.modPhone === targetMod.phone) && x.offDate === dateStr)) {
+                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.offDate === dateStr)) {
                                 status = 'Weekly Off';
                             }
                             // Re-align default status so scheduled day off strictly applies
@@ -3967,13 +3960,13 @@
                             const isScheduledWeekend = m.weekend && dayName && (m.weekend.toLowerCase() === dayName.toLowerCase());
 
                             const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl === m.sl || l.modPhone === m.phone || l.modName === m.name);
+                                const isMod = (l.modSl ? l.modSl === m.sl : (l.modId ? l.modId === m.id : (l.modPhone === m.phone || l.modName === m.name)));
                                 if (!isMod) return false;
                                 return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                             });
 
                             const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl === m.sl || s.modPhone === m.phone || s.modName === m.name);
+                                const isMod = (s.modSl ? s.modSl === m.sl : (s.modId ? s.modId === m.id : (s.modPhone === m.phone || s.modName === m.name)));
                                 if (!isMod) return false;
                                 return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
                             });
@@ -3982,9 +3975,9 @@
                                 status = 'Leave';
                             } else if (hasNightShift) {
                                 status = 'Night Shift';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === m.sl || x.modPhone === m.phone) && x.dutyDate === dateStr)) {
+                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.dutyDate === dateStr)) {
                                 status = 'Present';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl === m.sl || x.modPhone === m.phone) && x.offDate === dateStr)) {
+                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.offDate === dateStr)) {
                                 status = 'Weekly Off';
                             } else if (!status || status === 'Present' || status === 'Weekly Off') {
                                 status = isScheduledWeekend ? 'Weekly Off' : 'Present';
@@ -4033,7 +4026,36 @@
                 const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[slKey] !== undefined);
                 if (!hasRecord) {
                     const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
-                    const defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
+                    let defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
+
+                    // Check approved leave for this date
+                    const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
+                        const isMod = (l.modSl ? l.modSl === mod.sl : (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modName === mod.name)));
+                        if (!isMod) return false;
+                        return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
+                    });
+
+                    // Check scheduled night shift for this date
+                    const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
+                        const isMod = (s.modSl ? s.modSl === mod.sl : (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modName === mod.name)));
+                        if (!isMod) return false;
+                        return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
+                    });
+
+                    // Check weekend exchange
+                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.dutyDate === dateStr);
+                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.offDate === dateStr);
+
+                    if (hasApprovedLeave) {
+                        defaultStatus = 'Leave';
+                    } else if (hasNightShift) {
+                        defaultStatus = 'Night Shift';
+                    } else if (hasExchangeDuty) {
+                        defaultStatus = 'Present';
+                    } else if (hasExchangeOff) {
+                        defaultStatus = 'Weekly Off';
+                    }
+
                     dayRecords[modKey] = defaultStatus;
                     dayRecords[slKey] = defaultStatus;
                 } else if (dayRecords[modKey] !== undefined) {
@@ -4061,11 +4083,11 @@
             if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
                 return dayRecords[modKey];
             }
-            if (mod.phone && dayRecords[mod.phone] !== undefined) {
-                return dayRecords[mod.phone];
-            }
             if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
                 return dayRecords[slKey];
+            }
+            if (mod.phone && dayRecords[mod.phone] !== undefined) {
+                return dayRecords[mod.phone];
             }
 
             return defaultStatus;
@@ -4221,7 +4243,7 @@
                 const currentVal = selectEl.value;
                 selectEl.innerHTML = `
                     <option value="">-- Choose Moderator to Auto-Fill --</option>
-                    <option value="custom">âœï¸ Custom Candidate (Manual Entry)</option>
+                    <option value="custom">✍️ Custom Candidate (Manual Entry)</option>
                 `;
                 moderators.forEach(mod => {
                     const opt = document.createElement('option');
@@ -4234,7 +4256,7 @@
 
             const nameInput = document.getElementById('appointment-input-name');
             if (nameInput && !nameInput.value) {
-                resetAppointmentToDefault();
+                resetAppointmentToDefault(true);
             } else {
                 updateAppointmentPreview();
             }
@@ -4445,7 +4467,7 @@
             }
         }
 
-        function resetAppointmentToDefault() {
+        function resetAppointmentToDefault(quiet = false) {
             appointmentState = { ...DEFAULT_APPOINTMENT_STATE };
             const todayStr = getTodayDateStr();
             appointmentState.issueDate = todayStr;
@@ -4490,7 +4512,9 @@
             setAppointmentPadMode('with-bg');
             setAppointmentFont('sans');
             updateAppointmentPreview();
-            showToast('Appointment template reset to default', 'info');
+            if (!quiet) {
+                showToast('Appointment template reset to default', 'info');
+            }
         }
 
         function copyAppointmentText() {
@@ -4729,7 +4753,7 @@ ${appointmentState.location}`;
             saveToLocalStorage();
             renderDailyTable();
             updateDailyKPIs();
-            showToast(`âš¡ ${count} on-duty moderators marked as Present!`, 'success');
+            showToast(`⚡ ${count} on-duty moderators marked as Present!`, 'success');
         }
 
         // ======================= DAILY ROSTER RENDERER =======================
@@ -4769,7 +4793,7 @@ ${appointmentState.location}`;
             
             const footerEl = document.getElementById("footer-count-text");
             if (filtered.length !== moderators.length) {
-                const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? 'âš¡ On Duty Today' : (filterStatus !== 'ALL' ? filterStatus : 'Filtered');
+                const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? '⚡ On Duty Today' : (filterStatus !== 'ALL' ? filterStatus : 'Filtered');
                 footerEl.innerHTML = `Showing: <b class="text-indigo-600 font-mono">${filtered.length}</b> of <b class="font-mono">${moderators.length}</b> Total Moderators (${filterLabel})`;
             } else {
                 footerEl.innerHTML = `Total Active Moderators: <b class="font-mono">${moderators.length}</b> Members`;
@@ -4880,14 +4904,14 @@ ${appointmentState.location}`;
                                         ${currentStatus === 'Night Shift' ? 'status-pill-night' : ''}
                                         ${currentStatus === 'Leave' ? 'status-pill-leave' : ''}
                                         ${currentStatus === 'Outside Work' ? 'bg-slate-100 text-slate-800' : ''}">
-                                    <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>ðŸ–ï¸ Weekly Off</option>
-                                    <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>ðŸŸ¢ Present</option>
-                                    <option value="Extra Duty" ${currentStatus === 'Extra Duty' ? 'selected' : ''}>âš¡ Extra Duty</option>
-                                    <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>ðŸ”„ Weekend Exchange</option>
-                                    <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>ðŸ”´ Absent (Auto WA)</option>
-                                    <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>ðŸŒ™ Night Shift</option>
-                                    <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>âœˆï¸ Approved Leave</option>
-                                    <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>ðŸ’¼ Outside Duty</option>
+                                    <option value="Weekly Off" ${currentStatus === 'Weekly Off' ? 'selected' : ''}>🏖️ Weekly Off</option>
+                                    <option value="Present" ${currentStatus === 'Present' ? 'selected' : ''}>🟢 Present</option>
+                                    <option value="Extra Duty" ${currentStatus === 'Extra Duty' ? 'selected' : ''}>⚡ Extra Duty</option>
+                                    <option value="Weekend Exchange" ${currentStatus === 'Weekend Exchange' ? 'selected' : ''}>🔄 Weekend Exchange</option>
+                                    <option value="Absent" ${currentStatus === 'Absent' ? 'selected' : ''}>🔴 Absent (Auto WA)</option>
+                                    <option value="Night Shift" ${currentStatus === 'Night Shift' ? 'selected' : ''}>🌙 Night Shift</option>
+                                    <option value="Leave" ${currentStatus === 'Leave' ? 'selected' : ''}>✈️ Approved Leave</option>
+                                    <option value="Outside Work" ${currentStatus === 'Outside Work' ? 'selected' : ''}>💼 Outside Duty</option>
                                 </select>
                             </div>
                         `}
@@ -5031,7 +5055,7 @@ ${appointmentState.location}`;
                     showToast(`Notice: ${currentActiveDate} is ${mod.name}'s scheduled Weekly Off`, 'info');
                 } else {
                     openAbsentAlertModal(mod, currentActiveDate);
-                    showToast(`ðŸ”´ Absent status set. Confirm WhatsApp alert in modal.`, 'info');
+                    showToast(`🔴 Absent status set. Confirm WhatsApp alert in modal.`, 'info');
                 }
             } else if (newStatus === 'Night Shift') {
                 openNightShiftModal(mod.sl);
@@ -5040,7 +5064,7 @@ ${appointmentState.location}`;
             } else if (newStatus === 'Weekend Exchange') {
                 openExchangeModal(mod.sl, currentActiveDate);
             } else if (newStatus === 'Extra Duty') {
-                showToast(`âš¡ Extra Duty recorded for ${mod.name}`, 'success');
+                showToast(`⚡ Extra Duty recorded for ${mod.name}`, 'success');
             } else {
                 showToast(`Status updated to ${newStatus}`);
             }
@@ -5059,10 +5083,13 @@ ${appointmentState.location}`;
         const MATRIX_BADGE_OUTSIDE = '<span class="matrix-cell-badge matrix-badge-outside">O</span>';
 
         function renderMonthlyTable() {
+            if (!currentActiveMonth || !currentActiveMonth.includes('-')) {
+                currentActiveMonth = getCurrentMonthStr();
+            }
             const [yearStr, monthStr] = currentActiveMonth.split('-');
-            const year = parseInt(yearStr, 10);
-            const month = parseInt(monthStr, 10);
-            const monthName = MONTH_NAMES[month - 1];
+            const year = parseInt(yearStr, 10) || new Date().getFullYear();
+            const month = parseInt(monthStr, 10) || (new Date().getMonth() + 1);
+            const monthName = MONTH_NAMES[month - 1] || 'Current Month';
 
             const labelEl = document.getElementById('monthly-sheet-label');
             if (labelEl) labelEl.innerText = `${monthName} ${year}`;
@@ -5366,7 +5393,7 @@ ${appointmentState.location}`;
                 setTimeout(() => {
                     todayHeader.classList.remove('ring-4', 'ring-indigo-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
                 }, 1800);
-                showToast("ðŸŽ¯ Focused on Today's Column", "info");
+                showToast("🎯 Focused on Today's Column", "info");
             } else {
                 showToast("Notice: Today's date is not within the currently viewed month.", "info");
             }
@@ -5413,7 +5440,7 @@ ${appointmentState.location}`;
 
             document.getElementById('popover-mod-name').innerText = mod.name;
             const dayName = getDayNameForDate(dateStr);
-            document.getElementById('popover-date-info').innerText = `${dateStr} (${dayName}) â€¢ Current: ${currentStatus}`;
+            document.getElementById('popover-date-info').innerText = `${dateStr} (${dayName}) • Current: ${currentStatus}`;
 
             const popover = document.getElementById('status-picker-popover');
             const backdrop = document.getElementById('status-picker-backdrop');
@@ -5459,7 +5486,7 @@ ${appointmentState.location}`;
             const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
             if (newStatus === 'Absent' && !isWeekend) {
                 openAbsentAlertModal(mod, dateStr);
-                showToast(`ðŸ”´ Absent status set. Confirm WhatsApp alert in modal.`, 'info');
+                showToast(`🔴 Absent status set. Confirm WhatsApp alert in modal.`, 'info');
             } else {
                 showToast(`Updated ${mod.name} to ${newStatus}`);
             }
@@ -5598,7 +5625,7 @@ ${appointmentState.location}`;
 
             if (startDate && endDate) {
                 if (startDate > endDate) {
-                    descEl.innerHTML = '<span class="text-rose-500 font-bold">âš ï¸ Start Date cannot be after End Date</span>';
+                    descEl.innerHTML = '<span class="text-rose-500 font-bold">⚠️ Start Date cannot be after End Date</span>';
                     return;
                 }
                 const dates = getDatesInRange(startDate, endDate);
@@ -5683,7 +5710,7 @@ ${appointmentState.location}`;
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`ðŸŒ™ Night Shift assigned for ${mod.name} (${nightDutyDates.length} nights)`, 'success');
+            showToast(`🌙 Night Shift assigned for ${mod.name} (${nightDutyDates.length} nights)`, 'success');
             closeNightShiftModal();
         }
 
@@ -5712,7 +5739,7 @@ ${appointmentState.location}`;
                             ${isMe ? '<span class="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold">You</span>' : ''}
                             <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
                         </div>
-                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">ðŸ“… ${rec.startDate} âž” ${rec.endDate}</div>
+                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">📅 ${rec.startDate} ➔ ${rec.endDate}</div>
                     </div>
                     <div class="flex items-center gap-1.5">
                         ${currentUserRole === 'admin' ? `
@@ -5771,7 +5798,7 @@ ${appointmentState.location}`;
                 return;
             }
 
-            if (!force && !confirm("Are you sure you want to clear ALL scheduled Night Shifts?\n\nâ€¢ All night shift duty records will be removed.\nâ€¢ All attendance cells with 'Night Shift' status will be reset back to regular status (Present / Weekly Off).\nâ€¢ You can then assign all night duties manually.")) {
+            if (!force && !confirm("Are you sure you want to clear ALL scheduled Night Shifts?\n\n• All night shift duty records will be removed.\n• All attendance cells with 'Night Shift' status will be reset back to regular status (Present / Weekly Off).\n• You can then assign all night duties manually.")) {
                 return;
             }
 
@@ -5804,7 +5831,7 @@ ${appointmentState.location}`;
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast("ðŸ§¹ All Night Shifts cleared! Ready for manual assignment.", "success");
+            showToast("🧹 All Night Shifts cleared! Ready for manual assignment.", "success");
         }
 
         function handleMonthlyNightMonthChange(newMonth) {
@@ -5982,7 +6009,7 @@ ${appointmentState.location}`;
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
 
-            showToast(`âœ¨ Night roster auto-assigned for ${monthName} ${yearStr} (3 moderators/night across ${newRecords.length} duty blocks)!`, 'success');
+            showToast(`✨ Night roster auto-assigned for ${monthName} ${yearStr} (3 moderators/night across ${newRecords.length} duty blocks)!`, 'success');
         }
 
         function triggerAutoAssignCurrentMonth() {
@@ -5995,7 +6022,7 @@ ${appointmentState.location}`;
             const month = parseInt(monthStr, 10);
             const monthName = MONTH_NAMES[month - 1] || monthStr;
 
-            if (confirm(`Automatically calculate and assign Night Shift Duty for ${monthName} ${yearStr}?\n\nâ€¢ Exactly 3 moderators will work simultaneously every single night.\nâ€¢ Duty schedule will run until the day before weekly off.\nâ€¢ 5 Senior Moderators (Sajedul, Kowshiq, Najmul, Sujon, Sami) are exempted.\nâ€¢ Continuous monthly distribution.`)) {
+            if (confirm(`Automatically calculate and assign Night Shift Duty for ${monthName} ${yearStr}?\n\n• Exactly 3 moderators will work simultaneously every single night.\n• Duty schedule will run until the day before weekly off.\n• 5 Senior Moderators (Sajedul, Kowshiq, Najmul, Sujon, Sami) are exempted.\n• Continuous monthly distribution.`)) {
                 autoAssignMonthlyNightShifts(selectedMonth);
             }
         }
@@ -6085,7 +6112,7 @@ ${appointmentState.location}`;
                         ${item.totalNights}
                     </td>
                     <td class="p-2.5 font-mono text-[11px] text-slate-600 dark:text-slate-300">
-                        <span class="font-bold text-slate-900 dark:text-slate-100">${item.firstDate.split('-')[2]} âž” ${item.lastDate.split('-')[2]}</span>
+                        <span class="font-bold text-slate-900 dark:text-slate-100">${item.firstDate.split('-')[2]} ➔ ${item.lastDate.split('-')[2]}</span>
                         <span class="text-[10px] text-slate-400 block">(${datesFormatted})</span>
                     </td>
                     <td class="p-2.5 text-center">
@@ -6199,7 +6226,7 @@ ${appointmentState.location}`;
             renderNightShiftRequestsList();
             closeNightShiftRequestModal();
 
-            showToast(`âœ… Exemption request submitted directly to In-Charge Manik Sir!`, 'success');
+            showToast(`✅ Exemption request submitted directly to In-Charge Manik Sir!`, 'success');
         }
 
         function renderNightShiftRequestsList() {
@@ -6275,7 +6302,7 @@ ${appointmentState.location}`;
             req.status = 'Approved';
             saveNightShiftRequests();
             renderNightShiftRequestsList();
-            showToast(`âœ… Request approved for ${req.modName}. You can now reassign or adjust their shift.`, 'success');
+            showToast(`✅ Request approved for ${req.modName}. You can now reassign or adjust their shift.`, 'success');
         }
 
         function rejectNightShiftRequest(reqId) {
@@ -6311,7 +6338,7 @@ ${appointmentState.location}`;
             const endDay = getDayNameForDate(endDate);
             const nextOffDate = getNextWeekendForModerator(mod, startDate);
             
-            return `Dear ${mod.name},\n\nYou have been scheduled for Night Shift Duty at Sanvee's by Tony.\n\nðŸ“… Duty Period: ${startDate} (${startDay}) to ${endDate} (${endDay})\nðŸŒ™ Total Duty Nights: ${totalNights} Nights\nðŸ–ï¸ Upcoming Weekly Off: ${mod.weekend} (${nextOffDate})\n\nPlease be prepared for your scheduled night duty and maintain proper roster handover.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
+            return `Dear ${mod.name},\n\nYou have been scheduled for Night Shift Duty at Sanvee's by Tony.\n\n📅 Duty Period: ${startDate} (${startDay}) to ${endDate} (${endDay})\n🌙 Total Duty Nights: ${totalNights} Nights\n🏖️ Upcoming Weekly Off: ${mod.weekend} (${nextOffDate})\n\nPlease be prepared for your scheduled night duty and maintain proper roster handover.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
         }
 
         function buildNightShiftWhatsAppURL(mod, startDate, endDate, totalNights) {
@@ -6330,7 +6357,7 @@ ${appointmentState.location}`;
             if (!mod) return;
             const url = buildNightShiftWhatsAppURL(mod, startDate, endDate, totalNights);
             window.open(url, '_blank');
-            showToast(`ðŸ“± WhatsApp duty notice prepared for ${mod.name}!`, 'success');
+            showToast(`📱 WhatsApp duty notice prepared for ${mod.name}!`, 'success');
         }
 
         function openNightShiftWhatsAppBatchModal() {
@@ -6390,7 +6417,7 @@ ${appointmentState.location}`;
                             <div>
                                 <div class="font-bold text-slate-900 dark:text-white text-sm">${item.mod.name}</div>
                                 <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-                                    ðŸ“… ${item.firstDate} âž” ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> â€¢ Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
+                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
                                 </div>
                             </div>
                         </div>
@@ -6746,7 +6773,7 @@ ${appointmentState.location}`;
                                 Approved by: ${approverLabel}
                             </span>
                         </div>
-                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">${rec.startDate} âž” ${rec.endDate} â€¢ ${rec.reason}</div>
+                        <div class="font-mono text-slate-400 text-[11px] mt-0.5">${rec.startDate} ➔ ${rec.endDate} • ${rec.reason}</div>
                     </div>
                     <button onclick="deleteLeaveRecord(${rec.id})" class="p-2 text-slate-400 hover:text-rose-600">
                         <i class="fa-solid fa-trash"></i>
@@ -6965,8 +6992,8 @@ ${appointmentState.location}`;
         function updateExchangeDayLabels() {
             const dutyVal = document.getElementById('exchange-duty-date').value;
             const offVal = document.getElementById('exchange-off-date').value;
-            if (dutyVal) document.getElementById('exchange-duty-day-label').innerText = `Duty: ${dutyVal} (${getDayNameForDate(dutyVal)}) âž” Set to Present`;
-            if (offVal) document.getElementById('exchange-off-day-label').innerText = `Off: ${offVal} (${getDayNameForDate(offVal)}) âž” Set to Exchange`;
+            if (dutyVal) document.getElementById('exchange-duty-day-label').innerText = `Duty: ${dutyVal} (${getDayNameForDate(dutyVal)}) ➔ Set to Present`;
+            if (offVal) document.getElementById('exchange-off-day-label').innerText = `Off: ${offVal} (${getDayNameForDate(offVal)}) ➔ Set to Exchange`;
         }
 
         function handleExchangeSubmit(e) {
@@ -7019,7 +7046,7 @@ ${appointmentState.location}`;
                 div.innerHTML = `
                     <div>
                         <div class="font-bold text-slate-900 dark:text-white">${rec.modName}</div>
-                        <div class="font-mono text-slate-400 text-[11px]">Duty: ${rec.dutyDate} âž” Off: ${rec.offDate}</div>
+                        <div class="font-mono text-slate-400 text-[11px]">Duty: ${rec.dutyDate} ➔ Off: ${rec.offDate}</div>
                     </div>
                     <button onclick="deleteExchangeRecord(${rec.id})" class="p-1.5 text-slate-400 hover:text-rose-600">
                         <i class="fa-solid fa-trash"></i>
@@ -7124,7 +7151,7 @@ ${appointmentState.location}`;
                     div.innerHTML = `
                         <div>
                             <span class="font-bold text-slate-900 dark:text-white text-sm block">${m.name}</span>
-                            <span class="text-xs text-slate-400 font-mono">${m.phone} â€¢ Off: ${m.weekend}</span>
+                            <span class="text-xs text-slate-400 font-mono">${m.phone} • Off: ${m.weekend}</span>
                         </div>
                         <button onclick="triggerDirectWhatsApp('${m.phone}', '${m.name}', true, '${currentActiveDate}')" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5">
                             <i class="fa-brands fa-whatsapp"></i> Send Notice
@@ -7431,7 +7458,7 @@ ${appointmentState.location}`;
                     if (currentMod) {
                         document.getElementById('mod-banner-sl').innerText = String(currentMod.sl).padStart(2, '0');
                         document.getElementById('mod-banner-name').innerText = currentMod.name;
-                        document.getElementById('mod-banner-weekend-info').innerText = `Weekly Off: ${currentMod.weekend} â€¢ Join: ${currentMod.join}`;
+                        document.getElementById('mod-banner-weekend-info').innerText = `Weekly Off: ${currentMod.weekend} • Join: ${currentMod.join}`;
                         
                         // Check current month night duty
                         const selectedMonth = currentActiveMonth || getCurrentMonthStr();
@@ -7446,9 +7473,9 @@ ${appointmentState.location}`;
                         const nightInfoEl = document.getElementById('mod-banner-night-info');
                         if (nightInfoEl) {
                             if (myDutyDays.length > 0) {
-                                nightInfoEl.innerHTML = `ðŸŒ™ Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
+                                nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
                             } else {
-                                nightInfoEl.innerHTML = `ðŸŒ™ No night duty scheduled this month`;
+                                nightInfoEl.innerHTML = `🌙 No night duty scheduled this month`;
                             }
                         }
                     }
@@ -7609,7 +7636,7 @@ ${appointmentState.location}`;
                         applyRolePermissions();
                         renderDailyTable();
                         if (activeView === 'monthly') renderMonthlyTable();
-                        showToast(`ðŸ‘‹ Welcome ${mod.name}! (View-Only Portal)`, "success");
+                        showToast(`👋 Welcome ${mod.name}! (View-Only Portal)`, "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Open Moderator Portal</span>`;
                         submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
                     }, 350);
@@ -7731,10 +7758,12 @@ ${appointmentState.location}`;
 
         function startLiveClock() {
             const clockEl = document.getElementById('nav-live-clock');
-            setInterval(() => {
+            const updateClock = () => {
                 const now = new Date();
                 if (clockEl) clockEl.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            }, 1000);
+            };
+            updateClock();
+            setInterval(updateClock, 1000);
         }
 
         function toggleOperationsMenu(forcedState) {
@@ -7951,7 +7980,7 @@ ${appointmentState.location}`;
             ).map(m => ({
                 id: `mod-${m.sl}`,
                 title: `${String(m.sl).padStart(2, '0')} - ${m.name}`,
-                subtitle: `${m.weekend} Off â€¢ ${m.phone} â€¢ Joined ${m.join}`,
+                subtitle: `${m.weekend} Off • ${m.phone} • Joined ${m.join}`,
                 icon: 'fa-user',
                 color: 'text-indigo-600 dark:text-indigo-400',
                 action: () => {
@@ -8029,13 +8058,13 @@ ${appointmentState.location}`;
                 switchLoginRole('admin');
                 document.getElementById('login-username').value = 'admin';
                 document.getElementById('login-password').value = '@Manik1243';
-                showToast("âš¡ Filled In-Charge Admin credentials", "info");
+                showToast("⚡ Filled In-Charge Admin credentials", "info");
             } else {
                 switchLoginRole('moderator');
                 const select = document.getElementById('login-mod-select');
                 if (select && select.options.length > 0) select.selectedIndex = 0;
                 document.getElementById('login-password').value = '1234';
-                showToast("ðŸ‘¤ Filled Moderator View credentials (PIN: 1234)", "info");
+                showToast("👤 Filled Moderator View credentials (PIN: 1234)", "info");
             }
         }
 
@@ -8086,7 +8115,7 @@ ${appointmentState.location}`;
         });
 
         // Initialize on DOM Ready
-        window.addEventListener('DOMContentLoaded', () => {
+        function initApp() {
             initTheme();
             startLiveClock();
             loadFromLocalStorage();
@@ -8098,12 +8127,19 @@ ${appointmentState.location}`;
             checkAuthStatus();
             applyRolePermissions();
             applyPrintOrientationSettings();
-            renderDailyTable();
+            if (activeView === 'monthly') {
+                switchView('monthly');
+            } else if (activeView === 'appointment') {
+                switchView('appointment');
+            } else {
+                switchView('daily');
+            }
             renderNightShiftRequestsList();
             initSpotlightCards();
-            initAppointmentView();
-        });
-</script>
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
 
 </body>
 </html>

@@ -540,19 +540,21 @@
             #view-monthly-container th.col-m-name,
             #view-monthly-container td.col-m-name {
                 position: sticky !important;
-                left: 36px !important;
+                left: 38px !important;
                 z-index: 15 !important;
                 background-color: #ffffff;
-                box-shadow: 2px 0 6px -2px rgba(0, 0, 0, 0.08);
+                box-shadow: 4px 0 10px -2px rgba(0, 0, 0, 0.12);
+                border-right: 1px solid rgba(203, 213, 225, 0.8) !important;
             }
             .dark #view-monthly-container th.col-m-name,
             .dark #view-monthly-container td.col-m-name {
                 background-color: #0a101f;
-                box-shadow: 2px 0 8px -2px rgba(0, 0, 0, 0.5);
+                box-shadow: 4px 0 12px -2px rgba(0, 0, 0, 0.6);
+                border-right: 1px solid rgba(56, 189, 248, 0.22) !important;
             }
             #view-monthly-container thead th.col-m-sl,
             #view-monthly-container thead th.col-m-name {
-                z-index: 25 !important;
+                z-index: 30 !important;
                 background-color: #f1f5f9 !important;
             }
             .dark #view-monthly-container thead th.col-m-sl,
@@ -963,7 +965,7 @@
                 min-height: 297mm !important;
                 max-height: 297mm !important;
                 margin: 0 !important;
-                padding: 48mm 23mm 20mm 23mm !important;
+                padding: 45mm 20mm 24mm 20mm !important;
                 box-shadow: none !important;
                 border: none !important;
                 border-radius: 0 !important;
@@ -1013,8 +1015,8 @@
             background-position: center top;
             background-repeat: no-repeat;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.1);
-            border-radius: 6px;
-            padding: 185px 85px 75px 85px;
+            border-radius: 8px;
+            padding: 170px 75px 85px 75px;
             box-sizing: border-box;
             color: #0f172a;
             font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
@@ -1038,66 +1040,66 @@
 
         .appointment-letter-title {
             text-align: center;
-            font-size: 18pt;
+            font-size: 15.5pt;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             color: #000000;
             text-decoration: underline;
-            text-underline-offset: 5px;
+            text-underline-offset: 4px;
         }
 
         .appointment-meta-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            font-size: 11pt;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-
-        .appointment-recipient-block {
-            margin-bottom: 18px;
-            font-size: 11.5pt;
-            color: #000000;
-            line-height: 1.4;
-        }
-
-        .appointment-subject-line {
-            font-size: 12pt;
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 18px;
-        }
-
-        .appointment-salutation {
-            font-size: 11.5pt;
+            font-size: 10pt;
             font-weight: 700;
             color: #000000;
             margin-bottom: 14px;
         }
 
-        .appointment-paragraph {
+        .appointment-recipient-block {
+            margin-bottom: 14px;
+            font-size: 10.5pt;
+            color: #000000;
+            line-height: 1.35;
+        }
+
+        .appointment-subject-line {
             font-size: 11pt;
-            line-height: 1.68;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 14px;
+        }
+
+        .appointment-salutation {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .appointment-paragraph {
+            font-size: 9.8pt;
+            line-height: 1.54;
             text-align: justify;
             color: #0f172a;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-justify: inter-word;
         }
 
         .appointment-closing {
-            font-size: 11pt;
+            font-size: 10pt;
             color: #000000;
-            margin-top: 24px;
-            margin-bottom: 35px;
+            margin-top: 16px;
+            margin-bottom: 24px;
         }
 
         .appointment-signatory-block {
-            font-size: 11pt;
-            line-height: 1.45;
+            font-size: 10pt;
+            line-height: 1.35;
             color: #000000;
         }
 
