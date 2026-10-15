@@ -51,17 +51,17 @@
                     },
                     colors: {
                         brand: {
-                            50: '#F0F9FF',
-                            100: '#E0F2FE',
-                            200: '#BAE6FD',
-                            300: '#7DD3FC',
-                            400: '#38BDF8',
-                            500: '#0EA5E9',
-                            600: '#0284C7',
-                            700: '#0369A1',
-                            800: '#075985',
-                            900: '#0C4A6E',
-                            950: '#082F49',
+                            50: '#F5F7FF',
+                            100: '#EBF0FE',
+                            200: '#D6E0FD',
+                            300: '#B4C6FC',
+                            400: '#818CF8',
+                            500: '#6366F1',
+                            600: '#4F46E5',
+                            700: '#4338CA',
+                            800: '#3730A3',
+                            900: '#312E81',
+                            950: '#1E1B4B',
                         },
                         gold: {
                             400: '#FBBF24',
@@ -69,24 +69,24 @@
                             600: '#D97706',
                         },
                         dark: {
-                            bg: '#060913',
-                            card: '#0B1120',
-                            cardHover: '#111B32',
-                            surface: '#14223F',
-                            border: 'rgba(56, 189, 248, 0.16)',
-                            borderHover: 'rgba(56, 189, 248, 0.45)'
+                            bg: '#070913',
+                            card: '#0C1120',
+                            cardHover: '#12182E',
+                            surface: '#151D38',
+                            border: 'rgba(99, 102, 241, 0.16)',
+                            borderHover: 'rgba(129, 140, 248, 0.45)'
                         }
                     },
                     boxShadow: {
-                        'glow-brand': '0 0 35px -5px rgba(2, 132, 199, 0.55)',
+                        'glow-brand': '0 0 35px -5px rgba(99, 102, 241, 0.55)',
                         'glow-gold': '0 0 35px -5px rgba(245, 158, 11, 0.55)',
                         'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.5)',
                         'glow-amber': '0 0 30px -5px rgba(245, 158, 11, 0.5)',
                         'glow-rose': '0 0 30px -5px rgba(244, 63, 94, 0.5)',
                         'glow-cyan': '0 0 30px -5px rgba(6, 182, 212, 0.5)',
                         'glow-purple': '0 0 30px -5px rgba(168, 85, 247, 0.5)',
-                        'glass': '0 10px 35px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(203, 213, 225, 0.8)',
-                        'glass-dark': '0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(56, 189, 248, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+                        'glass': '0 10px 35px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.8)',
+                        'glass-dark': '0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)',
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -115,29 +115,40 @@
 
         <!-- Custom Executive Design Stylesheet (style.css) -->
     <style>
-/* Custom Executive Scrollbar */
+/* Custom Executive Luxury Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.35); border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.35); }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(14, 165, 233, 0.8); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.35) 0%, rgba(139, 92, 246, 0.35) 100%); 
+            border-radius: 10px; 
+        }
+        .dark ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(180deg, rgba(129, 140, 248, 0.35) 0%, rgba(168, 85, 247, 0.35) 100%); 
+        }
+        ::-webkit-scrollbar-thumb:hover { 
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%); 
+        }
 
-        /* Ambient Luxury Obsidian & Cyber Cyan Canvas */
+        /* Ambient Luxury Royal Obsidian & Cashmere Silk Canvas */
         body {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-            background-color: #060913;
+            background-color: #070913;
             color: #F8FAFC;
             transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
-            background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
-            background-size: 28px 28px;
+            background-image: 
+                radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.09) 0%, transparent 60%);
+            background-size: 32px 32px, 100% 100%;
         }
 
         .light body {
             background-color: #F8FAFC;
             color: #0F172A;
-            background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
-            background-size: 28px 28px;
+            background-image: 
+                radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+                radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+            background-size: 32px 32px, 100% 100%;
         }
 
         .aurora-bg {
@@ -146,28 +157,28 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
-            opacity: 0.9;
+            opacity: 0.92;
             background: 
-                radial-gradient(circle at 12% 12%, rgba(2, 132, 199, 0.22) 0%, transparent 45%),
-                radial-gradient(circle at 88% 12%, rgba(245, 158, 11, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 50% 85%, rgba(6, 182, 212, 0.16) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
+                radial-gradient(circle at 10% 8%, rgba(99, 102, 241, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 90% 12%, rgba(245, 158, 11, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 50% 88%, rgba(59, 130, 246, 0.14) 0%, transparent 50%),
+                radial-gradient(circle at 82% 82%, rgba(16, 185, 129, 0.10) 0%, transparent 40%);
         }
 
         .dark .aurora-bg {
             opacity: 0.95;
             background: 
-                radial-gradient(circle at 15% 15%, rgba(2, 132, 199, 0.25) 0%, transparent 45%),
-                radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 50% 85%, rgba(6, 182, 212, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 75%, rgba(16, 185, 129, 0.14) 0%, transparent 40%);
+                radial-gradient(circle at 12% 10%, rgba(99, 102, 241, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 88% 12%, rgba(245, 158, 11, 0.16) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
         }
 
         /* Animated Ambient Floating Orbs (Hardware Accelerated) */
         .aurora-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(85px);
             pointer-events: none;
             opacity: 0.55;
             mix-blend-mode: screen;
@@ -175,27 +186,27 @@
             transform: translateZ(0);
         }
         .aurora-orb-1 {
-            top: 5%;
-            left: 10%;
-            width: 440px;
-            height: 440px;
-            background: radial-gradient(circle, rgba(2, 132, 199, 0.42) 0%, rgba(6, 182, 212, 0.15) 70%, transparent 100%);
+            top: 4%;
+            left: 8%;
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.38) 0%, rgba(139, 92, 246, 0.15) 70%, transparent 100%);
             animation: floatOrb1 20s ease-in-out infinite alternate;
         }
         .aurora-orb-2 {
-            bottom: 10%;
-            right: 8%;
-            width: 480px;
-            height: 480px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.1) 70%, transparent 100%);
+            bottom: 8%;
+            right: 6%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(217, 119, 6, 0.1) 70%, transparent 100%);
             animation: floatOrb2 25s ease-in-out infinite alternate;
         }
         .aurora-orb-3 {
-            top: 45%;
-            right: 25%;
-            width: 360px;
-            height: 360px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.26) 0%, rgba(6, 182, 212, 0.1) 70%, transparent 100%);
+            top: 42%;
+            right: 22%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.24) 0%, rgba(6, 182, 212, 0.1) 70%, transparent 100%);
             animation: floatOrb1 18s ease-in-out infinite alternate-reverse;
         }
         @keyframes floatOrb1 {
@@ -209,61 +220,65 @@
             100% { transform: translate(40px, -90px) scale(0.9); }
         }
 
-        /* Frosted Glass Panels */
+        /* Frosted Glass Panels - Haute Horlogerie Luxury Finish */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(203, 213, 225, 0.85);
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.6);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(241, 245, 249, 0.8);
         }
 
         .dark .glass-panel {
-            background: rgba(11, 17, 32, 0.88);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(56, 189, 248, 0.16);
-            box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+            background: rgba(12, 17, 32, 0.82);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
         }
 
         .glass-panel-elevated {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(203, 213, 225, 0.9);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.7);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(32px) saturate(190%);
+            -webkit-backdrop-filter: blur(32px) saturate(190%);
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            border-top: 1px solid #FFFFFF;
+            box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.7);
         }
 
         .dark .glass-panel-elevated {
-            background: rgba(13, 21, 39, 0.92);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+            background: rgba(14, 20, 38, 0.88);
+            backdrop-filter: blur(32px) saturate(200%);
+            -webkit-backdrop-filter: blur(32px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 24px 55px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
         }
 
         /* Header Glass */
         .glass-header {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(203, 213, 225, 0.85);
-            box-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 4px 25px -2px rgba(15, 23, 42, 0.04);
         }
 
         .dark .glass-header {
-            background: rgba(6, 10, 20, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.18);
-            box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.7);
+            background: rgba(7, 10, 20, 0.88);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.75);
         }
 
         /* Bento Grid Interactive Cards with 3D Elevation */
         .bento-card {
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                        box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                        border-color 0.25s ease;
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.28s ease;
             position: relative;
             overflow: hidden;
             will-change: transform, box-shadow;
@@ -274,31 +289,31 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle at top right, var(--card-glow, rgba(56, 189, 248, 0.15)), transparent 70%);
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle at top right, var(--card-glow, rgba(99, 102, 241, 0.18)), transparent 70%);
             pointer-events: none;
             border-radius: inherit;
         }
 
         .dark .bento-card::before {
-            background: radial-gradient(circle at top right, var(--card-glow, rgba(56, 189, 248, 0.22)), transparent 70%);
+            background: radial-gradient(circle at top right, var(--card-glow, rgba(99, 102, 241, 0.25)), transparent 70%);
         }
 
         .bento-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.12) 50%, transparent 80%);
+            background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.14) 50%, transparent 80%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
         }
 
         .bento-card:hover {
-            transform: translateY(-5px) scale(1.015);
-            border-color: rgba(56, 189, 248, 0.55);
-            box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.35), 0 0 0 1px rgba(56, 189, 248, 0.3);
+            transform: translateY(-6px) scale(1.018);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 22px 50px -10px rgba(99, 102, 241, 0.25), 0 0 0 1px rgba(99, 102, 241, 0.35);
         }
 
         .bento-card:hover::after {
@@ -306,8 +321,8 @@
         }
 
         .dark .bento-card:hover {
-            border-color: rgba(56, 189, 248, 0.65);
-            box-shadow: 0 24px 50px -10px rgba(2, 132, 199, 0.45), 0 0 0 1px rgba(56, 189, 248, 0.35);
+            border-color: rgba(129, 140, 248, 0.5);
+            box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.75), 0 0 30px -5px var(--card-glow, rgba(99, 102, 241, 0.3));
         }
 
         /* View Transition Animation (Smooth 60fps) */
@@ -376,72 +391,77 @@
             animation: shimmer 3s linear infinite;
         }
 
-        /* Custom Status Badges & Pills - High-Contrast Luxury Grading */
+        /* Custom Status Badges & Pills - Haute Horlogerie Jewel Grading */
         .status-pill-present {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(5, 150, 105, 0.08) 100%);
             color: #065F46;
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.38);
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.15);
         }
         .dark .status-pill-present {
-            background: linear-gradient(135deg, rgba(6, 78, 59, 0.55) 0%, rgba(6, 95, 70, 0.25) 100%);
+            background: linear-gradient(135deg, rgba(6, 78, 59, 0.65) 0%, rgba(6, 95, 70, 0.3) 100%);
             color: #6EE7B7;
-            border: 1px solid rgba(16, 185, 129, 0.45);
-            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.3);
+            border: 1px solid rgba(52, 211, 153, 0.45);
+            box-shadow: 0 2px 14px rgba(16, 185, 129, 0.32);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
         }
 
         .status-pill-off {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(217, 119, 6, 0.08) 100%);
             color: #92400E;
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.38);
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.15);
         }
         .dark .status-pill-off {
-            background: linear-gradient(135deg, rgba(120, 53, 15, 0.55) 0%, rgba(146, 64, 14, 0.25) 100%);
+            background: linear-gradient(135deg, rgba(120, 53, 15, 0.65) 0%, rgba(146, 64, 14, 0.3) 100%);
             color: #FDE68A;
-            border: 1px solid rgba(245, 158, 11, 0.45);
-            box-shadow: 0 2px 12px rgba(245, 158, 11, 0.3);
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            box-shadow: 0 2px 14px rgba(245, 158, 11, 0.32);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
         .status-pill-exchange {
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.16) 0%, rgba(14, 116, 144, 0.08) 100%);
             color: #0E7490;
-            border: 1px solid rgba(6, 182, 212, 0.35);
-            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.38);
+            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.15);
         }
         .dark .status-pill-exchange {
-            background: linear-gradient(135deg, rgba(12, 74, 110, 0.55) 0%, rgba(3, 105, 161, 0.25) 100%);
+            background: linear-gradient(135deg, rgba(12, 74, 110, 0.65) 0%, rgba(3, 105, 161, 0.3) 100%);
             color: #7DD3FC;
-            border: 1px solid rgba(6, 182, 212, 0.45);
-            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 2px 14px rgba(6, 182, 212, 0.32);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
         }
 
         .status-pill-extra {
             background: linear-gradient(135deg, rgba(13, 148, 136, 0.16) 0%, rgba(15, 118, 110, 0.08) 100%);
             color: #0F766E;
             border: 1px solid rgba(13, 148, 136, 0.4);
-            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.18);
+            box-shadow: 0 2px 10px rgba(13, 148, 136, 0.18);
         }
         .dark .status-pill-extra {
-            background: linear-gradient(135deg, rgba(17, 94, 89, 0.6) 0%, rgba(19, 78, 74, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(17, 94, 89, 0.65) 0%, rgba(19, 78, 74, 0.3) 100%);
             color: #5EEAD4;
-            border: 1px solid rgba(20, 184, 166, 0.5);
-            box-shadow: 0 2px 12px rgba(20, 184, 166, 0.35);
+            border: 1px solid rgba(45, 212, 191, 0.5);
+            box-shadow: 0 2px 14px rgba(20, 184, 166, 0.35);
+            text-shadow: 0 0 10px rgba(20, 184, 166, 0.4);
         }
 
         .status-pill-absent {
-            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2) 0%, rgba(225, 29, 72, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.22) 0%, rgba(225, 29, 72, 0.12) 100%);
             color: #9F1239;
-            border: 1px solid rgba(244, 63, 94, 0.5);
-            box-shadow: 0 2px 10px rgba(244, 63, 94, 0.25);
+            border: 1px solid rgba(244, 63, 94, 0.55);
+            box-shadow: 0 2px 12px rgba(244, 63, 94, 0.25);
             animation: pulseWarning 2s infinite ease-in-out;
         }
         .dark .status-pill-absent {
-            background: linear-gradient(135deg, rgba(136, 19, 55, 0.65) 0%, rgba(159, 18, 57, 0.3) 100%);
-            color: #FDA4AF;
-            border: 1px solid rgba(244, 63, 94, 0.6);
-            box-shadow: 0 2px 14px rgba(244, 63, 94, 0.45);
+            background: linear-gradient(135deg, rgba(136, 19, 55, 0.7) 0%, rgba(159, 18, 57, 0.35) 100%);
+            color: #FECDD3;
+            border: 1px solid rgba(251, 113, 133, 0.6);
+            box-shadow: 0 2px 16px rgba(244, 63, 94, 0.45);
             animation: pulseWarning 2s infinite ease-in-out;
+            text-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
         }
         @keyframes pulseWarning {
             0%, 100% { border-color: rgba(244, 63, 94, 0.5); box-shadow: 0 2px 10px rgba(244, 63, 94, 0.25); }
@@ -449,45 +469,48 @@
         }
 
         .status-pill-night {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.16) 0%, rgba(79, 70, 229, 0.08) 100%);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(139, 92, 246, 0.1) 100%);
             color: #3730A3;
-            border: 1px solid rgba(99, 102, 241, 0.35);
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.18);
         }
         .dark .status-pill-night {
-            background: linear-gradient(135deg, rgba(49, 46, 129, 0.55) 0%, rgba(67, 56, 202, 0.25) 100%);
+            background: linear-gradient(135deg, rgba(49, 46, 129, 0.65) 0%, rgba(76, 29, 149, 0.35) 100%);
             color: #C7D2FE;
-            border: 1px solid rgba(99, 102, 241, 0.45);
-            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+            border: 1px solid rgba(165, 180, 252, 0.45);
+            box-shadow: 0 2px 14px rgba(99, 102, 241, 0.35);
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
 
         .status-pill-leave {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.16) 0%, rgba(147, 51, 234, 0.08) 100%);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.18) 0%, rgba(192, 132, 252, 0.1) 100%);
             color: #6B21A8;
-            border: 1px solid rgba(168, 85, 247, 0.35);
-            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 2px 10px rgba(168, 85, 247, 0.18);
         }
         .dark .status-pill-leave {
-            background: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(107, 33, 168, 0.25) 100%);
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.65) 0%, rgba(107, 33, 168, 0.35) 100%);
             color: #E9D5FF;
-            border: 1px solid rgba(168, 85, 247, 0.45);
-            box-shadow: 0 2px 12px rgba(168, 85, 247, 0.3);
+            border: 1px solid rgba(216, 180, 254, 0.45);
+            box-shadow: 0 2px 14px rgba(168, 85, 247, 0.35);
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         /* Filter Chip Active Glow */
         .filter-chip {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
         }
         .filter-chip:hover:not(.active) {
-            transform: translateY(-1.5px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         .filter-chip.active {
-            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%) !important;
             color: #FFFFFF !important;
-            box-shadow: 0 6px 20px -3px rgba(2, 132, 199, 0.55), 0 0 0 1px rgba(56, 189, 248, 0.6) !important;
-            border-color: #38BDF8 !important;
-            transform: translateY(-1px);
+            box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.6), 0 0 0 1px rgba(165, 180, 252, 0.6) !important;
+            border-color: #818CF8 !important;
+            transform: translateY(-1.5px);
         }
         .filter-chip.active i {
             color: #FFFFFF !important;
@@ -499,10 +522,10 @@
             transition: background-color 0.2s ease, transform 0.15s ease;
         }
         #moderator-table-body tr:hover {
-            background-color: rgba(2, 132, 199, 0.05);
+            background-color: rgba(99, 102, 241, 0.05);
         }
         .dark #moderator-table-body tr:hover {
-            background-color: rgba(2, 132, 199, 0.12);
+            background-color: rgba(99, 102, 241, 0.10);
         }
         #moderator-table-body tr td:first-child {
             position: relative;
@@ -515,28 +538,28 @@
             bottom: 15%;
             width: 3.5px;
             border-radius: 0 4px 4px 0;
-            background: linear-gradient(180deg, #0284C7 0%, #38BDF8 100%);
-            box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+            background: linear-gradient(180deg, #4F46E5 0%, #8B5CF6 100%);
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.85);
         }
 
         /* Unexcused Absent Highlighted Row Glow */
         .row-highlight-absent {
-            background: rgba(244, 63, 94, 0.07) !important;
-            border-left: 3px solid #F43F5E !important;
+            background: rgba(244, 63, 94, 0.08) !important;
+            border-left: 3.5px solid #F43F5E !important;
         }
         .dark .row-highlight-absent {
-            background: rgba(244, 63, 94, 0.16) !important;
-            border-left: 3px solid #FB7185 !important;
+            background: rgba(244, 63, 94, 0.18) !important;
+            border-left: 3.5px solid #FB7185 !important;
         }
 
         /* Moderator 'You' Row Highlight Glow */
         .row-highlight-me {
-            background: linear-gradient(90deg, rgba(168, 85, 247, 0.12) 0%, rgba(99, 102, 241, 0.06) 100%) !important;
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.14) 0%, rgba(99, 102, 241, 0.07) 100%) !important;
             border-left: 3.5px solid #A855F7 !important;
             box-shadow: inset 0 0 16px rgba(168, 85, 247, 0.08);
         }
         .dark .row-highlight-me {
-            background: linear-gradient(90deg, rgba(168, 85, 247, 0.22) 0%, rgba(99, 102, 241, 0.12) 100%) !important;
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.24) 0%, rgba(99, 102, 241, 0.14) 100%) !important;
             border-left: 3.5px solid #C084FC !important;
             box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.15);
         }
@@ -586,56 +609,59 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
+            width: 27px;
+            height: 27px;
+            border-radius: 7px;
             font-weight: 900;
             font-size: 11px;
             font-family: 'JetBrains Mono', monospace;
             color: #ffffff !important;
-            transition: transform 0.12s ease;
+            transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease;
             contain: layout style;
             will-change: transform;
             user-select: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         .matrix-cell-badge:hover {
-            transform: scale(1.22) !important;
+            transform: scale(1.25) !important;
             z-index: 30;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
         .matrix-badge-present {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-off {
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            box-shadow: 0 2px 5px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
             font-size: 9px;
         }
         .matrix-badge-exchange {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-            box-shadow: 0 2px 5px rgba(8, 145, 178, 0.4);
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
             font-size: 9px;
         }
         .matrix-badge-extra {
             background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
-            box-shadow: 0 2px 5px rgba(13, 148, 136, 0.45);
+            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
             font-size: 9px;
         }
         .matrix-badge-absent {
-            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
-            box-shadow: 0 2px 6px rgba(225, 29, 72, 0.45);
+            background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+            box-shadow: 0 2px 9px rgba(244, 63, 94, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-night {
-            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-            box-shadow: 0 2px 5px rgba(79, 70, 229, 0.4);
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-leave {
-            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
-            box-shadow: 0 2px 5px rgba(147, 51, 234, 0.4);
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-outside {
             background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-            box-shadow: 0 2px 5px rgba(71, 85, 105, 0.4);
+            box-shadow: 0 2px 6px rgba(71, 85, 105, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
         }
 
         /* Sticky Horizontal Columns in Screen Mode (SL and Moderator Name) */
@@ -1082,7 +1108,7 @@
                 min-height: 297mm !important;
                 max-height: 297mm !important;
                 margin: 0 !important;
-                padding: 45mm 20mm 24mm 20mm !important;
+                padding: 42mm 20mm 24mm 20mm !important;
                 box-shadow: none !important;
                 border: none !important;
                 border-radius: 0 !important;
@@ -1091,6 +1117,10 @@
                 page-break-before: avoid !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                box-sizing: border-box !important;
             }
 
             body.print-appointment-active.pad-mode-with-bg #appointment-letter-sheet {
@@ -1105,6 +1135,65 @@
             body.print-appointment-active.pad-mode-blank #appointment-letter-sheet {
                 background-image: none !important;
                 background: #ffffff !important;
+            }
+
+            body.print-appointment-active .appointment-letter-title {
+                font-size: 16pt !important;
+                margin-bottom: 20px !important;
+            }
+
+            body.print-appointment-active .appointment-meta-row {
+                font-size: 10.5pt !important;
+                margin-bottom: 18px !important;
+                padding-bottom: 6px !important;
+            }
+
+            body.print-appointment-active .appointment-recipient-block {
+                font-size: 11pt !important;
+                margin-bottom: 16px !important;
+            }
+
+            body.print-appointment-active .appointment-subject-line {
+                font-size: 11.5pt !important;
+                margin-bottom: 16px !important;
+            }
+
+            body.print-appointment-active .appointment-salutation {
+                font-size: 11pt !important;
+                margin-bottom: 14px !important;
+            }
+
+            body.print-appointment-active .appointment-paragraph {
+                font-size: 10.5pt !important;
+                line-height: 1.74 !important;
+                margin-bottom: 18px !important;
+            }
+
+            body.print-appointment-active .appointment-closing {
+                font-size: 10.5pt !important;
+                margin-top: 14px !important;
+                margin-bottom: 12px !important;
+            }
+
+            body.print-appointment-active .appointment-acceptance-clause {
+                margin-top: 10px !important;
+                margin-bottom: 16px !important;
+                padding: 7px 10px !important;
+                font-size: 9pt !important;
+                border: 1px solid #cbd5e1 !important;
+                border-left: 3px solid #0284c7 !important;
+                background: #f8fafc !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body.print-appointment-active .appointment-signatures-grid {
+                margin-top: 12px !important;
+                padding-top: 6px !important;
+            }
+
+            body.print-appointment-active .appointment-signature-space {
+                height: 40px !important;
             }
         }
         @media screen {
@@ -1133,12 +1222,15 @@
             background-repeat: no-repeat;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            padding: 170px 75px 85px 75px;
+            padding: 155px 75px 65px 75px;
             box-sizing: border-box;
             color: #0f172a;
             font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
             transform-origin: top center;
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .appointment-a4-sheet.pad-mode-with-bg {
@@ -1155,88 +1247,155 @@
             font-family: 'Times New Roman', Times, Georgia, serif;
         }
 
+        .appointment-letter-body-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
         .appointment-letter-title {
             text-align: center;
-            font-size: 15.5pt;
+            font-size: 16.5pt;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 22px;
             color: #000000;
             text-decoration: underline;
-            text-underline-offset: 4px;
+            text-underline-offset: 5px;
         }
 
         .appointment-meta-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            font-size: 10pt;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 14px;
+            font-size: 10.5pt;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .appointment-recipient-block {
-            margin-bottom: 14px;
-            font-size: 10.5pt;
-            color: #000000;
-            line-height: 1.35;
+            margin-bottom: 18px;
+            font-size: 11pt;
+            color: #1e293b;
+            line-height: 1.45;
         }
 
         .appointment-subject-line {
-            font-size: 11pt;
+            font-size: 11.5pt;
             font-weight: 800;
-            color: #000000;
-            margin-bottom: 14px;
+            color: #0f172a;
+            margin-bottom: 18px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid #0f172a;
+            display: inline-block;
         }
 
         .appointment-salutation {
-            font-size: 10.5pt;
+            font-size: 11pt;
             font-weight: 700;
-            color: #000000;
-            margin-bottom: 10px;
+            color: #0f172a;
+            margin-bottom: 14px;
         }
 
         .appointment-paragraph {
-            font-size: 9.8pt;
-            line-height: 1.54;
+            font-size: 10.8pt;
+            line-height: 1.76;
             text-align: justify;
-            color: #0f172a;
-            margin-bottom: 12px;
+            color: #1e293b;
+            margin-bottom: 20px;
             text-justify: inter-word;
+            letter-spacing: 0.1px;
         }
 
         .appointment-closing {
-            font-size: 10pt;
-            color: #000000;
-            margin-top: 16px;
-            margin-bottom: 24px;
+            font-size: 10.8pt;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 14px;
+            margin-bottom: 10px;
         }
 
-        .appointment-signatory-block {
-            font-size: 10pt;
-            line-height: 1.35;
-            color: #000000;
+        .appointment-bottom-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        .appointment-signature-line {
-            font-weight: 800;
+        .appointment-acceptance-clause {
+            margin-top: 6px;
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 3.5px solid #0284c7;
+            border-radius: 6px;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            color: #334155;
+        }
+
+        .appointment-signatures-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 10px;
+            padding-top: 8px;
+            width: 100%;
+        }
+
+        .appointment-signatory-col {
+            width: 46%;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #0f172a;
+        }
+
+        .appointment-signatory-employer {
+            text-align: left;
+        }
+
+        .appointment-signatory-employee {
+            text-align: left;
+        }
+
+        .appointment-signature-space {
+            height: 44px;
+        }
+
+        .appointment-sig-line {
+            font-weight: 700;
+            color: #94a3b8;
             margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .appointment-sig-title {
+            font-weight: 800;
+            font-size: 10.5pt;
+            color: #0f172a;
         }
 
         .appointment-signatory-name {
-            font-weight: 800;
+            font-weight: 700;
+            color: #334155;
         }
 
         .appointment-signatory-company {
             font-weight: 800;
+            color: #0f172a;
         }
 
         .appointment-signatory-office {
-            font-weight: 800;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 9.5pt;
         }
-    </style>
+</style>
     <style id="dynamic-print-orientation-style"></style>
 
 </head>
@@ -1255,15 +1414,15 @@
     <!-- ======================= 1. OBSIDIAN LUXURY LOGIN PORTAL ======================= -->
     <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030712]/95 backdrop-blur-3xl no-print select-none">
         
-        <!-- Glowing Ambient Aurora Nebulas (Cyan Azure & Imperial Gold) -->
-        <div class="absolute w-[500px] h-[500px] rounded-full bg-cyan-500/25 filter blur-[100px] pointer-events-none -top-32 -left-32 animate-pulse-slow"></div>
+        <!-- Glowing Ambient Aurora Nebulas (Royal Indigo & Imperial Gold) -->
+        <div class="absolute w-[520px] h-[520px] rounded-full bg-indigo-600/25 filter blur-[110px] pointer-events-none -top-32 -left-32 animate-pulse-slow"></div>
         <div class="absolute w-[500px] h-[500px] rounded-full bg-amber-500/20 filter blur-[100px] pointer-events-none -bottom-32 -right-32 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
-        <div class="absolute w-80 h-80 rounded-full bg-emerald-500/15 filter blur-[90px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute w-80 h-80 rounded-full bg-purple-600/18 filter blur-[95px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-        <div id="login-card" class="relative w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#080D1A]/95 border border-amber-500/25 shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95),0_0_40px_rgba(2,132,199,0.2)] backdrop-blur-2xl transition-all duration-300">
+        <div id="login-card" class="relative w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#090D1C]/95 border border-indigo-500/25 shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95),0_0_50px_rgba(99,102,241,0.22)] backdrop-blur-2xl transition-all duration-300">
             
-            <!-- Top Radiant Gold-Cyan Accent Beam -->
-            <div class="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-amber-400 via-sky-400 to-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.6)]"></div>
+            <!-- Top Radiant Gold-Indigo Accent Beam -->
+            <div class="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-amber-400 via-indigo-400 to-purple-500 rounded-full shadow-[0_0_20px_rgba(99,102,241,0.6)]"></div>
 
             <!-- Brand Emblem & Title: 3D Imperial Gold Crown Crest (NO ST, NO INITIALS) -->
             <div class="text-center mb-8">
@@ -1296,10 +1455,10 @@
                 <span id="login-error-text" class="font-medium">Incorrect password. Please try again.</span>
             </div>
 
-            <!-- Role Switcher Tabs (Royal Azure & Imperial Gold) -->
+            <!-- Role Switcher Tabs (Royal Indigo & Imperial Gold) -->
             <div class="flex items-center p-1 rounded-2xl bg-white/[0.06] border border-white/10 mb-5 font-bold text-xs">
                 <button type="button" id="btn-auth-tab-admin" onclick="switchLoginRole('admin')" 
-                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 text-white shadow-[0_0_20px_rgba(2,132,199,0.5)]">
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white shadow-[0_0_20px_rgba(99,102,241,0.55)] border border-indigo-400/30">
                     <i class="fa-solid fa-user-shield"></i>
                     <span>In-Charge (Admin)</span>
                 </button>
@@ -1318,9 +1477,9 @@
                         Authorized Username
                     </label>
                     <div class="relative">
-                        <i class="fa-solid fa-user-shield absolute left-4 top-3.5 text-sky-400 text-sm"></i>
+                        <i class="fa-solid fa-user-shield absolute left-4 top-3.5 text-indigo-400 text-sm"></i>
                         <input type="text" id="login-username" value="admin"
-                               class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition font-medium">
+                               class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-medium">
                     </div>
                 </div>
 
@@ -1345,7 +1504,7 @@
                     <div class="relative">
                         <i class="fa-solid fa-lock-keyhole absolute left-4 top-3.5 text-slate-400 text-sm"></i>
                         <input type="password" id="login-password" placeholder="Enter portal password" required
-                               class="w-full pl-11 pr-11 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition font-mono">
+                               class="w-full pl-11 pr-11 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-mono">
                         <button type="button" onclick="togglePasswordVisibility()" class="absolute right-4 top-3.5 text-slate-400 hover:text-white transition cursor-pointer">
                             <i id="password-toggle-icon" class="fa-solid fa-eye text-sm"></i>
                         </button>
@@ -1357,14 +1516,14 @@
 
                 <div class="flex items-center justify-between pt-1">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-white/10 border-white/20 text-sky-500 focus:ring-sky-400">
+                        <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-white/10 border-white/20 text-indigo-500 focus:ring-indigo-400">
                         <span class="text-xs text-slate-400 font-medium">Remember on this device</span>
                     </label>
-                    <span id="auth-role-badge" class="text-xs text-sky-400 font-mono font-bold">Role: In-Charge (Admin)</span>
+                    <span id="auth-role-badge" class="text-xs text-indigo-400 font-mono font-bold">Role: In-Charge (Admin)</span>
                 </div>
 
                 <button type="submit" id="btn-login-submit"
-                        class="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 hover:from-sky-400 hover:to-cyan-400 text-white font-display font-black text-sm tracking-wide shadow-[0_0_30px_rgba(14,165,233,0.55)] active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer">
+                        class="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:to-purple-500 text-white font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(99,102,241,0.6)] active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-indigo-400/30">
                     <i class="fa-solid fa-right-to-bracket text-base"></i>
                     <span id="btn-login-submit-text">Unlock Dashboard</span>
                 </button>
@@ -1428,7 +1587,7 @@
                 <div class="hidden md:flex items-center gap-3">
                     <div class="flex items-center p-1 rounded-2xl bg-slate-200/60 dark:bg-slate-800/80 border border-slate-300/40 dark:border-slate-700/60 shadow-inner">
                         <button onclick="switchView('daily')" id="btn-view-daily"
-                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer">
+                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.45)] border border-indigo-400/30 cursor-pointer">
                             <i class="fa-solid fa-calendar-day text-sm"></i>
                             <span>Daily Roster</span>
                         </button>
@@ -1446,7 +1605,7 @@
 
                     <button type="button" onclick="openCommandPalette()" title="Search & Quick Actions (Ctrl+K)"
                             class="px-3 py-2 rounded-xl bg-slate-200/60 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold text-xs border border-slate-300/40 dark:border-slate-700/60 transition flex items-center gap-2 shadow-xs cursor-pointer">
-                        <i class="fa-solid fa-magnifying-glass text-sky-400"></i>
+                        <i class="fa-solid fa-magnifying-glass text-indigo-400"></i>
                         <span class="text-[11px]">Command</span>
                         <kbd class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 font-mono text-[9px] text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 shadow-xs">Ctrl K</kbd>
                     </button>
@@ -1457,7 +1616,7 @@
                     
                     <!-- + Add Member Button (In-Charge Admin Only) -->
                     <button onclick="openAddModal()" id="btn-add-moderator"
-                            class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 text-white font-display font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(2,132,199,0.5)] inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
+                            class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:to-purple-500 text-white font-display font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(99,102,241,0.55)] border border-indigo-400/30 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
                         <i class="fa-solid fa-user-plus text-xs"></i>
                         <span class="hidden sm:inline">Add Moderator</span>
                     </button>
@@ -1666,12 +1825,12 @@
 
                     <div class="flex items-center gap-2 sm:gap-3">
                         <button onclick="jumpToToday()"
-                                class="px-4 py-2.5 rounded-2xl bg-sky-500/10 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300 hover:bg-sky-500/20 font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition border border-sky-500/30 cursor-pointer">
+                                class="px-4 py-2.5 rounded-2xl bg-indigo-500/10 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 hover:bg-indigo-500/20 font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition border border-indigo-500/30 cursor-pointer">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             <span>Jump to Today</span>
                         </button>
                         <button onclick="bulkMarkAllPresent()" id="btn-bulk-mark-present"
-                                class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.5)] inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
+                                class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.5)] border border-emerald-400/30 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
                             <i class="fa-solid fa-bolt text-xs"></i>
                             <span>Mark All On-Duty Present</span>
                         </button>
@@ -1682,10 +1841,10 @@
                 <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 no-print">
                     
                     <!-- 1. Total Staff -->
-                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(56, 189, 248, 0.28);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-600 via-cyan-400 to-sky-400 shadow-sm"></div>
+                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(99, 102, 241, 0.35);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-indigo-600 via-purple-500 to-indigo-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-users"></i>
                             </div>
                             <span class="text-[11px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">Total Staff</span>
@@ -1694,31 +1853,31 @@
                             <div class="font-display font-black text-3xl sm:text-4xl text-slate-900 dark:text-white font-mono tracking-tight" id="count-total-mods">26</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
-                            <span class="text-[10px] sm:text-[11px] font-bold text-cyan-700 dark:text-cyan-300 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 leading-none">
+                            <span class="text-[10px] sm:text-[11px] font-bold text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 leading-none">
                                 Verified Roster
                             </span>
                         </div>
                     </div>
 
                     <!-- 2. Available Today -->
-                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(6, 182, 212, 0.28);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-500 via-cyan-400 to-sky-400 shadow-sm"></div>
+                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(20, 184, 166, 0.32);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-500 via-emerald-400 to-cyan-400 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-teal-500/20 to-cyan-500/20 text-teal-600 dark:text-cyan-400 border border-teal-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-teal-500/20 to-emerald-500/20 text-teal-600 dark:text-teal-400 border border-teal-500/30 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-briefcase"></i>
                             </div>
-                            <span class="text-[11px] font-black text-teal-700 dark:text-cyan-400 uppercase tracking-wider">On Duty</span>
+                            <span class="text-[11px] font-black text-teal-700 dark:text-teal-400 uppercase tracking-wider">On Duty</span>
                         </div>
                         <div class="flex items-baseline justify-center gap-1.5 my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-teal-600 dark:text-cyan-400 font-mono tracking-tight" id="count-available-today">21</div>
-                            <span class="text-xs font-black text-teal-700 dark:text-cyan-300 bg-teal-500/15 px-2 py-0.5 rounded-lg border border-teal-500/25" id="pct-available-today">81%</span>
+                            <div class="font-display font-black text-3xl sm:text-4xl text-teal-600 dark:text-teal-400 font-mono tracking-tight" id="count-available-today">21</div>
+                            <span class="text-xs font-black text-teal-700 dark:text-teal-300 bg-teal-500/15 px-2 py-0.5 rounded-lg border border-teal-500/25" id="pct-available-today">81%</span>
                         </div>
                         <div class="w-full space-y-1.5">
                             <div class="w-full bg-teal-500/20 h-1.5 rounded-full overflow-hidden">
-                                <div id="bar-available-today" class="bg-gradient-to-r from-teal-500 to-cyan-400 h-full rounded-full transition-all duration-500" style="width: 81%;"></div>
+                                <div id="bar-available-today" class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: 81%;"></div>
                             </div>
                             <div class="w-full flex items-center justify-center">
-                                <span class="text-[10px] sm:text-[11px] font-bold text-teal-700 dark:text-cyan-300 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 leading-none" id="sub-available-today">
+                                <span class="text-[10px] sm:text-[11px] font-bold text-teal-700 dark:text-teal-300 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 leading-none" id="sub-available-today">
                                     21 of 26 Scheduled
                                 </span>
                             </div>
@@ -1726,7 +1885,7 @@
                     </div>
 
                     <!-- 3. Present Today -->
-                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(16, 185, 129, 0.35);">
+                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(16, 185, 129, 0.38);">
                         <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-emerald-500 via-green-400 to-teal-400 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
                             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500/20 to-green-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-xs shadow-xs">
@@ -1752,10 +1911,10 @@
                     </div>
 
                     <!-- 4. Weekly Off Today -->
-                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(245, 158, 11, 0.28);">
+                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(245, 158, 11, 0.35);">
                         <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-amber-500 via-yellow-400 to-orange-400 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500/20 to-yellow-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-umbrella-beach"></i>
                             </div>
                             <span class="text-[11px] font-black text-amber-700 dark:text-amber-400 uppercase tracking-wider">Weekly Off</span>
@@ -1771,7 +1930,7 @@
                     </div>
 
                     <!-- 5. Absent / Alerts -->
-                    <div id="card-bento-absent" onclick="handleAbsentCardClick()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(244, 63, 94, 0.35);">
+                    <div id="card-bento-absent" onclick="handleAbsentCardClick()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(244, 63, 94, 0.38);">
                         <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-rose-600 via-pink-500 to-red-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
                             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-500/20 to-pink-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30 flex items-center justify-center text-xs shadow-xs">
@@ -1790,8 +1949,8 @@
                     </div>
 
                     <!-- 6. Night Shift & Leaves -->
-                    <div onclick="openNightShiftModal()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(168, 85, 247, 0.28);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-violet-600 via-indigo-500 to-purple-500 shadow-sm"></div>
+                    <div onclick="openNightShiftModal()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(168, 85, 247, 0.35);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-violet-600 via-purple-500 to-fuchsia-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
                             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500/20 to-indigo-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-moon"></i>
@@ -1816,13 +1975,13 @@
                     <!-- 1-Click Fast Filter Chips Strip -->
                     <div class="flex items-center gap-2 overflow-x-auto pb-1 select-none">
                         <button onclick="filterByChip('ALL')" id="chip-filter-all"
-                                class="filter-chip active inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-sky-50 hover:text-sky-600 transition">
-                            <i class="fa-solid fa-layer-group text-xs text-sky-500"></i>
+                                class="filter-chip active inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 transition">
+                            <i class="fa-solid fa-layer-group text-xs text-indigo-400"></i>
                             <span id="chip-filter-all-label">All (26)</span>
                         </button>
                         <button onclick="filterByChip('AVAILABLE_TODAY')" id="chip-filter-available"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-50 hover:text-cyan-700 transition">
-                            <i class="fa-solid fa-briefcase text-xs text-cyan-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-teal-50 hover:text-teal-700 transition">
+                            <i class="fa-solid fa-briefcase text-xs text-teal-400"></i>
                             <span>On Duty Today</span>
                         </button>
                         <button onclick="filterByChip('Present')" id="chip-filter-present"
@@ -1851,8 +2010,8 @@
                             <span>Absent</span>
                         </button>
                         <button onclick="filterByChip('Night Shift')" id="chip-filter-night"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-sky-50 hover:text-sky-700 transition">
-                            <i class="fa-solid fa-moon text-xs text-sky-400"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-50 hover:text-purple-700 transition">
+                            <i class="fa-solid fa-moon text-xs text-purple-400"></i>
                             <span>Night Shift</span>
                         </button>
                         <button onclick="filterByChip('Leave')" id="chip-filter-leave"
@@ -1868,7 +2027,7 @@
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-xs"></i>
                             <input type="text" id="search-input" oninput="handleSearch(this.value)"
                                    placeholder="Search by name, phone, SL... (Press '/' to focus)"
-                                   class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium">
+                                   class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
                             <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-3.5 top-3 text-slate-400 hover:text-slate-600">
                                 <i class="fa-solid fa-xmark text-xs"></i>
                             </button>
@@ -1899,7 +2058,7 @@
                 <section class="glass-panel-elevated rounded-3xl overflow-hidden shadow-sm">
                     <div class="px-6 py-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-800/40 no-print">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]"></span>
                             <h3 class="font-display font-black text-slate-900 dark:text-white text-base sm:text-lg">
                                 Moderator Duty Roster
                             </h3>
@@ -1908,7 +2067,7 @@
                             </span>
                         </div>
                         <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            Auto-Ordered: <b class="text-sky-600 dark:text-sky-400">Sat ➔ Fri</b>
+                            Auto-Ordered: <b class="text-indigo-600 dark:text-indigo-400">Sat ➔ Fri</b>
                         </div>
                     </div>
 
@@ -2449,67 +2608,98 @@
                             <!-- The Official A4 Letterhead Sheet -->
                             <div id="appointment-letter-sheet" class="appointment-a4-sheet pad-mode-with-bg">
                                 
-                                <!-- Document Title -->
-                                <div class="appointment-letter-title">
-                                    Appointment Letter
-                                </div>
-
-                                <!-- Meta Row: Date & Reference -->
-                                <div class="appointment-meta-row">
-                                    <div>
-                                        Date: <span id="sheet-date" class="font-bold">18-08-2026</span>
+                                <!-- Top Content: Document Title, Meta, Recipient, Subject, Salutation, Body -->
+                                <div class="appointment-letter-body-content">
+                                    <!-- Document Title -->
+                                    <div class="appointment-letter-title">
+                                        Appointment Letter
                                     </div>
-                                    <div>
-                                        Reference: <span id="sheet-ref" class="font-bold">SBT/HR/2026/01</span>
+
+                                    <!-- Meta Row: Date & Reference -->
+                                    <div class="appointment-meta-row">
+                                        <div>
+                                            Date: <span id="sheet-date" class="font-bold">18-08-2026</span>
+                                        </div>
+                                        <div>
+                                            Reference: <span id="sheet-ref" class="font-bold">SBT/HR/2026/01</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Recipient Block -->
+                                    <div class="appointment-recipient-block">
+                                        <div>To:</div>
+                                        <div id="sheet-candidate-name" class="font-bold text-[12.5pt] text-slate-900 dark:text-slate-900 mt-0.5">
+                                            Md Sharif Hossain
+                                        </div>
+                                        <div class="text-[10pt] text-slate-600 font-medium">Designation: Moderator</div>
+                                    </div>
+
+                                    <!-- Subject Line -->
+                                    <div class="appointment-subject-line">
+                                        Subject: <span id="sheet-subject">Appointment as Moderator</span>
+                                    </div>
+
+                                    <!-- Salutation -->
+                                    <div class="appointment-salutation">
+                                        Dear <span id="sheet-salutation">Sharif Hossain</span>,
+                                    </div>
+
+                                    <!-- Paragraph 1 -->
+                                    <div class="appointment-paragraph">
+                                        We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from <b id="sheet-effective-date">09 August, 2026</b>. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least <span id="sheet-notice-period" class="font-semibold">two months</span> earlier.
+                                    </div>
+
+                                    <!-- Paragraph 2 -->
+                                    <div class="appointment-paragraph">
+                                        Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get <b id="sheet-training-salary">10,000 BDT</b> for the first month since it will be your training period. After your first month on duty, you will get your basic salary <b id="sheet-basic-salary">14000 BDT</b> per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+                                    </div>
+
+                                    <!-- Closing -->
+                                    <div class="appointment-closing">
+                                        Thank you,
                                     </div>
                                 </div>
 
-                                <!-- Recipient Block -->
-                                <div class="appointment-recipient-block">
-                                    <div>To:</div>
-                                    <div id="sheet-candidate-name" class="font-bold text-[12pt] mt-0.5">
-                                        Md Sharif Hossain
+                                <!-- Bottom Section: Acceptance Clause & Dual Signatures (Employer + Employee) -->
+                                <div class="appointment-bottom-section">
+                                    <!-- Acknowledgment & Acceptance Clause -->
+                                    <div class="appointment-acceptance-clause">
+                                        <b>Declaration & Acceptance:</b> I hereby accept the appointment under the terms and conditions outlined above and confirm my commitment to fulfill my duties responsibly.
                                     </div>
-                                </div>
 
-                                <!-- Subject Line -->
-                                <div class="appointment-subject-line">
-                                    Subject: <span id="sheet-subject">Appointment as Moderator</span>
-                                </div>
+                                    <!-- Signatures Grid: Employer (Left) & Employee (Right) -->
+                                    <div class="appointment-signatures-grid">
+                                        <!-- Employer Signature Block -->
+                                        <div class="appointment-signatory-col appointment-signatory-employer">
+                                            <div class="appointment-signature-space"></div>
+                                            <div class="appointment-sig-line">____________________________________</div>
+                                            <div class="appointment-sig-title">Authorized Signatory</div>
+                                            <div id="sheet-signatory" class="appointment-signatory-name">
+                                                General Manager
+                                            </div>
+                                            <div class="appointment-signatory-company">
+                                                Sanvee's By Tony
+                                            </div>
+                                            <div id="sheet-location" class="appointment-signatory-office">
+                                                Head Office
+                                            </div>
+                                        </div>
 
-                                <!-- Salutation -->
-                                <div class="appointment-salutation">
-                                    Dear <span id="sheet-salutation">Sharif Hossain</span>,
-                                </div>
-
-                                <!-- Paragraph 1 -->
-                                <div class="appointment-paragraph">
-                                    We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from <b id="sheet-effective-date">09 August, 2026</b>. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least <span id="sheet-notice-period" class="font-semibold">two months</span> earlier.
-                                </div>
-
-                                <!-- Paragraph 2 -->
-                                <div class="appointment-paragraph">
-                                    Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get <b id="sheet-training-salary">10,000 BDT</b> for the first month since it will be your training period. After your first month on duty, you will get your basic salary <b id="sheet-basic-salary">14000 BDT</b> per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
-                                </div>
-
-                                <!-- Closing -->
-                                <div class="appointment-closing">
-                                    Thank you,
-                                </div>
-
-                                <!-- Signatory Block -->
-                                <div class="appointment-signatory-block">
-                                    <div class="appointment-signature-line">
-                                        Signature: _________________
-                                    </div>
-                                    <div id="sheet-signatory" class="appointment-signatory-name">
-                                        General Manager
-                                    </div>
-                                    <div class="appointment-signatory-company">
-                                        Sanvee's By Tony
-                                    </div>
-                                    <div id="sheet-location" class="appointment-signatory-office">
-                                        Head Office
+                                        <!-- Employee Signature Block -->
+                                        <div class="appointment-signatory-col appointment-signatory-employee">
+                                            <div class="appointment-signature-space"></div>
+                                            <div class="appointment-sig-line">____________________________________</div>
+                                            <div class="appointment-sig-title">Employee Signature</div>
+                                            <div class="appointment-signatory-name font-bold">
+                                                Name: <span id="sheet-emp-signature-name">Md Sharif Hossain</span>
+                                            </div>
+                                            <div class="text-[9.5pt] text-slate-700 font-medium">
+                                                Date: ________________________
+                                            </div>
+                                            <div class="appointment-signatory-office">
+                                                Signature & Acceptance
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -3381,23 +3571,24 @@
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         const WEEKEND_BADGE_STYLES = {
-            'Saturday': 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/30 ring-1 ring-emerald-500/15',
-            'Sunday': 'bg-violet-500/15 text-violet-800 dark:text-violet-300 border-violet-500/30 ring-1 ring-violet-500/15',
-            'Monday': 'bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/30 ring-1 ring-amber-500/15',
-            'Tuesday': 'bg-fuchsia-500/15 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-500/30 ring-1 ring-fuchsia-500/15',
-            'Wednesday': 'bg-indigo-500/15 text-indigo-800 dark:text-indigo-300 border-indigo-500/30 ring-1 ring-indigo-500/15',
-            'Thursday': 'bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border-cyan-500/30 ring-1 ring-cyan-500/15',
-            'Friday': 'bg-rose-500/15 text-rose-800 dark:text-rose-300 border-rose-500/30 ring-1 ring-rose-500/15'
+            'Saturday': 'bg-gradient-to-r from-emerald-500/20 to-teal-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-500/35 ring-1 ring-emerald-500/20 shadow-xs',
+            'Sunday': 'bg-gradient-to-r from-violet-500/20 to-purple-500/10 text-violet-800 dark:text-violet-300 border-violet-500/35 ring-1 ring-violet-500/20 shadow-xs',
+            'Monday': 'bg-gradient-to-r from-amber-500/20 to-yellow-500/10 text-amber-800 dark:text-amber-300 border-amber-500/35 ring-1 ring-amber-500/20 shadow-xs',
+            'Tuesday': 'bg-gradient-to-r from-fuchsia-500/20 to-pink-500/10 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-500/35 ring-1 ring-fuchsia-500/20 shadow-xs',
+            'Wednesday': 'bg-gradient-to-r from-indigo-500/20 to-blue-500/10 text-indigo-800 dark:text-indigo-300 border-indigo-500/35 ring-1 ring-indigo-500/20 shadow-xs',
+            'Thursday': 'bg-gradient-to-r from-sky-500/20 to-cyan-500/10 text-sky-800 dark:text-sky-300 border-sky-500/35 ring-1 ring-sky-500/20 shadow-xs',
+            'Friday': 'bg-gradient-to-r from-rose-500/20 to-pink-500/10 text-rose-800 dark:text-rose-300 border-rose-500/35 ring-1 ring-rose-500/20 shadow-xs'
         };
 
         const AVATAR_PALETTES = [
-            { bg: 'from-indigo-600 via-indigo-500 to-violet-600', shadow: 'shadow-indigo-500/25' },
-            { bg: 'from-violet-600 via-purple-500 to-fuchsia-600', shadow: 'shadow-purple-500/25' },
-            { bg: 'from-emerald-600 via-teal-500 to-cyan-600', shadow: 'shadow-emerald-500/25' },
-            { bg: 'from-cyan-600 via-sky-500 to-blue-600', shadow: 'shadow-cyan-500/25' },
-            { bg: 'from-amber-600 via-orange-500 to-rose-600', shadow: 'shadow-amber-500/25' },
-            { bg: 'from-rose-600 via-pink-500 to-purple-600', shadow: 'shadow-rose-500/25' },
-            { bg: 'from-blue-600 via-indigo-500 to-purple-600', shadow: 'shadow-blue-500/25' }
+            { bg: 'from-indigo-600 via-indigo-500 to-violet-700', shadow: 'shadow-indigo-500/30' },
+            { bg: 'from-purple-600 via-fuchsia-600 to-pink-700', shadow: 'shadow-purple-500/30' },
+            { bg: 'from-emerald-600 via-teal-500 to-cyan-700', shadow: 'shadow-emerald-500/30' },
+            { bg: 'from-blue-600 via-indigo-500 to-violet-800', shadow: 'shadow-blue-500/30' },
+            { bg: 'from-amber-600 via-orange-500 to-rose-700', shadow: 'shadow-amber-500/30' },
+            { bg: 'from-rose-600 via-pink-600 to-purple-700', shadow: 'shadow-rose-500/30' },
+            { bg: 'from-cyan-600 via-sky-500 to-blue-700', shadow: 'shadow-cyan-500/30' },
+            { bg: 'from-violet-600 via-purple-600 to-indigo-800', shadow: 'shadow-violet-500/30' }
         ];
 
         function getAvatarTheme(sl) {
@@ -3657,8 +3848,6 @@
                     const cleanPhone = m.phone ? m.phone.replace(/\D/g, '') : '';
                     m.id = 'mod_' + (cleanPhone || Date.now()) + '_' + idx + '_' + Math.random().toString(36).substring(2, 7);
                 }
-                m._tempSortIdx = idx;
-                m._oldSl = m.sl;
             });
 
             moderators.sort((a, b) => {
@@ -3668,70 +3857,12 @@
                 const slA = a.sl !== undefined && a.sl !== null ? a.sl : 9999;
                 const slB = b.sl !== undefined && b.sl !== null ? b.sl : 9999;
                 if (slA !== slB) return slA - slB;
-                return (a._tempSortIdx || 0) - (b._tempSortIdx || 0);
+                return (a.name || '').localeCompare(b.name || '');
             });
 
-            const slMapping = {};
             moderators.forEach((m, index) => {
-                const oldSl = m._oldSl;
-                const newSl = index + 1;
-                delete m._tempSortIdx;
-                delete m._oldSl;
-                m.sl = newSl;
-                if (oldSl !== undefined && oldSl !== null && oldSl !== newSl) {
-                    slMapping[oldSl] = newSl;
-                }
+                m.sl = index + 1;
             });
-
-            // Maintain stable modKey in attendance records and synchronize numeric SL aliases
-            if (attendanceHistory && typeof attendanceHistory === 'object') {
-                Object.keys(attendanceHistory).forEach(date => {
-                    const dayRecords = attendanceHistory[date];
-                    if (dayRecords && typeof dayRecords === 'object' && !Array.isArray(dayRecords)) {
-                        moderators.forEach(m => {
-                            const modKey = getModeratorKey(m);
-                            const oldSlKey = Object.keys(slMapping).find(k => slMapping[k] === m.sl);
-                            if (oldSlKey && dayRecords[oldSlKey] && !dayRecords[modKey]) {
-                                dayRecords[modKey] = dayRecords[oldSlKey];
-                            }
-                            if (dayRecords[modKey]) {
-                                dayRecords[String(m.sl)] = dayRecords[modKey];
-                            }
-                        });
-                    }
-                });
-            }
-
-            if (Object.keys(slMapping).length > 0) {
-                if (Array.isArray(scheduledNightShifts)) {
-                    scheduledNightShifts.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                        if (item.sl && slMapping[item.sl]) item.sl = slMapping[item.sl];
-                    });
-                }
-
-                if (Array.isArray(approvedLeaves)) {
-                    approvedLeaves.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                    });
-                }
-
-                if (Array.isArray(weekendExchanges)) {
-                    weekendExchanges.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                    });
-                }
-
-                if (Array.isArray(nightShiftRequests)) {
-                    nightShiftRequests.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                    });
-                }
-
-                if (typeof currentLoggedInModSl !== 'undefined' && currentLoggedInModSl && slMapping[currentLoggedInModSl]) {
-                    currentLoggedInModSl = slMapping[currentLoggedInModSl];
-                }
-            }
         }
 
         function calculatePredictedSlForWeekend(targetWeekend, ignoreIndex = -1) {
@@ -3860,11 +3991,15 @@
 
         function getModeratorKey(mod) {
             if (!mod) return '';
-            if (mod._cachedKey) return mod._cachedKey;
-            if (mod.id) mod._cachedKey = String(mod.id);
-            else if (mod.phone) mod._cachedKey = 'mod_' + String(mod.phone).replace(/\D/g, '');
-            else mod._cachedKey = 'mod_sl_' + String(mod.sl);
-            return mod._cachedKey;
+            const nameStr = (mod.name || '').trim().toLowerCase();
+            if (nameStr) {
+                return 'mod_' + nameStr
+                    .replace(/[\.\#\$\[\]\/\\]/g, '')
+                    .replace(/\s+/g, '_');
+            }
+            if (mod.id) return String(mod.id);
+            if (mod.phone) return 'mod_' + String(mod.phone).replace(/\D/g, '');
+            return 'mod_sl_' + String(mod.sl);
         }
 
         let _hasSanitizedAttendance = false;
@@ -3875,23 +4010,22 @@
 
             let modified = false;
 
-            // Robust 1-to-1 mapping for standard 26 moderators; fallback mapping for legacy 24 schema
-            const isLegacy24Schema = (moderators.length === 24);
-            const old26ToModMap = {};
-            if (isLegacy24Schema) {
-                const legacy24Map = {
-                    1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10,
-                    11: 11, 12: 12, 13: 13, 14: 14, 15: 14, 16: 15, 17: 16, 18: 17, 19: 17,
-                    20: 18, 21: 19, 22: 20, 23: 21, 24: 22, 25: 23, 26: 24
-                };
-                Object.keys(legacy24Map).forEach(k => {
-                    old26ToModMap[k] = moderators.find(m => m.sl === legacy24Map[k]);
-                });
-            } else {
-                for (let i = 1; i <= moderators.length; i++) {
-                    old26ToModMap[i] = moderators.find(m => m.sl === i) || moderators[i - 1];
+            // Map moderators by Name, clean modKey, phone, id, and serial
+            const nameToModMap = {};
+            const keyToModMap = {};
+            const phoneToModMap = {};
+            const slToModMap = {};
+            moderators.forEach((m, idx) => {
+                const modKey = getModeratorKey(m);
+                keyToModMap[modKey] = m;
+                if (m.name) {
+                    nameToModMap[m.name.trim().toLowerCase()] = m;
+                    nameToModMap[m.name] = m;
                 }
-            }
+                if (m.phone) phoneToModMap[m.phone.replace(/\D/g, '')] = m;
+                slToModMap[m.sl] = m;
+                slToModMap[idx + 1] = m;
+            });
 
             Object.keys(attendanceHistory).forEach(dateStr => {
                 const dayRecords = attendanceHistory[dateStr];
@@ -3900,106 +4034,91 @@
                 const dayName = getDayNameForDate(dateStr);
                 const isArray = Array.isArray(dayRecords);
                 const keys = Object.keys(dayRecords);
-                const isOld26Array = isArray && dayRecords.length >= 26;
-                const hasOld26Keys = !isArray && keys.some(k => parseInt(k, 10) >= 25);
-                const hasOnlyNumericKeys = isArray || (keys.length > 0 && keys.every(k => /^\d+$/.test(k)));
+                const newDayRecords = {};
 
-                if (isArray || isOld26Array || hasOld26Keys || hasOnlyNumericKeys) {
-                    modified = true;
-                    const newDayRecords = {};
+                // Restore statuses for each current moderator using their unique name or modKey
+                moderators.forEach((targetMod, idx) => {
+                    const modKey = getModeratorKey(targetMod);
+                    const cleanName = (targetMod.name || '').trim().toLowerCase();
+                    const cleanPhone = targetMod.phone ? targetMod.phone.replace(/\D/g, '') : '';
+                    const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
 
-                    if (isOld26Array || hasOld26Keys || hasOnlyNumericKeys) {
-                        Object.keys(old26ToModMap).forEach(oldIdxStr => {
-                            const oldIdx = parseInt(oldIdxStr, 10);
-                            const targetMod = old26ToModMap[oldIdx];
-                            if (!targetMod) return;
-
-                            let status = isArray ? (dayRecords[oldIdx] || dayRecords[oldIdx - 1]) : dayRecords[oldIdxStr];
-                            const modKey = getModeratorKey(targetMod);
-                            const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
-
-                            // Check approved leaves (by dates array or startDate..endDate range)
-                            const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl ? l.modSl === targetMod.sl : (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modName === targetMod.name)));
-                                if (!isMod) return false;
-                                return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
-                            });
-
-                            // Check scheduled night shifts
-                            const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl ? s.modSl === targetMod.sl : (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modName === targetMod.name)));
-                                if (!isMod) return false;
-                                return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                            });
-
-                            if (hasApprovedLeave) {
-                                status = 'Leave';
-                            } else if (hasNightShift) {
-                                status = 'Night Shift';
-                            }
-                            // Check weekend exchanges
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.dutyDate === dateStr)) {
-                                status = 'Present';
-                            }
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.offDate === dateStr)) {
-                                status = 'Weekly Off';
-                            }
-                            // Re-align default status so scheduled day off strictly applies
-                            else if (!status || status === 'Present' || status === 'Weekly Off') {
-                                status = isScheduledWeekend ? 'Weekly Off' : 'Present';
-                            }
-
-                            newDayRecords[modKey] = status;
-                            newDayRecords[String(targetMod.sl)] = status;
-                        });
+                    // Look for existing status primarily by name and modKey
+                    let status = undefined;
+                    if (!isArray) {
+                        if (dayRecords[modKey] !== undefined) status = dayRecords[modKey];
+                        else if (targetMod.name && dayRecords[targetMod.name] !== undefined) status = dayRecords[targetMod.name];
+                        else if (cleanName && dayRecords[cleanName] !== undefined) status = dayRecords[cleanName];
+                        else if (targetMod.id && dayRecords[targetMod.id] !== undefined) status = dayRecords[targetMod.id];
+                        else if (cleanPhone && dayRecords[cleanPhone] !== undefined) status = dayRecords[cleanPhone];
+                        else if (dayRecords['mod_' + cleanPhone] !== undefined) status = dayRecords['mod_' + cleanPhone];
+                        // Only fallback to legacy numeric serial if day has never been migrated and has no name keys
+                        else if (dayRecords[String(targetMod.sl)] !== undefined) {
+                            status = dayRecords[String(targetMod.sl)];
+                        }
                     } else {
-                        moderators.forEach(m => {
-                            const modKey = getModeratorKey(m);
-                            const slKey = String(m.sl);
-                            let status = dayRecords[modKey] || dayRecords[slKey];
-                            const isScheduledWeekend = m.weekend && dayName && (m.weekend.toLowerCase() === dayName.toLowerCase());
-
-                            const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl ? l.modSl === m.sl : (l.modId ? l.modId === m.id : (l.modPhone === m.phone || l.modName === m.name)));
-                                if (!isMod) return false;
-                                return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
-                            });
-
-                            const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl ? s.modSl === m.sl : (s.modId ? s.modId === m.id : (s.modPhone === m.phone || s.modName === m.name)));
-                                if (!isMod) return false;
-                                return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                            });
-
-                            if (hasApprovedLeave) {
-                                status = 'Leave';
-                            } else if (hasNightShift) {
-                                status = 'Night Shift';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.dutyDate === dateStr)) {
-                                status = 'Present';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.offDate === dateStr)) {
-                                status = 'Weekly Off';
-                            } else if (!status || status === 'Present' || status === 'Weekly Off') {
-                                status = isScheduledWeekend ? 'Weekly Off' : 'Present';
-                            }
-
-                            newDayRecords[modKey] = status;
-                            newDayRecords[slKey] = status;
-                        });
+                        status = dayRecords[targetMod.sl] || dayRecords[idx];
                     }
 
-                    attendanceHistory[dateStr] = newDayRecords;
-                } else {
-                    moderators.forEach(m => {
-                        const modKey = getModeratorKey(m);
-                        const slKey = String(m.sl);
-                        if (dayRecords[modKey] && !dayRecords[slKey]) {
-                            dayRecords[slKey] = dayRecords[modKey];
-                        } else if (dayRecords[slKey] && !dayRecords[modKey]) {
-                            dayRecords[modKey] = dayRecords[slKey];
-                        }
+                    // Check approved leaves (by dates array or startDate..endDate range)
+                    const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
+                        const isMod = (l.modName && targetMod.name && l.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) ||
+                                      (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modSl === targetMod.sl));
+                        if (!isMod) return false;
+                        return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                     });
-                }
+
+                    // Check scheduled night shifts
+                    const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
+                        const isMod = (s.modName && targetMod.name && s.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) ||
+                                      (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modSl === targetMod.sl));
+                        if (!isMod) return false;
+                        return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
+                    });
+
+                    // Check weekend exchanges
+                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && targetMod.name && x.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) || (x.modSl === targetMod.sl || x.modPhone === targetMod.phone)) && x.dutyDate === dateStr
+                    );
+                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && targetMod.name && x.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) || (x.modSl === targetMod.sl || x.modPhone === targetMod.phone)) && x.offDate === dateStr
+                    );
+
+                    if (hasApprovedLeave) {
+                        status = 'Leave';
+                    } else if (hasNightShift) {
+                        status = 'Night Shift';
+                    } else if (hasExchangeDuty) {
+                        status = 'Present';
+                    } else if (hasExchangeOff) {
+                        status = 'Weekly Off';
+                    } else if (isScheduledWeekend) {
+                        // CRITICAL FIX: If today is their scheduled weekend and they have no exchange duty / extra duty,
+                        // force 'Weekly Off'. This fixes records corrupted by previous moderator removal and serial shifts.
+                        if (!status || status === 'Present' || status === 'Weekly Off') {
+                            status = 'Weekly Off';
+                        }
+                    } else {
+                        // Working day: if not set or corrupted, default to Present
+                        if (!status || status === 'Weekly Off') {
+                            status = 'Present';
+                        }
+                    }
+
+                    newDayRecords[modKey] = status;
+                    if (targetMod.name) newDayRecords[targetMod.name] = status;
+                });
+
+                // Preserve any non-numeric custom metadata like _initialized
+                keys.forEach(k => {
+                    if (k.startsWith('_')) {
+                        newDayRecords[k] = dayRecords[k];
+                    }
+                });
+
+                newDayRecords._initialized = true;
+                attendanceHistory[dateStr] = newDayRecords;
+                modified = true;
             });
 
             if (modified) {
@@ -4009,6 +4128,33 @@
 
         function initAttendanceForDate(dateStr) {
             if (attendanceHistory[dateStr] && !Array.isArray(attendanceHistory[dateStr]) && attendanceHistory[dateStr]._initialized) {
+                // Ensure every current moderator has an entry keyed by their name and modKey
+                const dayRecords = attendanceHistory[dateStr];
+                const dayName = getDayNameForDate(dateStr);
+                let neededSync = false;
+                for (let i = 0; i < moderators.length; i++) {
+                    const mod = moderators[i];
+                    const modKey = getModeratorKey(mod);
+                    if (dayRecords[modKey] === undefined && dayRecords[mod.name] === undefined) {
+                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        const defStatus = isWeekend ? 'Weekly Off' : 'Present';
+                        dayRecords[modKey] = defStatus;
+                        dayRecords[mod.name] = defStatus;
+                        neededSync = true;
+                    } else if (dayRecords[modKey] !== undefined && dayRecords[mod.name] === undefined) {
+                        dayRecords[mod.name] = dayRecords[modKey];
+                        neededSync = true;
+                    } else if (dayRecords[mod.name] !== undefined && dayRecords[modKey] === undefined) {
+                        dayRecords[modKey] = dayRecords[mod.name];
+                        neededSync = true;
+                    }
+                    // Clean up any legacy numeric serial key
+                    if (dayRecords[String(mod.sl)] !== undefined) {
+                        delete dayRecords[String(mod.sl)];
+                        neededSync = true;
+                    }
+                }
+                if (neededSync) saveToLocalStorage();
                 return;
             }
             if (!attendanceHistory[dateStr] || Array.isArray(attendanceHistory[dateStr])) {
@@ -4022,29 +4168,34 @@
             for (let i = 0; i < moderators.length; i++) {
                 const mod = moderators[i];
                 const modKey = getModeratorKey(mod);
-                const slKey = String(mod.sl);
-                const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[slKey] !== undefined);
+                const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[mod.name] !== undefined);
                 if (!hasRecord) {
                     const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
                     let defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
 
                     // Check approved leave for this date
                     const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                        const isMod = (l.modSl ? l.modSl === mod.sl : (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modName === mod.name)));
+                        const isMod = (l.modName && mod.name && l.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
+                                      (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modSl === mod.sl));
                         if (!isMod) return false;
                         return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                     });
 
                     // Check scheduled night shift for this date
                     const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                        const isMod = (s.modSl ? s.modSl === mod.sl : (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modName === mod.name)));
+                        const isMod = (s.modName && mod.name && s.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
+                                      (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modSl === mod.sl));
                         if (!isMod) return false;
                         return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
                     });
 
                     // Check weekend exchange
-                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.dutyDate === dateStr);
-                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.offDate === dateStr);
+                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && mod.name && x.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) || (x.modSl === mod.sl || x.modPhone === mod.phone)) && x.dutyDate === dateStr
+                    );
+                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && mod.name && x.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) || (x.modSl === mod.sl || x.modPhone === mod.phone)) && x.offDate === dateStr
+                    );
 
                     if (hasApprovedLeave) {
                         defaultStatus = 'Leave';
@@ -4057,11 +4208,15 @@
                     }
 
                     dayRecords[modKey] = defaultStatus;
-                    dayRecords[slKey] = defaultStatus;
+                    dayRecords[mod.name] = defaultStatus;
                 } else if (dayRecords[modKey] !== undefined) {
-                    dayRecords[slKey] = dayRecords[modKey];
-                } else if (dayRecords[slKey] !== undefined) {
-                    dayRecords[modKey] = dayRecords[slKey];
+                    dayRecords[mod.name] = dayRecords[modKey];
+                } else if (dayRecords[mod.name] !== undefined) {
+                    dayRecords[modKey] = dayRecords[mod.name];
+                }
+                // Strip legacy numeric key if exists
+                if (dayRecords[String(mod.sl)] !== undefined) {
+                    delete dayRecords[String(mod.sl)];
                 }
             }
             dayRecords._initialized = true;
@@ -4078,15 +4233,17 @@
             if (!dayRecords) return defaultStatus;
 
             const modKey = getModeratorKey(mod);
-            const slKey = String(mod.sl);
 
             if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
                 return dayRecords[modKey];
             }
-            if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
-                return dayRecords[slKey];
+            if (mod.name && dayRecords[mod.name] !== undefined && dayRecords[mod.name] !== null) {
+                return dayRecords[mod.name];
             }
-            if (mod.phone && dayRecords[mod.phone] !== undefined) {
+            if (mod.id && dayRecords[mod.id] !== undefined && dayRecords[mod.id] !== null) {
+                return dayRecords[mod.id];
+            }
+            if (mod.phone && dayRecords[mod.phone] !== undefined && dayRecords[mod.phone] !== null) {
                 return dayRecords[mod.phone];
             }
 
@@ -4098,7 +4255,8 @@
             initAttendanceForDate(dateStr);
             const modKey = getModeratorKey(mod);
             attendanceHistory[dateStr][modKey] = status;
-            attendanceHistory[dateStr][String(mod.sl)] = status;
+            if (mod.name) attendanceHistory[dateStr][mod.name] = status;
+            delete attendanceHistory[dateStr][String(mod.sl)];
             saveToLocalStorage();
         }
 
@@ -4117,10 +4275,10 @@
             const dockMonthly = document.getElementById('dock-btn-monthly');
             const dockAppointment = document.getElementById('dock-btn-appointment');
 
-            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
-            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.45)] border border-indigo-400/30 cursor-pointer";
+            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition cursor-pointer";
 
-            const activeDockClass = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
+            const activeDockClass = "flex flex-col items-center gap-1 text-indigo-500 dark:text-indigo-400 font-bold text-[10px] cursor-pointer";
             const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
 
             if (dailyBtn) dailyBtn.className = inactiveBtnClass;
@@ -4247,7 +4405,7 @@
                 `;
                 moderators.forEach(mod => {
                     const opt = document.createElement('option');
-                    opt.value = String(mod.sl);
+                    opt.value = mod.name;
                     opt.innerText = `[SL ${mod.sl}] ${mod.name} (Joined: ${mod.join || '--'})`;
                     selectEl.appendChild(opt);
                 });
@@ -4263,8 +4421,8 @@
             resetAppointmentZoom();
         }
 
-        function handleAppointmentModSelect(modSl) {
-            if (!modSl || modSl === 'custom') {
+        function handleAppointmentModSelect(modIdentifier) {
+            if (!modIdentifier || modIdentifier === 'custom') {
                 appointmentState.selectedModSl = 'custom';
                 const pillSl = document.getElementById('app-info-sl');
                 const pillName = document.getElementById('app-info-name');
@@ -4277,7 +4435,7 @@
                 return;
             }
 
-            const mod = moderators.find(m => String(m.sl) === String(modSl));
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier) || m.id === modIdentifier);
             if (!mod) return;
 
             appointmentState.selectedModSl = String(mod.sl);
@@ -4378,6 +4536,8 @@
             if (sheetBasicSalary) sheetBasicSalary.innerText = appointmentState.basicSalary || '14000 BDT';
             if (sheetSignatory) sheetSignatory.innerText = appointmentState.signatory || 'General Manager';
             if (sheetLocation) sheetLocation.innerText = appointmentState.location || 'Head Office';
+            const sheetEmpSigName = document.getElementById('sheet-emp-signature-name');
+            if (sheetEmpSigName) sheetEmpSigName.innerText = appointmentState.candidateName || 'Candidate Name';
         }
 
         function setAppointmentPadMode(mode) {
@@ -4535,10 +4695,20 @@ Your working hours, duties, and remuneration will be as per the company's rules 
 
 Thank you,
 
-Signature: _________________
+Sincerely,
+
+Authorized Signatory: _________________
 ${appointmentState.signatory}
 Sanvee's By Tony
-${appointmentState.location}`;
+${appointmentState.location}
+
+--------------------------------------------------
+Acknowledgment & Acceptance:
+I have read and accepted the terms and conditions outlined in this appointment letter.
+
+Employee Signature: _________________
+Name: ${appointmentState.candidateName}
+Date: _________________`;
 
             navigator.clipboard.writeText(text).then(() => {
                 showToast('Appointment letter copied to clipboard!', 'success');
@@ -4574,12 +4744,16 @@ ${appointmentState.location}`;
             }, 1000);
         }
 
-        function generateAppointmentForModerator(modSl) {
+        function generateAppointmentForModerator(modIdentifier) {
             switchView('appointment');
             const selectEl = document.getElementById('appointment-mod-select');
-            if (selectEl) {
-                selectEl.value = String(modSl);
-                handleAppointmentModSelect(modSl);
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier) || m.id === modIdentifier);
+            if (selectEl && mod) {
+                selectEl.value = mod.name;
+                handleAppointmentModSelect(mod.name);
+            } else if (selectEl) {
+                selectEl.value = String(modIdentifier);
+                handleAppointmentModSelect(modIdentifier);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -4925,7 +5099,7 @@ ${appointmentState.location}`;
                             <span class="text-slate-300 dark:text-slate-600 font-mono text-xs">--</span>
                         ` : `
                             <div class="flex items-center justify-center gap-1.5">
-                                <button onclick="generateAppointmentForModerator(${mod.sl})" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
+                                <button onclick="generateAppointmentForModerator('${mod.name.replace(/'/g, "\\'")}')" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-file-signature text-xs"></i>
                                 </button>
                                 <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
@@ -5103,7 +5277,7 @@ ${appointmentState.location}`;
                     let optionsHtml = `<option value="ALL">All Moderators (${moderators.length})</option>`;
                     for (let i = 0; i < moderators.length; i++) {
                         const m = moderators[i];
-                        optionsHtml += `<option value="${m.sl}">${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)</option>`;
+                        optionsHtml += `<option value="${m.name}">${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)</option>`;
                     }
                     modSelect.innerHTML = optionsHtml;
                     modSelect._cachedCount = moderators.length;
@@ -5119,7 +5293,7 @@ ${appointmentState.location}`;
             const isSingleMod = selectedMonthlyModSl !== 'ALL';
 
             if (isSingleMod) {
-                const targetMod = moderators.find(m => String(m.sl) === String(selectedMonthlyModSl));
+                const targetMod = moderators.find(m => (m.name && m.name === selectedMonthlyModSl) || String(m.sl) === String(selectedMonthlyModSl));
                 displayMods = targetMod ? [targetMod] : moderators;
             }
 
@@ -5228,10 +5402,10 @@ ${appointmentState.location}`;
                     if (dayRecords) {
                         if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
                             status = dayRecords[modKey];
+                        } else if (mod.name && dayRecords[mod.name] !== undefined && dayRecords[mod.name] !== null) {
+                            status = dayRecords[mod.name];
                         } else if (mod.phone && dayRecords[mod.phone] !== undefined) {
                             status = dayRecords[mod.phone];
-                        } else if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
-                            status = dayRecords[slKey];
                         }
                     }
 
@@ -5262,7 +5436,7 @@ ${appointmentState.location}`;
                     } else {
                         rowHtml += `
                             <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800${todayClass}" data-day="${d}">
-                                <button type="button" onclick="openStatusPicker(event, ${mod.sl}, '${dayInfo.dateStr}', '${status}')" 
+                                <button type="button" onclick="openStatusPicker(event, '${mod.name.replace(/'/g, "\\'")}', '${dayInfo.dateStr}', '${status}')" 
                                         class="w-full h-full flex items-center justify-center rounded-lg hover:ring-2 hover:ring-indigo-500 cursor-pointer">
                                     ${badge}
                                 </button>
@@ -5400,18 +5574,20 @@ ${appointmentState.location}`;
         }
 
         // ======================= SINGLE MODERATOR FILTER & POPOVER =======================
-        function viewModeratorMonthly(modSl) {
-            selectedMonthlyModSl = String(modSl);
+        function viewModeratorMonthly(modIdentifier) {
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier));
+            selectedMonthlyModSl = mod ? mod.name : String(modIdentifier);
             switchView('monthly');
-            const mod = moderators.find(m => m.sl === modSl);
             if (mod) showToast(`Viewing ${mod.name}'s Monthly Sheet`);
         }
 
-        function focusModeratorMonthly(modSl) {
-            if (selectedMonthlyModSl === String(modSl)) {
+        function focusModeratorMonthly(modIdentifier) {
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier));
+            const targetVal = mod ? mod.name : String(modIdentifier);
+            if (selectedMonthlyModSl === targetVal) {
                 selectedMonthlyModSl = 'ALL';
             } else {
-                selectedMonthlyModSl = String(modSl);
+                selectedMonthlyModSl = targetVal;
             }
             renderMonthlyTable();
         }
@@ -5427,16 +5603,16 @@ ${appointmentState.location}`;
             renderMonthlyTable();
         }
 
-        function openStatusPicker(event, modSl, dateStr, currentStatus) {
+        function openStatusPicker(event, modIdentifier, dateStr, currentStatus) {
             event.stopPropagation();
             if (currentUserRole === 'moderator') {
                 showToast('Editing attendance is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const mod = moderators.find(m => m.sl === modSl);
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier));
             if (!mod) return;
 
-            activePickerTarget = { modSl, dateStr };
+            activePickerTarget = { modName: mod.name, modSl: mod.sl, dateStr };
 
             document.getElementById('popover-mod-name').innerText = mod.name;
             const dayName = getDayNameForDate(dateStr);
@@ -5472,8 +5648,8 @@ ${appointmentState.location}`;
                 return;
             }
             if (!activePickerTarget) return;
-            const { modSl, dateStr } = activePickerTarget;
-            const mod = moderators.find(m => m.sl === modSl);
+            const { modName, modSl, dateStr } = activePickerTarget;
+            const mod = moderators.find(m => (modName && m.name === modName) || (modSl && m.sl === modSl));
             if (!mod) return;
 
             setModeratorStatusForDate(mod, dateStr, newStatus);
@@ -5563,18 +5739,18 @@ ${appointmentState.location}`;
                 sorted.forEach(m => {
                     const isEx = isModeratorNightExempt(m);
                     const opt = document.createElement('option');
-                    opt.value = m.sl;
+                    opt.value = m.name;
                     opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)${isEx ? ' [Senior - Night Exempt]' : ''}`;
                     if (isEx) {
                         opt.style.color = '#94a3b8';
                     }
-                    if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                    if (preselectSl && (m.sl === preselectSl || m.name === preselectSl)) opt.selected = true;
                     selectEl.appendChild(opt);
                 });
 
                 if (!preselectSl) {
                     const firstEligible = sorted.find(m => !isModeratorNightExempt(m));
-                    if (firstEligible) selectEl.value = firstEligible.sl;
+                    if (firstEligible) selectEl.value = firstEligible.name;
                 }
             }
 
@@ -5593,8 +5769,8 @@ ${appointmentState.location}`;
         function autoCalculateNightEndDate() {
             const selectEl = document.getElementById('night-mod-select');
             if (!selectEl) return;
-            const sl = parseInt(selectEl.value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = selectEl.value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             const startInput = document.getElementById('night-start-date');
             const endInput = document.getElementById('night-end-date');
 
@@ -5618,8 +5794,8 @@ ${appointmentState.location}`;
             const descEl = document.getElementById('night-calc-desc');
             if (!selectEl || !startInput || !endInput || !descEl) return;
 
-            const sl = parseInt(selectEl.value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = selectEl.value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             const startDate = startInput.value;
             const endDate = endInput.value;
 
@@ -5667,8 +5843,8 @@ ${appointmentState.location}`;
                 showToast('Assigning night shifts is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const sl = parseInt(document.getElementById('night-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = document.getElementById('night-mod-select').value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             if (!mod) return;
 
             const startDate = document.getElementById('night-start-date').value;
@@ -6688,9 +6864,9 @@ ${appointmentState.location}`;
             selectEl.innerHTML = '';
             moderators.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = m.sl;
+                opt.value = m.name;
                 opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
-                if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                if (preselectSl && (m.sl === preselectSl || m.name === preselectSl)) opt.selected = true;
                 selectEl.appendChild(opt);
             });
 
@@ -6710,8 +6886,8 @@ ${appointmentState.location}`;
 
         function handleLeaveSubmit(e) {
             e.preventDefault();
-            const sl = parseInt(document.getElementById('leave-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const modVal = document.getElementById('leave-mod-select').value;
+            const mod = moderators.find(m => m.name === modVal || String(m.sl) === String(modVal));
             if (!mod) return;
 
             const startDate = document.getElementById('leave-start-date').value;
@@ -6925,9 +7101,9 @@ ${appointmentState.location}`;
             selectEl.innerHTML = '';
             moderators.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = m.sl;
+                opt.value = m.name;
                 opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
-                if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                if (preselectSl && (m.sl === preselectSl || m.name === preselectSl)) opt.selected = true;
                 selectEl.appendChild(opt);
             });
 
@@ -6941,8 +7117,8 @@ ${appointmentState.location}`;
         }
 
         function handleExchangeModSelectChange(preferredDate = null) {
-            const sl = parseInt(document.getElementById('exchange-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = document.getElementById('exchange-mod-select').value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             if (!mod) return;
 
             const baseDate = preferredDate || currentActiveDate || getTodayDateStr();
@@ -7002,8 +7178,8 @@ ${appointmentState.location}`;
                 showToast('Submitting weekend exchange is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const sl = parseInt(document.getElementById('exchange-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = document.getElementById('exchange-mod-select').value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             if (!mod) return;
 
             const dutyDate = document.getElementById('exchange-duty-date').value;
@@ -7270,32 +7446,50 @@ ${appointmentState.location}`;
             }
             const mod = moderators[index];
             if (!mod) return;
-            const deletedSl = mod.sl;
+            const deletedName = (mod.name || '').trim();
             const deletedKey = getModeratorKey(mod);
-            const deletedPhone = mod.phone;
+            const deletedPhone = mod.phone ? mod.phone.replace(/\D/g, '') : '';
+            const deletedId = mod.id;
+            const deletedSl = mod.sl;
             if (confirm(`Are you sure you want to remove ${mod.name} (SL #${String(mod.sl).padStart(2, '0')})?`)) {
                 // Clean up deleted moderator's records across all state data
                 if (attendanceHistory && typeof attendanceHistory === 'object') {
-                    const delKey = String(deletedSl);
                     Object.keys(attendanceHistory).forEach(d => {
                         if (attendanceHistory[d]) {
                             if (deletedKey) delete attendanceHistory[d][deletedKey];
-                            delete attendanceHistory[d][delKey];
+                            if (deletedName) delete attendanceHistory[d][deletedName];
+                            if (deletedName.toLowerCase()) delete attendanceHistory[d][deletedName.toLowerCase()];
+                            if (deletedId) delete attendanceHistory[d][deletedId];
                             if (deletedPhone) delete attendanceHistory[d][deletedPhone];
+                            delete attendanceHistory[d][String(deletedSl)];
                         }
                     });
                 }
+
+                const nameMatches = (itemModName) => {
+                    if (!itemModName || !deletedName) return false;
+                    return itemModName.trim().toLowerCase() === deletedName.toLowerCase();
+                };
+
                 if (Array.isArray(scheduledNightShifts)) {
-                    scheduledNightShifts = scheduledNightShifts.filter(s => s.modSl !== deletedSl && s.sl !== deletedSl && (!deletedKey || s.modId !== deletedKey));
+                    scheduledNightShifts = scheduledNightShifts.filter(s => 
+                        !nameMatches(s.modName) && (!deletedKey || s.modId !== deletedKey) && (!deletedPhone || s.modPhone !== deletedPhone)
+                    );
                 }
                 if (Array.isArray(approvedLeaves)) {
-                    approvedLeaves = approvedLeaves.filter(l => l.modSl !== deletedSl && (!deletedKey || l.modId !== deletedKey));
+                    approvedLeaves = approvedLeaves.filter(l => 
+                        !nameMatches(l.modName) && (!deletedKey || l.modId !== deletedKey) && (!deletedPhone || l.modPhone !== deletedPhone)
+                    );
                 }
                 if (Array.isArray(weekendExchanges)) {
-                    weekendExchanges = weekendExchanges.filter(e => e.modSl !== deletedSl && (!deletedKey || e.modId !== deletedKey));
+                    weekendExchanges = weekendExchanges.filter(e => 
+                        !nameMatches(e.modName) && (!deletedKey || e.modId !== deletedKey) && (!deletedPhone || e.modPhone !== deletedPhone)
+                    );
                 }
                 if (Array.isArray(nightShiftRequests)) {
-                    nightShiftRequests = nightShiftRequests.filter(r => r.modSl !== deletedSl && (!deletedKey || r.modId !== deletedKey));
+                    nightShiftRequests = nightShiftRequests.filter(r => 
+                        !nameMatches(r.modName) && (!deletedKey || r.modId !== deletedKey) && (!deletedPhone || r.modPhone !== deletedPhone)
+                    );
                 }
 
                 moderators.splice(index, 1);
@@ -7328,6 +7522,7 @@ ${appointmentState.location}`;
         let currentLoginRole = 'admin'; // 'admin' | 'moderator'
         let currentUserRole = localStorage.getItem('sanvees_user_role') || sessionStorage.getItem('sanvees_user_role') || 'admin';
         let currentLoggedInModSl = parseInt(localStorage.getItem('sanvees_logged_in_mod_sl') || sessionStorage.getItem('sanvees_logged_in_mod_sl'), 10) || null;
+        let currentLoggedInModName = localStorage.getItem('sanvees_logged_in_mod_name') || sessionStorage.getItem('sanvees_logged_in_mod_name') || null;
 
         function switchLoginRole(role) {
             currentLoginRole = role;
@@ -7376,15 +7571,22 @@ ${appointmentState.location}`;
             selectEl.innerHTML = '';
             moderators.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = m.sl;
+                opt.value = m.name;
                 opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
                 selectEl.appendChild(opt);
             });
         }
 
         function getLoggedInModerator() {
-            if (currentUserRole !== 'moderator' || !currentLoggedInModSl) return null;
-            return moderators.find(m => m.sl === currentLoggedInModSl) || null;
+            if (currentUserRole !== 'moderator') return null;
+            if (currentLoggedInModName) {
+                const byName = moderators.find(m => m.name === currentLoggedInModName);
+                if (byName) return byName;
+            }
+            if (currentLoggedInModSl) {
+                return moderators.find(m => m.sl === currentLoggedInModSl) || null;
+            }
+            return null;
         }
 
         function applyRolePermissions() {
@@ -7606,8 +7808,8 @@ ${appointmentState.location}`;
                 }
             } else {
                 // Moderator Login
-                const modSl = parseInt(document.getElementById('login-mod-select').value, 10);
-                const mod = moderators.find(m => m.sl === modSl);
+                const modVal = document.getElementById('login-mod-select').value;
+                const mod = moderators.find(m => m.name === modVal || String(m.sl) === String(modVal));
                 if (!mod) {
                     errorBanner.classList.remove('hidden');
                     errorText.innerText = "Please select a valid moderator.";
@@ -7622,8 +7824,10 @@ ${appointmentState.location}`;
                     errorBanner.classList.add('hidden');
                     currentUserRole = 'moderator';
                     currentLoggedInModSl = mod.sl;
+                    currentLoggedInModName = mod.name;
                     localStorage.setItem('sanvees_user_role', 'moderator');
                     localStorage.setItem('sanvees_logged_in_mod_sl', String(mod.sl));
+                    localStorage.setItem('sanvees_logged_in_mod_name', mod.name);
 
                     if (rememberMe) localStorage.setItem(AUTH_CONFIG.storageKey, "MODERATOR_AUTHENTICATED");
                     else sessionStorage.setItem(AUTH_CONFIG.storageKey, "MODERATOR_AUTHENTICATED");
@@ -7656,10 +7860,13 @@ ${appointmentState.location}`;
                 sessionStorage.removeItem(AUTH_CONFIG.storageKey);
                 localStorage.removeItem('sanvees_user_role');
                 localStorage.removeItem('sanvees_logged_in_mod_sl');
+                localStorage.removeItem('sanvees_logged_in_mod_name');
                 sessionStorage.removeItem('sanvees_user_role');
                 sessionStorage.removeItem('sanvees_logged_in_mod_sl');
+                sessionStorage.removeItem('sanvees_logged_in_mod_name');
                 currentUserRole = 'admin';
                 currentLoggedInModSl = null;
+                currentLoggedInModName = null;
                 document.getElementById('login-password').value = '';
                 checkAuthStatus();
                 showToast("Logged out securely.", "info");
@@ -8139,7 +8346,7 @@ ${appointmentState.location}`;
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
-    </script>
+</script>
 
 </body>
 </html>

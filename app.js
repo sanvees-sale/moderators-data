@@ -48,23 +48,24 @@
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         const WEEKEND_BADGE_STYLES = {
-            'Saturday': 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/30 ring-1 ring-emerald-500/15',
-            'Sunday': 'bg-violet-500/15 text-violet-800 dark:text-violet-300 border-violet-500/30 ring-1 ring-violet-500/15',
-            'Monday': 'bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/30 ring-1 ring-amber-500/15',
-            'Tuesday': 'bg-fuchsia-500/15 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-500/30 ring-1 ring-fuchsia-500/15',
-            'Wednesday': 'bg-indigo-500/15 text-indigo-800 dark:text-indigo-300 border-indigo-500/30 ring-1 ring-indigo-500/15',
-            'Thursday': 'bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border-cyan-500/30 ring-1 ring-cyan-500/15',
-            'Friday': 'bg-rose-500/15 text-rose-800 dark:text-rose-300 border-rose-500/30 ring-1 ring-rose-500/15'
+            'Saturday': 'bg-gradient-to-r from-emerald-500/25 to-teal-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/40 ring-1 ring-emerald-500/25 shadow-xs font-bold',
+            'Sunday': 'bg-gradient-to-r from-amber-500/25 to-yellow-500/15 text-amber-800 dark:text-amber-300 border-amber-500/40 ring-1 ring-amber-500/25 shadow-xs font-bold',
+            'Monday': 'bg-gradient-to-r from-teal-500/25 to-emerald-500/15 text-teal-800 dark:text-teal-300 border-teal-500/40 ring-1 ring-teal-500/25 shadow-xs font-bold',
+            'Tuesday': 'bg-gradient-to-r from-purple-500/25 to-fuchsia-500/15 text-purple-800 dark:text-purple-300 border-purple-500/40 ring-1 ring-purple-500/25 shadow-xs font-bold',
+            'Wednesday': 'bg-gradient-to-r from-yellow-500/25 to-amber-500/15 text-yellow-800 dark:text-yellow-300 border-yellow-500/40 ring-1 ring-yellow-500/25 shadow-xs font-bold',
+            'Thursday': 'bg-gradient-to-r from-emerald-600/25 to-teal-600/15 text-emerald-800 dark:text-emerald-300 border-emerald-600/40 ring-1 ring-emerald-600/25 shadow-xs font-bold',
+            'Friday': 'bg-gradient-to-r from-rose-500/25 to-red-500/15 text-rose-800 dark:text-rose-300 border-rose-500/40 ring-1 ring-rose-500/25 shadow-xs font-bold'
         };
 
         const AVATAR_PALETTES = [
-            { bg: 'from-indigo-600 via-indigo-500 to-violet-600', shadow: 'shadow-indigo-500/25' },
-            { bg: 'from-violet-600 via-purple-500 to-fuchsia-600', shadow: 'shadow-purple-500/25' },
-            { bg: 'from-emerald-600 via-teal-500 to-cyan-600', shadow: 'shadow-emerald-500/25' },
-            { bg: 'from-cyan-600 via-sky-500 to-blue-600', shadow: 'shadow-cyan-500/25' },
-            { bg: 'from-amber-600 via-orange-500 to-rose-600', shadow: 'shadow-amber-500/25' },
-            { bg: 'from-rose-600 via-pink-500 to-purple-600', shadow: 'shadow-rose-500/25' },
-            { bg: 'from-blue-600 via-indigo-500 to-purple-600', shadow: 'shadow-blue-500/25' }
+            { bg: 'from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black', shadow: 'shadow-amber-500/40' },
+            { bg: 'from-emerald-700 via-teal-600 to-emerald-800 text-white font-black', shadow: 'shadow-emerald-500/40' },
+            { bg: 'from-yellow-500 via-amber-400 to-yellow-600 text-slate-950 font-black', shadow: 'shadow-yellow-500/40' },
+            { bg: 'from-teal-700 via-emerald-600 to-teal-800 text-white font-black', shadow: 'shadow-teal-500/40' },
+            { bg: 'from-purple-700 via-violet-600 to-purple-800 text-white font-black', shadow: 'shadow-purple-500/40' },
+            { bg: 'from-amber-600 via-yellow-500 to-amber-700 text-slate-950 font-black', shadow: 'shadow-amber-600/40' },
+            { bg: 'from-rose-700 via-pink-600 to-rose-800 text-white font-black', shadow: 'shadow-rose-500/40' },
+            { bg: 'from-emerald-800 via-teal-700 to-cyan-800 text-white font-black', shadow: 'shadow-emerald-600/40' }
         ];
 
         function getAvatarTheme(sl) {
@@ -324,8 +325,6 @@
                     const cleanPhone = m.phone ? m.phone.replace(/\D/g, '') : '';
                     m.id = 'mod_' + (cleanPhone || Date.now()) + '_' + idx + '_' + Math.random().toString(36).substring(2, 7);
                 }
-                m._tempSortIdx = idx;
-                m._oldSl = m.sl;
             });
 
             moderators.sort((a, b) => {
@@ -335,70 +334,12 @@
                 const slA = a.sl !== undefined && a.sl !== null ? a.sl : 9999;
                 const slB = b.sl !== undefined && b.sl !== null ? b.sl : 9999;
                 if (slA !== slB) return slA - slB;
-                return (a._tempSortIdx || 0) - (b._tempSortIdx || 0);
+                return (a.name || '').localeCompare(b.name || '');
             });
 
-            const slMapping = {};
             moderators.forEach((m, index) => {
-                const oldSl = m._oldSl;
-                const newSl = index + 1;
-                delete m._tempSortIdx;
-                delete m._oldSl;
-                m.sl = newSl;
-                if (oldSl !== undefined && oldSl !== null && oldSl !== newSl) {
-                    slMapping[oldSl] = newSl;
-                }
+                m.sl = index + 1;
             });
-
-            // Maintain stable modKey in attendance records and synchronize numeric SL aliases
-            if (attendanceHistory && typeof attendanceHistory === 'object') {
-                Object.keys(attendanceHistory).forEach(date => {
-                    const dayRecords = attendanceHistory[date];
-                    if (dayRecords && typeof dayRecords === 'object' && !Array.isArray(dayRecords)) {
-                        moderators.forEach(m => {
-                            const modKey = getModeratorKey(m);
-                            const oldSlKey = Object.keys(slMapping).find(k => slMapping[k] === m.sl);
-                            if (oldSlKey && dayRecords[oldSlKey] && !dayRecords[modKey]) {
-                                dayRecords[modKey] = dayRecords[oldSlKey];
-                            }
-                            if (dayRecords[modKey]) {
-                                dayRecords[String(m.sl)] = dayRecords[modKey];
-                            }
-                        });
-                    }
-                });
-            }
-
-            if (Object.keys(slMapping).length > 0) {
-                if (Array.isArray(scheduledNightShifts)) {
-                    scheduledNightShifts.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                        if (item.sl && slMapping[item.sl]) item.sl = slMapping[item.sl];
-                    });
-                }
-
-                if (Array.isArray(approvedLeaves)) {
-                    approvedLeaves.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                    });
-                }
-
-                if (Array.isArray(weekendExchanges)) {
-                    weekendExchanges.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                    });
-                }
-
-                if (Array.isArray(nightShiftRequests)) {
-                    nightShiftRequests.forEach(item => {
-                        if (item.modSl && slMapping[item.modSl]) item.modSl = slMapping[item.modSl];
-                    });
-                }
-
-                if (typeof currentLoggedInModSl !== 'undefined' && currentLoggedInModSl && slMapping[currentLoggedInModSl]) {
-                    currentLoggedInModSl = slMapping[currentLoggedInModSl];
-                }
-            }
         }
 
         function calculatePredictedSlForWeekend(targetWeekend, ignoreIndex = -1) {
@@ -527,11 +468,15 @@
 
         function getModeratorKey(mod) {
             if (!mod) return '';
-            if (mod._cachedKey) return mod._cachedKey;
-            if (mod.id) mod._cachedKey = String(mod.id);
-            else if (mod.phone) mod._cachedKey = 'mod_' + String(mod.phone).replace(/\D/g, '');
-            else mod._cachedKey = 'mod_sl_' + String(mod.sl);
-            return mod._cachedKey;
+            const nameStr = (mod.name || '').trim().toLowerCase();
+            if (nameStr) {
+                return 'mod_' + nameStr
+                    .replace(/[\.\#\$\[\]\/\\]/g, '')
+                    .replace(/\s+/g, '_');
+            }
+            if (mod.id) return String(mod.id);
+            if (mod.phone) return 'mod_' + String(mod.phone).replace(/\D/g, '');
+            return 'mod_sl_' + String(mod.sl);
         }
 
         let _hasSanitizedAttendance = false;
@@ -542,23 +487,22 @@
 
             let modified = false;
 
-            // Robust 1-to-1 mapping for standard 26 moderators; fallback mapping for legacy 24 schema
-            const isLegacy24Schema = (moderators.length === 24);
-            const old26ToModMap = {};
-            if (isLegacy24Schema) {
-                const legacy24Map = {
-                    1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10,
-                    11: 11, 12: 12, 13: 13, 14: 14, 15: 14, 16: 15, 17: 16, 18: 17, 19: 17,
-                    20: 18, 21: 19, 22: 20, 23: 21, 24: 22, 25: 23, 26: 24
-                };
-                Object.keys(legacy24Map).forEach(k => {
-                    old26ToModMap[k] = moderators.find(m => m.sl === legacy24Map[k]);
-                });
-            } else {
-                for (let i = 1; i <= moderators.length; i++) {
-                    old26ToModMap[i] = moderators.find(m => m.sl === i) || moderators[i - 1];
+            // Map moderators by Name, clean modKey, phone, id, and serial
+            const nameToModMap = {};
+            const keyToModMap = {};
+            const phoneToModMap = {};
+            const slToModMap = {};
+            moderators.forEach((m, idx) => {
+                const modKey = getModeratorKey(m);
+                keyToModMap[modKey] = m;
+                if (m.name) {
+                    nameToModMap[m.name.trim().toLowerCase()] = m;
+                    nameToModMap[m.name] = m;
                 }
-            }
+                if (m.phone) phoneToModMap[m.phone.replace(/\D/g, '')] = m;
+                slToModMap[m.sl] = m;
+                slToModMap[idx + 1] = m;
+            });
 
             Object.keys(attendanceHistory).forEach(dateStr => {
                 const dayRecords = attendanceHistory[dateStr];
@@ -567,106 +511,91 @@
                 const dayName = getDayNameForDate(dateStr);
                 const isArray = Array.isArray(dayRecords);
                 const keys = Object.keys(dayRecords);
-                const isOld26Array = isArray && dayRecords.length >= 26;
-                const hasOld26Keys = !isArray && keys.some(k => parseInt(k, 10) >= 25);
-                const hasOnlyNumericKeys = isArray || (keys.length > 0 && keys.every(k => /^\d+$/.test(k)));
+                const newDayRecords = {};
 
-                if (isArray || isOld26Array || hasOld26Keys || hasOnlyNumericKeys) {
-                    modified = true;
-                    const newDayRecords = {};
+                // Restore statuses for each current moderator using their unique name or modKey
+                moderators.forEach((targetMod, idx) => {
+                    const modKey = getModeratorKey(targetMod);
+                    const cleanName = (targetMod.name || '').trim().toLowerCase();
+                    const cleanPhone = targetMod.phone ? targetMod.phone.replace(/\D/g, '') : '';
+                    const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
 
-                    if (isOld26Array || hasOld26Keys || hasOnlyNumericKeys) {
-                        Object.keys(old26ToModMap).forEach(oldIdxStr => {
-                            const oldIdx = parseInt(oldIdxStr, 10);
-                            const targetMod = old26ToModMap[oldIdx];
-                            if (!targetMod) return;
-
-                            let status = isArray ? (dayRecords[oldIdx] || dayRecords[oldIdx - 1]) : dayRecords[oldIdxStr];
-                            const modKey = getModeratorKey(targetMod);
-                            const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
-
-                            // Check approved leaves (by dates array or startDate..endDate range)
-                            const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl ? l.modSl === targetMod.sl : (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modName === targetMod.name)));
-                                if (!isMod) return false;
-                                return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
-                            });
-
-                            // Check scheduled night shifts
-                            const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl ? s.modSl === targetMod.sl : (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modName === targetMod.name)));
-                                if (!isMod) return false;
-                                return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                            });
-
-                            if (hasApprovedLeave) {
-                                status = 'Leave';
-                            } else if (hasNightShift) {
-                                status = 'Night Shift';
-                            }
-                            // Check weekend exchanges
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.dutyDate === dateStr)) {
-                                status = 'Present';
-                            }
-                            else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === targetMod.sl : x.modPhone === targetMod.phone) && x.offDate === dateStr)) {
-                                status = 'Weekly Off';
-                            }
-                            // Re-align default status so scheduled day off strictly applies
-                            else if (!status || status === 'Present' || status === 'Weekly Off') {
-                                status = isScheduledWeekend ? 'Weekly Off' : 'Present';
-                            }
-
-                            newDayRecords[modKey] = status;
-                            newDayRecords[String(targetMod.sl)] = status;
-                        });
+                    // Look for existing status primarily by name and modKey
+                    let status = undefined;
+                    if (!isArray) {
+                        if (dayRecords[modKey] !== undefined) status = dayRecords[modKey];
+                        else if (targetMod.name && dayRecords[targetMod.name] !== undefined) status = dayRecords[targetMod.name];
+                        else if (cleanName && dayRecords[cleanName] !== undefined) status = dayRecords[cleanName];
+                        else if (targetMod.id && dayRecords[targetMod.id] !== undefined) status = dayRecords[targetMod.id];
+                        else if (cleanPhone && dayRecords[cleanPhone] !== undefined) status = dayRecords[cleanPhone];
+                        else if (dayRecords['mod_' + cleanPhone] !== undefined) status = dayRecords['mod_' + cleanPhone];
+                        // Only fallback to legacy numeric serial if day has never been migrated and has no name keys
+                        else if (dayRecords[String(targetMod.sl)] !== undefined) {
+                            status = dayRecords[String(targetMod.sl)];
+                        }
                     } else {
-                        moderators.forEach(m => {
-                            const modKey = getModeratorKey(m);
-                            const slKey = String(m.sl);
-                            let status = dayRecords[modKey] || dayRecords[slKey];
-                            const isScheduledWeekend = m.weekend && dayName && (m.weekend.toLowerCase() === dayName.toLowerCase());
-
-                            const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                                const isMod = (l.modSl ? l.modSl === m.sl : (l.modId ? l.modId === m.id : (l.modPhone === m.phone || l.modName === m.name)));
-                                if (!isMod) return false;
-                                return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
-                            });
-
-                            const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                                const isMod = (s.modSl ? s.modSl === m.sl : (s.modId ? s.modId === m.id : (s.modPhone === m.phone || s.modName === m.name)));
-                                if (!isMod) return false;
-                                return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                            });
-
-                            if (hasApprovedLeave) {
-                                status = 'Leave';
-                            } else if (hasNightShift) {
-                                status = 'Night Shift';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.dutyDate === dateStr)) {
-                                status = 'Present';
-                            } else if (weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === m.sl : x.modPhone === m.phone) && x.offDate === dateStr)) {
-                                status = 'Weekly Off';
-                            } else if (!status || status === 'Present' || status === 'Weekly Off') {
-                                status = isScheduledWeekend ? 'Weekly Off' : 'Present';
-                            }
-
-                            newDayRecords[modKey] = status;
-                            newDayRecords[slKey] = status;
-                        });
+                        status = dayRecords[targetMod.sl] || dayRecords[idx];
                     }
 
-                    attendanceHistory[dateStr] = newDayRecords;
-                } else {
-                    moderators.forEach(m => {
-                        const modKey = getModeratorKey(m);
-                        const slKey = String(m.sl);
-                        if (dayRecords[modKey] && !dayRecords[slKey]) {
-                            dayRecords[slKey] = dayRecords[modKey];
-                        } else if (dayRecords[slKey] && !dayRecords[modKey]) {
-                            dayRecords[modKey] = dayRecords[slKey];
-                        }
+                    // Check approved leaves (by dates array or startDate..endDate range)
+                    const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
+                        const isMod = (l.modName && targetMod.name && l.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) ||
+                                      (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modSl === targetMod.sl));
+                        if (!isMod) return false;
+                        return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                     });
-                }
+
+                    // Check scheduled night shifts
+                    const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
+                        const isMod = (s.modName && targetMod.name && s.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) ||
+                                      (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modSl === targetMod.sl));
+                        if (!isMod) return false;
+                        return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
+                    });
+
+                    // Check weekend exchanges
+                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && targetMod.name && x.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) || (x.modSl === targetMod.sl || x.modPhone === targetMod.phone)) && x.dutyDate === dateStr
+                    );
+                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && targetMod.name && x.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) || (x.modSl === targetMod.sl || x.modPhone === targetMod.phone)) && x.offDate === dateStr
+                    );
+
+                    if (hasApprovedLeave) {
+                        status = 'Leave';
+                    } else if (hasNightShift) {
+                        status = 'Night Shift';
+                    } else if (hasExchangeDuty) {
+                        status = 'Present';
+                    } else if (hasExchangeOff) {
+                        status = 'Weekly Off';
+                    } else if (isScheduledWeekend) {
+                        // CRITICAL FIX: If today is their scheduled weekend and they have no exchange duty / extra duty,
+                        // force 'Weekly Off'. This fixes records corrupted by previous moderator removal and serial shifts.
+                        if (!status || status === 'Present' || status === 'Weekly Off') {
+                            status = 'Weekly Off';
+                        }
+                    } else {
+                        // Working day: if not set or corrupted, default to Present
+                        if (!status || status === 'Weekly Off') {
+                            status = 'Present';
+                        }
+                    }
+
+                    newDayRecords[modKey] = status;
+                    if (targetMod.name) newDayRecords[targetMod.name] = status;
+                });
+
+                // Preserve any non-numeric custom metadata like _initialized
+                keys.forEach(k => {
+                    if (k.startsWith('_')) {
+                        newDayRecords[k] = dayRecords[k];
+                    }
+                });
+
+                newDayRecords._initialized = true;
+                attendanceHistory[dateStr] = newDayRecords;
+                modified = true;
             });
 
             if (modified) {
@@ -676,6 +605,33 @@
 
         function initAttendanceForDate(dateStr) {
             if (attendanceHistory[dateStr] && !Array.isArray(attendanceHistory[dateStr]) && attendanceHistory[dateStr]._initialized) {
+                // Ensure every current moderator has an entry keyed by their name and modKey
+                const dayRecords = attendanceHistory[dateStr];
+                const dayName = getDayNameForDate(dateStr);
+                let neededSync = false;
+                for (let i = 0; i < moderators.length; i++) {
+                    const mod = moderators[i];
+                    const modKey = getModeratorKey(mod);
+                    if (dayRecords[modKey] === undefined && dayRecords[mod.name] === undefined) {
+                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        const defStatus = isWeekend ? 'Weekly Off' : 'Present';
+                        dayRecords[modKey] = defStatus;
+                        dayRecords[mod.name] = defStatus;
+                        neededSync = true;
+                    } else if (dayRecords[modKey] !== undefined && dayRecords[mod.name] === undefined) {
+                        dayRecords[mod.name] = dayRecords[modKey];
+                        neededSync = true;
+                    } else if (dayRecords[mod.name] !== undefined && dayRecords[modKey] === undefined) {
+                        dayRecords[modKey] = dayRecords[mod.name];
+                        neededSync = true;
+                    }
+                    // Clean up any legacy numeric serial key
+                    if (dayRecords[String(mod.sl)] !== undefined) {
+                        delete dayRecords[String(mod.sl)];
+                        neededSync = true;
+                    }
+                }
+                if (neededSync) saveToLocalStorage();
                 return;
             }
             if (!attendanceHistory[dateStr] || Array.isArray(attendanceHistory[dateStr])) {
@@ -689,29 +645,34 @@
             for (let i = 0; i < moderators.length; i++) {
                 const mod = moderators[i];
                 const modKey = getModeratorKey(mod);
-                const slKey = String(mod.sl);
-                const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[slKey] !== undefined);
+                const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[mod.name] !== undefined);
                 if (!hasRecord) {
                     const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
                     let defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
 
                     // Check approved leave for this date
                     const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                        const isMod = (l.modSl ? l.modSl === mod.sl : (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modName === mod.name)));
+                        const isMod = (l.modName && mod.name && l.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
+                                      (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modSl === mod.sl));
                         if (!isMod) return false;
                         return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                     });
 
                     // Check scheduled night shift for this date
                     const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                        const isMod = (s.modSl ? s.modSl === mod.sl : (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modName === mod.name)));
+                        const isMod = (s.modName && mod.name && s.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
+                                      (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modSl === mod.sl));
                         if (!isMod) return false;
                         return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
                     });
 
                     // Check weekend exchange
-                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.dutyDate === dateStr);
-                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => (x.modSl ? x.modSl === mod.sl : x.modPhone === mod.phone) && x.offDate === dateStr);
+                    const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && mod.name && x.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) || (x.modSl === mod.sl || x.modPhone === mod.phone)) && x.dutyDate === dateStr
+                    );
+                    const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => 
+                        ((x.modName && mod.name && x.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) || (x.modSl === mod.sl || x.modPhone === mod.phone)) && x.offDate === dateStr
+                    );
 
                     if (hasApprovedLeave) {
                         defaultStatus = 'Leave';
@@ -724,11 +685,15 @@
                     }
 
                     dayRecords[modKey] = defaultStatus;
-                    dayRecords[slKey] = defaultStatus;
+                    dayRecords[mod.name] = defaultStatus;
                 } else if (dayRecords[modKey] !== undefined) {
-                    dayRecords[slKey] = dayRecords[modKey];
-                } else if (dayRecords[slKey] !== undefined) {
-                    dayRecords[modKey] = dayRecords[slKey];
+                    dayRecords[mod.name] = dayRecords[modKey];
+                } else if (dayRecords[mod.name] !== undefined) {
+                    dayRecords[modKey] = dayRecords[mod.name];
+                }
+                // Strip legacy numeric key if exists
+                if (dayRecords[String(mod.sl)] !== undefined) {
+                    delete dayRecords[String(mod.sl)];
                 }
             }
             dayRecords._initialized = true;
@@ -745,15 +710,17 @@
             if (!dayRecords) return defaultStatus;
 
             const modKey = getModeratorKey(mod);
-            const slKey = String(mod.sl);
 
             if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
                 return dayRecords[modKey];
             }
-            if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
-                return dayRecords[slKey];
+            if (mod.name && dayRecords[mod.name] !== undefined && dayRecords[mod.name] !== null) {
+                return dayRecords[mod.name];
             }
-            if (mod.phone && dayRecords[mod.phone] !== undefined) {
+            if (mod.id && dayRecords[mod.id] !== undefined && dayRecords[mod.id] !== null) {
+                return dayRecords[mod.id];
+            }
+            if (mod.phone && dayRecords[mod.phone] !== undefined && dayRecords[mod.phone] !== null) {
                 return dayRecords[mod.phone];
             }
 
@@ -765,7 +732,8 @@
             initAttendanceForDate(dateStr);
             const modKey = getModeratorKey(mod);
             attendanceHistory[dateStr][modKey] = status;
-            attendanceHistory[dateStr][String(mod.sl)] = status;
+            if (mod.name) attendanceHistory[dateStr][mod.name] = status;
+            delete attendanceHistory[dateStr][String(mod.sl)];
             saveToLocalStorage();
         }
 
@@ -784,10 +752,10 @@
             const dockMonthly = document.getElementById('dock-btn-monthly');
             const dockAppointment = document.getElementById('dock-btn-appointment');
 
-            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md cursor-pointer";
-            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer";
+            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-black text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-[0_4px_25px_rgba(245,158,11,0.55)] border border-yellow-300/40 cursor-pointer";
+            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition cursor-pointer";
 
-            const activeDockClass = "flex flex-col items-center gap-1 text-sky-500 font-bold text-[10px] cursor-pointer";
+            const activeDockClass = "flex flex-col items-center gap-1 text-amber-500 dark:text-amber-400 font-bold text-[10px] cursor-pointer";
             const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
 
             if (dailyBtn) dailyBtn.className = inactiveBtnClass;
@@ -914,7 +882,7 @@
                 `;
                 moderators.forEach(mod => {
                     const opt = document.createElement('option');
-                    opt.value = String(mod.sl);
+                    opt.value = mod.name;
                     opt.innerText = `[SL ${mod.sl}] ${mod.name} (Joined: ${mod.join || '--'})`;
                     selectEl.appendChild(opt);
                 });
@@ -930,8 +898,8 @@
             resetAppointmentZoom();
         }
 
-        function handleAppointmentModSelect(modSl) {
-            if (!modSl || modSl === 'custom') {
+        function handleAppointmentModSelect(modIdentifier) {
+            if (!modIdentifier || modIdentifier === 'custom') {
                 appointmentState.selectedModSl = 'custom';
                 const pillSl = document.getElementById('app-info-sl');
                 const pillName = document.getElementById('app-info-name');
@@ -944,7 +912,7 @@
                 return;
             }
 
-            const mod = moderators.find(m => String(m.sl) === String(modSl));
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier) || m.id === modIdentifier);
             if (!mod) return;
 
             appointmentState.selectedModSl = String(mod.sl);
@@ -1045,6 +1013,8 @@
             if (sheetBasicSalary) sheetBasicSalary.innerText = appointmentState.basicSalary || '14000 BDT';
             if (sheetSignatory) sheetSignatory.innerText = appointmentState.signatory || 'General Manager';
             if (sheetLocation) sheetLocation.innerText = appointmentState.location || 'Head Office';
+            const sheetEmpSigName = document.getElementById('sheet-emp-signature-name');
+            if (sheetEmpSigName) sheetEmpSigName.innerText = appointmentState.candidateName || 'Candidate Name';
         }
 
         function setAppointmentPadMode(mode) {
@@ -1202,10 +1172,20 @@ Your working hours, duties, and remuneration will be as per the company's rules 
 
 Thank you,
 
-Signature: _________________
+Sincerely,
+
+Authorized Signatory: _________________
 ${appointmentState.signatory}
 Sanvee's By Tony
-${appointmentState.location}`;
+${appointmentState.location}
+
+--------------------------------------------------
+Acknowledgment & Acceptance:
+I have read and accepted the terms and conditions outlined in this appointment letter.
+
+Employee Signature: _________________
+Name: ${appointmentState.candidateName}
+Date: _________________`;
 
             navigator.clipboard.writeText(text).then(() => {
                 showToast('Appointment letter copied to clipboard!', 'success');
@@ -1241,12 +1221,16 @@ ${appointmentState.location}`;
             }, 1000);
         }
 
-        function generateAppointmentForModerator(modSl) {
+        function generateAppointmentForModerator(modIdentifier) {
             switchView('appointment');
             const selectEl = document.getElementById('appointment-mod-select');
-            if (selectEl) {
-                selectEl.value = String(modSl);
-                handleAppointmentModSelect(modSl);
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier) || m.id === modIdentifier);
+            if (selectEl && mod) {
+                selectEl.value = mod.name;
+                handleAppointmentModSelect(mod.name);
+            } else if (selectEl) {
+                selectEl.value = String(modIdentifier);
+                handleAppointmentModSelect(modIdentifier);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1592,7 +1576,7 @@ ${appointmentState.location}`;
                             <span class="text-slate-300 dark:text-slate-600 font-mono text-xs">--</span>
                         ` : `
                             <div class="flex items-center justify-center gap-1.5">
-                                <button onclick="generateAppointmentForModerator(${mod.sl})" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
+                                <button onclick="generateAppointmentForModerator('${mod.name.replace(/'/g, "\\'")}')" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-file-signature text-xs"></i>
                                 </button>
                                 <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
@@ -1770,7 +1754,7 @@ ${appointmentState.location}`;
                     let optionsHtml = `<option value="ALL">All Moderators (${moderators.length})</option>`;
                     for (let i = 0; i < moderators.length; i++) {
                         const m = moderators[i];
-                        optionsHtml += `<option value="${m.sl}">${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)</option>`;
+                        optionsHtml += `<option value="${m.name}">${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)</option>`;
                     }
                     modSelect.innerHTML = optionsHtml;
                     modSelect._cachedCount = moderators.length;
@@ -1786,7 +1770,7 @@ ${appointmentState.location}`;
             const isSingleMod = selectedMonthlyModSl !== 'ALL';
 
             if (isSingleMod) {
-                const targetMod = moderators.find(m => String(m.sl) === String(selectedMonthlyModSl));
+                const targetMod = moderators.find(m => (m.name && m.name === selectedMonthlyModSl) || String(m.sl) === String(selectedMonthlyModSl));
                 displayMods = targetMod ? [targetMod] : moderators;
             }
 
@@ -1835,7 +1819,7 @@ ${appointmentState.location}`;
                         <th class="col-m-day py-1.5 px-0.5 text-center align-middle font-mono border-l border-slate-200 dark:border-slate-700 ${dayInfo.isToday ? 'matrix-today-header' : ''}" data-day="${d}">
                             <div class="text-xs font-black text-slate-900 dark:text-white leading-none">${d}</div>
                             <div class="text-[9px] font-bold text-slate-400 dark:text-slate-300 mt-0.5 leading-none">${dayInfo.dayNameShort}</div>
-                            ${dayInfo.isToday ? '<div class="text-[7.5px] font-black uppercase tracking-tighter text-indigo-600 dark:text-indigo-300 mt-0.5 flex items-center justify-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping inline-block"></span>Today</div>' : ''}
+                            ${dayInfo.isToday ? '<div class="text-[7.5px] font-black uppercase tracking-tighter text-amber-500 dark:text-amber-300 mt-0.5 flex items-center justify-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping inline-block"></span>Today</div>' : ''}
                         </th>
                     `;
                 }
@@ -1846,8 +1830,8 @@ ${appointmentState.location}`;
                         <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-cyan-500/10 text-cyan-600 font-mono font-bold" title="Weekend Exchange">EX</th>
                         <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-teal-500/10 text-teal-600 font-mono font-bold" title="Extra Duty">ED</th>
                         <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-rose-500/10 text-rose-600 font-mono font-bold" title="Absent">A</th>
-                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-indigo-500/10 text-indigo-600 font-mono font-bold" title="Night Shift">N</th>
-                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Leave">L</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Night Shift">N</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-fuchsia-500/10 text-fuchsia-600 font-mono font-bold" title="Leave">L</th>
                     </tr>
                 `;
                 thead.innerHTML = headerHtml;
@@ -1874,8 +1858,8 @@ ${appointmentState.location}`;
                         </td>
                         <td class="col-m-name py-1.5 px-2 align-middle font-display font-bold text-slate-900 dark:text-white whitespace-nowrap">
                             <button type="button" onclick="focusModeratorMonthly(${mod.sl})" 
-                                    class="no-print text-left font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition flex items-center justify-between group/mname cursor-pointer w-full" title="Filter to ${mod.name}">
-                                <span class="group-hover/mname:underline decoration-indigo-500 truncate max-w-[125px] sm:max-w-[145px] inline-block font-semibold">${mod.name}</span>
+                                    class="no-print text-left font-bold hover:text-amber-500 dark:hover:text-amber-400 transition flex items-center justify-between group/mname cursor-pointer w-full" title="Filter to ${mod.name}">
+                                <span class="group-hover/mname:underline decoration-amber-500 truncate max-w-[125px] sm:max-w-[145px] inline-block font-semibold">${mod.name}</span>
                                 <i class="fa-solid fa-filter text-[9px] text-slate-400 opacity-0 group-hover/mname:opacity-80 transition-opacity"></i>
                             </button>
                             <span class="print-only font-bold text-slate-900" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
@@ -1895,10 +1879,10 @@ ${appointmentState.location}`;
                     if (dayRecords) {
                         if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null) {
                             status = dayRecords[modKey];
+                        } else if (mod.name && dayRecords[mod.name] !== undefined && dayRecords[mod.name] !== null) {
+                            status = dayRecords[mod.name];
                         } else if (mod.phone && dayRecords[mod.phone] !== undefined) {
                             status = dayRecords[mod.phone];
-                        } else if (dayRecords[slKey] !== undefined && dayRecords[slKey] !== null) {
-                            status = dayRecords[slKey];
                         }
                     }
 
@@ -1929,8 +1913,8 @@ ${appointmentState.location}`;
                     } else {
                         rowHtml += `
                             <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800${todayClass}" data-day="${d}">
-                                <button type="button" onclick="openStatusPicker(event, ${mod.sl}, '${dayInfo.dateStr}', '${status}')" 
-                                        class="w-full h-full flex items-center justify-center rounded-lg hover:ring-2 hover:ring-indigo-500 cursor-pointer">
+                                <button type="button" onclick="openStatusPicker(event, '${mod.name.replace(/'/g, "\\'")}', '${dayInfo.dateStr}', '${status}')" 
+                                        class="w-full h-full flex items-center justify-center rounded-lg hover:ring-2 hover:ring-amber-500 cursor-pointer">
                                     ${badge}
                                 </button>
                             </td>
@@ -1944,8 +1928,8 @@ ${appointmentState.location}`;
                         <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-cyan-600 bg-cyan-500/5">${modExchange}</td>
                         <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-teal-600 bg-teal-500/5">${modExtraDuty}</td>
                         <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-rose-600 bg-rose-500/5">${modAbsent}</td>
-                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-indigo-600 bg-indigo-500/5">${modNight}</td>
-                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modLeave}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modNight}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-fuchsia-600 bg-fuchsia-500/5">${modLeave}</td>
                     </tr>
                 `;
 
@@ -2056,9 +2040,9 @@ ${appointmentState.location}`;
             const todayHeader = document.querySelector('.matrix-today-header');
             if (todayHeader) {
                 todayHeader.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                todayHeader.classList.add('ring-4', 'ring-indigo-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
+                todayHeader.classList.add('ring-4', 'ring-amber-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
                 setTimeout(() => {
-                    todayHeader.classList.remove('ring-4', 'ring-indigo-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
+                    todayHeader.classList.remove('ring-4', 'ring-amber-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
                 }, 1800);
                 showToast("🎯 Focused on Today's Column", "info");
             } else {
@@ -2067,18 +2051,20 @@ ${appointmentState.location}`;
         }
 
         // ======================= SINGLE MODERATOR FILTER & POPOVER =======================
-        function viewModeratorMonthly(modSl) {
-            selectedMonthlyModSl = String(modSl);
+        function viewModeratorMonthly(modIdentifier) {
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier));
+            selectedMonthlyModSl = mod ? mod.name : String(modIdentifier);
             switchView('monthly');
-            const mod = moderators.find(m => m.sl === modSl);
             if (mod) showToast(`Viewing ${mod.name}'s Monthly Sheet`);
         }
 
-        function focusModeratorMonthly(modSl) {
-            if (selectedMonthlyModSl === String(modSl)) {
+        function focusModeratorMonthly(modIdentifier) {
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier));
+            const targetVal = mod ? mod.name : String(modIdentifier);
+            if (selectedMonthlyModSl === targetVal) {
                 selectedMonthlyModSl = 'ALL';
             } else {
-                selectedMonthlyModSl = String(modSl);
+                selectedMonthlyModSl = targetVal;
             }
             renderMonthlyTable();
         }
@@ -2094,16 +2080,16 @@ ${appointmentState.location}`;
             renderMonthlyTable();
         }
 
-        function openStatusPicker(event, modSl, dateStr, currentStatus) {
+        function openStatusPicker(event, modIdentifier, dateStr, currentStatus) {
             event.stopPropagation();
             if (currentUserRole === 'moderator') {
                 showToast('Editing attendance is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const mod = moderators.find(m => m.sl === modSl);
+            const mod = moderators.find(m => (m.name && m.name === modIdentifier) || String(m.sl) === String(modIdentifier));
             if (!mod) return;
 
-            activePickerTarget = { modSl, dateStr };
+            activePickerTarget = { modName: mod.name, modSl: mod.sl, dateStr };
 
             document.getElementById('popover-mod-name').innerText = mod.name;
             const dayName = getDayNameForDate(dateStr);
@@ -2139,8 +2125,8 @@ ${appointmentState.location}`;
                 return;
             }
             if (!activePickerTarget) return;
-            const { modSl, dateStr } = activePickerTarget;
-            const mod = moderators.find(m => m.sl === modSl);
+            const { modName, modSl, dateStr } = activePickerTarget;
+            const mod = moderators.find(m => (modName && m.name === modName) || (modSl && m.sl === modSl));
             if (!mod) return;
 
             setModeratorStatusForDate(mod, dateStr, newStatus);
@@ -2230,18 +2216,18 @@ ${appointmentState.location}`;
                 sorted.forEach(m => {
                     const isEx = isModeratorNightExempt(m);
                     const opt = document.createElement('option');
-                    opt.value = m.sl;
+                    opt.value = m.name;
                     opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)${isEx ? ' [Senior - Night Exempt]' : ''}`;
                     if (isEx) {
                         opt.style.color = '#94a3b8';
                     }
-                    if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                    if (preselectSl && (m.sl === preselectSl || m.name === preselectSl)) opt.selected = true;
                     selectEl.appendChild(opt);
                 });
 
                 if (!preselectSl) {
                     const firstEligible = sorted.find(m => !isModeratorNightExempt(m));
-                    if (firstEligible) selectEl.value = firstEligible.sl;
+                    if (firstEligible) selectEl.value = firstEligible.name;
                 }
             }
 
@@ -2260,8 +2246,8 @@ ${appointmentState.location}`;
         function autoCalculateNightEndDate() {
             const selectEl = document.getElementById('night-mod-select');
             if (!selectEl) return;
-            const sl = parseInt(selectEl.value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = selectEl.value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             const startInput = document.getElementById('night-start-date');
             const endInput = document.getElementById('night-end-date');
 
@@ -2285,8 +2271,8 @@ ${appointmentState.location}`;
             const descEl = document.getElementById('night-calc-desc');
             if (!selectEl || !startInput || !endInput || !descEl) return;
 
-            const sl = parseInt(selectEl.value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = selectEl.value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             const startDate = startInput.value;
             const endDate = endInput.value;
 
@@ -2334,8 +2320,8 @@ ${appointmentState.location}`;
                 showToast('Assigning night shifts is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const sl = parseInt(document.getElementById('night-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = document.getElementById('night-mod-select').value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             if (!mod) return;
 
             const startDate = document.getElementById('night-start-date').value;
@@ -3355,9 +3341,9 @@ ${appointmentState.location}`;
             selectEl.innerHTML = '';
             moderators.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = m.sl;
+                opt.value = m.name;
                 opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
-                if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                if (preselectSl && (m.sl === preselectSl || m.name === preselectSl)) opt.selected = true;
                 selectEl.appendChild(opt);
             });
 
@@ -3377,8 +3363,8 @@ ${appointmentState.location}`;
 
         function handleLeaveSubmit(e) {
             e.preventDefault();
-            const sl = parseInt(document.getElementById('leave-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const modVal = document.getElementById('leave-mod-select').value;
+            const mod = moderators.find(m => m.name === modVal || String(m.sl) === String(modVal));
             if (!mod) return;
 
             const startDate = document.getElementById('leave-start-date').value;
@@ -3592,9 +3578,9 @@ ${appointmentState.location}`;
             selectEl.innerHTML = '';
             moderators.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = m.sl;
+                opt.value = m.name;
                 opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
-                if (preselectSl && m.sl === preselectSl) opt.selected = true;
+                if (preselectSl && (m.sl === preselectSl || m.name === preselectSl)) opt.selected = true;
                 selectEl.appendChild(opt);
             });
 
@@ -3608,8 +3594,8 @@ ${appointmentState.location}`;
         }
 
         function handleExchangeModSelectChange(preferredDate = null) {
-            const sl = parseInt(document.getElementById('exchange-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = document.getElementById('exchange-mod-select').value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             if (!mod) return;
 
             const baseDate = preferredDate || currentActiveDate || getTodayDateStr();
@@ -3669,8 +3655,8 @@ ${appointmentState.location}`;
                 showToast('Submitting weekend exchange is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const sl = parseInt(document.getElementById('exchange-mod-select').value, 10);
-            const mod = moderators.find(m => m.sl === sl);
+            const selVal = document.getElementById('exchange-mod-select').value;
+            const mod = moderators.find(m => m.name === selVal || String(m.sl) === String(selVal));
             if (!mod) return;
 
             const dutyDate = document.getElementById('exchange-duty-date').value;
@@ -3937,32 +3923,50 @@ ${appointmentState.location}`;
             }
             const mod = moderators[index];
             if (!mod) return;
-            const deletedSl = mod.sl;
+            const deletedName = (mod.name || '').trim();
             const deletedKey = getModeratorKey(mod);
-            const deletedPhone = mod.phone;
+            const deletedPhone = mod.phone ? mod.phone.replace(/\D/g, '') : '';
+            const deletedId = mod.id;
+            const deletedSl = mod.sl;
             if (confirm(`Are you sure you want to remove ${mod.name} (SL #${String(mod.sl).padStart(2, '0')})?`)) {
                 // Clean up deleted moderator's records across all state data
                 if (attendanceHistory && typeof attendanceHistory === 'object') {
-                    const delKey = String(deletedSl);
                     Object.keys(attendanceHistory).forEach(d => {
                         if (attendanceHistory[d]) {
                             if (deletedKey) delete attendanceHistory[d][deletedKey];
-                            delete attendanceHistory[d][delKey];
+                            if (deletedName) delete attendanceHistory[d][deletedName];
+                            if (deletedName.toLowerCase()) delete attendanceHistory[d][deletedName.toLowerCase()];
+                            if (deletedId) delete attendanceHistory[d][deletedId];
                             if (deletedPhone) delete attendanceHistory[d][deletedPhone];
+                            delete attendanceHistory[d][String(deletedSl)];
                         }
                     });
                 }
+
+                const nameMatches = (itemModName) => {
+                    if (!itemModName || !deletedName) return false;
+                    return itemModName.trim().toLowerCase() === deletedName.toLowerCase();
+                };
+
                 if (Array.isArray(scheduledNightShifts)) {
-                    scheduledNightShifts = scheduledNightShifts.filter(s => s.modSl !== deletedSl && s.sl !== deletedSl && (!deletedKey || s.modId !== deletedKey));
+                    scheduledNightShifts = scheduledNightShifts.filter(s => 
+                        !nameMatches(s.modName) && (!deletedKey || s.modId !== deletedKey) && (!deletedPhone || s.modPhone !== deletedPhone)
+                    );
                 }
                 if (Array.isArray(approvedLeaves)) {
-                    approvedLeaves = approvedLeaves.filter(l => l.modSl !== deletedSl && (!deletedKey || l.modId !== deletedKey));
+                    approvedLeaves = approvedLeaves.filter(l => 
+                        !nameMatches(l.modName) && (!deletedKey || l.modId !== deletedKey) && (!deletedPhone || l.modPhone !== deletedPhone)
+                    );
                 }
                 if (Array.isArray(weekendExchanges)) {
-                    weekendExchanges = weekendExchanges.filter(e => e.modSl !== deletedSl && (!deletedKey || e.modId !== deletedKey));
+                    weekendExchanges = weekendExchanges.filter(e => 
+                        !nameMatches(e.modName) && (!deletedKey || e.modId !== deletedKey) && (!deletedPhone || e.modPhone !== deletedPhone)
+                    );
                 }
                 if (Array.isArray(nightShiftRequests)) {
-                    nightShiftRequests = nightShiftRequests.filter(r => r.modSl !== deletedSl && (!deletedKey || r.modId !== deletedKey));
+                    nightShiftRequests = nightShiftRequests.filter(r => 
+                        !nameMatches(r.modName) && (!deletedKey || r.modId !== deletedKey) && (!deletedPhone || r.modPhone !== deletedPhone)
+                    );
                 }
 
                 moderators.splice(index, 1);
@@ -3995,6 +3999,7 @@ ${appointmentState.location}`;
         let currentLoginRole = 'admin'; // 'admin' | 'moderator'
         let currentUserRole = localStorage.getItem('sanvees_user_role') || sessionStorage.getItem('sanvees_user_role') || 'admin';
         let currentLoggedInModSl = parseInt(localStorage.getItem('sanvees_logged_in_mod_sl') || sessionStorage.getItem('sanvees_logged_in_mod_sl'), 10) || null;
+        let currentLoggedInModName = localStorage.getItem('sanvees_logged_in_mod_name') || sessionStorage.getItem('sanvees_logged_in_mod_name') || null;
 
         function switchLoginRole(role) {
             currentLoginRole = role;
@@ -4043,15 +4048,22 @@ ${appointmentState.location}`;
             selectEl.innerHTML = '';
             moderators.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = m.sl;
+                opt.value = m.name;
                 opt.innerText = `${String(m.sl).padStart(2, '0')} - ${m.name} (${m.weekend} Off)`;
                 selectEl.appendChild(opt);
             });
         }
 
         function getLoggedInModerator() {
-            if (currentUserRole !== 'moderator' || !currentLoggedInModSl) return null;
-            return moderators.find(m => m.sl === currentLoggedInModSl) || null;
+            if (currentUserRole !== 'moderator') return null;
+            if (currentLoggedInModName) {
+                const byName = moderators.find(m => m.name === currentLoggedInModName);
+                if (byName) return byName;
+            }
+            if (currentLoggedInModSl) {
+                return moderators.find(m => m.sl === currentLoggedInModSl) || null;
+            }
+            return null;
         }
 
         function applyRolePermissions() {
@@ -4262,7 +4274,7 @@ ${appointmentState.location}`;
                         if (activeView === 'monthly') renderMonthlyTable();
                         showToast("Welcome! Access Granted to In-Charge Portal", "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Unlock Dashboard</span>`;
-                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 hover:from-indigo-500 hover:to-violet-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
+                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(245,158,11,0.65)] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-yellow-300/40";
                     }, 350);
                 } else {
                     errorBanner.classList.remove('hidden');
@@ -4273,8 +4285,8 @@ ${appointmentState.location}`;
                 }
             } else {
                 // Moderator Login
-                const modSl = parseInt(document.getElementById('login-mod-select').value, 10);
-                const mod = moderators.find(m => m.sl === modSl);
+                const modVal = document.getElementById('login-mod-select').value;
+                const mod = moderators.find(m => m.name === modVal || String(m.sl) === String(modVal));
                 if (!mod) {
                     errorBanner.classList.remove('hidden');
                     errorText.innerText = "Please select a valid moderator.";
@@ -4289,8 +4301,10 @@ ${appointmentState.location}`;
                     errorBanner.classList.add('hidden');
                     currentUserRole = 'moderator';
                     currentLoggedInModSl = mod.sl;
+                    currentLoggedInModName = mod.name;
                     localStorage.setItem('sanvees_user_role', 'moderator');
                     localStorage.setItem('sanvees_logged_in_mod_sl', String(mod.sl));
+                    localStorage.setItem('sanvees_logged_in_mod_name', mod.name);
 
                     if (rememberMe) localStorage.setItem(AUTH_CONFIG.storageKey, "MODERATOR_AUTHENTICATED");
                     else sessionStorage.setItem(AUTH_CONFIG.storageKey, "MODERATOR_AUTHENTICATED");
@@ -4305,7 +4319,7 @@ ${appointmentState.location}`;
                         if (activeView === 'monthly') renderMonthlyTable();
                         showToast(`👋 Welcome ${mod.name}! (View-Only Portal)`, "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Open Moderator Portal</span>`;
-                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
+                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(16,185,129,0.55)] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-emerald-400/40";
                     }, 350);
                 } else {
                     errorBanner.classList.remove('hidden');
@@ -4323,10 +4337,13 @@ ${appointmentState.location}`;
                 sessionStorage.removeItem(AUTH_CONFIG.storageKey);
                 localStorage.removeItem('sanvees_user_role');
                 localStorage.removeItem('sanvees_logged_in_mod_sl');
+                localStorage.removeItem('sanvees_logged_in_mod_name');
                 sessionStorage.removeItem('sanvees_user_role');
                 sessionStorage.removeItem('sanvees_logged_in_mod_sl');
+                sessionStorage.removeItem('sanvees_logged_in_mod_name');
                 currentUserRole = 'admin';
                 currentLoggedInModSl = null;
+                currentLoggedInModName = null;
                 document.getElementById('login-password').value = '';
                 checkAuthStatus();
                 showToast("Logged out securely.", "info");
@@ -4474,7 +4491,7 @@ ${appointmentState.location}`;
             toast.className = 'pointer-events-auto relative overflow-hidden flex items-center gap-3 px-4 py-3 rounded-2xl glass-panel-elevated shadow-2xl text-xs font-bold border border-white/20 transform transition-all duration-300 animate-modal-pop';
             
             let icon = '<i class="fa-solid fa-circle-check text-emerald-500 text-sm"></i>';
-            if (type === 'info') icon = '<i class="fa-solid fa-circle-info text-indigo-500 text-sm"></i>';
+            if (type === 'info') icon = '<i class="fa-solid fa-circle-info text-amber-400 text-sm"></i>';
             else if (type === 'warning') icon = '<i class="fa-solid fa-triangle-exclamation text-amber-500 text-sm"></i>';
             else if (type === 'error') icon = '<i class="fa-solid fa-circle-xmark text-rose-500 text-sm"></i>';
 
@@ -4484,7 +4501,7 @@ ${appointmentState.location}`;
                 <button type="button" onclick="this.parentElement.remove()" class="ml-auto text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
                     <i class="fa-solid fa-xmark text-xs"></i>
                 </button>
-                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 toast-progress-bar"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-emerald-500 toast-progress-bar"></div>
             `;
             container.appendChild(toast);
             setTimeout(() => {
@@ -4620,14 +4637,14 @@ ${appointmentState.location}`;
             const q = (query || '').trim().toLowerCase();
 
             const actionCommands = [
-                { id: 'act-daily', title: 'Daily Roster View', subtitle: 'View and mark daily attendance roster', icon: 'fa-calendar-day', color: 'text-indigo-500', action: () => { switchView('daily'); closeCommandPalette(); } },
+                { id: 'act-daily', title: 'Daily Roster View', subtitle: 'View and mark daily attendance roster', icon: 'fa-calendar-day', color: 'text-amber-500', action: () => { switchView('daily'); closeCommandPalette(); } },
                 { id: 'act-monthly', title: 'Monthly Matrix Sheet', subtitle: 'View full monthly 30/31-day matrix sheet', icon: 'fa-table-cells', color: 'text-purple-500', action: () => { switchView('monthly'); closeCommandPalette(); } },
                 { id: 'act-appointment', title: 'Appointment Letter Generator', subtitle: 'Create & print appointment letter on official company pad', icon: 'fa-file-signature', color: 'text-amber-500', action: () => { switchView('appointment'); closeCommandPalette(); } },
                 { id: 'act-today', title: 'Jump to Today', subtitle: 'Set active date to current calendar day', icon: 'fa-clock-rotate-left', color: 'text-cyan-500', action: () => { jumpToToday(); closeCommandPalette(); } },
                 { id: 'act-bulk-present', title: 'Mark All On-Duty Present', subtitle: 'One-click bulk mark for all scheduled moderators', icon: 'fa-bolt', color: 'text-emerald-500', action: () => { bulkMarkAllPresent(); closeCommandPalette(); } },
-                { id: 'act-add', title: 'Add New Moderator', subtitle: 'Register moderator profile into serialized roster', icon: 'fa-user-plus', color: 'text-indigo-500', action: () => { openAddModal(); closeCommandPalette(); } },
-                { id: 'act-night', title: 'Night Shifts Roster', subtitle: 'Manage night duty schedules and rotation', icon: 'fa-moon', color: 'text-indigo-500', action: () => { openNightShiftModal(); closeCommandPalette(); } },
-                { id: 'act-leaves', title: 'Approved Leaves', subtitle: 'Schedule official staff leaves and exemptions', icon: 'fa-calendar-check', color: 'text-purple-500', action: () => { openLeaveModal(); closeCommandPalette(); } },
+                { id: 'act-add', title: 'Add New Moderator', subtitle: 'Register moderator profile into serialized roster', icon: 'fa-user-plus', color: 'text-emerald-500', action: () => { openAddModal(); closeCommandPalette(); } },
+                { id: 'act-night', title: 'Night Shifts Roster', subtitle: 'Manage night duty schedules and rotation', icon: 'fa-moon', color: 'text-purple-500', action: () => { openNightShiftModal(); closeCommandPalette(); } },
+                { id: 'act-leaves', title: 'Approved Leaves', subtitle: 'Schedule official staff leaves and exemptions', icon: 'fa-calendar-check', color: 'text-fuchsia-500', action: () => { openLeaveModal(); closeCommandPalette(); } },
                 { id: 'act-exchange', title: 'Weekend Exchanges', subtitle: 'Record and schedule mutual weekend swaps', icon: 'fa-repeat', color: 'text-cyan-500', action: () => { openExchangeModal(); closeCommandPalette(); } },
                 { id: 'act-absent', title: 'Absent Alerts & WhatsApp', subtitle: 'Send absent notices to moderators on WhatsApp', icon: 'fa-user-xmark', color: 'text-rose-500', action: () => { openUnexcusedModal(); closeCommandPalette(); } },
                 { id: 'act-firebase', title: 'Firebase Cloud Database Settings', subtitle: 'Check cloud sync status or configure database URL', icon: 'fa-fire', color: 'text-amber-500', action: () => { openFirebaseModal(); closeCommandPalette(); } },
@@ -4649,7 +4666,7 @@ ${appointmentState.location}`;
                 title: `${String(m.sl).padStart(2, '0')} - ${m.name}`,
                 subtitle: `${m.weekend} Off • ${m.phone} • Joined ${m.join}`,
                 icon: 'fa-user',
-                color: 'text-indigo-600 dark:text-indigo-400',
+                color: 'text-amber-500 dark:text-amber-400',
                 action: () => {
                     viewModeratorMonthly(m.sl);
                     closeCommandPalette();
@@ -4674,14 +4691,14 @@ ${appointmentState.location}`;
                 const isSelected = idx === paletteSelectedIndex;
                 html += `
                     <div onclick="executePaletteItem(${idx})" 
-                         class="flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition ${isSelected ? 'bg-indigo-600 text-white shadow-md' : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200'}">
+                         class="flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition ${isSelected ? 'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-md' : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200'}">
                         <div class="flex items-center gap-3 min-w-0">
-                            <div class="w-8 h-8 rounded-lg flex items-center justify-center ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200/70 dark:bg-slate-700/70 ' + item.color} flex-shrink-0">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center ${isSelected ? 'bg-slate-950/20 text-slate-950 font-black' : 'bg-slate-200/70 dark:bg-slate-700/70 ' + item.color} flex-shrink-0">
                                 <i class="fa-solid ${item.icon} text-xs"></i>
                             </div>
                             <div class="min-w-0">
-                                <div class="font-bold text-xs truncate ${isSelected ? 'text-white' : 'text-slate-900 dark:text-white'}">${item.title}</div>
-                                <div class="text-[10px] truncate ${isSelected ? 'text-indigo-100' : 'text-slate-400'}">${item.subtitle}</div>
+                                <div class="font-bold text-xs truncate ${isSelected ? 'text-slate-950' : 'text-slate-900 dark:text-white'}">${item.title}</div>
+                                <div class="text-[10px] truncate ${isSelected ? 'text-slate-900/80 font-bold' : 'text-slate-400'}">${item.subtitle}</div>
                             </div>
                         </div>
                         <i class="fa-solid fa-chevron-right text-[10px] ${isSelected ? 'text-white' : 'text-slate-300 dark:text-slate-600'}"></i>
