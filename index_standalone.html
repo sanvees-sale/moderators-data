@@ -51,42 +51,64 @@
                     },
                     colors: {
                         brand: {
-                            50: '#F5F7FF',
-                            100: '#EBF0FE',
-                            200: '#D6E0FD',
-                            300: '#B4C6FC',
-                            400: '#818CF8',
-                            500: '#6366F1',
-                            600: '#4F46E5',
-                            700: '#4338CA',
-                            800: '#3730A3',
-                            900: '#312E81',
-                            950: '#1E1B4B',
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065F46',
+                            900: '#064E3B',
+                            950: '#022C22',
                         },
                         gold: {
-                            400: '#FBBF24',
-                            500: '#F59E0B',
-                            600: '#D97706',
+                            50: '#FFFDF0',
+                            100: '#FEF9C3',
+                            200: '#FEF08A',
+                            300: '#FDE047',
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                            700: '#A16207',
+                            800: '#854D0E',
+                            900: '#713F12',
+                            950: '#422006'
+                        },
+                        slate: {
+                            50: '#F5FAF7',
+                            100: '#E8F3EE',
+                            200: '#D3E6DE',
+                            300: '#B2D3C5',
+                            400: '#82AFA0',
+                            500: '#588879',
+                            600: '#3D685B',
+                            700: '#26493F',
+                            800: '#15312A',
+                            850: '#102721',
+                            900: '#0A1C17',
+                            950: '#040E0B',
                         },
                         dark: {
-                            bg: '#070913',
-                            card: '#0C1120',
-                            cardHover: '#12182E',
-                            surface: '#151D38',
-                            border: 'rgba(99, 102, 241, 0.16)',
-                            borderHover: 'rgba(129, 140, 248, 0.45)'
+                            bg: '#040D0A',
+                            card: '#081813',
+                            cardHover: '#0E2820',
+                            surface: '#123027',
+                            border: 'rgba(212, 175, 55, 0.18)',
+                            borderHover: 'rgba(245, 158, 11, 0.50)'
                         }
                     },
                     boxShadow: {
-                        'glow-brand': '0 0 35px -5px rgba(99, 102, 241, 0.55)',
-                        'glow-gold': '0 0 35px -5px rgba(245, 158, 11, 0.55)',
+                        'glow-brand': '0 0 35px -5px rgba(16, 185, 129, 0.55)',
+                        'glow-gold': '0 0 35px -5px rgba(245, 158, 11, 0.65)',
                         'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.5)',
                         'glow-amber': '0 0 30px -5px rgba(245, 158, 11, 0.5)',
                         'glow-rose': '0 0 30px -5px rgba(244, 63, 94, 0.5)',
                         'glow-cyan': '0 0 30px -5px rgba(6, 182, 212, 0.5)',
                         'glow-purple': '0 0 30px -5px rgba(168, 85, 247, 0.5)',
                         'glass': '0 10px 35px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.8)',
-                        'glass-dark': '0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)',
+                        'glass-dark': '0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(212, 175, 55, 0.18), inset 0 1px 0 0 rgba(212, 175, 55, 0.20)',
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -115,39 +137,39 @@
 
         <!-- Custom Executive Design Stylesheet (style.css) -->
     <style>
-/* Custom Executive Luxury Scrollbar */
+/* Custom Executive Luxury Scrollbar (Royal Emerald & Champagne Gold) */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(180deg, rgba(99, 102, 241, 0.35) 0%, rgba(139, 92, 246, 0.35) 100%); 
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.45) 0%, rgba(16, 185, 129, 0.45) 100%); 
             border-radius: 10px; 
         }
         .dark ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(180deg, rgba(129, 140, 248, 0.35) 0%, rgba(168, 85, 247, 0.35) 100%); 
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.5) 0%, rgba(52, 211, 153, 0.45) 100%); 
         }
         ::-webkit-scrollbar-thumb:hover { 
-            background: linear-gradient(180deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%); 
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%); 
         }
 
-        /* Ambient Luxury Royal Obsidian & Cashmere Silk Canvas */
+        /* Ambient Luxury Royal Emerald & Ivory Champagne Canvas */
         body {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-            background-color: #070913;
-            color: #F8FAFC;
+            background-color: #040D0A;
+            color: #F8FAF8;
             transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-                radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.09) 0%, transparent 60%);
+                radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+                radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 60%);
             background-size: 32px 32px, 100% 100%;
         }
 
         .light body {
-            background-color: #F8FAFC;
-            color: #0F172A;
+            background-color: #FAF8F2;
+            color: #062117;
             background-image: 
-                radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-                radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+                radial-gradient(rgba(180, 83, 9, 0.06) 1px, transparent 1px),
+                radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.09) 0%, transparent 60%);
             background-size: 32px 32px, 100% 100%;
         }
 
@@ -159,19 +181,19 @@
             overflow: hidden;
             opacity: 0.92;
             background: 
-                radial-gradient(circle at 10% 8%, rgba(99, 102, 241, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 90% 12%, rgba(245, 158, 11, 0.14) 0%, transparent 45%),
-                radial-gradient(circle at 50% 88%, rgba(59, 130, 246, 0.14) 0%, transparent 50%),
-                radial-gradient(circle at 82% 82%, rgba(16, 185, 129, 0.10) 0%, transparent 40%);
+                radial-gradient(circle at 12% 10%, rgba(245, 158, 11, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 88%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 82% 82%, rgba(5, 150, 105, 0.12) 0%, transparent 40%);
         }
 
         .dark .aurora-bg {
-            opacity: 0.95;
+            opacity: 0.96;
             background: 
-                radial-gradient(circle at 12% 10%, rgba(99, 102, 241, 0.22) 0%, transparent 45%),
-                radial-gradient(circle at 88% 12%, rgba(245, 158, 11, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
+                radial-gradient(circle at 12% 10%, rgba(245, 158, 11, 0.24) 0%, transparent 45%),
+                radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(217, 119, 6, 0.16) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.14) 0%, transparent 40%);
         }
 
         /* Animated Ambient Floating Orbs (Hardware Accelerated) */
@@ -190,7 +212,7 @@
             left: 8%;
             width: 480px;
             height: 480px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.38) 0%, rgba(139, 92, 246, 0.15) 70%, transparent 100%);
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, rgba(212, 175, 55, 0.12) 70%, transparent 100%);
             animation: floatOrb1 20s ease-in-out infinite alternate;
         }
         .aurora-orb-2 {
@@ -198,7 +220,7 @@
             right: 6%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(217, 119, 6, 0.1) 70%, transparent 100%);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.32) 0%, rgba(5, 150, 105, 0.12) 70%, transparent 100%);
             animation: floatOrb2 25s ease-in-out infinite alternate;
         }
         .aurora-orb-3 {
@@ -206,7 +228,7 @@
             right: 22%;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.24) 0%, rgba(6, 182, 212, 0.1) 70%, transparent 100%);
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.25) 0%, rgba(245, 158, 11, 0.10) 70%, transparent 100%);
             animation: floatOrb1 18s ease-in-out infinite alternate-reverse;
         }
         @keyframes floatOrb1 {
@@ -220,58 +242,58 @@
             100% { transform: translate(40px, -90px) scale(0.9); }
         }
 
-        /* Frosted Glass Panels - Haute Horlogerie Luxury Finish */
+        /* Frosted Glass Panels - Royal Emerald & Champagne Gold Finish */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(28px) saturate(180%);
             -webkit-backdrop-filter: blur(28px) saturate(180%);
             border: 1px solid rgba(226, 232, 240, 0.9);
             border-top: 1px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(241, 245, 249, 0.8);
+            box-shadow: 0 4px 20px -2px rgba(6, 33, 23, 0.05), 0 0 0 1px rgba(241, 245, 249, 0.8);
         }
 
         .dark .glass-panel {
-            background: rgba(12, 17, 32, 0.82);
+            background: rgba(8, 24, 19, 0.86);
             backdrop-filter: blur(28px) saturate(190%);
             -webkit-backdrop-filter: blur(28px) saturate(190%);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.16);
+            border-top: 1px solid rgba(245, 158, 11, 0.35);
+            box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(212, 175, 55, 0.14);
         }
 
         .glass-panel-elevated {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(32px) saturate(190%);
             -webkit-backdrop-filter: blur(32px) saturate(190%);
             border: 1px solid rgba(226, 232, 240, 0.95);
             border-top: 1px solid #FFFFFF;
-            box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.7);
+            box-shadow: 0 20px 45px -12px rgba(6, 33, 23, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.7);
         }
 
         .dark .glass-panel-elevated {
-            background: rgba(14, 20, 38, 0.88);
+            background: rgba(12, 34, 27, 0.92);
             backdrop-filter: blur(32px) saturate(200%);
             -webkit-backdrop-filter: blur(32px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            border-top: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 24px 55px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            border-top: 1px solid rgba(253, 224, 71, 0.45);
+            box-shadow: 0 24px 55px -12px rgba(0, 0, 0, 0.85), inset 0 1px 0 0 rgba(212, 175, 55, 0.20);
         }
 
         /* Header Glass */
         .glass-header {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(28px) saturate(180%);
             -webkit-backdrop-filter: blur(28px) saturate(180%);
             border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-            box-shadow: 0 4px 25px -2px rgba(15, 23, 42, 0.04);
+            box-shadow: 0 4px 25px -2px rgba(6, 33, 23, 0.04);
         }
 
         .dark .glass-header {
-            background: rgba(7, 10, 20, 0.88);
+            background: rgba(6, 18, 14, 0.94);
             backdrop-filter: blur(28px) saturate(190%);
             -webkit-backdrop-filter: blur(28px) saturate(190%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.75);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+            box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.85);
         }
 
         /* Bento Grid Interactive Cards with 3D Elevation */
@@ -312,8 +334,8 @@
 
         .bento-card:hover {
             transform: translateY(-6px) scale(1.018);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 22px 50px -10px rgba(99, 102, 241, 0.25), 0 0 0 1px rgba(99, 102, 241, 0.35);
+            border-color: rgba(245, 158, 11, 0.45);
+            box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.25);
         }
 
         .bento-card:hover::after {
@@ -321,8 +343,8 @@
         }
 
         .dark .bento-card:hover {
-            border-color: rgba(129, 140, 248, 0.5);
-            box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.75), 0 0 30px -5px var(--card-glow, rgba(99, 102, 241, 0.3));
+            border-color: rgba(253, 224, 71, 0.55);
+            box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.85), 0 0 30px -5px var(--card-glow, rgba(245, 158, 11, 0.35));
         }
 
         /* View Transition Animation (Smooth 60fps) */
@@ -347,7 +369,7 @@
         }
         @keyframes counterBump {
             0% { transform: scale(1); }
-            50% { transform: scale(1.22); color: #6366F1; }
+            50% { transform: scale(1.22); color: #F59E0B; }
             100% { transform: scale(1); }
         }
 
@@ -506,14 +528,15 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         .filter-chip.active {
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #7C3AED 100%) !important;
-            color: #FFFFFF !important;
-            box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.6), 0 0 0 1px rgba(165, 180, 252, 0.6) !important;
-            border-color: #818CF8 !important;
+            background: linear-gradient(135deg, #B45309 0%, #D97706 40%, #F59E0B 100%) !important;
+            color: #040D0A !important;
+            font-weight: 900 !important;
+            box-shadow: 0 8px 25px -4px rgba(245, 158, 11, 0.6), 0 0 0 1px rgba(253, 224, 71, 0.8) !important;
+            border-color: #FCD34D !important;
             transform: translateY(-1.5px);
         }
         .filter-chip.active i {
-            color: #FFFFFF !important;
+            color: #040D0A !important;
         }
 
         /* Daily Roster Row Hover Accent Indicator */
@@ -522,10 +545,10 @@
             transition: background-color 0.2s ease, transform 0.15s ease;
         }
         #moderator-table-body tr:hover {
-            background-color: rgba(99, 102, 241, 0.05);
+            background-color: rgba(16, 185, 129, 0.05);
         }
         .dark #moderator-table-body tr:hover {
-            background-color: rgba(99, 102, 241, 0.10);
+            background-color: rgba(16, 185, 129, 0.12);
         }
         #moderator-table-body tr td:first-child {
             position: relative;
@@ -538,8 +561,8 @@
             bottom: 15%;
             width: 3.5px;
             border-radius: 0 4px 4px 0;
-            background: linear-gradient(180deg, #4F46E5 0%, #8B5CF6 100%);
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.85);
+            background: linear-gradient(180deg, #F59E0B 0%, #10B981 100%);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.85);
         }
 
         /* Unexcused Absent Highlighted Row Glow */
@@ -554,14 +577,14 @@
 
         /* Moderator 'You' Row Highlight Glow */
         .row-highlight-me {
-            background: linear-gradient(90deg, rgba(168, 85, 247, 0.14) 0%, rgba(99, 102, 241, 0.07) 100%) !important;
-            border-left: 3.5px solid #A855F7 !important;
-            box-shadow: inset 0 0 16px rgba(168, 85, 247, 0.08);
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.16) 0%, rgba(16, 185, 129, 0.08) 100%) !important;
+            border-left: 3.5px solid #F59E0B !important;
+            box-shadow: inset 0 0 16px rgba(245, 158, 11, 0.12);
         }
         .dark .row-highlight-me {
-            background: linear-gradient(90deg, rgba(168, 85, 247, 0.24) 0%, rgba(99, 102, 241, 0.14) 100%) !important;
-            border-left: 3.5px solid #C084FC !important;
-            box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.15);
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.22) 0%, rgba(16, 185, 129, 0.14) 100%) !important;
+            border-left: 3.5px solid #FDE047 !important;
+            box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.22);
         }
 
         /* Monthly Matrix Cells (GPU Accelerated & Fast Layout) */
@@ -652,12 +675,12 @@
             box-shadow: 0 2px 9px rgba(244, 63, 94, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-night {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            box-shadow: 0 2px 8px rgba(147, 51, 234, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-leave {
-            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            background: linear-gradient(135deg, #c026d3 0%, #9333ea 100%);
+            box-shadow: 0 2px 8px rgba(192, 38, 211, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
         .matrix-badge-outside {
             background: linear-gradient(135deg, #64748b 0%, #475569 100%);
@@ -678,7 +701,7 @@
             }
             .dark #view-monthly-container th.col-m-sl,
             .dark #view-monthly-container td.col-m-sl {
-                background-color: #0a101f;
+                background-color: #081813;
             }
             #view-monthly-container th.col-m-name,
             #view-monthly-container td.col-m-name {
@@ -691,9 +714,9 @@
             }
             .dark #view-monthly-container th.col-m-name,
             .dark #view-monthly-container td.col-m-name {
-                background-color: #0a101f;
+                background-color: #081813;
                 box-shadow: 4px 0 12px -2px rgba(0, 0, 0, 0.6);
-                border-right: 1px solid rgba(56, 189, 248, 0.22) !important;
+                border-right: 1px solid rgba(212, 175, 55, 0.25) !important;
             }
             #view-monthly-container thead th.col-m-sl,
             #view-monthly-container thead th.col-m-name {
@@ -702,29 +725,29 @@
             }
             .dark #view-monthly-container thead th.col-m-sl,
             .dark #view-monthly-container thead th.col-m-name {
-                background-color: #111a30 !important;
+                background-color: #0d271f !important;
             }
 
-            /* Highly Prominent Matrix "Today" Column Highlight */
+            /* Highly Prominent Matrix "Today" Column Highlight (Imperial Gold & Royal Emerald) */
             .matrix-today-col {
                 position: relative !important;
-                background: linear-gradient(180deg, rgba(99, 102, 241, 0.14) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(99, 102, 241, 0.14) 100%) !important;
-                box-shadow: inset 2px 0 0 #6366F1, inset -2px 0 0 #6366F1 !important;
+                background: linear-gradient(180deg, rgba(245, 158, 11, 0.12) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(245, 158, 11, 0.12) 100%) !important;
+                box-shadow: inset 2px 0 0 #F59E0B, inset -2px 0 0 #F59E0B !important;
             }
             .dark .matrix-today-col {
-                background: linear-gradient(180deg, rgba(99, 102, 241, 0.24) 0%, rgba(139, 92, 246, 0.14) 50%, rgba(99, 102, 241, 0.24) 100%) !important;
-                box-shadow: inset 2px 0 0 #818CF8, inset -2px 0 0 #818CF8 !important;
+                background: linear-gradient(180deg, rgba(245, 158, 11, 0.22) 0%, rgba(16, 185, 129, 0.14) 50%, rgba(245, 158, 11, 0.22) 100%) !important;
+                box-shadow: inset 2px 0 0 #FCD34D, inset -2px 0 0 #FCD34D !important;
             }
             .matrix-today-header {
-                background: linear-gradient(180deg, rgba(99, 102, 241, 0.38) 0%, rgba(79, 70, 229, 0.22) 100%) !important;
-                box-shadow: inset 2px 0 0 #6366F1, inset -2px 0 0 #6366F1, inset 0 3px 0 #6366F1 !important;
-                color: #4F46E5 !important;
+                background: linear-gradient(180deg, rgba(245, 158, 11, 0.35) 0%, rgba(217, 119, 6, 0.25) 100%) !important;
+                box-shadow: inset 2px 0 0 #F59E0B, inset -2px 0 0 #F59E0B, inset 0 3px 0 #F59E0B !important;
+                color: #B45309 !important;
                 position: relative;
             }
             .dark .matrix-today-header {
-                background: linear-gradient(180deg, rgba(99, 102, 241, 0.55) 0%, rgba(79, 70, 229, 0.35) 100%) !important;
-                box-shadow: inset 2px 0 0 #818CF8, inset -2px 0 0 #818CF8, inset 0 3px 0 #818CF8 !important;
-                color: #C7D2FE !important;
+                background: linear-gradient(180deg, rgba(245, 158, 11, 0.5) 0%, rgba(217, 119, 6, 0.35) 100%) !important;
+                box-shadow: inset 2px 0 0 #FDE047, inset -2px 0 0 #FDE047, inset 0 3px 0 #FDE047 !important;
+                color: #FEF08A !important;
             }
 
             /* Today Column Pulsing Header Badge */
@@ -734,30 +757,30 @@
                 gap: 3px;
                 padding: 2px 6px;
                 border-radius: 9999px;
-                background: #4F46E5;
+                background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
                 color: #ffffff;
                 font-size: 8px;
                 font-weight: 900;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                box-shadow: 0 0 10px rgba(79, 70, 229, 0.7);
+                box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
                 animation: glowPulse 2s infinite alternate;
             }
 
             /* Interactive Crosshair Hover Highlight for Matrix */
             .matrix-col-highlight {
-                background-color: rgba(99, 102, 241, 0.08) !important;
+                background-color: rgba(245, 158, 11, 0.08) !important;
             }
             .dark .matrix-col-highlight {
-                background-color: rgba(99, 102, 241, 0.18) !important;
+                background-color: rgba(245, 158, 11, 0.18) !important;
             }
             .matrix-header-highlight {
-                background: rgba(99, 102, 241, 0.25) !important;
-                color: #4F46E5 !important;
+                background: rgba(245, 158, 11, 0.25) !important;
+                color: #B45309 !important;
             }
             .dark .matrix-header-highlight {
-                background: rgba(99, 102, 241, 0.4) !important;
-                color: #E0E7FF !important;
+                background: rgba(245, 158, 11, 0.4) !important;
+                color: #FDE047 !important;
             }
 
             /* Modern Command Palette and Modal Animations */
@@ -1399,7 +1422,7 @@
     <style id="dynamic-print-orientation-style"></style>
 
 </head>
-<body class="min-h-screen relative antialiased selection:bg-indigo-500 selection:text-white font-sans">
+<body class="min-h-screen relative antialiased selection:bg-amber-500 selection:text-slate-950 font-sans">
 
     <!-- Ambient Aurora Gradient Mesh Canvas -->
     <div class="aurora-bg">
@@ -1411,24 +1434,24 @@
     <!-- Toast Notification Hub -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 pointer-events-none no-print"></div>
 
-    <!-- ======================= 1. OBSIDIAN LUXURY LOGIN PORTAL ======================= -->
-    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030712]/95 backdrop-blur-3xl no-print select-none">
+    <!-- ======================= 1. ROYAL EMERALD & IMPERIAL GOLD LOGIN PORTAL ======================= -->
+    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030907]/95 backdrop-blur-3xl no-print select-none">
         
-        <!-- Glowing Ambient Aurora Nebulas (Royal Indigo & Imperial Gold) -->
-        <div class="absolute w-[520px] h-[520px] rounded-full bg-indigo-600/25 filter blur-[110px] pointer-events-none -top-32 -left-32 animate-pulse-slow"></div>
-        <div class="absolute w-[500px] h-[500px] rounded-full bg-amber-500/20 filter blur-[100px] pointer-events-none -bottom-32 -right-32 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
-        <div class="absolute w-80 h-80 rounded-full bg-purple-600/18 filter blur-[95px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <!-- Glowing Ambient Aurora Nebulas (Imperial Gold & Royal Emerald) -->
+        <div class="absolute w-[520px] h-[520px] rounded-full bg-amber-500/25 filter blur-[110px] pointer-events-none -top-32 -left-32 animate-pulse-slow"></div>
+        <div class="absolute w-[500px] h-[500px] rounded-full bg-emerald-500/25 filter blur-[100px] pointer-events-none -bottom-32 -right-32 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+        <div class="absolute w-80 h-80 rounded-full bg-teal-500/20 filter blur-[95px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-        <div id="login-card" class="relative w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#090D1C]/95 border border-indigo-500/25 shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95),0_0_50px_rgba(99,102,241,0.22)] backdrop-blur-2xl transition-all duration-300">
+        <div id="login-card" class="relative w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#081813]/95 border border-amber-500/30 shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95),0_0_50px_rgba(245,158,11,0.22)] backdrop-blur-2xl transition-all duration-300">
             
-            <!-- Top Radiant Gold-Indigo Accent Beam -->
-            <div class="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-amber-400 via-indigo-400 to-purple-500 rounded-full shadow-[0_0_20px_rgba(99,102,241,0.6)]"></div>
+            <!-- Top Radiant Gold-Emerald Accent Beam -->
+            <div class="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.6)]"></div>
 
             <!-- Brand Emblem & Title: 3D Imperial Gold Crown Crest (NO ST, NO INITIALS) -->
             <div class="text-center mb-8">
                 <div class="relative inline-flex items-center justify-center mb-4 group">
                     <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-300 to-amber-600 p-[2.5px] shadow-[0_0_35px_rgba(245,158,11,0.5)] ring-4 ring-amber-500/20 transition-transform duration-300 group-hover:scale-105">
-                        <div class="w-full h-full bg-[#050A18] rounded-[13px] flex items-center justify-center">
+                        <div class="w-full h-full bg-[#040D0A] rounded-[13px] flex items-center justify-center">
                             <i class="fa-solid fa-crown text-3xl text-amber-400 drop-shadow-[0_2px_12px_rgba(245,158,11,0.9)]"></i>
                         </div>
                     </div>
@@ -1455,10 +1478,10 @@
                 <span id="login-error-text" class="font-medium">Incorrect password. Please try again.</span>
             </div>
 
-            <!-- Role Switcher Tabs (Royal Indigo & Imperial Gold) -->
+            <!-- Role Switcher Tabs (Imperial Gold & Royal Emerald) -->
             <div class="flex items-center p-1 rounded-2xl bg-white/[0.06] border border-white/10 mb-5 font-bold text-xs">
                 <button type="button" id="btn-auth-tab-admin" onclick="switchLoginRole('admin')" 
-                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white shadow-[0_0_20px_rgba(99,102,241,0.55)] border border-indigo-400/30">
+                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.45)] border border-yellow-300/40">
                     <i class="fa-solid fa-user-shield"></i>
                     <span>In-Charge (Admin)</span>
                 </button>
@@ -1477,9 +1500,9 @@
                         Authorized Username
                     </label>
                     <div class="relative">
-                        <i class="fa-solid fa-user-shield absolute left-4 top-3.5 text-indigo-400 text-sm"></i>
+                        <i class="fa-solid fa-user-shield absolute left-4 top-3.5 text-amber-400 text-sm"></i>
                         <input type="text" id="login-username" value="admin"
-                               class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-medium">
+                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition font-medium">
                     </div>
                 </div>
 
@@ -1504,7 +1527,7 @@
                     <div class="relative">
                         <i class="fa-solid fa-lock-keyhole absolute left-4 top-3.5 text-slate-400 text-sm"></i>
                         <input type="password" id="login-password" placeholder="Enter portal password" required
-                               class="w-full pl-11 pr-11 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-mono">
+                               class="w-full pl-11 pr-11 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition font-mono">
                         <button type="button" onclick="togglePasswordVisibility()" class="absolute right-4 top-3.5 text-slate-400 hover:text-white transition cursor-pointer">
                             <i id="password-toggle-icon" class="fa-solid fa-eye text-sm"></i>
                         </button>
@@ -1516,15 +1539,15 @@
 
                 <div class="flex items-center justify-between pt-1">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-white/10 border-white/20 text-indigo-500 focus:ring-indigo-400">
+                        <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-white/10 border-white/20 text-amber-500 focus:ring-amber-400">
                         <span class="text-xs text-slate-400 font-medium">Remember on this device</span>
                     </label>
-                    <span id="auth-role-badge" class="text-xs text-indigo-400 font-mono font-bold">Role: In-Charge (Admin)</span>
+                    <span id="auth-role-badge" class="text-xs text-amber-400 font-mono font-bold">Role: In-Charge (Admin)</span>
                 </div>
 
                 <button type="submit" id="btn-login-submit"
-                        class="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:to-purple-500 text-white font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(99,102,241,0.6)] active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-indigo-400/30">
-                    <i class="fa-solid fa-right-to-bracket text-base"></i>
+                        class="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(245,158,11,0.65)] active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-yellow-300/40">
+                    <i class="fa-solid fa-crown text-base text-slate-950"></i>
                     <span id="btn-login-submit-text">Unlock Dashboard</span>
                 </button>
             </form>
@@ -1534,16 +1557,16 @@
                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Quick Access:</span>
                 <div class="flex items-center gap-2">
                     <button type="button" onclick="quickFillLogin('admin')" title="Auto-fill In-Charge Admin" 
-                            class="px-2.5 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-[11px] font-semibold text-sky-300 hover:text-white border border-sky-500/30 transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-bolt text-amber-400 text-xs"></i>
+                            class="px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-[11px] font-semibold text-amber-300 hover:text-white border border-amber-500/30 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-crown text-amber-400 text-xs"></i>
                         <span>Admin</span>
                     </button>
                     <button type="button" onclick="quickFillLogin('moderator')" title="Auto-fill Moderator View" 
-                            class="px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-[11px] font-semibold text-amber-300 hover:text-white border border-amber-500/30 transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-user-check text-amber-400 text-xs"></i>
+                            class="px-2.5 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-[11px] font-semibold text-emerald-300 hover:text-white border border-emerald-500/30 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-user-check text-emerald-400 text-xs"></i>
                         <span>Moderator</span>
                     </button>
-                </div>
+                </div>iv>
             </div>
 
             <div class="mt-4 text-center text-xs text-slate-500">
@@ -1587,7 +1610,7 @@
                 <div class="hidden md:flex items-center gap-3">
                     <div class="flex items-center p-1 rounded-2xl bg-slate-200/60 dark:bg-slate-800/80 border border-slate-300/40 dark:border-slate-700/60 shadow-inner">
                         <button onclick="switchView('daily')" id="btn-view-daily"
-                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.45)] border border-indigo-400/30 cursor-pointer">
+                                class="px-5 py-2 rounded-xl font-display font-black text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-[0_4px_25px_rgba(245,158,11,0.55)] border border-yellow-300/40 cursor-pointer">
                             <i class="fa-solid fa-calendar-day text-sm"></i>
                             <span>Daily Roster</span>
                         </button>
@@ -1605,7 +1628,7 @@
 
                     <button type="button" onclick="openCommandPalette()" title="Search & Quick Actions (Ctrl+K)"
                             class="px-3 py-2 rounded-xl bg-slate-200/60 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold text-xs border border-slate-300/40 dark:border-slate-700/60 transition flex items-center gap-2 shadow-xs cursor-pointer">
-                        <i class="fa-solid fa-magnifying-glass text-indigo-400"></i>
+                        <i class="fa-solid fa-magnifying-glass text-amber-400"></i>
                         <span class="text-[11px]">Command</span>
                         <kbd class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 font-mono text-[9px] text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 shadow-xs">Ctrl K</kbd>
                     </button>
@@ -1616,8 +1639,8 @@
                     
                     <!-- + Add Member Button (In-Charge Admin Only) -->
                     <button onclick="openAddModal()" id="btn-add-moderator"
-                            class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:to-purple-500 text-white font-display font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(99,102,241,0.55)] border border-indigo-400/30 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
-                        <i class="fa-solid fa-user-plus text-xs"></i>
+                            class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.55)] border border-emerald-400/40 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
+                        <i class="fa-solid fa-user-plus text-xs text-amber-300"></i>
                         <span class="hidden sm:inline">Add Moderator</span>
                     </button>
 
@@ -1633,7 +1656,7 @@
                     <div class="relative" id="wrapper-operations-hub">
                         <button onclick="toggleOperationsMenu()" id="btn-operations-hub"
                                 class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs inline-flex items-center justify-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
-                            <i class="fa-solid fa-sliders text-sky-400"></i>
+                            <i class="fa-solid fa-sliders text-amber-400"></i>
                             <span class="hidden sm:inline">Operations Hub</span>
                             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
                         </button>
@@ -1647,12 +1670,12 @@
                                 </span>
                                 <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold text-[10px]">PAD</span>
                             </button>
-                            <button onclick="openNightShiftModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
+                            <button onclick="openNightShiftModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
-                                    <i class="fa-solid fa-moon text-indigo-400"></i>
+                                    <i class="fa-solid fa-moon text-amber-400"></i>
                                     <span>Night Shifts Roster</span>
                                 </span>
-                                <span id="active-night-count" class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-mono font-bold text-[10px]">0</span>
+                                <span id="active-night-count" class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold text-[10px]">0</span>
                             </button>
                             <button onclick="openLeaveModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
@@ -1701,7 +1724,7 @@
                                 <span>Appointment Letters</span>
                             </button>
                             <button onclick="handlePrintReport(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
-                                <i class="fa-solid fa-print text-indigo-500"></i>
+                                <i class="fa-solid fa-print text-amber-500"></i>
                                 <span>Print A4 Roster</span>
                             </button>
                             <button onclick="exportToCSV(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
@@ -1739,9 +1762,9 @@
         <main id="main-content-canvas" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
             
             <!-- Moderator View-Only Status Banner -->
-            <div id="moderator-logged-in-banner" class="hidden glass-panel-elevated p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border border-purple-500/20 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-purple-500/10 shadow-lg no-print">
+            <div id="moderator-logged-in-banner" class="hidden glass-panel-elevated p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 via-amber-500/10 to-emerald-500/10 shadow-lg no-print">
                 <div class="flex items-center gap-3.5">
-                    <div id="mod-banner-avatar" class="w-11 h-11 rounded-2xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/25 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
+                    <div id="mod-banner-avatar" class="w-11 h-11 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
                         <i class="fa-solid fa-user-shield"></i>
                         <span id="mod-banner-sl" class="hidden">--</span>
                     </div>
@@ -1754,18 +1777,18 @@
                         </div>
                         <div class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 flex flex-wrap items-center gap-3">
                             <span id="mod-banner-weekend-info">Weekly Off: --</span>
-                            <span id="mod-banner-night-info" class="text-indigo-600 dark:text-indigo-400 font-bold">🌙 Night Duty: Checking...</span>
+                            <span id="mod-banner-night-info" class="text-purple-600 dark:text-purple-400 font-bold">🌙 Night Duty: Checking...</span>
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-2.5">
                     <button type="button" onclick="openNightShiftRequestModal()" 
-                            class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-95">
+                            class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-95">
                         <i class="fa-solid fa-calendar-xmark"></i>
                         <span>Request Shift Change</span>
                     </button>
                     <button type="button" onclick="openNightShiftModal()" 
-                            class="px-3 py-2 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center gap-1.5 transition">
+                            class="px-3 py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center gap-1.5 transition">
                         <i class="fa-solid fa-moon"></i>
                         <span>Night Roster</span>
                     </button>
@@ -1800,7 +1823,7 @@
                 <div class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
                     <div class="flex items-center gap-3">
                         <button onclick="navigateDay(-1)" title="Previous Day"
-                                class="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-50 hover:text-sky-600 dark:hover:bg-sky-950 flex items-center justify-center text-sm transition cursor-pointer">
+                                class="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-400 flex items-center justify-center text-sm transition cursor-pointer">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
                         <div class="flex flex-col justify-center">
@@ -1814,24 +1837,24 @@
                             </div>
                             <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1.5">
                                 <span>Duty Day:</span>
-                                <span id="daily-banner-day" class="text-sky-600 dark:text-sky-400 font-black">--</span>
+                                <span id="daily-banner-day" class="text-amber-600 dark:text-amber-400 font-black">--</span>
                             </div>
                         </div>
                         <button onclick="navigateDay(1)" title="Next Day"
-                                class="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-50 hover:text-sky-600 dark:hover:bg-sky-950 flex items-center justify-center text-sm transition cursor-pointer">
+                                class="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-400 flex items-center justify-center text-sm transition cursor-pointer">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
 
                     <div class="flex items-center gap-2 sm:gap-3">
                         <button onclick="jumpToToday()"
-                                class="px-4 py-2.5 rounded-2xl bg-indigo-500/10 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 hover:bg-indigo-500/20 font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition border border-indigo-500/30 cursor-pointer">
+                                class="px-4 py-2.5 rounded-2xl bg-amber-500/10 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 hover:bg-amber-500/20 font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition border border-amber-500/30 cursor-pointer">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             <span>Jump to Today</span>
                         </button>
                         <button onclick="bulkMarkAllPresent()" id="btn-bulk-mark-present"
-                                class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.5)] border border-emerald-400/30 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
-                            <i class="fa-solid fa-bolt text-xs"></i>
+                                class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.5)] border border-emerald-400/30 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
+                            <i class="fa-solid fa-bolt text-xs text-amber-300"></i>
                             <span>Mark All On-Duty Present</span>
                         </button>
                     </div>
@@ -1840,11 +1863,11 @@
                 <!-- Bento Metric Cards Grid (6 KPI Cards) -->
                 <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 no-print">
                     
-                    <!-- 1. Total Staff -->
-                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(99, 102, 241, 0.35);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-indigo-600 via-purple-500 to-indigo-500 shadow-sm"></div>
+                    <!-- 1. Total Staff (Imperial Gold) -->
+                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(245, 158, 11, 0.45);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500/25 to-yellow-500/25 text-amber-600 dark:text-amber-400 border border-amber-500/40 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-users"></i>
                             </div>
                             <span class="text-[11px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">Total Staff</span>
@@ -1853,56 +1876,56 @@
                             <div class="font-display font-black text-3xl sm:text-4xl text-slate-900 dark:text-white font-mono tracking-tight" id="count-total-mods">26</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
-                            <span class="text-[10px] sm:text-[11px] font-bold text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 leading-none">
+                            <span class="text-[10px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 leading-none">
                                 Verified Roster
                             </span>
                         </div>
                     </div>
 
-                    <!-- 2. Available Today -->
-                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(20, 184, 166, 0.32);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-500 via-emerald-400 to-cyan-400 shadow-sm"></div>
+                    <!-- 2. Available Today (Royal Emerald) -->
+                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(16, 185, 129, 0.4);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-emerald-600 via-teal-400 to-emerald-400 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-teal-500/20 to-emerald-500/20 text-teal-600 dark:text-teal-400 border border-teal-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500/25 to-teal-500/25 text-emerald-600 dark:text-emerald-400 border border-emerald-500/40 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-briefcase"></i>
                             </div>
-                            <span class="text-[11px] font-black text-teal-700 dark:text-teal-400 uppercase tracking-wider">On Duty</span>
+                            <span class="text-[11px] font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">On Duty</span>
                         </div>
                         <div class="flex items-baseline justify-center gap-1.5 my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-teal-600 dark:text-teal-400 font-mono tracking-tight" id="count-available-today">21</div>
-                            <span class="text-xs font-black text-teal-700 dark:text-teal-300 bg-teal-500/15 px-2 py-0.5 rounded-lg border border-teal-500/25" id="pct-available-today">81%</span>
+                            <div class="font-display font-black text-3xl sm:text-4xl text-emerald-600 dark:text-emerald-400 font-mono tracking-tight" id="count-available-today">21</div>
+                            <span class="text-xs font-black text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-lg border border-emerald-500/25" id="pct-available-today">81%</span>
                         </div>
                         <div class="w-full space-y-1.5">
-                            <div class="w-full bg-teal-500/20 h-1.5 rounded-full overflow-hidden">
-                                <div id="bar-available-today" class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: 81%;"></div>
+                            <div class="w-full bg-emerald-500/20 h-1.5 rounded-full overflow-hidden">
+                                <div id="bar-available-today" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-500" style="width: 81%;"></div>
                             </div>
                             <div class="w-full flex items-center justify-center">
-                                <span class="text-[10px] sm:text-[11px] font-bold text-teal-700 dark:text-teal-300 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 leading-none" id="sub-available-today">
+                                <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 leading-none" id="sub-available-today">
                                     21 of 26 Scheduled
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. Present Today -->
-                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(16, 185, 129, 0.38);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-emerald-500 via-green-400 to-teal-400 shadow-sm"></div>
+                    <!-- 3. Present Today (Jade Mint) -->
+                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(52, 211, 153, 0.45);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-400 via-emerald-300 to-green-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500/20 to-green-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-teal-500/25 to-emerald-500/25 text-teal-600 dark:text-teal-400 border border-teal-500/40 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-circle-check"></i>
                             </div>
-                            <span class="text-[11px] font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">Present</span>
+                            <span class="text-[11px] font-black text-teal-700 dark:text-teal-400 uppercase tracking-wider">Present</span>
                         </div>
                         <div class="flex items-baseline justify-center gap-1.5 my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-emerald-600 dark:text-emerald-400 font-mono tracking-tight" id="count-present">0</div>
-                            <span class="text-xs font-black text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-lg border border-emerald-500/25" id="pct-present">0%</span>
+                            <div class="font-display font-black text-3xl sm:text-4xl text-teal-600 dark:text-teal-400 font-mono tracking-tight" id="count-present">0</div>
+                            <span class="text-xs font-black text-teal-700 dark:text-teal-300 bg-teal-500/15 px-2 py-0.5 rounded-lg border border-teal-500/25" id="pct-present">0%</span>
                         </div>
                         <div class="w-full space-y-1.5">
-                            <div class="w-full bg-emerald-500/20 h-1.5 rounded-full overflow-hidden">
-                                <div id="bar-present" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
+                            <div class="w-full bg-teal-500/20 h-1.5 rounded-full overflow-hidden">
+                                <div id="bar-present" class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
                             </div>
                             <div class="w-full flex items-center justify-center">
-                                <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 leading-none flex items-center gap-1">
+                                <span class="text-[10px] sm:text-[11px] font-bold text-teal-700 dark:text-teal-300 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 leading-none flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span>Confirmed Duty</span>
                                 </span>
@@ -1910,11 +1933,11 @@
                         </div>
                     </div>
 
-                    <!-- 4. Weekly Off Today -->
-                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(245, 158, 11, 0.35);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-amber-500 via-yellow-400 to-orange-400 shadow-sm"></div>
+                    <!-- 4. Weekly Off Today (Champagne Gold) -->
+                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(234, 179, 8, 0.45);">
+                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-600 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500/20 to-yellow-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-yellow-500/25 to-amber-500/25 text-yellow-600 dark:text-yellow-400 border border-yellow-500/40 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-umbrella-beach"></i>
                             </div>
                             <span class="text-[11px] font-black text-amber-700 dark:text-amber-400 uppercase tracking-wider">Weekly Off</span>
@@ -1929,8 +1952,8 @@
                         </div>
                     </div>
 
-                    <!-- 5. Absent / Alerts -->
-                    <div id="card-bento-absent" onclick="handleAbsentCardClick()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(244, 63, 94, 0.38);">
+                    <!-- 5. Absent / Alerts (Crimson Ruby) -->
+                    <div id="card-bento-absent" onclick="handleAbsentCardClick()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(244, 63, 94, 0.45);">
                         <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-rose-600 via-pink-500 to-red-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
                             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-500/20 to-pink-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30 flex items-center justify-center text-xs shadow-xs">
@@ -1948,11 +1971,11 @@
                         </div>
                     </div>
 
-                    <!-- 6. Night Shift & Leaves -->
-                    <div onclick="openNightShiftModal()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(168, 85, 247, 0.35);">
+                    <!-- 6. Night Shift & Leaves (Royal Amethyst) -->
+                    <div onclick="openNightShiftModal()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(168, 85, 247, 0.4);">
                         <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-violet-600 via-purple-500 to-fuchsia-500 shadow-sm"></div>
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500/20 to-indigo-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500/20 to-fuchsia-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30 flex items-center justify-center text-xs shadow-xs">
                                 <i class="fa-solid fa-moon"></i>
                             </div>
                             <span class="text-[11px] font-black text-purple-700 dark:text-purple-400 uppercase tracking-wider">Night Duty</span>
@@ -1975,8 +1998,8 @@
                     <!-- 1-Click Fast Filter Chips Strip -->
                     <div class="flex items-center gap-2 overflow-x-auto pb-1 select-none">
                         <button onclick="filterByChip('ALL')" id="chip-filter-all"
-                                class="filter-chip active inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 transition">
-                            <i class="fa-solid fa-layer-group text-xs text-indigo-400"></i>
+                                class="filter-chip active inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/10 hover:text-amber-500 transition">
+                            <i class="fa-solid fa-layer-group text-xs text-amber-400"></i>
                             <span id="chip-filter-all-label">All (26)</span>
                         </button>
                         <button onclick="filterByChip('AVAILABLE_TODAY')" id="chip-filter-available"
@@ -2027,7 +2050,7 @@
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-xs"></i>
                             <input type="text" id="search-input" oninput="handleSearch(this.value)"
                                    placeholder="Search by name, phone, SL... (Press '/' to focus)"
-                                   class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                                   class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
                             <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-3.5 top-3 text-slate-400 hover:text-slate-600">
                                 <i class="fa-solid fa-xmark text-xs"></i>
                             </button>
@@ -2058,7 +2081,7 @@
                 <section class="glass-panel-elevated rounded-3xl overflow-hidden shadow-sm">
                     <div class="px-6 py-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-800/40 no-print">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-amber-500 to-emerald-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
                             <h3 class="font-display font-black text-slate-900 dark:text-white text-base sm:text-lg">
                                 Moderator Duty Roster
                             </h3>
@@ -2067,7 +2090,7 @@
                             </span>
                         </div>
                         <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            Auto-Ordered: <b class="text-indigo-600 dark:text-indigo-400">Sat ➔ Fri</b>
+                            Auto-Ordered: <b class="text-amber-600 dark:text-amber-400">Sat ➔ Fri</b>
                         </div>
                     </div>
 
@@ -2095,7 +2118,7 @@
                         <i class="fa-solid fa-user-slash text-4xl mb-3 text-slate-300 dark:text-slate-600"></i>
                         <p class="font-display font-bold text-base text-slate-700 dark:text-slate-300">No matching moderators found</p>
                         <p class="text-xs text-slate-400 mt-1">Try clearing your search query or filter chips.</p>
-                        <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold shadow-md">
+                        <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs shadow-md">
                             Clear Filters
                         </button>
                     </div>
@@ -2120,7 +2143,7 @@
                 <!-- Monthly Controls Bar -->
                 <section class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-base font-black">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-base font-black">
                             <i class="fa-solid fa-calendar-days"></i>
                         </div>
                         <div>
@@ -2136,14 +2159,14 @@
 
                     <div class="flex flex-wrap items-center gap-2.5">
                         <button onclick="jumpToCurrentMonth()"
-                                class="px-4 py-2.5 rounded-2xl bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 hover:bg-indigo-100 font-display font-bold text-xs sm:text-sm transition border border-indigo-200 dark:border-indigo-800">
+                                class="px-4 py-2.5 rounded-2xl bg-amber-500/10 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 hover:bg-amber-500/20 font-display font-bold text-xs sm:text-sm transition border border-amber-500/30">
                             Current Month
                         </button>
 
                         <button onclick="scrollToTodayColumn()" id="btn-jump-today-matrix"
-                                class="px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-display font-bold text-xs sm:text-sm inline-flex items-center gap-2 shadow-glow-brand transition active:scale-95 cursor-pointer">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            <i class="fa-solid fa-bullseye"></i>
+                                class="px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm inline-flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400/40 transition active:scale-95 cursor-pointer">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                            <i class="fa-solid fa-bullseye text-amber-300"></i>
                             <span>Today's Column</span>
                         </button>
                         
@@ -2154,7 +2177,7 @@
                                 <option value="ALL">All Moderators (26)</option>
                             </select>
                             <button id="btn-clear-monthly-mod-filter" onclick="clearMonthlyModFilter()" title="Show All"
-                                    class="hidden px-3 py-2.5 rounded-2xl bg-indigo-600 text-white font-bold text-xs shadow-sm transition">
+                                    class="hidden px-3 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs shadow-sm transition">
                                 <i class="fa-solid fa-users"></i> Show All
                             </button>
                         </div>
@@ -2171,7 +2194,7 @@
                 <section id="single-mod-monthly-card" class="hidden glass-panel-elevated p-6 rounded-3xl space-y-4 no-print">
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         <div class="flex items-center gap-4">
-                            <div id="single-mod-avatar" class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
+                            <div id="single-mod-avatar" class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
                                 <i class="fa-solid fa-user-shield"></i>
                             </div>
                             <div>
@@ -2185,7 +2208,7 @@
                                     <span>•</span>
                                     <span>Joined: <b id="single-mod-join" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
                                     <span>•</span>
-                                    <span class="text-indigo-600 font-bold">Service: <b id="single-mod-tenure" class="font-mono">--</b></span>
+                                    <span class="text-amber-600 dark:text-amber-400 font-bold">Service: <b id="single-mod-tenure" class="font-mono">--</b></span>
                                 </div>
                             </div>
                         </div>
@@ -2197,7 +2220,7 @@
                             <button id="single-mod-edit-btn" class="px-4 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center gap-2">
                                 <i class="fa-solid fa-pen text-xs"></i> Edit Details
                             </button>
-                            <button onclick="clearMonthlyModFilter()" class="px-4 py-2.5 rounded-2xl bg-indigo-600 text-white font-bold text-xs flex items-center gap-2">
+                            <button onclick="clearMonthlyModFilter()" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs flex items-center gap-2 shadow-md">
                                 <i class="fa-solid fa-users"></i> View All 26
                             </button>
                         </div>
@@ -2229,9 +2252,9 @@
                             <div class="text-[10px] font-bold uppercase text-rose-600">Absences</div>
                             <div id="single-mod-stat-absent" class="text-xl font-black font-mono text-rose-600 mt-0.5">0</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-center">
-                            <div class="text-[10px] font-bold uppercase text-indigo-600">Night Shifts</div>
-                            <div id="single-mod-stat-night" class="text-xl font-black font-mono text-indigo-600 mt-0.5">0</div>
+                        <div class="p-3 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-center">
+                            <div class="text-[10px] font-bold uppercase text-purple-600">Night Shifts</div>
+                            <div id="single-mod-stat-night" class="text-xl font-black font-mono text-purple-600 mt-0.5">0</div>
                         </div>
                         <div class="p-3 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-purple-600">Leaves</div>
@@ -2244,22 +2267,22 @@
                 <section class="glass-panel-elevated rounded-3xl overflow-hidden shadow-sm">
                     <div class="px-6 py-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-800/40 no-print">
                         <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-table-cells text-indigo-600 text-lg"></i>
+                            <i class="fa-solid fa-table-cells text-amber-500 text-lg"></i>
                             <h3 class="font-display font-black text-slate-900 dark:text-white text-base sm:text-lg">
                                 Attendance Matrix Sheet (<span id="monthly-sheet-label">August 2026</span>)
                             </h3>
-                            <span id="monthly-filter-badge" class="hidden px-2.5 py-0.5 rounded-full text-xs font-black bg-indigo-500/10 text-indigo-600 border border-indigo-500/20">
+                            <span id="monthly-filter-badge" class="hidden px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-500/15 text-amber-500 border border-amber-500/30">
                                 Single Member View
                             </span>
                         </div>
                         <div class="text-xs font-bold text-slate-500 dark:text-slate-300 hidden md:flex items-center gap-3 font-mono">
-                            <span><b class="text-emerald-600">P</b>=Present</span>
-                            <span><b class="text-amber-600">OFF</b>=Weekly Off</span>
-                            <span><b class="text-cyan-600">EX</b>=Exchange</span>
-                            <span><b class="text-teal-600">ED</b>=Extra Duty</span>
-                            <span><b class="text-rose-600">A</b>=Absent</span>
-                            <span><b class="text-indigo-600">N</b>=Night</span>
-                            <span><b class="text-purple-600">L</b>=Leave</span>
+                            <span><b class="text-emerald-500">P</b>=Present</span>
+                            <span><b class="text-amber-500">OFF</b>=Weekly Off</span>
+                            <span><b class="text-cyan-500">EX</b>=Exchange</span>
+                            <span><b class="text-teal-500">ED</b>=Extra Duty</span>
+                            <span><b class="text-rose-500">A</b>=Absent</span>
+                            <span><b class="text-purple-400">N</b>=Night</span>
+                            <span><b class="text-fuchsia-400">L</b>=Leave</span>
                         </div>
                     </div>
 
@@ -2276,7 +2299,7 @@
 
                     <div class="px-6 py-3.5 bg-slate-50/80 dark:bg-slate-800/50 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 font-semibold no-print">
                         <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-info text-indigo-500"></i>
+                            <i class="fa-solid fa-circle-info text-amber-400"></i>
                             <span id="monthly-matrix-tip-text"><b>Tip:</b> Click on any day cell to edit attendance. Click on any moderator's name to view isolated stats.</span>
                         </div>
                         <span id="monthly-footer-count" class="font-mono">Showing 26 of 26 Members</span>
@@ -2321,7 +2344,7 @@
                         <!-- Copy Letter Text -->
                         <button type="button" onclick="copyAppointmentText()" title="Copy letter text to clipboard"
                                 class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
-                            <i class="fa-solid fa-copy text-xs text-sky-400"></i>
+                            <i class="fa-solid fa-copy text-xs text-amber-400"></i>
                             <span>Copy Text</span>
                         </button>
 
@@ -2390,7 +2413,7 @@
                         <div class="glass-panel p-5 rounded-3xl space-y-4 shadow-md">
                             <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
                                 <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-pen-to-square text-sky-500"></i>
+                                    <i class="fa-solid fa-pen-to-square text-amber-500"></i>
                                     <span>Candidate & Letter Details</span>
                                 </span>
                                 <span class="text-[10px] text-slate-500 font-semibold">Editable</span>
@@ -2403,7 +2426,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-name" placeholder="e.g. Md Sharif Hossain"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
                                 </div>
 
                                 <div>
@@ -2412,7 +2435,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-salutation" placeholder="e.g. Sharif Hossain"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-3">
@@ -2422,7 +2445,7 @@
                                         </label>
                                         <input type="date" id="appointment-input-date"
                                                onchange="handleAppointmentInputUpdate()"
-                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
@@ -2430,7 +2453,7 @@
                                         </label>
                                         <input type="date" id="appointment-input-effective-date"
                                                onchange="handleAppointmentInputUpdate()"
-                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
                                     </div>
                                 </div>
 
@@ -2440,7 +2463,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-ref" placeholder="e.g. SBT/HR/2026/01"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
                                 </div>
 
                                 <div>
@@ -2449,7 +2472,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-subject" value="Appointment as Moderator"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
                                 </div>
                             </div>
                         </div>
@@ -2549,7 +2572,7 @@
                                 <span class="text-xs font-bold text-slate-600 dark:text-slate-400">Typography Font</span>
                                 <div class="flex items-center gap-1">
                                     <button type="button" onclick="setAppointmentFont('sans')" id="btn-font-sans"
-                                            class="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30">
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30">
                                         Sans-Serif
                                     </button>
                                     <button type="button" onclick="setAppointmentFont('serif')" id="btn-font-serif"
@@ -2722,7 +2745,7 @@
 
         <!-- Mobile Floating Bottom Dock -->
         <div id="mobile-bottom-dock" class="md:hidden fixed bottom-4 left-4 right-4 z-40 p-2 rounded-2xl glass-panel-elevated flex items-center justify-around shadow-2xl border border-white/20 no-print">
-            <button type="button" onclick="switchView('daily')" id="dock-btn-daily" class="flex flex-col items-center gap-1 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] cursor-pointer">
+            <button type="button" onclick="switchView('daily')" id="dock-btn-daily" class="flex flex-col items-center gap-1 text-amber-500 dark:text-amber-400 font-bold text-[10px] cursor-pointer">
                 <i class="fa-solid fa-calendar-day text-base"></i>
                 <span>Daily</span>
             </button>
@@ -2735,7 +2758,7 @@
                 <span>Letter</span>
             </button>
             <button type="button" onclick="openCommandPalette()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
-                <i class="fa-solid fa-magnifying-glass text-base text-indigo-500"></i>
+                <i class="fa-solid fa-magnifying-glass text-base text-amber-400"></i>
                 <span>Search</span>
             </button>
             <button type="button" onclick="toggleOperationsMenu()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
@@ -2774,7 +2797,7 @@
                     <div class="font-bold text-xs text-slate-900 dark:text-white" id="firebase-modal-status-text">
                         🟢 Connected to Realtime Database
                     </div>
-                    <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="firebase-last-sync-time" class="font-bold text-indigo-500">Just Now</span></span>
+                    <span class="font-mono text-[11px] text-slate-400">Last Sync: <span id="firebase-last-sync-time" class="font-bold text-emerald-500">Just Now</span></span>
                 </div>
                 <p id="firebase-modal-status-sub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     All moderators, daily attendance marks, leaves, and shifts are synced live to your Singapore Firebase database.
@@ -2817,7 +2840,7 @@
             
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg font-black">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg font-black">
                         <i class="fa-solid fa-user-pen"></i>
                     </div>
                     <div>
@@ -2837,12 +2860,12 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Full Name</label>
                         <input type="text" id="form-name" required placeholder="e.g. Sefat Karim"
-                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none focus:ring-2 focus:ring-indigo-500">
+                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Weekly Off Day</label>
                         <select id="form-weekend" onchange="updateFormCalculatedSl()"
-                                class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold outline-none focus:ring-2 focus:ring-indigo-500">
+                                class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold outline-none focus:ring-2 focus:ring-amber-500">
                             <option value="Saturday">Saturday Off</option>
                             <option value="Sunday">Sunday Off</option>
                             <option value="Monday">Monday Off</option>
@@ -2858,23 +2881,23 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phone (WhatsApp)</label>
                         <input type="tel" id="form-phone" required placeholder="01781597973"
-                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-indigo-500">
+                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Joining Date (DD-MM-YYYY)</label>
                         <input type="text" id="form-join" required oninput="updateFormTenurePreview()" placeholder="01-01-2026"
-                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-indigo-500">
+                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
                 </div>
 
                 <!-- Position & Tenure Preview Banner -->
-                <div class="p-3.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-700 dark:text-indigo-300 space-y-1">
+                <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300 space-y-1">
                     <div class="flex items-center justify-between font-bold">
                         <span id="form-sl-hint">Auto Position: SL #-- (Saturday Off)</span>
                         <input type="hidden" id="form-sl" value="1">
                     </div>
                     <div class="text-[11px] text-slate-500 dark:text-slate-400">
-                        Service Tenure: <b id="form-tenure-preview" class="font-mono text-indigo-600 dark:text-indigo-400">--</b>
+                        Service Tenure: <b id="form-tenure-preview" class="font-mono text-amber-600 dark:text-amber-400">--</b>
                     </div>
                 </div>
 
@@ -2882,7 +2905,7 @@
                     <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 font-bold text-xs">
                         Cancel
                     </button>
-                    <button type="submit" class="px-6 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-display font-bold text-xs shadow-glow-brand transition">
+                    <button type="submit" class="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-display font-black text-xs shadow-[0_0_20px_rgba(245,158,11,0.5)] border border-yellow-300/40 transition">
                         Save Moderator
                     </button>
                 </div>
@@ -2896,7 +2919,7 @@
             
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg font-black">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg font-black border border-amber-500/20">
                         <i class="fa-solid fa-moon"></i>
                     </div>
                     <div>
@@ -2912,7 +2935,7 @@
             <!-- Tab Switcher -->
             <div class="flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-xs">
                 <button type="button" onclick="switchNightShiftTab('active')" id="tab-btn-night-active"
-                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm text-[11px] sm:text-xs">
+                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-sm text-[11px] sm:text-xs">
                     <i class="fa-solid fa-calendar-check"></i>
                     <span>Active Duties (<span id="tab-night-active-count">0</span>)</span>
                 </button>
@@ -2955,7 +2978,7 @@
                         <div class="text-[11px] text-slate-500 font-semibold">
                             <span id="night-calc-desc">-- Night Duties</span>
                         </div>
-                        <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition active:scale-95 flex items-center gap-1.5">
+                        <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black text-xs shadow-[0_0_15px_rgba(245,158,11,0.35)] border border-yellow-300/30 transition active:scale-95 flex items-center gap-1.5">
                             <i class="fa-solid fa-plus"></i>
                             <span>Assign Night Shift</span>
                         </button>
@@ -2998,7 +3021,7 @@
                                class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold font-mono text-slate-900 dark:text-white shadow-sm outline-none">
                         <button type="button" id="btn-night-auto-assign" onclick="triggerAutoAssignCurrentMonth()" 
                                 title="Automatically calculate and assign 3 moderators per night continuously across the entire month based on weekly off schedules" 
-                                class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800 text-white text-xs font-bold shadow-md hover:shadow-indigo-500/25 flex items-center gap-1.5 transition active:scale-95">
+                                class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-fuchsia-700 text-white text-xs font-bold shadow-md flex items-center gap-1.5 transition active:scale-95">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                             <span>Auto Assign (3/Night)</span>
                         </button>
@@ -3017,7 +3040,7 @@
                             <span>WhatsApp All</span>
                         </button>
                         <button type="button" id="btn-print-night-report" onclick="printMonthlyNightReport()" 
-                                class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition active:scale-95">
+                                class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition active:scale-95">
                             <i class="fa-solid fa-print"></i>
                             <span>Print Report</span>
                         </button>
@@ -3256,7 +3279,7 @@
 
             <div class="space-y-2 text-xs">
                 <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800">
-                    <div><b>Moderator:</b> <span id="alert-mod-name" class="font-bold text-indigo-600">--</span></div>
+                    <div><b>Moderator:</b> <span id="alert-mod-name" class="font-bold text-amber-500 dark:text-amber-400">--</span></div>
                     <div><b>Duty Date:</b> <span id="alert-today-day" class="font-mono">--</span></div>
                     <div><b>Scheduled Off Day:</b> <span id="alert-mod-weekend" class="font-bold text-amber-600">--</span></div>
                 </div>
@@ -3360,7 +3383,7 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Currently Scheduled Night Shift</label>
                     <input type="text" id="req-assigned-schedule" readonly value="Checking scheduled nights..."
-                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 font-mono font-bold text-xs outline-none">
+                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-emerald-500 dark:text-emerald-400 font-mono font-bold text-xs outline-none">
                 </div>
 
                 <div>
@@ -3379,7 +3402,7 @@
                     <button type="button" onclick="closeNightShiftRequestModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white">
                         Cancel
                     </button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition active:scale-95 flex items-center gap-2">
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-xs shadow-md shadow-emerald-900/30 transition active:scale-95 flex items-center gap-2">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span>Submit Request to In-Charge</span>
                     </button>
@@ -3431,7 +3454,7 @@
                     <button type="button" onclick="handleResetPasswordDefault()" class="text-xs text-amber-600 hover:underline">
                         Reset to Default
                     </button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-display font-bold text-xs shadow-md">
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-display font-black text-xs shadow-[0_0_20px_rgba(245,158,11,0.45)] border border-yellow-300/40">
                         Update Password
                     </button>
                 </div>
@@ -3473,13 +3496,13 @@
                 <span>Absent</span>
             </button>
             <button type="button" onclick="applyStatusChangeFromPicker('Night Shift')" 
-                    class="flex items-center gap-2 p-2 rounded-xl bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20 hover:bg-indigo-500/20 transition">
-                <span class="w-5 h-5 rounded flex items-center justify-center bg-indigo-600 text-white text-[10px] font-black">N</span>
+                    class="flex items-center gap-2 p-2 rounded-xl bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-500/20 hover:bg-purple-500/20 transition">
+                <span class="w-5 h-5 rounded flex items-center justify-center bg-purple-600 text-white text-[10px] font-black">N</span>
                 <span>Night Shift</span>
             </button>
             <button type="button" onclick="applyStatusChangeFromPicker('Leave')" 
-                    class="flex items-center gap-2 p-2 rounded-xl bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-500/20 hover:bg-purple-500/20 transition">
-                <span class="w-5 h-5 rounded flex items-center justify-center bg-purple-600 text-white text-[10px] font-black">L</span>
+                    class="flex items-center gap-2 p-2 rounded-xl bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 transition">
+                <span class="w-5 h-5 rounded flex items-center justify-center bg-fuchsia-600 text-white text-[10px] font-black">L</span>
                 <span>Leave</span>
             </button>
             <button type="button" onclick="applyStatusChangeFromPicker('Outside Work')" 
@@ -3496,7 +3519,7 @@
             <div onclick="event.stopPropagation()" class="relative w-full max-w-xl rounded-3xl glass-panel-elevated shadow-2xl border border-white/20 overflow-hidden animate-modal-pop">
                 <!-- Search Box -->
                 <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70">
-                    <i class="fa-solid fa-magnifying-glass text-sky-400 text-sm"></i>
+                    <i class="fa-solid fa-magnifying-glass text-amber-400 text-sm"></i>
                     <input type="text" id="palette-search-input" oninput="handlePaletteInput(this.value)" onkeydown="handlePaletteKeydown(event)"
                            placeholder="Type a moderator name, phone, or command... (e.g. 'Sefat', 'Monthly', 'Mark')"
                            class="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-sm font-semibold outline-none">
@@ -3512,7 +3535,7 @@
                         <span>Navigate <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↓</kbd></span>
                         <span>• Select <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↵</kbd></span>
                     </div>
-                    <span class="font-bold text-sky-400">Sanvee's Spotlight Search</span>
+                    <span class="font-black text-amber-400">Sanvee's Spotlight Search</span>
                 </div>
             </div>
         </div>
@@ -3571,24 +3594,24 @@
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         const WEEKEND_BADGE_STYLES = {
-            'Saturday': 'bg-gradient-to-r from-emerald-500/20 to-teal-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-500/35 ring-1 ring-emerald-500/20 shadow-xs',
-            'Sunday': 'bg-gradient-to-r from-violet-500/20 to-purple-500/10 text-violet-800 dark:text-violet-300 border-violet-500/35 ring-1 ring-violet-500/20 shadow-xs',
-            'Monday': 'bg-gradient-to-r from-amber-500/20 to-yellow-500/10 text-amber-800 dark:text-amber-300 border-amber-500/35 ring-1 ring-amber-500/20 shadow-xs',
-            'Tuesday': 'bg-gradient-to-r from-fuchsia-500/20 to-pink-500/10 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-500/35 ring-1 ring-fuchsia-500/20 shadow-xs',
-            'Wednesday': 'bg-gradient-to-r from-indigo-500/20 to-blue-500/10 text-indigo-800 dark:text-indigo-300 border-indigo-500/35 ring-1 ring-indigo-500/20 shadow-xs',
-            'Thursday': 'bg-gradient-to-r from-sky-500/20 to-cyan-500/10 text-sky-800 dark:text-sky-300 border-sky-500/35 ring-1 ring-sky-500/20 shadow-xs',
-            'Friday': 'bg-gradient-to-r from-rose-500/20 to-pink-500/10 text-rose-800 dark:text-rose-300 border-rose-500/35 ring-1 ring-rose-500/20 shadow-xs'
+            'Saturday': 'bg-gradient-to-r from-emerald-500/25 to-teal-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/40 ring-1 ring-emerald-500/25 shadow-xs font-bold',
+            'Sunday': 'bg-gradient-to-r from-amber-500/25 to-yellow-500/15 text-amber-800 dark:text-amber-300 border-amber-500/40 ring-1 ring-amber-500/25 shadow-xs font-bold',
+            'Monday': 'bg-gradient-to-r from-teal-500/25 to-emerald-500/15 text-teal-800 dark:text-teal-300 border-teal-500/40 ring-1 ring-teal-500/25 shadow-xs font-bold',
+            'Tuesday': 'bg-gradient-to-r from-purple-500/25 to-fuchsia-500/15 text-purple-800 dark:text-purple-300 border-purple-500/40 ring-1 ring-purple-500/25 shadow-xs font-bold',
+            'Wednesday': 'bg-gradient-to-r from-yellow-500/25 to-amber-500/15 text-yellow-800 dark:text-yellow-300 border-yellow-500/40 ring-1 ring-yellow-500/25 shadow-xs font-bold',
+            'Thursday': 'bg-gradient-to-r from-emerald-600/25 to-teal-600/15 text-emerald-800 dark:text-emerald-300 border-emerald-600/40 ring-1 ring-emerald-600/25 shadow-xs font-bold',
+            'Friday': 'bg-gradient-to-r from-rose-500/25 to-red-500/15 text-rose-800 dark:text-rose-300 border-rose-500/40 ring-1 ring-rose-500/25 shadow-xs font-bold'
         };
 
         const AVATAR_PALETTES = [
-            { bg: 'from-indigo-600 via-indigo-500 to-violet-700', shadow: 'shadow-indigo-500/30' },
-            { bg: 'from-purple-600 via-fuchsia-600 to-pink-700', shadow: 'shadow-purple-500/30' },
-            { bg: 'from-emerald-600 via-teal-500 to-cyan-700', shadow: 'shadow-emerald-500/30' },
-            { bg: 'from-blue-600 via-indigo-500 to-violet-800', shadow: 'shadow-blue-500/30' },
-            { bg: 'from-amber-600 via-orange-500 to-rose-700', shadow: 'shadow-amber-500/30' },
-            { bg: 'from-rose-600 via-pink-600 to-purple-700', shadow: 'shadow-rose-500/30' },
-            { bg: 'from-cyan-600 via-sky-500 to-blue-700', shadow: 'shadow-cyan-500/30' },
-            { bg: 'from-violet-600 via-purple-600 to-indigo-800', shadow: 'shadow-violet-500/30' }
+            { bg: 'from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black', shadow: 'shadow-amber-500/40' },
+            { bg: 'from-emerald-700 via-teal-600 to-emerald-800 text-white font-black', shadow: 'shadow-emerald-500/40' },
+            { bg: 'from-yellow-500 via-amber-400 to-yellow-600 text-slate-950 font-black', shadow: 'shadow-yellow-500/40' },
+            { bg: 'from-teal-700 via-emerald-600 to-teal-800 text-white font-black', shadow: 'shadow-teal-500/40' },
+            { bg: 'from-purple-700 via-violet-600 to-purple-800 text-white font-black', shadow: 'shadow-purple-500/40' },
+            { bg: 'from-amber-600 via-yellow-500 to-amber-700 text-slate-950 font-black', shadow: 'shadow-amber-600/40' },
+            { bg: 'from-rose-700 via-pink-600 to-rose-800 text-white font-black', shadow: 'shadow-rose-500/40' },
+            { bg: 'from-emerald-800 via-teal-700 to-cyan-800 text-white font-black', shadow: 'shadow-emerald-600/40' }
         ];
 
         function getAvatarTheme(sl) {
@@ -4275,10 +4298,10 @@
             const dockMonthly = document.getElementById('dock-btn-monthly');
             const dockAppointment = document.getElementById('dock-btn-appointment');
 
-            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.45)] border border-indigo-400/30 cursor-pointer";
+            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-black text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-[0_4px_25px_rgba(245,158,11,0.55)] border border-yellow-300/40 cursor-pointer";
             const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition cursor-pointer";
 
-            const activeDockClass = "flex flex-col items-center gap-1 text-indigo-500 dark:text-indigo-400 font-bold text-[10px] cursor-pointer";
+            const activeDockClass = "flex flex-col items-center gap-1 text-amber-500 dark:text-amber-400 font-bold text-[10px] cursor-pointer";
             const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
 
             if (dailyBtn) dailyBtn.className = inactiveBtnClass;
@@ -4586,11 +4609,11 @@
 
             if (font === 'serif') {
                 if (sheet) sheet.classList.add('font-serif');
-                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30";
                 if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
             } else {
                 if (sheet) sheet.classList.remove('font-serif');
-                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30";
                 if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
             }
         }
@@ -4968,7 +4991,7 @@ Date: _________________`;
             const footerEl = document.getElementById("footer-count-text");
             if (filtered.length !== moderators.length) {
                 const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? '⚡ On Duty Today' : (filterStatus !== 'ALL' ? filterStatus : 'Filtered');
-                footerEl.innerHTML = `Showing: <b class="text-indigo-600 font-mono">${filtered.length}</b> of <b class="font-mono">${moderators.length}</b> Total Moderators (${filterLabel})`;
+                footerEl.innerHTML = `Showing: <b class="text-amber-500 font-mono">${filtered.length}</b> of <b class="font-mono">${moderators.length}</b> Total Moderators (${filterLabel})`;
             } else {
                 footerEl.innerHTML = `Total Active Moderators: <b class="font-mono">${moderators.length}</b> Members`;
             }
@@ -4985,7 +5008,7 @@ Date: _________________`;
                 const weekendBadgeClass = WEEKEND_BADGE_STYLES[mod.weekend] || 'bg-slate-100 text-slate-800';
                 const isMe = (currentUserRole === 'moderator' && mod.sl === currentLoggedInModSl);
 
-                tr.className = `hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20 transition duration-150 ${isMe ? 'row-highlight-me' : (isUnexcusedAbsent ? 'row-highlight-absent' : '')}`;
+                tr.className = `hover:bg-amber-500/[0.04] dark:hover:bg-amber-400/[0.05] transition duration-150 ${isMe ? 'row-highlight-me' : (isUnexcusedAbsent ? 'row-highlight-absent' : '')}`;
 
                 tr.innerHTML = `
                     <td class="col-daily-sl py-3.5 px-4 text-center font-mono font-bold text-slate-500 dark:text-slate-400 text-xs sm:text-sm align-middle">
@@ -4996,12 +5019,12 @@ Date: _________________`;
                         <div class="flex flex-col justify-center">
                             <div class="flex items-center gap-2">
                                 <button type="button" onclick="viewModeratorMonthly(${mod.sl})" 
-                                        class="text-left font-display font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm sm:text-base flex items-center gap-1.5 group/name cursor-pointer">
-                                    <span class="group-hover/name:underline decoration-indigo-500 underline-offset-2 font-bold tracking-tight">${mod.name}</span>
+                                        class="text-left font-display font-bold text-slate-900 dark:text-white hover:text-amber-500 dark:hover:text-amber-400 transition text-sm sm:text-base flex items-center gap-1.5 group/name cursor-pointer">
+                                    <span class="group-hover/name:underline decoration-amber-500 underline-offset-2 font-bold tracking-tight">${mod.name}</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 opacity-0 group-hover/name:opacity-100 transition-opacity no-print"></i>
                                 </button>
                                 ${isMe ? `
-                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-600 text-white shadow-xs">
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-xs">
                                         You
                                     </span>
                                 ` : ''}
@@ -5039,7 +5062,7 @@ Date: _________________`;
                             <div class="font-mono text-slate-700 dark:text-slate-300 font-semibold text-xs">
                                 ${mod.join}
                             </div>
-                            <div class="inline-flex items-center justify-center gap-1 text-[10px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-md border border-indigo-500/20 mt-1 font-mono">
+                            <div class="inline-flex items-center justify-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-md border border-amber-500/20 mt-1 font-mono">
                                 <i class="fa-solid fa-business-time text-[9px]"></i>
                                 <span>${calculateTenure(mod.join, currentActiveDate)}</span>
                             </div>
@@ -5062,7 +5085,7 @@ Date: _________________`;
                                 ${currentStatus === 'Extra Duty' ? '<i class="fa-solid fa-bolt-lightning mr-1 text-teal-500"></i>Extra Duty' : ''}
                                 ${currentStatus === 'Weekend Exchange' ? '<i class="fa-solid fa-shuffle mr-1 text-cyan-500"></i>Weekend Exchange' : ''}
                                 ${currentStatus === 'Absent' ? '<i class="fa-solid fa-circle-xmark mr-1 text-rose-500"></i>Absent' : ''}
-                                ${currentStatus === 'Night Shift' ? '<i class="fa-solid fa-moon mr-1 text-indigo-500"></i>Night Shift' : ''}
+                                ${currentStatus === 'Night Shift' ? '<i class="fa-solid fa-moon mr-1 text-amber-400"></i>Night Shift' : ''}
                                 ${currentStatus === 'Leave' ? '<i class="fa-solid fa-plane-departure mr-1 text-purple-500"></i>Leave' : ''}
                                 ${currentStatus === 'Outside Work' ? '<i class="fa-solid fa-briefcase mr-1 text-slate-500"></i>Outside Duty' : ''}
                             </div>
@@ -5102,7 +5125,7 @@ Date: _________________`;
                                 <button onclick="generateAppointmentForModerator('${mod.name.replace(/'/g, "\\'")}')" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-file-signature text-xs"></i>
                                 </button>
-                                <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
+                                <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-pen text-xs"></i>
                                 </button>
                                 <button onclick="deleteModerator(${mod._originalIndex})" title="Delete" class="w-8 h-8 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-600 flex items-center justify-center transition cursor-pointer">
@@ -5342,7 +5365,7 @@ Date: _________________`;
                         <th class="col-m-day py-1.5 px-0.5 text-center align-middle font-mono border-l border-slate-200 dark:border-slate-700 ${dayInfo.isToday ? 'matrix-today-header' : ''}" data-day="${d}">
                             <div class="text-xs font-black text-slate-900 dark:text-white leading-none">${d}</div>
                             <div class="text-[9px] font-bold text-slate-400 dark:text-slate-300 mt-0.5 leading-none">${dayInfo.dayNameShort}</div>
-                            ${dayInfo.isToday ? '<div class="text-[7.5px] font-black uppercase tracking-tighter text-indigo-600 dark:text-indigo-300 mt-0.5 flex items-center justify-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping inline-block"></span>Today</div>' : ''}
+                            ${dayInfo.isToday ? '<div class="text-[7.5px] font-black uppercase tracking-tighter text-amber-500 dark:text-amber-300 mt-0.5 flex items-center justify-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping inline-block"></span>Today</div>' : ''}
                         </th>
                     `;
                 }
@@ -5353,8 +5376,8 @@ Date: _________________`;
                         <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-cyan-500/10 text-cyan-600 font-mono font-bold" title="Weekend Exchange">EX</th>
                         <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-teal-500/10 text-teal-600 font-mono font-bold" title="Extra Duty">ED</th>
                         <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-rose-500/10 text-rose-600 font-mono font-bold" title="Absent">A</th>
-                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-indigo-500/10 text-indigo-600 font-mono font-bold" title="Night Shift">N</th>
-                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Leave">L</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-purple-500/10 text-purple-600 font-mono font-bold" title="Night Shift">N</th>
+                        <th class="col-m-stat py-2.5 px-1 text-center align-middle bg-fuchsia-500/10 text-fuchsia-600 font-mono font-bold" title="Leave">L</th>
                     </tr>
                 `;
                 thead.innerHTML = headerHtml;
@@ -5381,8 +5404,8 @@ Date: _________________`;
                         </td>
                         <td class="col-m-name py-1.5 px-2 align-middle font-display font-bold text-slate-900 dark:text-white whitespace-nowrap">
                             <button type="button" onclick="focusModeratorMonthly(${mod.sl})" 
-                                    class="no-print text-left font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition flex items-center justify-between group/mname cursor-pointer w-full" title="Filter to ${mod.name}">
-                                <span class="group-hover/mname:underline decoration-indigo-500 truncate max-w-[125px] sm:max-w-[145px] inline-block font-semibold">${mod.name}</span>
+                                    class="no-print text-left font-bold hover:text-amber-500 dark:hover:text-amber-400 transition flex items-center justify-between group/mname cursor-pointer w-full" title="Filter to ${mod.name}">
+                                <span class="group-hover/mname:underline decoration-amber-500 truncate max-w-[125px] sm:max-w-[145px] inline-block font-semibold">${mod.name}</span>
                                 <i class="fa-solid fa-filter text-[9px] text-slate-400 opacity-0 group-hover/mname:opacity-80 transition-opacity"></i>
                             </button>
                             <span class="print-only font-bold text-slate-900" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
@@ -5437,7 +5460,7 @@ Date: _________________`;
                         rowHtml += `
                             <td class="col-m-day py-1 px-0.5 text-center align-middle border-l border-slate-100 dark:border-slate-800${todayClass}" data-day="${d}">
                                 <button type="button" onclick="openStatusPicker(event, '${mod.name.replace(/'/g, "\\'")}', '${dayInfo.dateStr}', '${status}')" 
-                                        class="w-full h-full flex items-center justify-center rounded-lg hover:ring-2 hover:ring-indigo-500 cursor-pointer">
+                                        class="w-full h-full flex items-center justify-center rounded-lg hover:ring-2 hover:ring-amber-500 cursor-pointer">
                                     ${badge}
                                 </button>
                             </td>
@@ -5451,8 +5474,8 @@ Date: _________________`;
                         <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-cyan-600 bg-cyan-500/5">${modExchange}</td>
                         <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-teal-600 bg-teal-500/5">${modExtraDuty}</td>
                         <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-rose-600 bg-rose-500/5">${modAbsent}</td>
-                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-indigo-600 bg-indigo-500/5">${modNight}</td>
-                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modLeave}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-purple-600 bg-purple-500/5">${modNight}</td>
+                        <td class="col-m-stat py-1.5 px-1 text-center align-middle font-mono font-bold text-fuchsia-600 bg-fuchsia-500/5">${modLeave}</td>
                     </tr>
                 `;
 
@@ -5563,9 +5586,9 @@ Date: _________________`;
             const todayHeader = document.querySelector('.matrix-today-header');
             if (todayHeader) {
                 todayHeader.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                todayHeader.classList.add('ring-4', 'ring-indigo-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
+                todayHeader.classList.add('ring-4', 'ring-amber-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
                 setTimeout(() => {
-                    todayHeader.classList.remove('ring-4', 'ring-indigo-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
+                    todayHeader.classList.remove('ring-4', 'ring-amber-500', 'ring-offset-2', 'dark:ring-offset-slate-900');
                 }, 1800);
                 showToast("🎯 Focused on Today's Column", "info");
             } else {
@@ -5696,7 +5719,7 @@ Date: _________________`;
             const tabRequests = document.getElementById('night-tab-requests');
 
             const inactiveClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs";
-            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm text-[11px] sm:text-xs font-bold";
+            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-sm text-[11px] sm:text-xs font-black";
 
             if (btnActive) btnActive.className = inactiveClass;
             if (btnMonthly) btnMonthly.className = inactiveClass;
@@ -5913,7 +5936,7 @@ Date: _________________`;
                         <div class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                             <span>${rec.modName}</span>
                             ${isMe ? '<span class="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold">You</span>' : ''}
-                            <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
+                            <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
                         </div>
                         <div class="font-mono text-slate-400 text-[11px] mt-0.5">📅 ${rec.startDate} ➔ ${rec.endDate}</div>
                     </div>
@@ -6247,7 +6270,7 @@ Date: _________________`;
                             <div class="max-w-sm mx-auto space-y-2">
                                 <i class="fa-solid fa-moon text-2xl text-slate-300 dark:text-slate-600 block"></i>
                                 <p>No night shift duties scheduled for <strong class="text-slate-700 dark:text-slate-300 font-mono">${selectedMonth}</strong>.</p>
-                                <button type="button" onclick="triggerAutoAssignCurrentMonth()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition inline-flex items-center gap-2">
+                                <button type="button" onclick="triggerAutoAssignCurrentMonth()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-fuchsia-700 text-white font-bold text-xs shadow-md transition inline-flex items-center gap-2">
                                     <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                                     <span>Auto Assign Month Roster</span>
                                 </button>
@@ -6284,7 +6307,7 @@ Date: _________________`;
                             ${item.mod.weekend}
                         </span>
                     </td>
-                    <td class="p-2.5 text-center font-mono font-black text-indigo-600 dark:text-indigo-400 text-sm">
+                    <td class="p-2.5 text-center font-mono font-black text-amber-500 dark:text-amber-400 text-sm">
                         ${item.totalNights}
                     </td>
                     <td class="p-2.5 font-mono text-[11px] text-slate-600 dark:text-slate-300">
@@ -6577,7 +6600,7 @@ Date: _________________`;
                 listEl.innerHTML = `
                     <div class="p-6 text-center text-xs text-slate-400 space-y-2">
                         <p>No night duties scheduled for ${monthName} ${yearStr}.</p>
-                        <button type="button" onclick="closeNightShiftWhatsAppBatchModal(); triggerAutoAssignCurrentMonth();" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs">
+                        <button type="button" onclick="closeNightShiftWhatsAppBatchModal(); triggerAutoAssignCurrentMonth();" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
                             Auto Assign Now
                         </button>
                     </div>
@@ -6589,11 +6612,11 @@ Date: _________________`;
                     div.className = "flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs shadow-xs";
                     div.innerHTML = `
                         <div class="flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-mono font-bold flex items-center justify-center text-xs">${slStr}</span>
+                            <span class="w-7 h-7 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold flex items-center justify-center text-xs">${slStr}</span>
                             <div>
                                 <div class="font-bold text-slate-900 dark:text-white text-sm">${item.mod.name}</div>
                                 <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
+                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-amber-500 dark:text-amber-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
                                 </div>
                             </div>
                         </div>
@@ -7538,7 +7561,7 @@ Date: _________________`;
             if (errorBanner) errorBanner.classList.add('hidden');
 
             if (role === 'admin') {
-                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 text-white shadow-[0_0_20px_rgba(2,132,199,0.5)]";
+                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.5)] border border-yellow-300/40";
                 if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
                 if (adminFields) adminFields.classList.remove('hidden');
                 if (modFields) modFields.classList.add('hidden');
@@ -7546,11 +7569,11 @@ Date: _________________`;
                 if (modHint) modHint.classList.add('hidden');
                 if (roleBadge) {
                     roleBadge.innerText = "Role: In-Charge (Admin)";
-                    roleBadge.className = "text-xs text-sky-400 font-mono font-bold";
+                    roleBadge.className = "text-xs text-amber-400 font-mono font-bold";
                 }
                 if (submitText) submitText.innerText = "Unlock Dashboard";
             } else {
-                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.4)]";
+                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700 text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400/40";
                 if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
                 if (adminFields) adminFields.classList.add('hidden');
                 if (modFields) modFields.classList.remove('hidden');
@@ -7558,7 +7581,7 @@ Date: _________________`;
                 if (modHint) modHint.classList.remove('hidden');
                 if (roleBadge) {
                     roleBadge.innerText = "Role: Moderator (View-Only)";
-                    roleBadge.className = "text-xs text-amber-400 font-mono font-bold";
+                    roleBadge.className = "text-xs text-emerald-400 font-mono font-bold";
                 }
                 if (submitText) submitText.innerText = "Open Moderator Portal";
                 populateLoginModeratorSelect();
@@ -7675,7 +7698,7 @@ Date: _________________`;
                         const nightInfoEl = document.getElementById('mod-banner-night-info');
                         if (nightInfoEl) {
                             if (myDutyDays.length > 0) {
-                                nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
+                                nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-amber-500 dark:text-amber-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
                             } else {
                                 nightInfoEl.innerHTML = `🌙 No night duty scheduled this month`;
                             }
@@ -7720,7 +7743,7 @@ Date: _________________`;
                 // Update Header Role Badge
                 if (headerRoleBadge) {
                     headerRoleBadge.innerText = 'In-Charge';
-                    headerRoleBadge.className = 'px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-extrabold text-[11px] border border-indigo-500/20 leading-none';
+                    headerRoleBadge.className = 'px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 font-extrabold text-[11px] border border-emerald-500/20 leading-none';
                 }
 
                 // Hide Moderator Banner
@@ -7759,7 +7782,7 @@ Date: _________________`;
             const icon = document.getElementById('password-toggle-icon');
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
-                icon.className = 'fa-solid fa-eye-slash text-sm text-indigo-400';
+                icon.className = 'fa-solid fa-eye-slash text-sm text-amber-400';
             } else {
                 pwdInput.type = 'password';
                 icon.className = 'fa-solid fa-eye text-sm text-slate-400';
@@ -7797,7 +7820,7 @@ Date: _________________`;
                         if (activeView === 'monthly') renderMonthlyTable();
                         showToast("Welcome! Access Granted to In-Charge Portal", "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Unlock Dashboard</span>`;
-                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 hover:from-indigo-500 hover:to-violet-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
+                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(245,158,11,0.65)] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-yellow-300/40";
                     }, 350);
                 } else {
                     errorBanner.classList.remove('hidden');
@@ -7842,7 +7865,7 @@ Date: _________________`;
                         if (activeView === 'monthly') renderMonthlyTable();
                         showToast(`👋 Welcome ${mod.name}! (View-Only Portal)`, "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Open Moderator Portal</span>`;
-                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-display font-black text-sm tracking-wide shadow-glow-brand transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer";
+                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(16,185,129,0.55)] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-emerald-400/40";
                     }, 350);
                 } else {
                     errorBanner.classList.remove('hidden');
@@ -8014,7 +8037,7 @@ Date: _________________`;
             toast.className = 'pointer-events-auto relative overflow-hidden flex items-center gap-3 px-4 py-3 rounded-2xl glass-panel-elevated shadow-2xl text-xs font-bold border border-white/20 transform transition-all duration-300 animate-modal-pop';
             
             let icon = '<i class="fa-solid fa-circle-check text-emerald-500 text-sm"></i>';
-            if (type === 'info') icon = '<i class="fa-solid fa-circle-info text-indigo-500 text-sm"></i>';
+            if (type === 'info') icon = '<i class="fa-solid fa-circle-info text-amber-400 text-sm"></i>';
             else if (type === 'warning') icon = '<i class="fa-solid fa-triangle-exclamation text-amber-500 text-sm"></i>';
             else if (type === 'error') icon = '<i class="fa-solid fa-circle-xmark text-rose-500 text-sm"></i>';
 
@@ -8024,7 +8047,7 @@ Date: _________________`;
                 <button type="button" onclick="this.parentElement.remove()" class="ml-auto text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
                     <i class="fa-solid fa-xmark text-xs"></i>
                 </button>
-                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 toast-progress-bar"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-emerald-500 toast-progress-bar"></div>
             `;
             container.appendChild(toast);
             setTimeout(() => {
@@ -8160,14 +8183,14 @@ Date: _________________`;
             const q = (query || '').trim().toLowerCase();
 
             const actionCommands = [
-                { id: 'act-daily', title: 'Daily Roster View', subtitle: 'View and mark daily attendance roster', icon: 'fa-calendar-day', color: 'text-indigo-500', action: () => { switchView('daily'); closeCommandPalette(); } },
+                { id: 'act-daily', title: 'Daily Roster View', subtitle: 'View and mark daily attendance roster', icon: 'fa-calendar-day', color: 'text-amber-500', action: () => { switchView('daily'); closeCommandPalette(); } },
                 { id: 'act-monthly', title: 'Monthly Matrix Sheet', subtitle: 'View full monthly 30/31-day matrix sheet', icon: 'fa-table-cells', color: 'text-purple-500', action: () => { switchView('monthly'); closeCommandPalette(); } },
                 { id: 'act-appointment', title: 'Appointment Letter Generator', subtitle: 'Create & print appointment letter on official company pad', icon: 'fa-file-signature', color: 'text-amber-500', action: () => { switchView('appointment'); closeCommandPalette(); } },
                 { id: 'act-today', title: 'Jump to Today', subtitle: 'Set active date to current calendar day', icon: 'fa-clock-rotate-left', color: 'text-cyan-500', action: () => { jumpToToday(); closeCommandPalette(); } },
                 { id: 'act-bulk-present', title: 'Mark All On-Duty Present', subtitle: 'One-click bulk mark for all scheduled moderators', icon: 'fa-bolt', color: 'text-emerald-500', action: () => { bulkMarkAllPresent(); closeCommandPalette(); } },
-                { id: 'act-add', title: 'Add New Moderator', subtitle: 'Register moderator profile into serialized roster', icon: 'fa-user-plus', color: 'text-indigo-500', action: () => { openAddModal(); closeCommandPalette(); } },
-                { id: 'act-night', title: 'Night Shifts Roster', subtitle: 'Manage night duty schedules and rotation', icon: 'fa-moon', color: 'text-indigo-500', action: () => { openNightShiftModal(); closeCommandPalette(); } },
-                { id: 'act-leaves', title: 'Approved Leaves', subtitle: 'Schedule official staff leaves and exemptions', icon: 'fa-calendar-check', color: 'text-purple-500', action: () => { openLeaveModal(); closeCommandPalette(); } },
+                { id: 'act-add', title: 'Add New Moderator', subtitle: 'Register moderator profile into serialized roster', icon: 'fa-user-plus', color: 'text-emerald-500', action: () => { openAddModal(); closeCommandPalette(); } },
+                { id: 'act-night', title: 'Night Shifts Roster', subtitle: 'Manage night duty schedules and rotation', icon: 'fa-moon', color: 'text-purple-500', action: () => { openNightShiftModal(); closeCommandPalette(); } },
+                { id: 'act-leaves', title: 'Approved Leaves', subtitle: 'Schedule official staff leaves and exemptions', icon: 'fa-calendar-check', color: 'text-fuchsia-500', action: () => { openLeaveModal(); closeCommandPalette(); } },
                 { id: 'act-exchange', title: 'Weekend Exchanges', subtitle: 'Record and schedule mutual weekend swaps', icon: 'fa-repeat', color: 'text-cyan-500', action: () => { openExchangeModal(); closeCommandPalette(); } },
                 { id: 'act-absent', title: 'Absent Alerts & WhatsApp', subtitle: 'Send absent notices to moderators on WhatsApp', icon: 'fa-user-xmark', color: 'text-rose-500', action: () => { openUnexcusedModal(); closeCommandPalette(); } },
                 { id: 'act-firebase', title: 'Firebase Cloud Database Settings', subtitle: 'Check cloud sync status or configure database URL', icon: 'fa-fire', color: 'text-amber-500', action: () => { openFirebaseModal(); closeCommandPalette(); } },
@@ -8189,7 +8212,7 @@ Date: _________________`;
                 title: `${String(m.sl).padStart(2, '0')} - ${m.name}`,
                 subtitle: `${m.weekend} Off • ${m.phone} • Joined ${m.join}`,
                 icon: 'fa-user',
-                color: 'text-indigo-600 dark:text-indigo-400',
+                color: 'text-amber-500 dark:text-amber-400',
                 action: () => {
                     viewModeratorMonthly(m.sl);
                     closeCommandPalette();
@@ -8214,14 +8237,14 @@ Date: _________________`;
                 const isSelected = idx === paletteSelectedIndex;
                 html += `
                     <div onclick="executePaletteItem(${idx})" 
-                         class="flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition ${isSelected ? 'bg-indigo-600 text-white shadow-md' : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200'}">
+                         class="flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition ${isSelected ? 'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-md' : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200'}">
                         <div class="flex items-center gap-3 min-w-0">
-                            <div class="w-8 h-8 rounded-lg flex items-center justify-center ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200/70 dark:bg-slate-700/70 ' + item.color} flex-shrink-0">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center ${isSelected ? 'bg-slate-950/20 text-slate-950 font-black' : 'bg-slate-200/70 dark:bg-slate-700/70 ' + item.color} flex-shrink-0">
                                 <i class="fa-solid ${item.icon} text-xs"></i>
                             </div>
                             <div class="min-w-0">
-                                <div class="font-bold text-xs truncate ${isSelected ? 'text-white' : 'text-slate-900 dark:text-white'}">${item.title}</div>
-                                <div class="text-[10px] truncate ${isSelected ? 'text-indigo-100' : 'text-slate-400'}">${item.subtitle}</div>
+                                <div class="font-bold text-xs truncate ${isSelected ? 'text-slate-950' : 'text-slate-900 dark:text-white'}">${item.title}</div>
+                                <div class="text-[10px] truncate ${isSelected ? 'text-slate-900/80 font-bold' : 'text-slate-400'}">${item.subtitle}</div>
                             </div>
                         </div>
                         <i class="fa-solid fa-chevron-right text-[10px] ${isSelected ? 'text-white' : 'text-slate-300 dark:text-slate-600'}"></i>

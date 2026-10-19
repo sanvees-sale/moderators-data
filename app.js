@@ -1063,11 +1063,11 @@
 
             if (font === 'serif') {
                 if (sheet) sheet.classList.add('font-serif');
-                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30";
                 if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
             } else {
                 if (sheet) sheet.classList.remove('font-serif');
-                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-500 border border-sky-500/30";
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30";
                 if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
             }
         }
@@ -1445,7 +1445,7 @@ Date: _________________`;
             const footerEl = document.getElementById("footer-count-text");
             if (filtered.length !== moderators.length) {
                 const filterLabel = filterStatus === 'AVAILABLE_TODAY' ? '⚡ On Duty Today' : (filterStatus !== 'ALL' ? filterStatus : 'Filtered');
-                footerEl.innerHTML = `Showing: <b class="text-indigo-600 font-mono">${filtered.length}</b> of <b class="font-mono">${moderators.length}</b> Total Moderators (${filterLabel})`;
+                footerEl.innerHTML = `Showing: <b class="text-amber-500 font-mono">${filtered.length}</b> of <b class="font-mono">${moderators.length}</b> Total Moderators (${filterLabel})`;
             } else {
                 footerEl.innerHTML = `Total Active Moderators: <b class="font-mono">${moderators.length}</b> Members`;
             }
@@ -1462,7 +1462,7 @@ Date: _________________`;
                 const weekendBadgeClass = WEEKEND_BADGE_STYLES[mod.weekend] || 'bg-slate-100 text-slate-800';
                 const isMe = (currentUserRole === 'moderator' && mod.sl === currentLoggedInModSl);
 
-                tr.className = `hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20 transition duration-150 ${isMe ? 'row-highlight-me' : (isUnexcusedAbsent ? 'row-highlight-absent' : '')}`;
+                tr.className = `hover:bg-amber-500/[0.04] dark:hover:bg-amber-400/[0.05] transition duration-150 ${isMe ? 'row-highlight-me' : (isUnexcusedAbsent ? 'row-highlight-absent' : '')}`;
 
                 tr.innerHTML = `
                     <td class="col-daily-sl py-3.5 px-4 text-center font-mono font-bold text-slate-500 dark:text-slate-400 text-xs sm:text-sm align-middle">
@@ -1473,12 +1473,12 @@ Date: _________________`;
                         <div class="flex flex-col justify-center">
                             <div class="flex items-center gap-2">
                                 <button type="button" onclick="viewModeratorMonthly(${mod.sl})" 
-                                        class="text-left font-display font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm sm:text-base flex items-center gap-1.5 group/name cursor-pointer">
-                                    <span class="group-hover/name:underline decoration-indigo-500 underline-offset-2 font-bold tracking-tight">${mod.name}</span>
+                                        class="text-left font-display font-bold text-slate-900 dark:text-white hover:text-amber-500 dark:hover:text-amber-400 transition text-sm sm:text-base flex items-center gap-1.5 group/name cursor-pointer">
+                                    <span class="group-hover/name:underline decoration-amber-500 underline-offset-2 font-bold tracking-tight">${mod.name}</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 opacity-0 group-hover/name:opacity-100 transition-opacity no-print"></i>
                                 </button>
                                 ${isMe ? `
-                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-600 text-white shadow-xs">
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-xs">
                                         You
                                     </span>
                                 ` : ''}
@@ -1516,7 +1516,7 @@ Date: _________________`;
                             <div class="font-mono text-slate-700 dark:text-slate-300 font-semibold text-xs">
                                 ${mod.join}
                             </div>
-                            <div class="inline-flex items-center justify-center gap-1 text-[10px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-md border border-indigo-500/20 mt-1 font-mono">
+                            <div class="inline-flex items-center justify-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-md border border-amber-500/20 mt-1 font-mono">
                                 <i class="fa-solid fa-business-time text-[9px]"></i>
                                 <span>${calculateTenure(mod.join, currentActiveDate)}</span>
                             </div>
@@ -1539,7 +1539,7 @@ Date: _________________`;
                                 ${currentStatus === 'Extra Duty' ? '<i class="fa-solid fa-bolt-lightning mr-1 text-teal-500"></i>Extra Duty' : ''}
                                 ${currentStatus === 'Weekend Exchange' ? '<i class="fa-solid fa-shuffle mr-1 text-cyan-500"></i>Weekend Exchange' : ''}
                                 ${currentStatus === 'Absent' ? '<i class="fa-solid fa-circle-xmark mr-1 text-rose-500"></i>Absent' : ''}
-                                ${currentStatus === 'Night Shift' ? '<i class="fa-solid fa-moon mr-1 text-indigo-500"></i>Night Shift' : ''}
+                                ${currentStatus === 'Night Shift' ? '<i class="fa-solid fa-moon mr-1 text-amber-400"></i>Night Shift' : ''}
                                 ${currentStatus === 'Leave' ? '<i class="fa-solid fa-plane-departure mr-1 text-purple-500"></i>Leave' : ''}
                                 ${currentStatus === 'Outside Work' ? '<i class="fa-solid fa-briefcase mr-1 text-slate-500"></i>Outside Duty' : ''}
                             </div>
@@ -1579,7 +1579,7 @@ Date: _________________`;
                                 <button onclick="generateAppointmentForModerator('${mod.name.replace(/'/g, "\\'")}')" title="Appointment Letter" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-file-signature text-xs"></i>
                                 </button>
-                                <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-400 hover:text-indigo-600 flex items-center justify-center transition cursor-pointer">
+                                <button onclick="openEditModal(${mod._originalIndex})" title="Edit" class="w-8 h-8 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-400 hover:text-amber-500 flex items-center justify-center transition cursor-pointer">
                                     <i class="fa-solid fa-pen text-xs"></i>
                                 </button>
                                 <button onclick="deleteModerator(${mod._originalIndex})" title="Delete" class="w-8 h-8 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-600 flex items-center justify-center transition cursor-pointer">
@@ -2173,7 +2173,7 @@ Date: _________________`;
             const tabRequests = document.getElementById('night-tab-requests');
 
             const inactiveClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs";
-            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm text-[11px] sm:text-xs font-bold";
+            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-sm text-[11px] sm:text-xs font-black";
 
             if (btnActive) btnActive.className = inactiveClass;
             if (btnMonthly) btnMonthly.className = inactiveClass;
@@ -2390,7 +2390,7 @@ Date: _________________`;
                         <div class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                             <span>${rec.modName}</span>
                             ${isMe ? '<span class="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold">You</span>' : ''}
-                            <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
+                            <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] font-mono font-bold">${rec.nightCount || rec.count} Nights</span>
                         </div>
                         <div class="font-mono text-slate-400 text-[11px] mt-0.5">📅 ${rec.startDate} ➔ ${rec.endDate}</div>
                     </div>
@@ -2724,7 +2724,7 @@ Date: _________________`;
                             <div class="max-w-sm mx-auto space-y-2">
                                 <i class="fa-solid fa-moon text-2xl text-slate-300 dark:text-slate-600 block"></i>
                                 <p>No night shift duties scheduled for <strong class="text-slate-700 dark:text-slate-300 font-mono">${selectedMonth}</strong>.</p>
-                                <button type="button" onclick="triggerAutoAssignCurrentMonth()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition inline-flex items-center gap-2">
+                                <button type="button" onclick="triggerAutoAssignCurrentMonth()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-fuchsia-700 text-white font-bold text-xs shadow-md transition inline-flex items-center gap-2">
                                     <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                                     <span>Auto Assign Month Roster</span>
                                 </button>
@@ -2761,7 +2761,7 @@ Date: _________________`;
                             ${item.mod.weekend}
                         </span>
                     </td>
-                    <td class="p-2.5 text-center font-mono font-black text-indigo-600 dark:text-indigo-400 text-sm">
+                    <td class="p-2.5 text-center font-mono font-black text-amber-500 dark:text-amber-400 text-sm">
                         ${item.totalNights}
                     </td>
                     <td class="p-2.5 font-mono text-[11px] text-slate-600 dark:text-slate-300">
@@ -3054,7 +3054,7 @@ Date: _________________`;
                 listEl.innerHTML = `
                     <div class="p-6 text-center text-xs text-slate-400 space-y-2">
                         <p>No night duties scheduled for ${monthName} ${yearStr}.</p>
-                        <button type="button" onclick="closeNightShiftWhatsAppBatchModal(); triggerAutoAssignCurrentMonth();" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs">
+                        <button type="button" onclick="closeNightShiftWhatsAppBatchModal(); triggerAutoAssignCurrentMonth();" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
                             Auto Assign Now
                         </button>
                     </div>
@@ -3066,11 +3066,11 @@ Date: _________________`;
                     div.className = "flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs shadow-xs";
                     div.innerHTML = `
                         <div class="flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-mono font-bold flex items-center justify-center text-xs">${slStr}</span>
+                            <span class="w-7 h-7 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold flex items-center justify-center text-xs">${slStr}</span>
                             <div>
                                 <div class="font-bold text-slate-900 dark:text-white text-sm">${item.mod.name}</div>
                                 <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-indigo-600 dark:text-indigo-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
+                                    📅 ${item.firstDate} ➔ ${item.lastDate} <strong class="text-amber-500 dark:text-amber-400 font-bold">(${item.totalNights} Nights)</strong> • Off: <span class="text-amber-600 dark:text-amber-400 font-bold">${item.mod.weekend}</span>
                                 </div>
                             </div>
                         </div>
@@ -4015,7 +4015,7 @@ Date: _________________`;
             if (errorBanner) errorBanner.classList.add('hidden');
 
             if (role === 'admin') {
-                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 text-white shadow-[0_0_20px_rgba(2,132,199,0.5)]";
+                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.5)] border border-yellow-300/40";
                 if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
                 if (adminFields) adminFields.classList.remove('hidden');
                 if (modFields) modFields.classList.add('hidden');
@@ -4023,11 +4023,11 @@ Date: _________________`;
                 if (modHint) modHint.classList.add('hidden');
                 if (roleBadge) {
                     roleBadge.innerText = "Role: In-Charge (Admin)";
-                    roleBadge.className = "text-xs text-sky-400 font-mono font-bold";
+                    roleBadge.className = "text-xs text-amber-400 font-mono font-bold";
                 }
                 if (submitText) submitText.innerText = "Unlock Dashboard";
             } else {
-                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.4)]";
+                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700 text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400/40";
                 if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
                 if (adminFields) adminFields.classList.add('hidden');
                 if (modFields) modFields.classList.remove('hidden');
@@ -4035,7 +4035,7 @@ Date: _________________`;
                 if (modHint) modHint.classList.remove('hidden');
                 if (roleBadge) {
                     roleBadge.innerText = "Role: Moderator (View-Only)";
-                    roleBadge.className = "text-xs text-amber-400 font-mono font-bold";
+                    roleBadge.className = "text-xs text-emerald-400 font-mono font-bold";
                 }
                 if (submitText) submitText.innerText = "Open Moderator Portal";
                 populateLoginModeratorSelect();
@@ -4152,7 +4152,7 @@ Date: _________________`;
                         const nightInfoEl = document.getElementById('mod-banner-night-info');
                         if (nightInfoEl) {
                             if (myDutyDays.length > 0) {
-                                nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-indigo-600 dark:text-indigo-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
+                                nightInfoEl.innerHTML = `🌙 Scheduled Night Duty: <b class="text-amber-500 dark:text-amber-300 font-mono">${myDutyDays[0]} to ${myDutyDays[myDutyDays.length - 1]} (${myDutyDays.length} Nights)</b>`;
                             } else {
                                 nightInfoEl.innerHTML = `🌙 No night duty scheduled this month`;
                             }
@@ -4197,7 +4197,7 @@ Date: _________________`;
                 // Update Header Role Badge
                 if (headerRoleBadge) {
                     headerRoleBadge.innerText = 'In-Charge';
-                    headerRoleBadge.className = 'px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-extrabold text-[11px] border border-indigo-500/20 leading-none';
+                    headerRoleBadge.className = 'px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 font-extrabold text-[11px] border border-emerald-500/20 leading-none';
                 }
 
                 // Hide Moderator Banner
@@ -4236,7 +4236,7 @@ Date: _________________`;
             const icon = document.getElementById('password-toggle-icon');
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
-                icon.className = 'fa-solid fa-eye-slash text-sm text-indigo-400';
+                icon.className = 'fa-solid fa-eye-slash text-sm text-amber-400';
             } else {
                 pwdInput.type = 'password';
                 icon.className = 'fa-solid fa-eye text-sm text-slate-400';
