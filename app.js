@@ -1,4 +1,4 @@
-﻿// Official Verified Moderator List
+// Official Verified Moderator List
         const DEFAULT_MODERATORS = [
             { sl: 1, name: "Sefat Karim", weekend: "Saturday", phone: "01781597973", join: "01-01-2026", id: "mod_01781597973_0_oiq5n", status: "Present", notes: "" },
             { sl: 2, name: "Akram", weekend: "Saturday", phone: "01871976484", join: "08-03-2024", id: "mod_01871976484_1_6annd", status: "Present", notes: "" },
@@ -555,10 +555,21 @@
                 attendanceHistory = data.attendanceHistory;
             }
             const remoteNightShifts = data.nightShifts || data.scheduledNightShifts;
-            if (Array.isArray(remoteNightShifts) && remoteNightShifts.length > 0) {
+            if (Array.isArray(remoteNightShifts)) {
                 scheduledNightShifts = remoteNightShifts;
-            } else if (!scheduledNightShifts || scheduledNightShifts.length === 0) {
-                scheduledNightShifts = [...DEFAULT_NIGHT_SHIFTS];
+            } else if ((data.nightShifts && data.nightShifts._empty) || (data.scheduledNightShifts && data.scheduledNightShifts._empty)) {
+                scheduledNightShifts = [];
+            } else if (remoteNightShifts === null || remoteNightShifts === undefined) {
+                const localNight = localStorage.getItem('sanveesNightShifts');
+                if (localNight !== null) {
+                    try {
+                        scheduledNightShifts = JSON.parse(localNight) || [];
+                    } catch(e) {
+                        scheduledNightShifts = [];
+                    }
+                } else {
+                    scheduledNightShifts = [...DEFAULT_NIGHT_SHIFTS];
+                }
             }
             const remoteLeaves = data.leaves || data.approvedLeaves;
             if (Array.isArray(remoteLeaves)) approvedLeaves = remoteLeaves;
@@ -586,8 +597,8 @@
             const payload = {
                 moderators,
                 attendanceHistory,
-                nightShifts: scheduledNightShifts,
-                scheduledNightShifts: scheduledNightShifts,
+                nightShifts: (Array.isArray(scheduledNightShifts) && scheduledNightShifts.length > 0) ? scheduledNightShifts : { _empty: true },
+                scheduledNightShifts: (Array.isArray(scheduledNightShifts) && scheduledNightShifts.length > 0) ? scheduledNightShifts : { _empty: true },
                 leaves: approvedLeaves,
                 approvedLeaves: approvedLeaves,
                 exchanges: weekendExchanges,
@@ -690,16 +701,16 @@
             } else { attendanceHistory = {}; }
 
             const savedNight = localStorage.getItem('sanveesNightShifts');
-            if (savedNight) {
+            if (savedNight !== null) {
                 try {
                     const parsed = JSON.parse(savedNight);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
+                    if (Array.isArray(parsed)) {
                         scheduledNightShifts = parsed;
                     } else {
-                        scheduledNightShifts = [...DEFAULT_NIGHT_SHIFTS];
+                        scheduledNightShifts = [];
                     }
                 } catch(e) {
-                    scheduledNightShifts = [...DEFAULT_NIGHT_SHIFTS];
+                    scheduledNightShifts = [];
                 }
             } else {
                 scheduledNightShifts = [...DEFAULT_NIGHT_SHIFTS];
@@ -2952,7 +2963,7 @@ ${appointmentState.location || 'Head Office'}`;
                                     class="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 transition">
                                 <i class="fa-brands fa-whatsapp text-sm"></i>
                             </button>
-                            <button type="button" onclick="deleteNightShiftRecord(${rec.id})" 
+                            <button type="button" onclick="deleteNightShiftRecord('${rec.id}')" 
                                     title="Delete Record" 
                                     class="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-500/10 transition">
                                 <i class="fa-solid fa-trash text-sm"></i>
@@ -2967,37 +2978,52 @@ ${appointmentState.location || 'Head Office'}`;
         }
 
         function deleteNightShiftRecord(id) {
-            if (currentUserRole === 'moderator') {
+            if (typeof currentUserRole !== 'undefined' && currentUserRole === 'moderator') {
                 showToast('Deleting night shifts is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            const idx = scheduledNightShifts.findIndex(r => r.id === id);
+            const idx = scheduledNightShifts.findIndex(r => r.id == id || String(r.id) === String(id));
             if (idx === -1) return;
-            if (confirm(`Remove Night Shift schedule for ${scheduledNightShifts[idx].modName}?`)) {
-                const rec = scheduledNightShifts[idx];
-                const mod = moderators.find(m => m.sl === rec.modSl);
-                if (mod && rec.nightDutyDates) {
+            const rec = scheduledNightShifts[idx];
+            if (confirm(`Remove Night Shift schedule for ${rec.modName}?`)) {
+                const mod = moderators.find(m => m.sl === rec.modSl) || moderators.find(m => m.name === rec.modName);
+                if (rec.nightDutyDates && Array.isArray(rec.nightDutyDates)) {
                     rec.nightDutyDates.forEach(d => {
                         const dayName = getDayNameForDate(d);
                         attendanceHistory[d] = attendanceHistory[d] || {};
-                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        const isWeekend = mod && mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
                         const defSt = isWeekend ? 'Weekly Off' : 'Present';
-                        attendanceHistory[d][String(mod.sl)] = defSt;
-                        attendanceHistory[d][getModeratorKey(mod)] = defSt;
+                        if (mod) {
+                            attendanceHistory[d][String(mod.sl)] = defSt;
+                            attendanceHistory[d][getModeratorKey(mod)] = defSt;
+                            if (mod.name) attendanceHistory[d][mod.name] = defSt;
+                        }
+                        if (rec.modName) {
+                            attendanceHistory[d][rec.modName] = defSt;
+                        }
                     });
                 }
                 scheduledNightShifts.splice(idx, 1);
+                localStorage.setItem('sanveesNightShifts', JSON.stringify(scheduledNightShifts));
+                localStorage.setItem('sanveesAttendanceHistory', JSON.stringify(attendanceHistory));
                 saveToLocalStorage();
+                if (isFirebaseConnected && firebaseDb) {
+                    firebaseDb.ref('sanvees_portal/nightShifts').set(scheduledNightShifts.length > 0 ? scheduledNightShifts : { _empty: true });
+                    firebaseDb.ref('sanvees_portal/scheduledNightShifts').set(scheduledNightShifts.length > 0 ? scheduledNightShifts : { _empty: true });
+                    firebaseDb.ref('sanvees_portal/attendanceHistory').set(attendanceHistory);
+                }
                 renderNightShiftList();
                 renderMonthlyNightShiftLog();
+                renderNightShiftRequestsList();
                 renderDailyTable();
                 if (activeView === 'monthly') renderMonthlyTable();
-                showToast('Night shift schedule removed');
+                updateDailyKPIs();
+                showToast(`Night shift schedule removed for ${rec.modName}`);
             }
         }
 
         function clearAllNightShifts(force = false) {
-            if (currentUserRole === 'moderator') {
+            if (typeof currentUserRole !== 'undefined' && currentUserRole === 'moderator') {
                 showToast('Clearing night shifts is restricted to In-Charge Admin.', 'info');
                 return;
             }
@@ -3006,37 +3032,71 @@ ${appointmentState.location || 'Head Office'}`;
                 return;
             }
 
-            // 1. Reset scheduledNightShifts array
+            // 1. Reset scheduledNightShifts array completely
             scheduledNightShifts = [];
 
-            // 2. Clean attendanceHistory: replace all 'Night Shift' entries
-            Object.keys(attendanceHistory).forEach(dateStr => {
-                const dayName = getDayNameForDate(dateStr);
-                moderators.forEach(mod => {
-                    const modKey = getModeratorKey(mod);
-                    const slKey = String(mod.sl);
-                    if (attendanceHistory[dateStr] && (attendanceHistory[dateStr][modKey] === 'Night Shift' || attendanceHistory[dateStr][slKey] === 'Night Shift')) {
-                        const defSt = (mod.weekend.toLowerCase() === dayName.toLowerCase()) ? 'Weekly Off' : 'Present';
-                        attendanceHistory[dateStr][modKey] = defSt;
-                        attendanceHistory[dateStr][slKey] = defSt;
-                    }
+            // 2. Clean attendanceHistory: replace ALL 'Night Shift' entries across all dates and all keys
+            if (attendanceHistory && typeof attendanceHistory === 'object') {
+                Object.keys(attendanceHistory).forEach(dateStr => {
+                    const dayName = getDayNameForDate(dateStr);
+                    const dayRecords = attendanceHistory[dateStr];
+                    if (!dayRecords || typeof dayRecords !== 'object') return;
+
+                    // Reset each moderator's specific keys
+                    moderators.forEach(mod => {
+                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        const defSt = isWeekend ? 'Weekly Off' : 'Present';
+                        const modKey = getModeratorKey(mod);
+
+                        if (dayRecords[modKey] === 'Night Shift') dayRecords[modKey] = defSt;
+                        if (mod.name && dayRecords[mod.name] === 'Night Shift') dayRecords[mod.name] = defSt;
+                        if (mod.id && dayRecords[mod.id] === 'Night Shift') dayRecords[mod.id] = defSt;
+                        if (mod.phone && dayRecords[mod.phone] === 'Night Shift') dayRecords[mod.phone] = defSt;
+                        if (dayRecords[String(mod.sl)] === 'Night Shift') dayRecords[String(mod.sl)] = defSt;
+                    });
+
+                    // Catch-all: reset ANY other key in that day that holds 'Night Shift'
+                    Object.keys(dayRecords).forEach(k => {
+                        if (dayRecords[k] === 'Night Shift') {
+                            const matchedMod = moderators.find(m => m.name === k || getModeratorKey(m) === k || String(m.sl) === k);
+                            const isWeekend = matchedMod && matchedMod.weekend && dayName && (matchedMod.weekend.toLowerCase() === dayName.toLowerCase());
+                            dayRecords[k] = isWeekend ? 'Weekly Off' : 'Present';
+                        }
+                    });
                 });
-            });
+            }
 
             // 3. Persist to storage
             localStorage.setItem('sanveesNightShifts', JSON.stringify([]));
             localStorage.setItem('sanveesAttendanceHistory', JSON.stringify(attendanceHistory));
             saveToLocalStorage();
 
-            // 4. Update UI
+            // Explicitly sync empty night shifts to Firebase so remote snapshot does not restore defaults
+            if (isFirebaseConnected && firebaseDb) {
+                firebaseDb.ref('sanvees_portal/nightShifts').set({ _empty: true });
+                firebaseDb.ref('sanvees_portal/scheduledNightShifts').set({ _empty: true });
+                firebaseDb.ref('sanvees_portal/attendanceHistory').set(attendanceHistory);
+            }
+
+            // 4. Update UI tab counters immediately
+            const activeCountEl = document.getElementById('tab-night-active-count');
+            if (activeCountEl) activeCountEl.innerText = '0';
+            const monthlyCountEl = document.getElementById('tab-night-monthly-count');
+            if (monthlyCountEl) monthlyCountEl.innerText = '0';
+
+            // 5. Update UI
             renderNightShiftList();
             renderMonthlyNightShiftLog();
             renderNightShiftRequestsList();
             renderDailyTable();
             if (activeView === 'monthly') renderMonthlyTable();
+            updateDailyKPIs();
 
             showToast("🧹 All Night Shifts cleared! Ready for manual assignment.", "success");
         }
+
+        window.clearAllNightShifts = clearAllNightShifts;
+        window.deleteNightShiftRecord = deleteNightShiftRecord;
 
         function handleMonthlyNightMonthChange(newMonth) {
             monthlyNightShiftMonth = newMonth || currentActiveMonth;
@@ -3045,7 +3105,7 @@ ${appointmentState.location || 'Head Office'}`;
 
         // ======================= AUTOMATED MONTHLY NIGHT ROSTER GENERATOR (3 MODERATORS/NIGHT) =======================
         function autoAssignMonthlyNightShifts(targetMonthStr) {
-            if (currentUserRole === 'moderator') {
+            if (typeof currentUserRole !== 'undefined' && currentUserRole === 'moderator') {
                 showToast('Auto-assigning night shifts is restricted to In-Charge Admin.', 'info');
                 return;
             }
@@ -5389,6 +5449,21 @@ ${appointmentState.location || 'Head Office'}`;
             }
             renderNightShiftRequestsList();
             initSpotlightCards();
+
+            const clearAllBtn = document.getElementById('btn-night-clear-all');
+            if (clearAllBtn) {
+                clearAllBtn.onclick = (e) => {
+                    if (e) e.preventDefault();
+                    clearAllNightShifts();
+                };
+            }
+            const clearMonthlyBtn = document.getElementById('btn-night-clear-monthly');
+            if (clearMonthlyBtn) {
+                clearMonthlyBtn.onclick = (e) => {
+                    if (e) e.preventDefault();
+                    clearAllNightShifts();
+                };
+            }
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
