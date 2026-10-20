@@ -48,24 +48,24 @@
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         const WEEKEND_BADGE_STYLES = {
-            'Saturday': 'bg-gradient-to-r from-emerald-500/25 to-teal-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/40 ring-1 ring-emerald-500/25 shadow-xs font-bold',
-            'Sunday': 'bg-gradient-to-r from-amber-500/25 to-yellow-500/15 text-amber-800 dark:text-amber-300 border-amber-500/40 ring-1 ring-amber-500/25 shadow-xs font-bold',
-            'Monday': 'bg-gradient-to-r from-teal-500/25 to-emerald-500/15 text-teal-800 dark:text-teal-300 border-teal-500/40 ring-1 ring-teal-500/25 shadow-xs font-bold',
-            'Tuesday': 'bg-gradient-to-r from-purple-500/25 to-fuchsia-500/15 text-purple-800 dark:text-purple-300 border-purple-500/40 ring-1 ring-purple-500/25 shadow-xs font-bold',
-            'Wednesday': 'bg-gradient-to-r from-yellow-500/25 to-amber-500/15 text-yellow-800 dark:text-yellow-300 border-yellow-500/40 ring-1 ring-yellow-500/25 shadow-xs font-bold',
-            'Thursday': 'bg-gradient-to-r from-emerald-600/25 to-teal-600/15 text-emerald-800 dark:text-emerald-300 border-emerald-600/40 ring-1 ring-emerald-600/25 shadow-xs font-bold',
-            'Friday': 'bg-gradient-to-r from-rose-500/25 to-red-500/15 text-rose-800 dark:text-rose-300 border-rose-500/40 ring-1 ring-rose-500/25 shadow-xs font-bold'
+            'Saturday': 'weekend-pill-saturday',
+            'Sunday': 'weekend-pill-sunday',
+            'Monday': 'weekend-pill-monday',
+            'Tuesday': 'weekend-pill-tuesday',
+            'Wednesday': 'weekend-pill-wednesday',
+            'Thursday': 'weekend-pill-thursday',
+            'Friday': 'weekend-pill-friday'
         };
 
         const AVATAR_PALETTES = [
-            { bg: 'from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black', shadow: 'shadow-amber-500/40' },
-            { bg: 'from-emerald-700 via-teal-600 to-emerald-800 text-white font-black', shadow: 'shadow-emerald-500/40' },
-            { bg: 'from-yellow-500 via-amber-400 to-yellow-600 text-slate-950 font-black', shadow: 'shadow-yellow-500/40' },
-            { bg: 'from-teal-700 via-emerald-600 to-teal-800 text-white font-black', shadow: 'shadow-teal-500/40' },
-            { bg: 'from-purple-700 via-violet-600 to-purple-800 text-white font-black', shadow: 'shadow-purple-500/40' },
-            { bg: 'from-amber-600 via-yellow-500 to-amber-700 text-slate-950 font-black', shadow: 'shadow-amber-600/40' },
-            { bg: 'from-rose-700 via-pink-600 to-rose-800 text-white font-black', shadow: 'shadow-rose-500/40' },
-            { bg: 'from-emerald-800 via-teal-700 to-cyan-800 text-white font-black', shadow: 'shadow-emerald-600/40' }
+            { bg: 'from-blue-600 via-indigo-500 to-blue-700 text-white font-black', shadow: 'shadow-blue-500/40' },
+            { bg: 'from-indigo-600 via-violet-500 to-indigo-700 text-white font-black', shadow: 'shadow-indigo-500/40' },
+            { bg: 'from-sky-600 via-cyan-500 to-blue-600 text-white font-black', shadow: 'shadow-sky-500/40' },
+            { bg: 'from-teal-600 via-emerald-600 to-teal-700 text-white font-black', shadow: 'shadow-teal-500/40' },
+            { bg: 'from-purple-600 via-violet-600 to-purple-700 text-white font-black', shadow: 'shadow-purple-500/40' },
+            { bg: 'from-blue-700 via-indigo-600 to-blue-800 text-white font-black', shadow: 'shadow-blue-600/40' },
+            { bg: 'from-rose-600 via-pink-600 to-rose-700 text-white font-black', shadow: 'shadow-rose-500/40' },
+            { bg: 'from-cyan-700 via-teal-600 to-cyan-800 text-white font-black', shadow: 'shadow-cyan-600/40' }
         ];
 
         function getAvatarTheme(sl) {
@@ -752,11 +752,11 @@
             const dockMonthly = document.getElementById('dock-btn-monthly');
             const dockAppointment = document.getElementById('dock-btn-appointment');
 
-            const activeBtnClass = "px-5 py-2 rounded-xl font-display font-black text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-[0_4px_25px_rgba(245,158,11,0.55)] border border-yellow-300/40 cursor-pointer";
-            const inactiveBtnClass = "px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition cursor-pointer";
+            const activeBtnClass = "px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-[#E6F5F1] text-[#087F70] border border-[#0F9D8A]/30 dark:bg-[#0F9D8A]/20 dark:text-[#2DD4BF] dark:border-[#0F9D8A]/40 shadow-xs cursor-pointer";
+            const inactiveBtnClass = "px-4 py-2 rounded-xl font-medium text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer";
 
-            const activeDockClass = "flex flex-col items-center gap-1 text-amber-500 dark:text-amber-400 font-bold text-[10px] cursor-pointer";
-            const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer";
+            const activeDockClass = "flex flex-col items-center gap-1 text-[#087F70] dark:text-[#2DD4BF] font-semibold text-[10px] cursor-pointer";
+            const inactiveDockClass = "flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-medium text-[10px] cursor-pointer";
 
             if (dailyBtn) dailyBtn.className = inactiveBtnClass;
             if (monthlyBtn) monthlyBtn.className = inactiveBtnClass;
@@ -802,6 +802,7 @@
                 initAppointmentView();
             }
 
+            window.scrollTo({ top: 0, behavior: 'instant' });
             applyPrintOrientationSettings();
             applyRolePermissions();
         }
@@ -813,16 +814,17 @@
             salutation: "Sharif Hossain",
             issueDate: "2026-08-18",
             effectiveDate: "2026-08-09",
-            reference: "SBT/HR/2026/01",
+            reference: "SBT/HR/2026/",
             subject: "Appointment as Moderator",
             trainingSalary: "10,000 BDT",
             basicSalary: "14000 BDT",
-            noticePeriod: "two months",
+            noticePeriod: "two months earlier",
             signatory: "General Manager",
-            company: "Sanvee's By Tony",
+            company: "Sanvee’s By Tony",
             location: "Head Office",
             padMode: "with-bg",
-            font: "sans",
+            font: "serif",
+            showEmployeeSign: false,
             zoom: 1.0
         };
 
@@ -972,6 +974,7 @@
             const basicSalaryIn = document.getElementById('appointment-input-basic-salary');
             const noticePeriodIn = document.getElementById('appointment-input-notice-period');
             const signatoryIn = document.getElementById('appointment-input-signatory');
+            const companyIn = document.getElementById('appointment-input-company');
             const locationIn = document.getElementById('appointment-input-location');
 
             if (nameIn) appointmentState.candidateName = nameIn.value;
@@ -984,6 +987,7 @@
             if (basicSalaryIn) appointmentState.basicSalary = basicSalaryIn.value;
             if (noticePeriodIn) appointmentState.noticePeriod = noticePeriodIn.value;
             if (signatoryIn) appointmentState.signatory = signatoryIn.value;
+            if (companyIn) appointmentState.company = companyIn.value;
             if (locationIn) appointmentState.location = locationIn.value;
 
             updateAppointmentPreview();
@@ -1000,21 +1004,48 @@
             const sheetTrainingSalary = document.getElementById('sheet-training-salary');
             const sheetBasicSalary = document.getElementById('sheet-basic-salary');
             const sheetSignatory = document.getElementById('sheet-signatory');
+            const sheetCompany = document.getElementById('sheet-company');
             const sheetLocation = document.getElementById('sheet-location');
 
             if (sheetDate) sheetDate.innerText = formatToDisplayDate(appointmentState.issueDate);
-            if (sheetRef) sheetRef.innerText = appointmentState.reference || 'SBT/HR/2026/01';
+            if (sheetRef) sheetRef.innerText = appointmentState.reference || 'SBT/HR/2026/';
             if (sheetCandidateName) sheetCandidateName.innerText = appointmentState.candidateName || 'Candidate Name';
             if (sheetSubject) sheetSubject.innerText = appointmentState.subject || 'Appointment as Moderator';
             if (sheetSalutation) sheetSalutation.innerText = appointmentState.salutation || appointmentState.candidateName || 'Candidate';
             if (sheetEffectiveDate) sheetEffectiveDate.innerText = formatToFormalDate(appointmentState.effectiveDate);
-            if (sheetNoticePeriod) sheetNoticePeriod.innerText = appointmentState.noticePeriod || 'two months';
+            if (sheetNoticePeriod) sheetNoticePeriod.innerText = appointmentState.noticePeriod || 'two months earlier';
             if (sheetTrainingSalary) sheetTrainingSalary.innerText = appointmentState.trainingSalary || '10,000 BDT';
             if (sheetBasicSalary) sheetBasicSalary.innerText = appointmentState.basicSalary || '14000 BDT';
             if (sheetSignatory) sheetSignatory.innerText = appointmentState.signatory || 'General Manager';
+            if (sheetCompany) sheetCompany.innerText = appointmentState.company || 'Sanvee’s By Tony';
             if (sheetLocation) sheetLocation.innerText = appointmentState.location || 'Head Office';
-            const sheetEmpSigName = document.getElementById('sheet-emp-signature-name');
-            if (sheetEmpSigName) sheetEmpSigName.innerText = appointmentState.candidateName || 'Candidate Name';
+
+            const sheetEmpSignName = document.getElementById('sheet-emp-sign-name');
+            if (sheetEmpSignName) sheetEmpSignName.innerText = appointmentState.candidateName || 'Candidate Name';
+            const empSignBlock = document.getElementById('sheet-emp-sign-block');
+            const empSignToggle = document.getElementById('appointment-toggle-emp-sign');
+            if (empSignToggle) empSignToggle.checked = !!appointmentState.showEmployeeSign;
+            if (empSignBlock) {
+                if (appointmentState.showEmployeeSign) {
+                    empSignBlock.classList.remove('hidden');
+                } else {
+                    empSignBlock.classList.add('hidden');
+                }
+            }
+        }
+
+        function toggleAppointmentEmpSign(checked) {
+            appointmentState.showEmployeeSign = checked;
+            const block = document.getElementById('sheet-emp-sign-block');
+            const toggle = document.getElementById('appointment-toggle-emp-sign');
+            if (toggle) toggle.checked = checked;
+            if (block) {
+                if (checked) {
+                    block.classList.remove('hidden');
+                } else {
+                    block.classList.add('hidden');
+                }
+            }
         }
 
         function setAppointmentPadMode(mode) {
@@ -1030,7 +1061,7 @@
                     sheet.classList.add('pad-mode-with-bg');
                 }
                 if (btnWithBg) {
-                    btnWithBg.className = "p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                    btnWithBg.className = "p-2.5 rounded-xl border border-[#0F9D8A] bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
                 }
                 if (btnBlank) {
                     btnBlank.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
@@ -1044,7 +1075,7 @@
                     sheet.classList.add('pad-mode-blank');
                 }
                 if (btnBlank) {
-                    btnBlank.className = "p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
+                    btnBlank.className = "p-2.5 rounded-xl border border-[#0F9D8A] bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
                 }
                 if (btnWithBg) {
                     btnWithBg.className = "p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer";
@@ -1063,11 +1094,11 @@
 
             if (font === 'serif') {
                 if (sheet) sheet.classList.add('font-serif');
-                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30";
+                if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 border border-[#0F9D8A]/30";
                 if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
             } else {
                 if (sheet) sheet.classList.remove('font-serif');
-                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30";
+                if (btnSans) btnSans.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 border border-[#0F9D8A]/30";
                 if (btnSerif) btnSerif.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300";
             }
         }
@@ -1109,7 +1140,7 @@
             const todayStr = getTodayDateStr();
             appointmentState.issueDate = todayStr;
             const year = todayStr.substring(0, 4) || '2026';
-            appointmentState.reference = `SBT/HR/${year}/01`;
+            appointmentState.reference = `SBT/HR/${year}/`;
 
             const nameIn = document.getElementById('appointment-input-name');
             const salutationIn = document.getElementById('appointment-input-salutation');
@@ -1121,6 +1152,7 @@
             const basicSalaryIn = document.getElementById('appointment-input-basic-salary');
             const noticePeriodIn = document.getElementById('appointment-input-notice-period');
             const signatoryIn = document.getElementById('appointment-input-signatory');
+            const companyIn = document.getElementById('appointment-input-company');
             const locationIn = document.getElementById('appointment-input-location');
             const modSelect = document.getElementById('appointment-mod-select');
 
@@ -1134,6 +1166,7 @@
             if (basicSalaryIn) basicSalaryIn.value = appointmentState.basicSalary;
             if (noticePeriodIn) noticePeriodIn.value = appointmentState.noticePeriod;
             if (signatoryIn) signatoryIn.value = appointmentState.signatory;
+            if (companyIn) companyIn.value = appointmentState.company;
             if (locationIn) locationIn.value = appointmentState.location;
             if (modSelect) modSelect.value = "";
 
@@ -1147,7 +1180,8 @@
             if (pillJoin) pillJoin.innerText = '--';
 
             setAppointmentPadMode('with-bg');
-            setAppointmentFont('sans');
+            setAppointmentFont('serif');
+            toggleAppointmentEmpSign(false);
             updateAppointmentPreview();
             if (!quiet) {
                 showToast('Appointment template reset to default', 'info');
@@ -1155,40 +1189,35 @@
         }
 
         function copyAppointmentText() {
-            const text = `Appointment Letter
+            let text = `Appointment Letter
+
 Date: ${formatToDisplayDate(appointmentState.issueDate)}
-Reference: ${appointmentState.reference}
+Reference: ${appointmentState.reference || 'SBT/HR/2026/'}
 
 To:
 ${appointmentState.candidateName}
 
-Subject: ${appointmentState.subject}
+Subject: ${appointmentState.subject || 'Appointment as Moderator'}
 
-Dear ${appointmentState.salutation},
+Dear ${appointmentState.salutation || appointmentState.candidateName},
 
-We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from ${formatToFormalDate(appointmentState.effectiveDate)}. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least ${appointmentState.noticePeriod} earlier.
+We are pleased to inform you that you have been appointed as a Moderator at ${appointmentState.company || "Sanvee’s by Tony"}, effective from ${formatToFormalDate(appointmentState.effectiveDate)}. Your responsibilities will include overseeing and managing moderation activities related to the company’s online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least ${appointmentState.noticePeriod || 'two months earlier'}.
 
-Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get ${appointmentState.trainingSalary} for the first month since it will be your training period. After your first month on duty, you will get your basic salary ${appointmentState.basicSalary} per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+Your working hours, duties, and remuneration will be as per the company’s rules and policies. As for your salary, you will get ${appointmentState.trainingSalary || '10,000 BDT'} for the first month since it will be your training period. After your first month on duty, you will get your basic salary ${appointmentState.basicSalary || '14000 BDT'} per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
 
 Thank you,
 
-Sincerely,
+Signature: _________________
+${appointmentState.signatory || 'General Manager'}
+${appointmentState.company || "Sanvee’s By Tony"}
+${appointmentState.location || 'Head Office'}`;
 
-Authorized Signatory: _________________
-${appointmentState.signatory}
-Sanvee's By Tony
-${appointmentState.location}
-
---------------------------------------------------
-Acknowledgment & Acceptance:
-I have read and accepted the terms and conditions outlined in this appointment letter.
-
-Employee Signature: _________________
-Name: ${appointmentState.candidateName}
-Date: _________________`;
+            if (appointmentState.showEmployeeSign) {
+                text += `\n\nAccepted & Agreed: _________________\nCandidate: ${appointmentState.candidateName || 'Candidate Name'}\nDate: ____ / ____ / ________`;
+            }
 
             navigator.clipboard.writeText(text).then(() => {
-                showToast('Appointment letter copied to clipboard!', 'success');
+                showToast('Official appointment letter copied to clipboard!', 'success');
             }).catch(() => {
                 showToast('Failed to copy text', 'error');
             });
@@ -1464,37 +1493,82 @@ Date: _________________`;
 
                 tr.className = `hover:bg-amber-500/[0.04] dark:hover:bg-amber-400/[0.05] transition duration-150 ${isMe ? 'row-highlight-me' : (isUnexcusedAbsent ? 'row-highlight-absent' : '')}`;
 
+                // Calculate initials & avatar theme
+                const nameParts = (mod.name || '').trim().split(/\s+/);
+                let initials = 'M';
+                if (nameParts.length >= 2) {
+                    initials = (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase();
+                } else if (nameParts.length === 1 && nameParts[0].length > 0) {
+                    initials = nameParts[0].substring(0, 2).toUpperCase();
+                }
+                const avatarTheme = getAvatarTheme(mod.sl);
+                let statusDotColor = 'bg-slate-400';
+                if (currentStatus === 'Present') statusDotColor = 'bg-emerald-500 ring-2 ring-emerald-400/50';
+                else if (currentStatus === 'Weekly Off') statusDotColor = 'bg-amber-400 ring-2 ring-amber-300/50';
+                else if (currentStatus === 'Night Shift') statusDotColor = 'bg-indigo-400 ring-2 ring-indigo-300/50';
+                else if (currentStatus === 'Leave') statusDotColor = 'bg-purple-400 ring-2 ring-purple-300/50';
+                else if (currentStatus === 'Absent') statusDotColor = 'bg-rose-500 ring-2 ring-rose-400/50 animate-pulse';
+                else if (currentStatus === 'Weekend Exchange') statusDotColor = 'bg-cyan-400 ring-2 ring-cyan-300/50';
+                else if (currentStatus === 'Extra Duty') statusDotColor = 'bg-teal-400 ring-2 ring-teal-300/50';
+
                 tr.innerHTML = `
                     <td class="col-daily-sl py-3.5 px-4 text-center font-mono font-bold text-slate-500 dark:text-slate-400 text-xs sm:text-sm align-middle">
                         ${String(renderIndex + 1).padStart(2, '0')}
                     </td>
 
                     <td class="col-daily-name py-3.5 px-4 align-middle">
-                        <div class="flex flex-col justify-center">
-                            <div class="flex items-center gap-2">
-                                <button type="button" onclick="viewModeratorMonthly(${mod.sl})" 
-                                        class="text-left font-display font-bold text-slate-900 dark:text-white hover:text-amber-500 dark:hover:text-amber-400 transition text-sm sm:text-base flex items-center gap-1.5 group/name cursor-pointer">
-                                    <span class="group-hover/name:underline decoration-amber-500 underline-offset-2 font-bold tracking-tight">${mod.name}</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 opacity-0 group-hover/name:opacity-100 transition-opacity no-print"></i>
-                                </button>
-                                ${isMe ? `
-                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-xs">
-                                        You
-                                    </span>
-                                ` : ''}
-                                ${isUnexcusedAbsent ? `
-                                    <span class="px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-600 text-white animate-pulse no-print flex items-center gap-1 shadow-xs">
-                                        <i class="fa-brands fa-whatsapp"></i> Alert Sent
-                                    </span>
-                                ` : ''}
+                        <div class="flex items-center gap-3">
+                            <div class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr ${avatarTheme.bg} flex items-center justify-center font-display font-black text-xs sm:text-sm shadow-md ${avatarTheme.shadow} ring-2 ring-white/10 dark:ring-blue-500/20 flex-shrink-0">
+                                <span>${initials}</span>
+                                <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white dark:border-[#0f172a] ${statusDotColor}"></span>
+                            </div>
+                            <div class="flex flex-col justify-center min-w-0">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <button type="button" onclick="viewModeratorMonthly(${mod.sl})" 
+                                            class="text-left font-display font-bold text-slate-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition text-sm sm:text-base flex items-center gap-1.5 group/name cursor-pointer">
+                                        <span class="group-hover/name:underline decoration-blue-500 underline-offset-2 font-black tracking-tight">${mod.name}</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-slate-400 opacity-0 group-hover/name:opacity-100 transition-opacity no-print"></i>
+                                    </button>
+                                    ${isMe ? `
+                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-xs">
+                                            You
+                                        </span>
+                                    ` : ''}
+                                    ${isUnexcusedAbsent ? `
+                                        <span class="px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-600 text-white animate-pulse no-print flex items-center gap-1 shadow-xs">
+                                            <i class="fa-brands fa-whatsapp"></i> Alert
+                                        </span>
+                                    ` : ''}
+                                </div>
+                                <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-semibold flex items-center gap-1.5 mt-0.5">
+                                    <span>SL #${String(mod.sl).padStart(2, '0')}</span>
+                                    <span>•</span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-500">${mod.phone || ''}</span>
+                                </div>
                             </div>
                         </div>
                     </td>
 
                     <td class="col-daily-off py-3.5 px-4 text-center align-middle">
-                        <span class="inline-flex items-center justify-center px-3 py-1.5 rounded-xl font-display font-bold text-xs border ${weekendBadgeClass}">
-                            ${mod.weekend}
-                        </span>
+                        ${currentUserRole === 'admin' ? `
+                            <select onchange="updateModeratorWeekendQuick(${mod.sl}, this.value)"
+                                    class="no-print weekend-select-pill inline-flex items-center justify-center px-3 py-1.5 rounded-xl font-display font-bold text-xs border outline-none cursor-pointer transition shadow-xs ${weekendBadgeClass}">
+                                <option value="Saturday" ${mod.weekend === 'Saturday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 font-bold">Saturday</option>
+                                <option value="Sunday" ${mod.weekend === 'Sunday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-400 font-bold">Sunday</option>
+                                <option value="Monday" ${mod.weekend === 'Monday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 font-bold">Monday</option>
+                                <option value="Tuesday" ${mod.weekend === 'Tuesday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 font-bold">Tuesday</option>
+                                <option value="Wednesday" ${mod.weekend === 'Wednesday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-cyan-600 dark:text-cyan-400 font-bold">Wednesday</option>
+                                <option value="Thursday" ${mod.weekend === 'Thursday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-fuchsia-600 dark:text-fuchsia-400 font-bold">Thursday</option>
+                                <option value="Friday" ${mod.weekend === 'Friday' ? 'selected' : ''} class="bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 font-bold">Friday</option>
+                            </select>
+                        ` : `
+                            <span class="inline-flex items-center justify-center px-3 py-1.5 rounded-xl font-display font-bold text-xs border ${weekendBadgeClass}">
+                                ${mod.weekend}
+                            </span>
+                        `}
+                        <div class="print-only font-bold text-center">
+                            <span>${mod.weekend}</span>
+                        </div>
                     </td>
 
                     <td class="col-daily-phone py-3.5 px-4 text-center align-middle">
@@ -1721,6 +1795,39 @@ Date: _________________`;
             }
         }
 
+        function updateModeratorWeekendQuick(modSl, newWeekend) {
+            if (currentUserRole !== 'admin') {
+                showToast('Editing moderator weekly off is restricted to In-Charge Admin.', 'info');
+                return;
+            }
+            const mod = moderators.find(m => m.sl === modSl);
+            if (!mod) {
+                showToast('Moderator not found', 'error');
+                return;
+            }
+            if (mod.weekend === newWeekend) return;
+
+            const oldWeekend = mod.weekend;
+            mod.weekend = newWeekend;
+
+            const dayName = getDayNameForDate(currentActiveDate);
+            if (dayName && dayName.toLowerCase() === newWeekend.toLowerCase()) {
+                setModeratorStatusForDate(mod, currentActiveDate, 'Weekly Off');
+            } else if (dayName && dayName.toLowerCase() === oldWeekend.toLowerCase()) {
+                const currentStatus = getModeratorStatusForDate(mod, currentActiveDate);
+                if (currentStatus === 'Weekly Off') {
+                    setModeratorStatusForDate(mod, currentActiveDate, 'Present');
+                }
+            }
+
+            sortAndReindexModerators();
+            saveToLocalStorage();
+            renderDailyTable();
+            renderMonthlyTable();
+            updateDailyKPIs();
+            showToast(`Updated ${mod.name}'s Weekly Off to ${newWeekend}`, 'success');
+        }
+
         // ======================= MONTHLY ATTENDANCE SHEET RENDERER (60FPS ULTRA FAST) =======================
         const MATRIX_BADGE_MAP = {
             'Present': '<span class="matrix-cell-badge matrix-badge-present">P</span>',
@@ -1942,7 +2049,11 @@ Date: _________________`;
                     const slEl = document.getElementById('single-mod-sl');
                     if (slEl) slEl.innerText = `SL: ${String(mod.sl).padStart(2, '0')}`;
                     const wkEl = document.getElementById('single-mod-weekend');
-                    if (wkEl) wkEl.innerText = `${mod.weekend} Off`;
+                    if (wkEl) {
+                        wkEl.innerText = `${mod.weekend} Off`;
+                        const wkBadgeClass = WEEKEND_BADGE_STYLES[mod.weekend] || 'bg-slate-100 text-slate-800';
+                        wkEl.className = `px-3 py-1 rounded-lg font-bold text-xs border ${wkBadgeClass}`;
+                    }
                     const phEl = document.getElementById('single-mod-phone');
                     if (phEl) phEl.innerText = mod.phone;
                     const joinEl = document.getElementById('single-mod-join');
@@ -2173,7 +2284,7 @@ Date: _________________`;
             const tabRequests = document.getElementById('night-tab-requests');
 
             const inactiveClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs";
-            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-sm text-[11px] sm:text-xs font-black";
+            const activeClass = "flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-[#7C3AED] text-white shadow-xs text-[11px] sm:text-xs font-semibold";
 
             if (btnActive) btnActive.className = inactiveClass;
             if (btnMonthly) btnMonthly.className = inactiveClass;
@@ -4015,7 +4126,7 @@ Date: _________________`;
             if (errorBanner) errorBanner.classList.add('hidden');
 
             if (role === 'admin') {
-                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.5)] border border-yellow-300/40";
+                if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-[#0F9D8A] text-white font-semibold shadow-xs border border-[#0F9D8A]";
                 if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
                 if (adminFields) adminFields.classList.remove('hidden');
                 if (modFields) modFields.classList.add('hidden');
@@ -4023,11 +4134,11 @@ Date: _________________`;
                 if (modHint) modHint.classList.add('hidden');
                 if (roleBadge) {
                     roleBadge.innerText = "Role: In-Charge (Admin)";
-                    roleBadge.className = "text-xs text-amber-400 font-mono font-bold";
+                    roleBadge.className = "text-xs text-[#0F9D8A] font-mono font-bold";
                 }
                 if (submitText) submitText.innerText = "Unlock Dashboard";
             } else {
-                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700 text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400/40";
+                if (btnMod) btnMod.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-[#0F9D8A] text-white font-semibold shadow-xs border border-[#0F9D8A]";
                 if (btnAdmin) btnAdmin.className = "flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white";
                 if (adminFields) adminFields.classList.add('hidden');
                 if (modFields) modFields.classList.remove('hidden');
@@ -4035,7 +4146,7 @@ Date: _________________`;
                 if (modHint) modHint.classList.remove('hidden');
                 if (roleBadge) {
                     roleBadge.innerText = "Role: Moderator (View-Only)";
-                    roleBadge.className = "text-xs text-emerald-400 font-mono font-bold";
+                    roleBadge.className = "text-xs text-[#0F9D8A] font-mono font-bold";
                 }
                 if (submitText) submitText.innerText = "Open Moderator Portal";
                 populateLoginModeratorSelect();
@@ -4236,7 +4347,7 @@ Date: _________________`;
             const icon = document.getElementById('password-toggle-icon');
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
-                icon.className = 'fa-solid fa-eye-slash text-sm text-amber-400';
+                icon.className = 'fa-solid fa-eye-slash text-sm text-blue-400';
             } else {
                 pwdInput.type = 'password';
                 icon.className = 'fa-solid fa-eye text-sm text-slate-400';
@@ -4265,7 +4376,7 @@ Date: _________________`;
                     else sessionStorage.setItem(AUTH_CONFIG.storageKey, "AUTHENTICATED");
 
                     submitBtn.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Access Granted...</span>`;
-                    submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-emerald-600 text-white font-display font-bold text-sm tracking-wide shadow-glow-emerald";
+                    submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-blue-600 text-white font-display font-bold text-sm tracking-wide shadow-glow-brand";
 
                     setTimeout(() => {
                         checkAuthStatus();
@@ -4274,7 +4385,7 @@ Date: _________________`;
                         if (activeView === 'monthly') renderMonthlyTable();
                         showToast("Welcome! Access Granted to In-Charge Portal", "success");
                         submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket text-base"></i> <span>Unlock Dashboard</span>`;
-                        submitBtn.className = "w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(245,158,11,0.65)] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-yellow-300/40";
+                        submitBtn.className = "w-full mt-4 py-3 rounded-xl bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-sm tracking-wide shadow-xs transition flex items-center justify-center gap-2 cursor-pointer border border-[#0F9D8A]";
                     }, 350);
                 } else {
                     errorBanner.classList.remove('hidden');
@@ -4417,7 +4528,7 @@ Date: _________________`;
                 document.documentElement.classList.add('dark');
                 document.documentElement.classList.remove('light');
                 const icon = document.getElementById('theme-icon');
-                if (icon) icon.className = 'fa-solid fa-sun text-amber-400 text-sm';
+                if (icon) icon.className = 'fa-solid fa-sun text-blue-400 text-sm';
             } else {
                 document.documentElement.classList.remove('dark');
                 document.documentElement.classList.add('light');
@@ -4437,7 +4548,7 @@ Date: _________________`;
             localStorage.setItem('sanvees_theme_v3', mode);
             localStorage.setItem('sanvees_theme', mode);
             const icon = document.getElementById('theme-icon');
-            if (icon) icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-sm' : 'fa-solid fa-moon text-slate-700 text-sm';
+            if (icon) icon.className = isDark ? 'fa-solid fa-sun text-blue-400 text-sm' : 'fa-solid fa-moon text-slate-700 text-sm';
         }
 
         function startLiveClock() {
@@ -4490,8 +4601,8 @@ Date: _________________`;
             const toast = document.createElement('div');
             toast.className = 'pointer-events-auto relative overflow-hidden flex items-center gap-3 px-4 py-3 rounded-2xl glass-panel-elevated shadow-2xl text-xs font-bold border border-white/20 transform transition-all duration-300 animate-modal-pop';
             
-            let icon = '<i class="fa-solid fa-circle-check text-emerald-500 text-sm"></i>';
-            if (type === 'info') icon = '<i class="fa-solid fa-circle-info text-amber-400 text-sm"></i>';
+            let icon = '<i class="fa-solid fa-circle-check text-blue-500 text-sm"></i>';
+            if (type === 'info') icon = '<i class="fa-solid fa-circle-info text-blue-400 text-sm"></i>';
             else if (type === 'warning') icon = '<i class="fa-solid fa-triangle-exclamation text-amber-500 text-sm"></i>';
             else if (type === 'error') icon = '<i class="fa-solid fa-circle-xmark text-rose-500 text-sm"></i>';
 
@@ -4501,7 +4612,7 @@ Date: _________________`;
                 <button type="button" onclick="this.parentElement.remove()" class="ml-auto text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
                     <i class="fa-solid fa-xmark text-xs"></i>
                 </button>
-                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-emerald-500 toast-progress-bar"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-400 toast-progress-bar"></div>
             `;
             container.appendChild(toast);
             setTimeout(() => {
@@ -4564,10 +4675,10 @@ Date: _________________`;
 
             if (activeView === 'appointment' || document.body.classList.contains('print-appointment-active')) {
                 printStyle.innerHTML = `
-                    @page { size: A4 portrait; margin: 0; }
+                    @page { size: A4 portrait; margin: 0 !important; }
                     @media print {
-                        @page { size: A4 portrait; margin: 0; }
-                        html, body { margin: 0 !important; padding: 0 !important; width: 210mm !important; height: 297mm !important; }
+                        @page { size: A4 portrait; margin: 0 !important; }
+                        html, body { margin: 0 !important; padding: 0 !important; width: 210mm !important; height: 297mm !important; max-height: 297mm !important; overflow: hidden !important; }
                     }
                 `;
             } else if (activeView === 'daily') {
@@ -4797,6 +4908,24 @@ Date: _________________`;
                 openCommandPalette();
             }
         });
+
+        // Interactive Bento Mouse Spotlight Tracking
+        function initSpotlightCards() {
+            const cards = document.querySelectorAll('.bento-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.removeProperty('--mouse-x');
+                    card.style.removeProperty('--mouse-y');
+                });
+            });
+        }
 
         // Initialize on DOM Ready
         function initApp() {

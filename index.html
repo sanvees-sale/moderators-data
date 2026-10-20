@@ -51,64 +51,64 @@
                     },
                     colors: {
                         brand: {
-                            50: '#F0FDF4',
-                            100: '#DCFCE7',
-                            200: '#BBF7D0',
-                            300: '#86EFAC',
-                            400: '#34D399',
-                            500: '#10B981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065F46',
-                            900: '#064E3B',
-                            950: '#022C22',
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A',
+                            950: '#172554',
                         },
                         gold: {
-                            50: '#FFFDF0',
-                            100: '#FEF9C3',
-                            200: '#FEF08A',
-                            300: '#FDE047',
-                            400: '#FACC15',
-                            500: '#EAB308',
-                            600: '#CA8A04',
-                            700: '#A16207',
-                            800: '#854D0E',
-                            900: '#713F12',
-                            950: '#422006'
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            200: '#BAE6FD',
+                            300: '#7DD3FC',
+                            400: '#38BDF8',
+                            500: '#0EA5E9',
+                            600: '#0284C7',
+                            700: '#0369A1',
+                            800: '#075985',
+                            900: '#0C4A6E',
+                            950: '#082F49'
                         },
                         slate: {
-                            50: '#F5FAF7',
-                            100: '#E8F3EE',
-                            200: '#D3E6DE',
-                            300: '#B2D3C5',
-                            400: '#82AFA0',
-                            500: '#588879',
-                            600: '#3D685B',
-                            700: '#26493F',
-                            800: '#15312A',
-                            850: '#102721',
-                            900: '#0A1C17',
-                            950: '#040E0B',
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            400: '#94A3B8',
+                            500: '#64748B',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1E293B',
+                            850: '#151F32',
+                            900: '#0F172A',
+                            950: '#020617',
                         },
                         dark: {
-                            bg: '#040D0A',
-                            card: '#081813',
-                            cardHover: '#0E2820',
-                            surface: '#123027',
-                            border: 'rgba(212, 175, 55, 0.18)',
-                            borderHover: 'rgba(245, 158, 11, 0.50)'
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            cardHover: '#1F2937',
+                            surface: '#1E293B',
+                            border: 'rgba(59, 130, 246, 0.18)',
+                            borderHover: 'rgba(96, 165, 250, 0.45)'
                         }
                     },
                     boxShadow: {
-                        'glow-brand': '0 0 35px -5px rgba(16, 185, 129, 0.55)',
-                        'glow-gold': '0 0 35px -5px rgba(245, 158, 11, 0.65)',
+                        'glow-brand': '0 0 35px -5px rgba(37, 99, 235, 0.55)',
+                        'glow-gold': '0 0 35px -5px rgba(37, 99, 235, 0.65)',
                         'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.5)',
                         'glow-amber': '0 0 30px -5px rgba(245, 158, 11, 0.5)',
                         'glow-rose': '0 0 30px -5px rgba(244, 63, 94, 0.5)',
                         'glow-cyan': '0 0 30px -5px rgba(6, 182, 212, 0.5)',
                         'glow-purple': '0 0 30px -5px rgba(168, 85, 247, 0.5)',
                         'glass': '0 10px 35px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.8)',
-                        'glass-dark': '0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(212, 175, 55, 0.18), inset 0 1px 0 0 rgba(212, 175, 55, 0.20)',
+                        'glass-dark': '0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(59, 130, 246, 0.18), inset 0 1px 0 0 rgba(59, 130, 246, 0.20)',
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -140,7 +140,7 @@
     <style id="dynamic-print-orientation-style"></style>
 
 </head>
-<body class="min-h-screen relative antialiased selection:bg-amber-500 selection:text-slate-950 font-sans">
+<body class="min-h-screen relative antialiased selection:bg-blue-600 selection:text-white font-sans">
 
     <!-- Ambient Aurora Gradient Mesh Canvas -->
     <div class="aurora-bg">
@@ -152,60 +152,46 @@
     <!-- Toast Notification Hub -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 pointer-events-none no-print"></div>
 
-    <!-- ======================= 1. ROYAL EMERALD & IMPERIAL GOLD LOGIN PORTAL ======================= -->
-    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030907]/95 backdrop-blur-3xl no-print select-none">
+    <!-- ======================= 1. EXECUTIVE ROYAL BLUE & MIDNIGHT NAVY LOGIN PORTAL ======================= -->
+    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#070B14]/95 backdrop-blur-3xl no-print select-none">
         
-        <!-- Glowing Ambient Aurora Nebulas (Imperial Gold & Royal Emerald) -->
-        <div class="absolute w-[520px] h-[520px] rounded-full bg-amber-500/25 filter blur-[110px] pointer-events-none -top-32 -left-32 animate-pulse-slow"></div>
-        <div class="absolute w-[500px] h-[500px] rounded-full bg-emerald-500/25 filter blur-[100px] pointer-events-none -bottom-32 -right-32 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
-        <div class="absolute w-80 h-80 rounded-full bg-teal-500/20 filter blur-[95px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-
-        <div id="login-card" class="relative w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#081813]/95 border border-amber-500/30 shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95),0_0_50px_rgba(245,158,11,0.22)] backdrop-blur-2xl transition-all duration-300">
+        <!-- Glowing Ambient Aurora Nebulas (Royal Blue & Indigo) -->
+        <div class="absolute w-[520px] h-[520px] rounded-full bg-blue-600/25 filter blur-[110px] pointer-events-none -top-32 -left-32 animate-pulse-slow"></div>
+        <div id="login-card" class="relative w-full max-w-md p-8 sm:p-10 rounded-2xl bg-[#0F172A] border border-slate-800 shadow-2xl backdrop-blur-xl transition-all duration-300">
             
-            <!-- Top Radiant Gold-Emerald Accent Beam -->
-            <div class="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.6)]"></div>
-
-            <!-- Brand Emblem & Title: 3D Imperial Gold Crown Crest (NO ST, NO INITIALS) -->
-            <div class="text-center mb-8">
-                <div class="relative inline-flex items-center justify-center mb-4 group">
-                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-300 to-amber-600 p-[2.5px] shadow-[0_0_35px_rgba(245,158,11,0.5)] ring-4 ring-amber-500/20 transition-transform duration-300 group-hover:scale-105">
-                        <div class="w-full h-full bg-[#040D0A] rounded-[13px] flex items-center justify-center">
-                            <i class="fa-solid fa-crown text-3xl text-amber-400 drop-shadow-[0_2px_12px_rgba(245,158,11,0.9)]"></i>
-                        </div>
+            <!-- Brand Emblem & Title -->
+            <div class="text-center mb-7">
+                <div class="relative inline-flex items-center justify-center mb-3">
+                    <div class="w-14 h-14 rounded-xl bg-slate-800 border border-slate-700 text-[#0F9D8A] flex items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-crown text-2xl"></i>
                     </div>
-                    <span class="absolute -bottom-1 -right-1 flex h-4 w-4">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-[#050A18]"></span>
-                    </span>
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-display font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-white to-amber-100 drop-shadow-sm">
+                <h1 class="text-2xl font-bold tracking-tight text-white">
                     SANVEE'S BY TONY
                 </h1>
-                <div class="flex items-center justify-center gap-2 mt-1.5">
-                    <span class="h-[1px] w-6 bg-gradient-to-r from-transparent to-amber-400/60"></span>
-                    <p class="text-[11px] font-extrabold text-amber-400/90 uppercase tracking-[0.22em]">
+                <div class="flex items-center justify-center gap-2 mt-1">
+                    <p class="text-xs font-medium text-slate-400 uppercase tracking-widest">
                         Executive Moderator Portal
                     </p>
-                    <span class="h-[1px] w-6 bg-gradient-to-l from-transparent to-amber-400/60"></span>
                 </div>
             </div>
 
             <!-- Error Banner -->
-            <div id="login-error-banner" class="hidden mb-6 p-3.5 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2.5">
+            <div id="login-error-banner" class="hidden mb-5 p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2.5">
                 <i class="fa-solid fa-circle-exclamation text-rose-400 text-sm"></i>
                 <span id="login-error-text" class="font-medium">Incorrect password. Please try again.</span>
             </div>
 
-            <!-- Role Switcher Tabs (Imperial Gold & Royal Emerald) -->
-            <div class="flex items-center p-1 rounded-2xl bg-white/[0.06] border border-white/10 mb-5 font-bold text-xs">
+            <!-- Role Switcher Tabs -->
+            <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 mb-5 font-semibold text-xs">
                 <button type="button" id="btn-auth-tab-admin" onclick="switchLoginRole('admin')" 
-                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-[0_0_20px_rgba(245,158,11,0.45)] border border-yellow-300/40">
-                    <i class="fa-solid fa-user-shield"></i>
+                        class="flex-1 py-2 px-3 rounded-lg transition flex items-center justify-center gap-1.5 bg-[#0F9D8A] text-white font-semibold shadow-xs border border-[#0F9D8A]">
+                    <i class="fa-solid fa-user-shield text-xs"></i>
                     <span>In-Charge (Admin)</span>
                 </button>
                 <button type="button" id="btn-auth-tab-moderator" onclick="switchLoginRole('moderator')" 
-                        class="flex-1 py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
-                    <i class="fa-solid fa-users"></i>
+                        class="flex-1 py-2 px-3 rounded-lg transition flex items-center justify-center gap-1.5 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-users text-xs"></i>
                     <span>Moderator View</span>
                 </button>
             </div>
@@ -214,77 +200,77 @@
             <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
                 <!-- Admin Username Field -->
                 <div id="auth-admin-fields">
-                    <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
                         Authorized Username
                     </label>
                     <div class="relative">
-                        <i class="fa-solid fa-user-shield absolute left-4 top-3.5 text-amber-400 text-sm"></i>
+                        <i class="fa-solid fa-user-shield absolute left-3.5 top-3 text-slate-400 text-sm"></i>
                         <input type="text" id="login-username" value="admin"
-                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition font-medium">
+                                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#0F9D8A] focus:border-transparent transition font-medium">
                     </div>
                 </div>
 
                 <!-- Moderator Selector Field -->
                 <div id="auth-moderator-fields" class="hidden space-y-1.5">
-                    <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
                         Select Your Profile
                     </label>
                     <div class="relative">
-                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-amber-400 text-sm z-10"></i>
+                        <i class="fa-solid fa-user absolute left-3.5 top-3 text-slate-400 text-sm z-10"></i>
                         <select id="login-mod-select"
-                                class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900 border border-white/10 text-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
+                                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#0F9D8A] transition">
                         </select>
                     </div>
                 </div>
 
                 <!-- Password / PIN Field -->
                 <div>
-                    <label id="auth-password-label" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
+                    <label id="auth-password-label" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
                         Access Password
                     </label>
                     <div class="relative">
-                        <i class="fa-solid fa-lock-keyhole absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+                        <i class="fa-solid fa-lock-keyhole absolute left-3.5 top-3 text-slate-400 text-sm"></i>
                         <input type="password" id="login-password" placeholder="Enter portal password" required
-                               class="w-full pl-11 pr-11 py-3 rounded-2xl bg-white/[0.05] border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition font-mono">
-                        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-4 top-3.5 text-slate-400 hover:text-white transition cursor-pointer">
+                               class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#0F9D8A] focus:border-transparent transition font-mono">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-3 text-slate-400 hover:text-white transition cursor-pointer">
                             <i id="password-toggle-icon" class="fa-solid fa-eye text-sm"></i>
                         </button>
                     </div>
-                    <div id="auth-moderator-hint" class="hidden text-[11px] text-amber-300/90 mt-1.5 ml-1">
-                        💡 Moderator default access PIN: <strong class="font-mono text-amber-200">1234</strong>
+                    <div id="auth-moderator-hint" class="hidden text-[11px] text-teal-300/90 mt-1.5 ml-1">
+                        💡 Moderator default access PIN: <strong class="font-mono text-teal-200">1234</strong>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-between pt-1">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-white/10 border-white/20 text-amber-500 focus:ring-amber-400">
+                        <input type="checkbox" id="login-remember-me" checked class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-[#0F9D8A] focus:ring-[#0F9D8A]">
                         <span class="text-xs text-slate-400 font-medium">Remember on this device</span>
                     </label>
-                    <span id="auth-role-badge" class="text-xs text-amber-400 font-mono font-bold">Role: In-Charge (Admin)</span>
+                    <span id="auth-role-badge" class="text-xs text-[#0F9D8A] font-mono font-bold">Role: In-Charge (Admin)</span>
                 </div>
 
                 <button type="submit" id="btn-login-submit"
-                        class="w-full mt-4 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-sm tracking-wide shadow-[0_0_35px_rgba(245,158,11,0.65)] active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer btn-shimmer border border-yellow-300/40">
-                    <i class="fa-solid fa-crown text-base text-slate-950"></i>
+                        class="w-full mt-4 py-3 rounded-xl bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-sm tracking-wide shadow-xs active:scale-[0.98] transition flex items-center justify-center gap-2 cursor-pointer border border-[#0F9D8A]">
+                    <i class="fa-solid fa-crown text-sm text-white"></i>
                     <span id="btn-login-submit-text">Unlock Dashboard</span>
                 </button>
             </form>
 
             <!-- Quick Demo Credentials Helper Bar -->
-            <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Quick Access:</span>
+            <div class="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between gap-2">
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Quick Access:</span>
                 <div class="flex items-center gap-2">
                     <button type="button" onclick="quickFillLogin('admin')" title="Auto-fill In-Charge Admin" 
-                            class="px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-[11px] font-semibold text-amber-300 hover:text-white border border-amber-500/30 transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-crown text-amber-400 text-xs"></i>
+                            class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-medium text-slate-300 hover:text-white border border-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-crown text-[#0F9D8A] text-xs"></i>
                         <span>Admin</span>
                     </button>
                     <button type="button" onclick="quickFillLogin('moderator')" title="Auto-fill Moderator View" 
-                            class="px-2.5 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-[11px] font-semibold text-emerald-300 hover:text-white border border-emerald-500/30 transition flex items-center gap-1.5 cursor-pointer">
-                        <i class="fa-solid fa-user-check text-emerald-400 text-xs"></i>
+                            class="px-2.5 py-1.5 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 text-[11px] font-semibold text-indigo-300 hover:text-white border border-indigo-500/30 transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-user-check text-indigo-400 text-xs"></i>
                         <span>Moderator</span>
                     </button>
-                </div>iv>
+                </div>
             </div>
 
             <div class="mt-4 text-center text-xs text-slate-500">
@@ -296,59 +282,63 @@
     <!-- ======================= 2. MAIN APPLICATION PORTAL ======================= -->
     <div id="main-app-wrapper" class="relative z-10 hidden flex flex-col min-h-screen">
         
-        <!-- Sticky Executive Glass Navbar Dock -->
+        <!-- Sticky Executive Navbar Dock -->
         <header class="glass-header sticky top-0 z-40 transition-all duration-200 no-print">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
                 
                 <!-- Left: Brand Crest & Live Time -->
                 <div class="flex items-center gap-3.5">
-                    <div class="relative w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 via-yellow-300 to-amber-600 p-[2px] shadow-[0_0_20px_rgba(245,158,11,0.45)] flex-shrink-0">
-                        <div class="w-full h-full bg-[#050A18] rounded-[9px] flex items-center justify-center">
-                            <i class="fa-solid fa-crown text-amber-400 text-base drop-shadow-[0_1px_6px_rgba(245,158,11,0.8)]"></i>
-                        </div>
+                    <div class="relative w-10 h-10 rounded-xl bg-[#172554] text-white flex items-center justify-center flex-shrink-0 shadow-xs cursor-pointer">
+                        <i class="fa-solid fa-crown text-[#0F9D8A] text-base"></i>
                     </div>
                     <div class="flex flex-col justify-center">
                         <div class="flex items-center gap-2">
-                            <h2 class="font-display font-black text-lg sm:text-xl text-slate-900 dark:text-white tracking-tight leading-tight">
+                            <h2 class="font-bold text-lg sm:text-xl text-[#172554] dark:text-white tracking-tight leading-tight">
                                 Sanvee's by Tony
                             </h2>
-                            <span id="header-role-badge" class="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-500 dark:text-amber-400 font-extrabold text-[11px] border border-amber-500/30 leading-none">
+                            <span id="header-role-badge" class="px-2 py-0.5 rounded-md bg-[#E6F5F1] text-[#087F70] dark:bg-[#0F9D8A]/20 dark:text-[#2DD4BF] font-semibold text-[11px] border border-[#0F9D8A]/25 leading-none">
                                 In-Charge
                             </span>
                         </div>
-                        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
-                            <span id="nav-live-clock" class="font-mono text-slate-700 dark:text-slate-300">--:--:--</span>
-                            <span>•</span>
-                            <span id="nav-active-date-label">Today</span>
+                        <div class="flex items-center gap-2 mt-1">
+                            <div class="nav-quartz-capsule px-2.5 py-0.5 rounded-full inline-flex items-center gap-1.5 text-[11px] font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span id="nav-live-clock" class="font-mono font-bold text-slate-800 dark:text-slate-200">--:--:--</span>
+                            </div>
+                            <span class="text-xs text-slate-400">•</span>
+                            <span id="nav-active-date-label" class="text-xs font-medium text-slate-500 dark:text-slate-400">Today</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Center: Segmented View Pill Switcher & Command Palette -->
                 <div class="hidden md:flex items-center gap-3">
-                    <div class="flex items-center p-1 rounded-2xl bg-slate-200/60 dark:bg-slate-800/80 border border-slate-300/40 dark:border-slate-700/60 shadow-inner">
+                    <div class="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                         <button onclick="switchView('daily')" id="btn-view-daily"
-                                class="px-5 py-2 rounded-xl font-display font-black text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 shadow-[0_4px_25px_rgba(245,158,11,0.55)] border border-yellow-300/40 cursor-pointer">
+                                class="px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-150 inline-flex items-center justify-center gap-2 bg-[#E6F5F1] text-[#087F70] border border-[#0F9D8A]/30 dark:bg-[#0F9D8A]/20 dark:text-[#2DD4BF] dark:border-[#0F9D8A]/40 shadow-xs cursor-pointer">
                             <i class="fa-solid fa-calendar-day text-sm"></i>
                             <span>Daily Roster</span>
+                            <span class="px-1.5 py-0.5 rounded bg-[#0F9D8A] text-white font-mono text-[9px] font-bold uppercase">Live</span>
                         </button>
                         <button onclick="switchView('monthly')" id="btn-view-monthly"
-                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                                class="px-4 py-2 rounded-xl font-medium text-xs sm:text-sm transition-all duration-150 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
                             <i class="fa-solid fa-table-cells text-sm"></i>
                             <span>Monthly Matrix</span>
+                            <span class="px-1.5 py-0.5 rounded-md bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-mono text-[9px] font-semibold">30d</span>
                         </button>
                         <button onclick="switchView('appointment')" id="btn-view-appointment"
-                                class="px-5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm transition-all duration-200 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                                class="px-4 py-2 rounded-xl font-medium text-xs sm:text-sm transition-all duration-150 inline-flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
                             <i class="fa-solid fa-file-signature text-sm"></i>
                             <span>Appointment Letter</span>
+                            <span class="px-1.5 py-0.5 rounded-md bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-mono text-[9px] font-semibold">PAD</span>
                         </button>
                     </div>
 
                     <button type="button" onclick="openCommandPalette()" title="Search & Quick Actions (Ctrl+K)"
-                            class="px-3 py-2 rounded-xl bg-slate-200/60 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold text-xs border border-slate-300/40 dark:border-slate-700/60 transition flex items-center gap-2 shadow-xs cursor-pointer">
-                        <i class="fa-solid fa-magnifying-glass text-amber-400"></i>
+                            class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium text-xs border border-slate-200 dark:border-slate-700 transition flex items-center gap-2 shadow-xs cursor-pointer">
+                        <i class="fa-solid fa-magnifying-glass text-[#0F9D8A]"></i>
                         <span class="text-[11px]">Command</span>
-                        <kbd class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 font-mono text-[9px] text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 shadow-xs">Ctrl K</kbd>
+                        <kbd class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 font-mono text-[9px] text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 shadow-xs">Ctrl K</kbd>
                     </button>
                 </div>
 
@@ -357,43 +347,43 @@
                     
                     <!-- + Add Member Button (In-Charge Admin Only) -->
                     <button onclick="openAddModal()" id="btn-add-moderator"
-                            class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.55)] border border-emerald-400/40 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
-                        <i class="fa-solid fa-user-plus text-xs text-amber-300"></i>
+                            class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-xs sm:text-sm shadow-xs border border-[#087F70] inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
+                        <i class="fa-solid fa-user-plus text-xs text-white"></i>
                         <span class="hidden sm:inline">Add Moderator</span>
                     </button>
 
                     <!-- Firebase Live Cloud Sync Chip (In-Charge Admin Only) -->
                     <button onclick="openFirebaseModal()" id="btn-firebase-sync" title="Firebase Realtime Database Cloud Sync Status"
-                            class="px-3 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30 text-xs font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition cursor-pointer">
+                        <span class="w-2 h-2 rounded-full bg-[#0F9D8A]"></span>
                         <span class="hidden lg:inline font-mono">Firebase Live</span>
-                        <i class="fa-solid fa-fire text-emerald-500"></i>
+                        <i class="fa-solid fa-fire text-[#0F9D8A]"></i>
                     </button>
 
                     <!-- Operations Hub Dropdown (In-Charge Admin Only) -->
                     <div class="relative" id="wrapper-operations-hub">
                         <button onclick="toggleOperationsMenu()" id="btn-operations-hub"
                                 class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs inline-flex items-center justify-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
-                            <i class="fa-solid fa-sliders text-amber-400"></i>
+                            <i class="fa-solid fa-sliders text-blue-400"></i>
                             <span class="hidden sm:inline">Operations Hub</span>
                             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
                         </button>
 
                         <!-- Dropdown Menu -->
                         <div id="operations-dropdown-menu" class="hidden absolute right-0 mt-2 w-64 p-2 rounded-2xl glass-panel-elevated shadow-2xl z-50 space-y-1 text-xs font-semibold">
-                            <button onclick="switchView('appointment'); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
+                            <button onclick="switchView('appointment'); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
-                                    <i class="fa-solid fa-file-signature text-amber-500"></i>
+                                    <i class="fa-solid fa-file-signature text-blue-500"></i>
                                     <span>Appointment Letter (Pad)</span>
                                 </span>
-                                <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold text-[10px]">PAD</span>
+                                <span class="px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 font-mono font-bold text-[10px]">PAD</span>
                             </button>
-                            <button onclick="openNightShiftModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
+                            <button onclick="openNightShiftModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/40 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
-                                    <i class="fa-solid fa-moon text-amber-400"></i>
+                                    <i class="fa-solid fa-moon text-blue-400"></i>
                                     <span>Night Shifts Roster</span>
                                 </span>
-                                <span id="active-night-count" class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold text-[10px]">0</span>
+                                <span id="active-night-count" class="px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 font-mono font-bold text-[10px]">0</span>
                             </button>
                             <button onclick="openLeaveModal(); toggleOperationsMenu(false);" class="w-full px-3 py-2.5 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-950/50 flex items-center justify-between text-slate-700 dark:text-slate-200 transition">
                                 <span class="flex items-center gap-2.5">
@@ -438,11 +428,11 @@
                                 <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">In-Charge • Admin</div>
                             </div>
                             <button onclick="switchView('appointment'); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
-                                <i class="fa-solid fa-file-signature text-amber-500"></i>
+                                <i class="fa-solid fa-file-signature text-blue-500"></i>
                                 <span>Appointment Letters</span>
                             </button>
                             <button onclick="handlePrintReport(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
-                                <i class="fa-solid fa-print text-amber-500"></i>
+                                <i class="fa-solid fa-print text-blue-500"></i>
                                 <span>Print A4 Roster</span>
                             </button>
                             <button onclick="exportToCSV(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
@@ -450,7 +440,7 @@
                                 <span>Export to Excel/CSV</span>
                             </button>
                             <button onclick="openChangePasswordModal(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
-                                <i class="fa-solid fa-key text-amber-500"></i>
+                                <i class="fa-solid fa-key text-blue-500"></i>
                                 <span>Change Password</span>
                             </button>
                             <button onclick="openFirebaseModal(); toggleAdminMenu(false);" class="w-full px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2.5 text-slate-700 dark:text-slate-200">
@@ -480,16 +470,16 @@
         <main id="main-content-canvas" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
             
             <!-- Moderator View-Only Status Banner -->
-            <div id="moderator-logged-in-banner" class="hidden glass-panel-elevated p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 via-amber-500/10 to-emerald-500/10 shadow-lg no-print">
+            <div id="moderator-logged-in-banner" class="hidden glass-panel-elevated p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border border-blue-500/20 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-blue-500/10 shadow-lg no-print">
                 <div class="flex items-center gap-3.5">
-                    <div id="mod-banner-avatar" class="w-11 h-11 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
+                    <div id="mod-banner-avatar" class="w-11 h-11 rounded-2xl bg-blue-500/15 text-blue-500 dark:text-blue-400 border border-blue-500/30 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
                         <i class="fa-solid fa-user-shield"></i>
                         <span id="mod-banner-sl" class="hidden">--</span>
                     </div>
                     <div>
                         <div class="flex flex-wrap items-center gap-2">
                             <span class="font-display font-black text-base text-slate-900 dark:text-white" id="mod-banner-name">--</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-400 font-bold text-[10px] border border-amber-500/25">
+                            <span class="px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-700 dark:text-blue-400 font-bold text-[10px] border border-blue-500/25">
                                 <i class="fa-solid fa-lock text-[9px] mr-1"></i> View-Only Mode
                             </span>
                         </div>
@@ -538,171 +528,165 @@
             <div id="view-daily-container" class="space-y-6">
                 
                 <!-- Date Bar & Fast Navigation -->
-                <div class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
+                <div class="glass-panel p-4 sm:p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4 shadow-xs no-print">
                     <div class="flex items-center gap-3">
                         <button onclick="navigateDay(-1)" title="Previous Day"
-                                class="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-400 flex items-center justify-center text-sm transition cursor-pointer">
+                                class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs transition cursor-pointer border border-slate-200 dark:border-slate-700">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
                         <div class="flex flex-col justify-center">
                             <div class="flex items-center gap-2.5">
                                 <input type="date" id="selected-date-picker" onchange="handleDatePickerChange(this.value)"
-                                       class="font-display font-black text-lg sm:text-2xl bg-transparent border-none outline-none text-slate-900 dark:text-white cursor-pointer tracking-tight">
-                                <span id="daily-banner-is-today" class="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-extrabold text-xs border border-emerald-500/30 shadow-xs leading-none">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500 beacon-dot"></span>
+                                       class="font-bold text-lg sm:text-xl bg-transparent border-none outline-none text-[#172554] dark:text-white cursor-pointer tracking-tight">
+                                <span id="daily-banner-is-today" class="inline-flex items-center justify-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#DCFCE7] text-[#15803D] dark:bg-emerald-950/60 dark:text-emerald-300 font-semibold text-xs border border-[#BBF7D0] dark:border-emerald-800/40 leading-none">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
                                     <span>Today (Active)</span>
                                 </span>
                             </div>
-                            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1.5">
+                            <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1.5">
                                 <span>Duty Day:</span>
-                                <span id="daily-banner-day" class="text-amber-600 dark:text-amber-400 font-black">--</span>
+                                <span id="daily-banner-day" class="text-[#0F9D8A] font-bold">--</span>
                             </div>
                         </div>
                         <button onclick="navigateDay(1)" title="Next Day"
-                                class="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-400 flex items-center justify-center text-sm transition cursor-pointer">
+                                class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs transition cursor-pointer border border-slate-200 dark:border-slate-700">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
 
                     <div class="flex items-center gap-2 sm:gap-3">
                         <button onclick="jumpToToday()"
-                                class="px-4 py-2.5 rounded-2xl bg-amber-500/10 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 hover:bg-amber-500/20 font-display font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition border border-amber-500/30 cursor-pointer">
+                                class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             <span>Jump to Today</span>
                         </button>
                         <button onclick="bulkMarkAllPresent()" id="btn-bulk-mark-present"
-                                class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm shadow-[0_0_25px_rgba(16,185,129,0.5)] border border-emerald-400/30 inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
-                            <i class="fa-solid fa-bolt text-xs text-amber-300"></i>
+                                class="px-4 py-2 rounded-xl bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-xs sm:text-sm shadow-xs border border-[#087F70] inline-flex items-center justify-center gap-2 transition cursor-pointer active:scale-95">
+                            <i class="fa-solid fa-bolt text-xs text-white"></i>
                             <span>Mark All On-Duty Present</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Bento Metric Cards Grid (6 KPI Cards) -->
+                <!-- Summary Statistics Cards (6 KPI Cards) -->
                 <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4 no-print">
                     
-                    <!-- 1. Total Staff (Imperial Gold) -->
-                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(245, 158, 11, 0.45);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-500 shadow-sm"></div>
+                    <!-- 1. Total Staff -->
+                    <div onclick="filterByChip('ALL')" class="glass-panel bento-card p-4 sm:p-5 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] cursor-pointer hover:border-slate-300 transition relative">
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500/25 to-yellow-500/25 text-amber-600 dark:text-amber-400 border border-amber-500/40 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-7 h-7 rounded-lg bg-slate-100 text-[#172554] dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-users"></i>
                             </div>
-                            <span class="text-[11px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">Total Staff</span>
+                            <span class="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Total Staff</span>
                         </div>
                         <div class="my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-slate-900 dark:text-white font-mono tracking-tight" id="count-total-mods">26</div>
+                            <div class="font-bold text-3xl sm:text-4xl text-[#172554] dark:text-white font-mono tracking-tight bento-stat-val" id="count-total-mods">26</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
-                            <span class="text-[10px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 leading-none">
+                            <span class="text-[11px] font-medium text-slate-600 dark:text-slate-400 px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 leading-none">
                                 Verified Roster
                             </span>
                         </div>
                     </div>
 
-                    <!-- 2. Available Today (Royal Emerald) -->
-                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(16, 185, 129, 0.4);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-emerald-600 via-teal-400 to-emerald-400 shadow-sm"></div>
+                    <!-- 2. On Duty -->
+                    <div onclick="filterByChip('AVAILABLE_TODAY')" class="glass-panel bento-card p-4 sm:p-5 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] cursor-pointer hover:border-slate-300 transition relative">
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500/25 to-teal-500/25 text-emerald-600 dark:text-emerald-400 border border-emerald-500/40 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-7 h-7 rounded-lg bg-[#E6F5F1] text-[#087F70] dark:bg-teal-900/30 dark:text-teal-400 border border-[#0F9D8A]/25 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-briefcase"></i>
                             </div>
-                            <span class="text-[11px] font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">On Duty</span>
+                            <span class="text-xs font-semibold text-[#087F70] dark:text-teal-400 uppercase tracking-wider">On Duty</span>
                         </div>
                         <div class="flex items-baseline justify-center gap-1.5 my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-emerald-600 dark:text-emerald-400 font-mono tracking-tight" id="count-available-today">21</div>
-                            <span class="text-xs font-black text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-lg border border-emerald-500/25" id="pct-available-today">81%</span>
+                            <div class="font-bold text-3xl sm:text-4xl text-[#0F9D8A] font-mono tracking-tight bento-stat-val" id="count-available-today">21</div>
+                            <span class="text-xs font-semibold text-[#087F70] dark:text-teal-300 bg-[#E6F5F1] dark:bg-teal-950/60 px-2 py-0.5 rounded-md border border-[#0F9D8A]/20" id="pct-available-today">81%</span>
                         </div>
                         <div class="w-full space-y-1.5">
-                            <div class="w-full bg-emerald-500/20 h-1.5 rounded-full overflow-hidden">
-                                <div id="bar-available-today" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-500" style="width: 81%;"></div>
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div id="bar-available-today" class="bg-[#0F9D8A] h-full rounded-full transition-all duration-500" style="width: 81%;"></div>
                             </div>
                             <div class="w-full flex items-center justify-center">
-                                <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 leading-none" id="sub-available-today">
+                                <span class="text-[11px] font-medium text-[#087F70] dark:text-teal-300 px-2.5 py-0.5 rounded-full bg-[#E6F5F1] dark:bg-teal-950/40 border border-[#0F9D8A]/20 leading-none" id="sub-available-today">
                                     21 of 26 Scheduled
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. Present Today (Jade Mint) -->
-                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[162px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(52, 211, 153, 0.45);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-teal-400 via-emerald-300 to-green-500 shadow-sm"></div>
+                    <!-- 3. Present Today -->
+                    <div onclick="filterByChip('Present')" class="glass-panel bento-card p-4 sm:p-5 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] cursor-pointer hover:border-slate-300 transition relative">
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-teal-500/25 to-emerald-500/25 text-teal-600 dark:text-teal-400 border border-teal-500/40 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-7 h-7 rounded-lg bg-[#DCFCE7] text-[#15803D] dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-circle-check"></i>
                             </div>
-                            <span class="text-[11px] font-black text-teal-700 dark:text-teal-400 uppercase tracking-wider">Present</span>
+                            <span class="text-xs font-semibold text-[#15803D] dark:text-green-400 uppercase tracking-wider">Present</span>
                         </div>
                         <div class="flex items-baseline justify-center gap-1.5 my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-teal-600 dark:text-teal-400 font-mono tracking-tight" id="count-present">0</div>
-                            <span class="text-xs font-black text-teal-700 dark:text-teal-300 bg-teal-500/15 px-2 py-0.5 rounded-lg border border-teal-500/25" id="pct-present">0%</span>
+                            <div class="font-bold text-3xl sm:text-4xl text-[#16A34A] dark:text-green-400 font-mono tracking-tight bento-stat-val" id="count-present">0</div>
+                            <span class="text-xs font-semibold text-green-700 dark:text-green-300 bg-[#DCFCE7] dark:bg-green-950/60 px-2 py-0.5 rounded-md border border-green-200" id="pct-present">0%</span>
                         </div>
                         <div class="w-full space-y-1.5">
-                            <div class="w-full bg-teal-500/20 h-1.5 rounded-full overflow-hidden">
-                                <div id="bar-present" class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div id="bar-present" class="bg-[#16A34A] h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
                             </div>
                             <div class="w-full flex items-center justify-center">
-                                <span class="text-[10px] sm:text-[11px] font-bold text-teal-700 dark:text-teal-300 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 leading-none flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-[11px] font-medium text-[#15803D] dark:text-green-300 px-2.5 py-0.5 rounded-full bg-[#DCFCE7] dark:bg-green-950/40 border border-green-200 leading-none flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
                                     <span>Confirmed Duty</span>
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 4. Weekly Off Today (Champagne Gold) -->
-                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer hover:scale-[1.02] transition-transform relative overflow-hidden" style="--card-glow: rgba(234, 179, 8, 0.45);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-600 shadow-sm"></div>
+                    <!-- 4. Weekly Off Today -->
+                    <div onclick="filterByChip('Weekly Off')" class="glass-panel bento-card p-4 sm:p-5 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] cursor-pointer hover:border-slate-300 transition relative">
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-yellow-500/25 to-amber-500/25 text-yellow-600 dark:text-yellow-400 border border-yellow-500/40 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-umbrella-beach"></i>
                             </div>
-                            <span class="text-[11px] font-black text-amber-700 dark:text-amber-400 uppercase tracking-wider">Weekly Off</span>
+                            <span class="text-xs font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Weekly Off</span>
                         </div>
                         <div class="my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-amber-600 dark:text-amber-400 font-mono tracking-tight" id="count-off-today">2</div>
+                            <div class="font-bold text-3xl sm:text-4xl text-[#D97706] dark:text-amber-400 font-mono tracking-tight bento-stat-val" id="count-off-today">2</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
-                            <span class="text-[10px] sm:text-[11px] font-bold text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 leading-none">
+                            <span class="text-[11px] font-medium text-amber-700 dark:text-amber-300 px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 leading-none">
                                 Off Schedule
                             </span>
                         </div>
                     </div>
 
-                    <!-- 5. Absent / Alerts (Crimson Ruby) -->
-                    <div id="card-bento-absent" onclick="handleAbsentCardClick()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(244, 63, 94, 0.45);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-rose-600 via-pink-500 to-red-500 shadow-sm"></div>
+                    <!-- 5. Absent / Alerts -->
+                    <div id="card-bento-absent" onclick="handleAbsentCardClick()" class="glass-panel bento-card p-4 sm:p-5 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] cursor-pointer hover:border-slate-300 transition relative">
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-500/20 to-pink-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-7 h-7 rounded-lg bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-user-xmark"></i>
                             </div>
-                            <span class="text-[11px] font-black text-rose-700 dark:text-rose-400 uppercase tracking-wider">Absent Alert</span>
+                            <span class="text-xs font-semibold text-red-700 dark:text-red-400 uppercase tracking-wider">Absent Alert</span>
                         </div>
                         <div class="my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-rose-600 dark:text-rose-400 font-mono tracking-tight" id="count-absent">0</div>
+                            <div class="font-bold text-3xl sm:text-4xl text-[#DC2626] dark:text-red-400 font-mono tracking-tight bento-stat-val" id="count-absent">0</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
-                            <span id="sub-absent-card-tag" class="text-[10px] sm:text-[11px] font-bold text-rose-700 dark:text-rose-300 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 leading-none flex items-center gap-1">
-                                <i class="fa-brands fa-whatsapp"></i> Auto Notice
+                            <span id="sub-absent-card-tag" class="text-[11px] font-medium text-red-700 dark:text-red-300 px-2.5 py-0.5 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 leading-none flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i> Auto Notice
                             </span>
                         </div>
                     </div>
 
-                    <!-- 6. Night Shift & Leaves (Royal Amethyst) -->
-                    <div onclick="openNightShiftModal()" class="glass-panel bento-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between items-center text-center min-h-[152px] cursor-pointer relative overflow-hidden" style="--card-glow: rgba(168, 85, 247, 0.4);">
-                        <div class="h-[3px] w-full absolute top-0 left-0 right-0 bg-gradient-to-r from-violet-600 via-purple-500 to-fuchsia-500 shadow-sm"></div>
+                    <!-- 6. Night Shift & Leaves -->
+                    <div onclick="openNightShiftModal()" class="glass-panel bento-card p-4 sm:p-5 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] cursor-pointer hover:border-slate-300 transition relative">
                         <div class="flex items-center justify-center gap-2 w-full pt-1">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500/20 to-fuchsia-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30 flex items-center justify-center text-xs shadow-xs">
+                            <div class="w-7 h-7 rounded-lg bg-violet-50 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400 border border-violet-200 dark:border-violet-800 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-moon"></i>
                             </div>
-                            <span class="text-[11px] font-black text-purple-700 dark:text-purple-400 uppercase tracking-wider">Night Duty</span>
+                            <span class="text-xs font-semibold text-violet-700 dark:text-violet-400 uppercase tracking-wider">Night Duty</span>
                         </div>
                         <div class="my-auto py-1">
-                            <div class="font-display font-black text-3xl sm:text-4xl text-purple-600 dark:text-purple-400 font-mono tracking-tight" id="count-night">0</div>
+                            <div class="font-bold text-3xl sm:text-4xl text-[#7C3AED] dark:text-violet-400 font-mono tracking-tight bento-stat-val" id="count-night">0</div>
                         </div>
                         <div class="w-full flex items-center justify-center">
-                            <span id="sub-night-card-tag" class="text-[10px] sm:text-[11px] font-bold text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 leading-none">
+                            <span id="sub-night-card-tag" class="text-[11px] font-medium text-violet-700 dark:text-violet-300 px-2.5 py-0.5 rounded-full bg-violet-50 dark:bg-violet-950/40 border border-violet-200 dark:border-violet-800 leading-none">
                                 Manage Shifts
                             </span>
                         </div>
@@ -716,48 +700,48 @@
                     <!-- 1-Click Fast Filter Chips Strip -->
                     <div class="flex items-center gap-2 overflow-x-auto pb-1 select-none">
                         <button onclick="filterByChip('ALL')" id="chip-filter-all"
-                                class="filter-chip active inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/10 hover:text-amber-500 transition">
-                            <i class="fa-solid fa-layer-group text-xs text-amber-400"></i>
+                                class="filter-chip active inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-semibold text-xs bg-[#E6F5F1] text-[#087F70] border border-[#0F9D8A]/30 transition cursor-pointer">
+                            <i class="fa-solid fa-layer-group text-xs text-[#087F70]"></i>
                             <span id="chip-filter-all-label">All (26)</span>
                         </button>
                         <button onclick="filterByChip('AVAILABLE_TODAY')" id="chip-filter-available"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-teal-50 hover:text-teal-700 transition">
-                            <i class="fa-solid fa-briefcase text-xs text-teal-400"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-briefcase text-xs text-[#0F9D8A]"></i>
                             <span>On Duty Today</span>
                         </button>
                         <button onclick="filterByChip('Present')" id="chip-filter-present"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-50 hover:text-emerald-700 transition">
-                            <i class="fa-solid fa-circle-check text-xs text-emerald-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-circle-check text-xs text-emerald-600"></i>
                             <span>Present</span>
                         </button>
                         <button onclick="filterByChip('Extra Duty')" id="chip-filter-extra"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-teal-50 hover:text-teal-700 transition">
-                            <i class="fa-solid fa-bolt-lightning text-xs text-teal-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-bolt-lightning text-xs text-teal-600"></i>
                             <span>Extra Duty</span>
                         </button>
                         <button onclick="filterByChip('Weekly Off')" id="chip-filter-off"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-50 hover:text-amber-700 transition">
-                            <i class="fa-solid fa-umbrella-beach text-xs text-amber-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-umbrella-beach text-xs text-amber-600"></i>
                             <span>Weekly Off</span>
                         </button>
                         <button onclick="filterByChip('Weekend Exchange')" id="chip-filter-exchange"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-50 hover:text-cyan-700 transition">
-                            <i class="fa-solid fa-shuffle text-xs text-cyan-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-shuffle text-xs text-cyan-600"></i>
                             <span>Exchange</span>
                         </button>
                         <button onclick="filterByChip('Absent')" id="chip-filter-absent"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-rose-50 hover:text-rose-700 transition">
-                            <i class="fa-solid fa-circle-xmark text-xs text-rose-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-circle-xmark text-xs text-rose-600"></i>
                             <span>Absent</span>
                         </button>
                         <button onclick="filterByChip('Night Shift')" id="chip-filter-night"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-50 hover:text-purple-700 transition">
-                            <i class="fa-solid fa-moon text-xs text-purple-400"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-moon text-xs text-purple-600"></i>
                             <span>Night Shift</span>
                         </button>
                         <button onclick="filterByChip('Leave')" id="chip-filter-leave"
-                                class="filter-chip inline-flex items-center justify-center gap-2 px-4 py-2 rounded-2xl font-display font-bold text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-50 hover:text-purple-700 transition">
-                            <i class="fa-solid fa-plane-departure text-xs text-purple-500"></i>
+                                class="filter-chip inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-medium text-xs bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition cursor-pointer">
+                            <i class="fa-solid fa-plane-departure text-xs text-purple-600"></i>
                             <span>Leave</span>
                         </button>
                     </div>
@@ -765,30 +749,30 @@
                     <!-- Search Input & Weekend Dropdown Filters -->
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
                         <div class="relative flex-1 max-w-md">
-                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-xs"></i>
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
                             <input type="text" id="search-input" oninput="handleSearch(this.value)"
                                    placeholder="Search by name, phone, SL... (Press '/' to focus)"
-                                   class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium">
-                            <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-3.5 top-3 text-slate-400 hover:text-slate-600">
+                                   class="w-full pl-9 pr-9 py-2 text-xs sm:text-sm rounded-lg bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 text-[#172033] dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F9D8A] focus:border-[#0F9D8A] font-medium shadow-2xs transition">
+                            <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-slate-600">
                                 <i class="fa-solid fa-xmark text-xs"></i>
                             </button>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <select id="filter-weekend-select" onchange="handleFilterChange()"
-                                    class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-3.5 py-2.5 text-slate-800 dark:text-slate-200 font-bold text-xs outline-none cursor-pointer">
-                                <option value="ALL">All Weekends</option>
-                                <option value="Saturday">Saturday Off</option>
-                                <option value="Sunday">Sunday Off</option>
-                                <option value="Monday">Monday Off</option>
-                                <option value="Tuesday">Tuesday Off</option>
-                                <option value="Wednesday">Wednesday Off</option>
-                                <option value="Thursday">Thursday Off</option>
-                                <option value="Friday">Friday Off</option>
+                                    class="bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 rounded-lg px-3 py-2 text-[#172033] dark:text-slate-200 font-semibold text-xs outline-none cursor-pointer focus:ring-2 focus:ring-[#0F9D8A] shadow-2xs transition">
+                                <option value="ALL" class="font-bold">All Weekends</option>
+                                <option value="Saturday" class="text-emerald-600 dark:text-emerald-400 font-bold">Saturday Off</option>
+                                <option value="Sunday" class="text-amber-600 dark:text-amber-400 font-bold">Sunday Off</option>
+                                <option value="Monday" class="text-blue-600 dark:text-blue-400 font-bold">Monday Off</option>
+                                <option value="Tuesday" class="text-purple-600 dark:text-purple-400 font-bold">Tuesday Off</option>
+                                <option value="Wednesday" class="text-cyan-600 dark:text-cyan-400 font-bold">Wednesday Off</option>
+                                <option value="Thursday" class="text-fuchsia-600 dark:text-fuchsia-400 font-bold">Thursday Off</option>
+                                <option value="Friday" class="text-rose-600 dark:text-rose-400 font-bold">Friday Off</option>
                             </select>
 
                             <button onclick="resetAllFilters()" title="Reset All Filters"
-                                    class="p-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition">
+                                    class="p-2 rounded-lg bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 text-slate-500 hover:text-[#172033] dark:hover:text-white transition shadow-2xs cursor-pointer">
                                 <i class="fa-solid fa-rotate-left text-xs"></i>
                             </button>
                         </div>
@@ -796,26 +780,26 @@
                 </section>
 
                 <!-- Daily Roster Table Section -->
-                <section class="glass-panel-elevated rounded-3xl overflow-hidden shadow-sm">
-                    <div class="px-6 py-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-800/40 no-print">
+                <section class="glass-panel-elevated rounded-2xl overflow-hidden shadow-xs border border-[#E2E8F0] dark:border-slate-800">
+                    <div class="px-6 py-3.5 border-b border-[#E2E8F0] dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-800/80 no-print">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-amber-500 to-emerald-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
-                            <h3 class="font-display font-black text-slate-900 dark:text-white text-base sm:text-lg">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#0F9D8A]"></span>
+                            <h3 class="font-display font-bold text-[#172033] dark:text-white text-base sm:text-lg">
                                 Moderator Duty Roster
                             </h3>
-                            <span id="showing-records-badge" class="px-2.5 py-0.5 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono font-bold text-xs">
+                            <span id="showing-records-badge" class="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-semibold text-xs border border-slate-200 dark:border-slate-700">
                                 26 Members
                             </span>
                         </div>
                         <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            Auto-Ordered: <b class="text-amber-600 dark:text-amber-400">Sat ➔ Fri</b>
+                            Auto-Ordered: <b class="text-[#0F9D8A] dark:text-teal-400">Sat ➔ Fri</b>
                         </div>
                     </div>
 
                     <div class="overflow-x-auto w-full">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-display font-black text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
+                                <tr class="bg-[#F1F5F9] dark:bg-slate-800 text-[#172033] dark:text-slate-200 font-display font-semibold text-xs uppercase tracking-wider border-b border-[#E2E8F0] dark:border-slate-700">
                                     <th class="col-daily-sl py-3.5 px-4 text-center align-middle w-14">SL</th>
                                     <th class="col-daily-name py-3.5 px-4 text-left align-middle min-w-[200px]">Moderator Profile</th>
                                     <th class="col-daily-off py-3.5 px-4 text-center align-middle w-28">Weekend</th>
@@ -836,13 +820,13 @@
                         <i class="fa-solid fa-user-slash text-4xl mb-3 text-slate-300 dark:text-slate-600"></i>
                         <p class="font-display font-bold text-base text-slate-700 dark:text-slate-300">No matching moderators found</p>
                         <p class="text-xs text-slate-400 mt-1">Try clearing your search query or filter chips.</p>
-                        <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs shadow-md">
+                        <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 rounded-xl bg-[#0F9D8A] hover:bg-[#087F70] text-white font-bold text-xs shadow-xs transition cursor-pointer">
                             Clear Filters
                         </button>
                     </div>
 
                     <!-- Table Footer -->
-                    <div class="px-6 py-3.5 bg-slate-50/80 dark:bg-slate-800/50 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 font-semibold no-print">
+                    <div class="px-6 py-3 bg-white dark:bg-slate-800/80 border-t border-[#E2E8F0] dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 font-medium no-print">
                         <div id="footer-count-text">
                             Total Active Moderators: <b class="text-slate-900 dark:text-white font-mono">26</b> Members
                         </div>
@@ -859,17 +843,17 @@
             <div id="view-monthly-container" class="hidden space-y-6">
                 
                 <!-- Monthly Controls Bar -->
-                <section class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
+                <section class="glass-panel p-4 sm:p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4 shadow-xs no-print border border-[#E2E8F0] dark:border-slate-800">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-base font-black">
+                        <div class="w-10 h-10 rounded-xl bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 border border-[#0F9D8A]/20 flex items-center justify-center text-base font-bold">
                             <i class="fa-solid fa-calendar-days"></i>
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
                                 <input type="month" id="selected-month-picker" onchange="handleMonthPickerChange(this.value)"
-                                       class="font-display font-black text-lg sm:text-2xl bg-transparent border-none outline-none text-slate-900 dark:text-white cursor-pointer">
+                                       class="font-display font-bold text-lg sm:text-2xl bg-transparent border-none outline-none text-[#172033] dark:text-white cursor-pointer">
                             </div>
-                            <div class="text-xs font-bold text-slate-500 dark:text-slate-400">
+                            <div class="text-xs font-medium text-slate-500 dark:text-slate-400">
                                 Full 30/31 Days Attendance Matrix Overview
                             </div>
                         </div>
@@ -877,31 +861,31 @@
 
                     <div class="flex flex-wrap items-center gap-2.5">
                         <button onclick="jumpToCurrentMonth()"
-                                class="px-4 py-2.5 rounded-2xl bg-amber-500/10 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 hover:bg-amber-500/20 font-display font-bold text-xs sm:text-sm transition border border-amber-500/30">
+                                class="px-3.5 py-2 rounded-lg bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-[#172033] dark:text-slate-200 font-display font-semibold text-xs transition border border-[#E2E8F0] dark:border-slate-700 shadow-2xs cursor-pointer">
                             Current Month
                         </button>
 
                         <button onclick="scrollToTodayColumn()" id="btn-jump-today-matrix"
-                                class="px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm inline-flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400/40 transition active:scale-95 cursor-pointer">
-                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-                            <i class="fa-solid fa-bullseye text-amber-300"></i>
+                                class="px-3.5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-display font-semibold text-xs inline-flex items-center gap-2 shadow-2xs border border-[#087F70] transition active:scale-95 cursor-pointer">
+                            <span class="w-2 h-2 rounded-full bg-white/80"></span>
+                            <i class="fa-solid fa-bullseye text-white"></i>
                             <span>Today's Column</span>
                         </button>
                         
                         <!-- Moderator Filter Selector -->
                         <div class="flex items-center gap-2">
                             <select id="monthly-mod-select" onchange="handleMonthlyModSelect(this.value)"
-                                    class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-3.5 py-2.5 text-slate-800 dark:text-slate-200 font-bold text-xs outline-none cursor-pointer max-w-[200px]">
+                                    class="bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 rounded-lg px-3 py-2 text-[#172033] dark:text-slate-200 font-semibold text-xs outline-none cursor-pointer max-w-[200px] focus:ring-2 focus:ring-[#0F9D8A] shadow-2xs transition">
                                 <option value="ALL">All Moderators (26)</option>
                             </select>
                             <button id="btn-clear-monthly-mod-filter" onclick="clearMonthlyModFilter()" title="Show All"
-                                    class="hidden px-3 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs shadow-sm transition">
+                                    class="hidden px-3 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-bold text-xs shadow-2xs transition cursor-pointer">
                                 <i class="fa-solid fa-users"></i> Show All
                             </button>
                         </div>
 
                         <button id="btn-print-monthly-matrix" onclick="handlePrintReport()"
-                                class="px-4 py-2.5 rounded-2xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-display font-bold text-xs sm:text-sm flex items-center gap-2 shadow-sm transition">
+                                class="px-3.5 py-2 rounded-lg bg-[#172554] hover:bg-slate-800 text-white font-display font-semibold text-xs flex items-center gap-2 shadow-2xs transition cursor-pointer">
                             <i class="fa-solid fa-print"></i>
                             <span>Print Monthly Sheet</span>
                         </button>
@@ -909,36 +893,36 @@
                 </section>
 
                 <!-- Single Moderator Monthly Profile Card (Isolated Mode) -->
-                <section id="single-mod-monthly-card" class="hidden glass-panel-elevated p-6 rounded-3xl space-y-4 no-print">
+                <section id="single-mod-monthly-card" class="hidden glass-panel-elevated p-6 rounded-2xl space-y-4 no-print border border-[#E2E8F0] dark:border-slate-800">
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         <div class="flex items-center gap-4">
-                            <div id="single-mod-avatar" class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
+                            <div id="single-mod-avatar" class="w-12 h-12 rounded-xl bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 border border-[#0F9D8A]/20 flex items-center justify-center text-lg shadow-2xs flex-shrink-0">
                                 <i class="fa-solid fa-user-shield"></i>
                             </div>
                             <div>
                                 <div class="flex items-center gap-2.5">
-                                    <h3 id="single-mod-name" class="text-xl sm:text-2xl font-display font-black text-slate-900 dark:text-white">--</h3>
-                                    <span id="single-mod-sl" class="px-2.5 py-0.5 rounded-lg font-mono font-bold text-xs bg-slate-200 dark:bg-slate-800">SL: 01</span>
-                                    <span id="single-mod-weekend" class="px-3 py-1 rounded-lg font-bold text-xs bg-emerald-500/10 text-emerald-600">Saturday Off</span>
+                                    <h3 id="single-mod-name" class="text-xl sm:text-2xl font-display font-bold text-[#172033] dark:text-white">--</h3>
+                                    <span id="single-mod-sl" class="px-2.5 py-0.5 rounded-md font-mono font-semibold text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">SL: 01</span>
+                                    <span id="single-mod-weekend" class="px-3 py-1 rounded-md font-semibold text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Saturday Off</span>
                                 </div>
                                 <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
                                     <span>Phone: <b id="single-mod-phone" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
                                     <span>•</span>
                                     <span>Joined: <b id="single-mod-join" class="font-mono text-slate-800 dark:text-slate-200">--</b></span>
                                     <span>•</span>
-                                    <span class="text-amber-600 dark:text-amber-400 font-bold">Service: <b id="single-mod-tenure" class="font-mono">--</b></span>
+                                    <span class="text-[#0F9D8A] dark:text-teal-400 font-bold">Service: <b id="single-mod-tenure" class="font-mono">--</b></span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-2">
-                            <button id="single-mod-wa-btn" class="px-4 py-2.5 rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 font-bold text-xs flex items-center gap-2">
+                            <button id="single-mod-wa-btn" class="px-3.5 py-2 rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 font-semibold text-xs flex items-center gap-2 cursor-pointer transition">
                                 <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp
                             </button>
-                            <button id="single-mod-edit-btn" class="px-4 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center gap-2">
+                            <button id="single-mod-edit-btn" class="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center gap-2 shadow-2xs cursor-pointer transition">
                                 <i class="fa-solid fa-pen text-xs"></i> Edit Details
                             </button>
-                            <button onclick="clearMonthlyModFilter()" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs flex items-center gap-2 shadow-md">
+                            <button onclick="clearMonthlyModFilter()" class="px-3.5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-bold text-xs flex items-center gap-2 shadow-2xs cursor-pointer transition">
                                 <i class="fa-solid fa-users"></i> View All 26
                             </button>
                         </div>
@@ -946,50 +930,50 @@
 
                     <!-- Single Mod Metric Badges -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 pt-3 border-t border-slate-200/60 dark:border-slate-800">
-                        <div class="p-3 rounded-2xl bg-slate-100/60 dark:bg-slate-800/60 text-center">
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-center border border-slate-200 dark:border-slate-700/80">
                             <div class="text-[10px] font-bold uppercase text-slate-400">Days</div>
-                            <div id="single-mod-stat-days" class="text-xl font-black font-mono text-slate-800 dark:text-white mt-0.5">31</div>
+                            <div id="single-mod-stat-days" class="text-xl font-bold font-mono text-slate-800 dark:text-white mt-0.5">31</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-emerald-600">Present</div>
-                            <div id="single-mod-stat-present" class="text-xl font-black font-mono text-emerald-600 mt-0.5">26</div>
+                            <div id="single-mod-stat-present" class="text-xl font-bold font-mono text-emerald-600 mt-0.5">26</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-amber-600">Weekly Off</div>
-                            <div id="single-mod-stat-off" class="text-xl font-black font-mono text-amber-600 mt-0.5">5</div>
+                            <div id="single-mod-stat-off" class="text-xl font-bold font-mono text-amber-600 mt-0.5">5</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-teal-500/10 border border-teal-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-teal-600">Extra Duty</div>
-                            <div id="single-mod-stat-extra" class="text-xl font-black font-mono text-teal-600 mt-0.5">0</div>
+                            <div id="single-mod-stat-extra" class="text-xl font-bold font-mono text-teal-600 mt-0.5">0</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-cyan-600">Exchange</div>
-                            <div id="single-mod-stat-exchange" class="text-xl font-black font-mono text-cyan-600 mt-0.5">0</div>
+                            <div id="single-mod-stat-exchange" class="text-xl font-bold font-mono text-cyan-600 mt-0.5">0</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-rose-600">Absences</div>
-                            <div id="single-mod-stat-absent" class="text-xl font-black font-mono text-rose-600 mt-0.5">0</div>
+                            <div id="single-mod-stat-absent" class="text-xl font-bold font-mono text-rose-600 mt-0.5">0</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-purple-600">Night Shifts</div>
-                            <div id="single-mod-stat-night" class="text-xl font-black font-mono text-purple-600 mt-0.5">0</div>
+                            <div id="single-mod-stat-night" class="text-xl font-bold font-mono text-purple-600 mt-0.5">0</div>
                         </div>
-                        <div class="p-3 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-center">
+                        <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
                             <div class="text-[10px] font-bold uppercase text-purple-600">Leaves</div>
-                            <div id="single-mod-stat-leave" class="text-xl font-black font-mono text-purple-600 mt-0.5">0</div>
+                            <div id="single-mod-stat-leave" class="text-xl font-bold font-mono text-purple-600 mt-0.5">0</div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Monthly Grid Matrix Table -->
-                <section class="glass-panel-elevated rounded-3xl overflow-hidden shadow-sm">
-                    <div class="px-6 py-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-800/40 no-print">
+                <section class="glass-panel-elevated rounded-2xl overflow-hidden shadow-xs border border-[#E2E8F0] dark:border-slate-800">
+                    <div class="px-6 py-3.5 border-b border-[#E2E8F0] dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-800/80 no-print">
                         <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-table-cells text-amber-500 text-lg"></i>
-                            <h3 class="font-display font-black text-slate-900 dark:text-white text-base sm:text-lg">
+                            <i class="fa-solid fa-table-cells text-[#0F9D8A] text-lg"></i>
+                            <h3 class="font-display font-bold text-[#172033] dark:text-white text-base sm:text-lg">
                                 Attendance Matrix Sheet (<span id="monthly-sheet-label">August 2026</span>)
                             </h3>
-                            <span id="monthly-filter-badge" class="hidden px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                            <span id="monthly-filter-badge" class="hidden px-2.5 py-0.5 rounded-md text-xs font-semibold bg-[#E6F5F1] text-[#087F70] border border-[#0F9D8A]/30">
                                 Single Member View
                             </span>
                         </div>
@@ -1017,7 +1001,7 @@
 
                     <div class="px-6 py-3.5 bg-slate-50/80 dark:bg-slate-800/50 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 font-semibold no-print">
                         <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-info text-amber-400"></i>
+                            <i class="fa-solid fa-circle-info text-blue-400"></i>
                             <span id="monthly-matrix-tip-text"><b>Tip:</b> Click on any day cell to edit attendance. Click on any moderator's name to view isolated stats.</span>
                         </div>
                         <span id="monthly-footer-count" class="font-mono">Showing 26 of 26 Members</span>
@@ -1029,23 +1013,21 @@
             <div id="view-appointment-container" class="hidden space-y-6">
                 
                 <!-- Top Executive Banner & Controls Bar (no-print) -->
-                <section class="glass-panel p-4 sm:p-5 rounded-3xl flex flex-wrap items-center justify-between gap-4 shadow-sm no-print">
+                <section class="glass-panel p-4 sm:p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4 shadow-xs no-print border border-[#E2E8F0] dark:border-slate-800">
                     <div class="flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-600 p-[2px] shadow-[0_0_20px_rgba(245,158,11,0.4)] flex-shrink-0">
-                            <div class="w-full h-full bg-[#050A18] rounded-[14px] flex items-center justify-center">
-                                <i class="fa-solid fa-file-signature text-amber-400 text-lg"></i>
-                            </div>
+                        <div class="w-11 h-11 rounded-xl bg-[#172554] text-[#0F9D8A] flex items-center justify-center flex-shrink-0 shadow-2xs border border-[#172554]">
+                            <i class="fa-solid fa-file-signature text-lg"></i>
                         </div>
                         <div>
                             <div class="flex items-center gap-2.5">
-                                <h3 class="font-display font-black text-lg sm:text-xl text-slate-900 dark:text-white">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-[#172033] dark:text-white">
                                     Official Appointment Letter Portal
                                 </h3>
-                                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-extrabold text-[10px] border border-amber-500/30 uppercase tracking-wider">
+                                <span class="px-2.5 py-0.5 rounded-full bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 font-extrabold text-[10px] border border-[#0F9D8A]/30 uppercase tracking-wider">
                                     Company Pad (A4)
                                 </span>
                             </div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                                 Sanvee's by Tony • Live Letterhead Pad Generation, Real-Time Editing & Instant Print
                             </p>
                         </div>
@@ -1054,21 +1036,21 @@
                     <div class="flex flex-wrap items-center gap-2.5">
                         <!-- Reset to Template Default -->
                         <button type="button" onclick="resetAppointmentToDefault()" title="Reset to standard template"
-                                class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                class="px-3.5 py-2 rounded-lg bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs inline-flex items-center gap-1.5 transition border border-[#E2E8F0] dark:border-slate-700 cursor-pointer shadow-2xs">
                             <i class="fa-solid fa-rotate-left text-xs"></i>
                             <span>Reset</span>
                         </button>
 
                         <!-- Copy Letter Text -->
                         <button type="button" onclick="copyAppointmentText()" title="Copy letter text to clipboard"
-                                class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer">
-                            <i class="fa-solid fa-copy text-xs text-amber-400"></i>
+                                class="px-3.5 py-2 rounded-lg bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs inline-flex items-center gap-1.5 transition border border-[#E2E8F0] dark:border-slate-700 cursor-pointer shadow-2xs">
+                            <i class="fa-solid fa-copy text-xs text-[#0F9D8A]"></i>
                             <span>Copy Text</span>
                         </button>
 
                         <!-- Print Appointment Letter Button -->
                         <button type="button" onclick="printAppointmentLetter()" id="btn-print-appointment"
-                                class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-display font-black text-xs sm:text-sm tracking-wide shadow-[0_0_25px_rgba(245,158,11,0.55)] active:scale-95 transition inline-flex items-center gap-2 cursor-pointer">
+                                class="px-5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-display font-semibold text-xs sm:text-sm tracking-wide shadow-2xs active:scale-95 transition inline-flex items-center gap-2 cursor-pointer border border-[#087F70]">
                             <i class="fa-solid fa-print text-sm"></i>
                             <span>Print Appointment Letter (A4)</span>
                         </button>
@@ -1082,13 +1064,13 @@
                     <div class="lg:col-span-5 xl:col-span-4 space-y-5 no-print appointment-controls-column">
                         
                         <!-- 1. Moderator Selector & Fast Fill -->
-                        <div class="glass-panel p-5 rounded-3xl space-y-4 border border-amber-500/20 shadow-md">
+                        <div class="glass-panel p-5 rounded-2xl space-y-4 border border-[#E2E8F0] dark:border-slate-800 shadow-xs">
                             <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
-                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-user-check text-amber-500"></i>
+                                <span class="font-display font-bold text-sm text-[#172033] dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-user-check text-[#0F9D8A]"></i>
                                     <span>Select Moderator</span>
                                 </span>
-                                <span class="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
+                                <span class="text-[10px] font-mono font-bold text-[#087F70] bg-[#E6F5F1] dark:bg-teal-950/60 dark:text-teal-300 px-2 py-0.5 rounded-md border border-[#0F9D8A]/20">
                                     Auto-Fill
                                 </span>
                             </div>
@@ -1098,9 +1080,9 @@
                                     Choose Moderator Profile
                                 </label>
                                 <div class="relative">
-                                    <i class="fa-solid fa-users absolute left-3.5 top-3.5 text-amber-500 text-xs pointer-events-none"></i>
+                                    <i class="fa-solid fa-users absolute left-3.5 top-3 text-[#0F9D8A] text-xs pointer-events-none"></i>
                                     <select id="appointment-mod-select" onchange="handleAppointmentModSelect(this.value)"
-                                            class="w-full pl-9 pr-8 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none transition cursor-pointer">
+                                            class="w-full pl-9 pr-8 py-2 rounded-lg bg-white dark:bg-slate-900 border border-[#E2E8F0] dark:border-slate-700 text-[#172033] dark:text-white font-semibold text-xs focus:ring-2 focus:ring-[#0F9D8A] focus:outline-none transition cursor-pointer shadow-2xs">
                                         <!-- Injected dynamically by JS -->
                                     </select>
                                 </div>
@@ -1110,28 +1092,28 @@
                             </div>
 
                             <!-- Selected Member Summary Pill -->
-                            <div id="appointment-mod-info-pill" class="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between gap-3 text-xs">
+                            <div id="appointment-mod-info-pill" class="p-3 rounded-xl bg-[#E6F5F1] dark:bg-teal-950/40 border border-[#0F9D8A]/25 flex items-center justify-between gap-3 text-xs">
                                 <div class="flex items-center gap-2.5">
-                                    <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 font-black flex items-center justify-center font-mono text-xs" id="app-info-sl">
+                                    <div class="w-8 h-8 rounded-lg bg-[#0F9D8A]/15 text-[#087F70] dark:text-teal-300 font-bold flex items-center justify-center font-mono text-xs" id="app-info-sl">
                                         --
                                     </div>
                                     <div>
-                                        <div class="font-bold text-slate-900 dark:text-white" id="app-info-name">Custom Entry</div>
+                                        <div class="font-bold text-[#172033] dark:text-white" id="app-info-name">Custom Entry</div>
                                         <div class="text-[10px] text-slate-500 dark:text-slate-400 font-mono" id="app-info-phone">Phone: --</div>
                                     </div>
                                 </div>
                                 <div class="text-right text-[10px] font-mono">
                                     <span class="text-slate-500 dark:text-slate-400">Join: </span>
-                                    <b class="text-amber-600 dark:text-amber-400" id="app-info-join">--</b>
+                                    <b class="text-[#087F70] dark:text-teal-300" id="app-info-join">--</b>
                                 </div>
                             </div>
                         </div>
 
                         <!-- 2. Manual Inputs & Candidate Details (Custom Entry) -->
-                        <div class="glass-panel p-5 rounded-3xl space-y-4 shadow-md">
+                        <div class="glass-panel p-5 rounded-2xl space-y-4 shadow-xs border border-[#E2E8F0] dark:border-slate-800">
                             <div class="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-700/80">
-                                <span class="font-display font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-pen-to-square text-amber-500"></i>
+                                <span class="font-display font-bold text-sm text-[#172033] dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-pen-to-square text-[#0F9D8A]"></i>
                                     <span>Candidate & Letter Details</span>
                                 </span>
                                 <span class="text-[10px] text-slate-500 font-semibold">Editable</span>
@@ -1144,7 +1126,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-name" placeholder="e.g. Md Sharif Hossain"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
                                 </div>
 
                                 <div>
@@ -1153,7 +1135,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-salutation" placeholder="e.g. Sharif Hossain"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-3">
@@ -1163,7 +1145,7 @@
                                         </label>
                                         <input type="date" id="appointment-input-date"
                                                onchange="handleAppointmentInputUpdate()"
-                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
@@ -1171,7 +1153,7 @@
                                         </label>
                                         <input type="date" id="appointment-input-effective-date"
                                                onchange="handleAppointmentInputUpdate()"
-                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
+                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
                                     </div>
                                 </div>
 
@@ -1181,7 +1163,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-ref" placeholder="e.g. SBT/HR/2026/01"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
                                 </div>
 
                                 <div>
@@ -1190,7 +1172,7 @@
                                     </label>
                                     <input type="text" id="appointment-input-subject" value="Appointment as Moderator"
                                            oninput="handleAppointmentInputUpdate()"
-                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none transition">
+                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
                                 </div>
                             </div>
                         </div>
@@ -1228,27 +1210,35 @@
                                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
                                         Resignation Notice Period
                                     </label>
-                                    <input type="text" id="appointment-input-notice-period" value="two months"
+                                    <input type="text" id="appointment-input-notice-period" value="two months earlier"
                                            oninput="handleAppointmentInputUpdate()"
                                            class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                                 </div>
 
-                                <div class="grid grid-cols-2 gap-3">
+                                <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
                                             Signatory Role
                                         </label>
                                         <input type="text" id="appointment-input-signatory" value="General Manager"
                                                oninput="handleAppointmentInputUpdate()"
-                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                               class="w-full px-2.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                        <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                                            Company Name
+                                        </label>
+                                        <input type="text" id="appointment-input-company" value="Sanvee’s By Tony"
+                                               oninput="handleAppointmentInputUpdate()"
+                                               class="w-full px-2.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
                                             Branch / Office
                                         </label>
                                         <input type="text" id="appointment-input-location" value="Head Office"
                                                oninput="handleAppointmentInputUpdate()"
-                                               class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                                               class="w-full px-2.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                                     </div>
                                 </div>
                             </div>
@@ -1270,7 +1260,7 @@
                                 </label>
                                 <div class="grid grid-cols-2 gap-2">
                                     <button type="button" onclick="setAppointmentPadMode('with-bg')" id="btn-pad-mode-with-bg"
-                                            class="p-2.5 rounded-xl border border-amber-500 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer">
+                                            class="p-2.5 rounded-xl border border-[#0F9D8A] bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 font-bold text-xs flex flex-col items-center gap-1 transition cursor-pointer">
                                         <i class="fa-solid fa-file-image text-sm"></i>
                                         <span>With Company Pad</span>
                                     </button>
@@ -1289,15 +1279,27 @@
                             <div class="pt-2 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
                                 <span class="text-xs font-bold text-slate-600 dark:text-slate-400">Typography Font</span>
                                 <div class="flex items-center gap-1">
+                                    <button type="button" onclick="setAppointmentFont('serif')" id="btn-font-serif"
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 border border-[#0F9D8A]/30">
+                                        Serif (Times New Roman)
+                                    </button>
                                     <button type="button" onclick="setAppointmentFont('sans')" id="btn-font-sans"
-                                            class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                                            class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300">
                                         Sans-Serif
                                     </button>
-                                    <button type="button" onclick="setAppointmentFont('serif')" id="btn-font-serif"
-                                            class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-300">
-                                        Serif
-                                    </button>
                                 </div>
+                            </div>
+
+                            <!-- Employee Acceptance Signature Toggle -->
+                            <div class="pt-2.5 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-slate-700 dark:text-slate-300 block">Candidate Signature</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400">Include "Accepted & Agreed" signature line</span>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="appointment-toggle-emp-sign" onchange="toggleAppointmentEmpSign(this.checked)" class="sr-only peer">
+                                    <div class="w-9 h-5 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#0F9D8A]"></div>
+                                </label>
                             </div>
                         </div>
 
@@ -1307,7 +1309,7 @@
                     <div class="lg:col-span-7 xl:col-span-8 flex flex-col items-center appointment-preview-column">
                         
                         <!-- Toolbar Above Sheet (Zoom & Print Actions) -->
-                        <div class="w-full max-w-[794px] mb-3 px-3 py-2 rounded-2xl glass-panel flex flex-wrap items-center justify-between gap-3 text-xs no-print">
+                        <div class="w-full max-w-[794px] mb-3 px-3 py-2 rounded-xl glass-panel flex flex-wrap items-center justify-between gap-3 text-xs no-print border border-[#E2E8F0] dark:border-slate-800 shadow-xs">
                             <div class="flex items-center gap-2">
                                 <span class="text-xs font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -1318,25 +1320,25 @@
 
                             <div class="flex items-center gap-2">
                                 <!-- Zoom Controls -->
-                                <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+                                <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
                                     <button type="button" onclick="changeAppointmentZoom(-0.1)" title="Zoom Out"
-                                            class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                            class="w-6 h-6 rounded flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
                                         <i class="fa-solid fa-minus text-[10px]"></i>
                                     </button>
                                     <span id="appointment-zoom-label" class="px-1.5 font-mono font-bold text-[11px] text-slate-700 dark:text-slate-300">100%</span>
                                     <button type="button" onclick="changeAppointmentZoom(0.1)" title="Zoom In"
-                                            class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                                            class="w-6 h-6 rounded flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
                                         <i class="fa-solid fa-plus text-[10px]"></i>
                                     </button>
                                     <button type="button" onclick="resetAppointmentZoom()" title="Reset Zoom"
-                                            class="px-1.5 py-0.5 rounded-lg text-[10px] font-bold text-slate-500 hover:text-slate-300 transition">
+                                            class="px-1.5 py-0.5 rounded text-[10px] font-bold text-slate-500 hover:text-slate-300 transition">
                                         Fit
                                     </button>
                                 </div>
 
                                 <!-- Quick Print Button -->
                                 <button type="button" onclick="printAppointmentLetter()"
-                                        class="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer">
+                                        class="px-3.5 py-1.5 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-xs inline-flex items-center gap-1.5 shadow-2xs border border-[#087F70] transition active:scale-95 cursor-pointer">
                                     <i class="fa-solid fa-print text-xs"></i>
                                     <span>Print</span>
                                 </button>
@@ -1347,99 +1349,71 @@
                         <div class="appointment-sheet-wrapper">
                             
                             <!-- The Official A4 Letterhead Sheet -->
-                            <div id="appointment-letter-sheet" class="appointment-a4-sheet pad-mode-with-bg">
+                            <div id="appointment-letter-sheet" class="appointment-a4-sheet pad-mode-with-bg font-serif">
                                 
                                 <!-- Top Content: Document Title, Meta, Recipient, Subject, Salutation, Body -->
                                 <div class="appointment-letter-body-content">
+                                    
                                     <!-- Document Title -->
                                     <div class="appointment-letter-title">
                                         Appointment Letter
                                     </div>
 
-                                    <!-- Meta Row: Date & Reference -->
-                                    <div class="appointment-meta-row">
-                                        <div>
-                                            Date: <span id="sheet-date" class="font-bold">18-08-2026</span>
-                                        </div>
-                                        <div>
-                                            Reference: <span id="sheet-ref" class="font-bold">SBT/HR/2026/01</span>
-                                        </div>
+                                    <!-- Date & Reference Block (Stacked vertically, matching PDF) -->
+                                    <div class="appointment-date-ref-block">
+                                        <div><b>Date:</b> <span id="sheet-date">18-08-2026</span></div>
+                                        <div><b>Reference:</b> <span id="sheet-ref">SBT/HR/2026/</span></div>
                                     </div>
 
                                     <!-- Recipient Block -->
                                     <div class="appointment-recipient-block">
                                         <div>To:</div>
-                                        <div id="sheet-candidate-name" class="font-bold text-[12.5pt] text-slate-900 dark:text-slate-900 mt-0.5">
+                                        <div id="sheet-candidate-name" class="appointment-candidate-name">
                                             Md Sharif Hossain
                                         </div>
-                                        <div class="text-[10pt] text-slate-600 font-medium">Designation: Moderator</div>
                                     </div>
 
                                     <!-- Subject Line -->
                                     <div class="appointment-subject-line">
-                                        Subject: <span id="sheet-subject">Appointment as Moderator</span>
+                                        <b>Subject: <span id="sheet-subject">Appointment as Moderator</span></b>
                                     </div>
 
                                     <!-- Salutation -->
                                     <div class="appointment-salutation">
-                                        Dear <span id="sheet-salutation">Sharif Hossain</span>,
+                                        <b>Dear <span id="sheet-salutation">Sharif Hossain</span>,</b>
                                     </div>
 
-                                    <!-- Paragraph 1 -->
+                                    <!-- Body Paragraph 1 -->
                                     <div class="appointment-paragraph">
-                                        We are pleased to inform you that you have been appointed as a Moderator at Sanvee's by Tony, effective from <b id="sheet-effective-date">09 August, 2026</b>. Your responsibilities will include overseeing and managing moderation activities related to the company's online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least <span id="sheet-notice-period" class="font-semibold">two months</span> earlier.
+                                        We are pleased to inform you that you have been appointed as a Moderator at Sanvee’s by Tony, effective from <b id="sheet-effective-date">09 August, 2026</b>. Your responsibilities will include overseeing and managing moderation activities related to the company’s online pages and customer service. Also, we would like to inform you that there will be some times where we can give other responsibilities besides your duty as a moderator. If you want to resign from your duty then you have to inform us at least <span id="sheet-notice-period">two months earlier</span>.
                                     </div>
 
-                                    <!-- Paragraph 2 -->
+                                    <!-- Body Paragraph 2 -->
                                     <div class="appointment-paragraph">
-                                        Your working hours, duties, and remuneration will be as per the company's rules and policies. As for your salary, you will get <b id="sheet-training-salary">10,000 BDT</b> for the first month since it will be your training period. After your first month on duty, you will get your basic salary <b id="sheet-basic-salary">14000 BDT</b> per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
+                                        Your working hours, duties, and remuneration will be as per the company’s rules and policies. As for your salary, you will get <span id="sheet-training-salary">10,000 BDT</span> for the first month since it will be your training period. After your first month on duty, you will get your basic salary <span id="sheet-basic-salary">14000 BDT</span> per month. We trust that you will perform your responsibilities diligently in the best interest of the organization.
                                     </div>
 
-                                    <!-- Closing -->
-                                    <div class="appointment-closing">
+                                    <!-- Valediction -->
+                                    <div class="appointment-valediction">
                                         Thank you,
                                     </div>
-                                </div>
 
-                                <!-- Bottom Section: Acceptance Clause & Dual Signatures (Employer + Employee) -->
-                                <div class="appointment-bottom-section">
-                                    <!-- Acknowledgment & Acceptance Clause -->
-                                    <div class="appointment-acceptance-clause">
-                                        <b>Declaration & Acceptance:</b> I hereby accept the appointment under the terms and conditions outlined above and confirm my commitment to fulfill my duties responsibly.
-                                    </div>
-
-                                    <!-- Signatures Grid: Employer (Left) & Employee (Right) -->
-                                    <div class="appointment-signatures-grid">
-                                        <!-- Employer Signature Block -->
-                                        <div class="appointment-signatory-col appointment-signatory-employer">
-                                            <div class="appointment-signature-space"></div>
-                                            <div class="appointment-sig-line">____________________________________</div>
-                                            <div class="appointment-sig-title">Authorized Signatory</div>
-                                            <div id="sheet-signatory" class="appointment-signatory-name">
-                                                General Manager
-                                            </div>
-                                            <div class="appointment-signatory-company">
-                                                Sanvee's By Tony
-                                            </div>
-                                            <div id="sheet-location" class="appointment-signatory-office">
-                                                Head Office
-                                            </div>
+                                    <!-- Signatory Row (Supports Dual Signatures when enabled) -->
+                                    <div class="appointment-signatory-row">
+                                        <!-- Left: Employer / Authorized Signatory -->
+                                        <div class="appointment-signatory-block">
+                                            <div class="appointment-sig-line-text"><b>Signature:</b> _________________</div>
+                                            <div id="sheet-signatory" class="appointment-sig-role">General Manager</div>
+                                            <div id="sheet-company" class="appointment-sig-company">Sanvee’s By Tony</div>
+                                            <div id="sheet-location" class="appointment-sig-location">Head Office</div>
                                         </div>
 
-                                        <!-- Employee Signature Block -->
-                                        <div class="appointment-signatory-col appointment-signatory-employee">
-                                            <div class="appointment-signature-space"></div>
-                                            <div class="appointment-sig-line">____________________________________</div>
-                                            <div class="appointment-sig-title">Employee Signature</div>
-                                            <div class="appointment-signatory-name font-bold">
-                                                Name: <span id="sheet-emp-signature-name">Md Sharif Hossain</span>
-                                            </div>
-                                            <div class="text-[9.5pt] text-slate-700 font-medium">
-                                                Date: ________________________
-                                            </div>
-                                            <div class="appointment-signatory-office">
-                                                Signature & Acceptance
-                                            </div>
+                                        <!-- Right: Employee Acceptance (Toggleable) -->
+                                        <div id="sheet-emp-sign-block" class="appointment-emp-sign-block hidden">
+                                            <div class="appointment-sig-line-text"><b>Accepted & Agreed:</b> _________________</div>
+                                            <div class="appointment-sig-role"><b>Candidate:</b> <span id="sheet-emp-sign-name">Md Sharif Hossain</span></div>
+                                            <div class="appointment-sig-company"><b>Date:</b> ____ / ____ / ________</div>
+                                            <div class="appointment-sig-location font-normal text-slate-500 text-[9pt]">(Candidate Signature)</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1463,7 +1437,7 @@
 
         <!-- Mobile Floating Bottom Dock -->
         <div id="mobile-bottom-dock" class="md:hidden fixed bottom-4 left-4 right-4 z-40 p-2 rounded-2xl glass-panel-elevated flex items-center justify-around shadow-2xl border border-white/20 no-print">
-            <button type="button" onclick="switchView('daily')" id="dock-btn-daily" class="flex flex-col items-center gap-1 text-amber-500 dark:text-amber-400 font-bold text-[10px] cursor-pointer">
+            <button type="button" onclick="switchView('daily')" id="dock-btn-daily" class="flex flex-col items-center gap-1 text-blue-600 dark:text-blue-400 font-bold text-[10px] cursor-pointer">
                 <i class="fa-solid fa-calendar-day text-base"></i>
                 <span>Daily</span>
             </button>
@@ -1476,7 +1450,7 @@
                 <span>Letter</span>
             </button>
             <button type="button" onclick="openCommandPalette()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
-                <i class="fa-solid fa-magnifying-glass text-base text-amber-400"></i>
+                <i class="fa-solid fa-magnifying-glass text-base text-blue-500"></i>
                 <span>Search</span>
             </button>
             <button type="button" onclick="toggleOperationsMenu()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
@@ -1484,7 +1458,7 @@
                 <span>Hub</span>
             </button>
             <button type="button" onclick="toggleTheme()" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] cursor-pointer">
-                <i class="fa-solid fa-moon text-base text-amber-500"></i>
+                <i class="fa-solid fa-moon text-base text-blue-500"></i>
                 <span>Theme</span>
             </button>
         </div>
@@ -1496,7 +1470,7 @@
             
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-xl">
+                    <div class="w-11 h-11 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-xl">
                         <i class="fa-solid fa-fire"></i>
                     </div>
                     <div>
@@ -1529,7 +1503,7 @@
                         🔥 Firebase Realtime Database URL:
                     </label>
                     <input type="text" id="firebase-input-config" placeholder="https://moderators-data-73dcf-default-rtdb.asia-southeast1.firebasedatabase.app"
-                           class="w-full px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-amber-500">
+                           class="w-full px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
                 <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
@@ -1537,14 +1511,14 @@
                         <div class="text-xs font-bold text-slate-900 dark:text-white">Instant Auto-Sync on Every Edit</div>
                         <div class="text-[11px] text-slate-400">Changes save to cloud in real time</div>
                     </div>
-                    <input type="checkbox" id="firebase-autosync-toggle" checked onchange="handleToggleFirebaseAutoSync(this.checked)" class="w-5 h-5 rounded text-amber-500">
+                    <input type="checkbox" id="firebase-autosync-toggle" checked onchange="handleToggleFirebaseAutoSync(this.checked)" class="w-5 h-5 rounded text-blue-600">
                 </div>
 
                 <div class="flex items-center gap-3 pt-2">
-                    <button type="submit" class="flex-1 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-display font-bold text-xs tracking-wide shadow-glow-amber transition cursor-pointer">
+                    <button type="submit" class="flex-1 py-2.5 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-display font-semibold text-xs tracking-wide shadow-2xs border border-[#087F70] transition cursor-pointer">
                         Save & Connect Database
                     </button>
-                    <button type="button" onclick="handleManualSyncToFirebase()" class="px-5 py-3 rounded-2xl bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs hover:bg-slate-300 transition">
+                    <button type="button" onclick="handleManualSyncToFirebase()" class="px-5 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs transition border border-slate-200 dark:border-slate-700 cursor-pointer">
                         Force Cloud Sync
                     </button>
                 </div>
@@ -1554,15 +1528,15 @@
 
     <!-- ======================= 4. ADD / EDIT MODERATOR MODAL ======================= -->
     <div id="moderator-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-md p-4 no-print select-none">
-        <div class="relative w-full max-w-lg rounded-3xl glass-panel-elevated p-6 sm:p-8 space-y-5 shadow-2xl border border-white/15">
+        <div class="relative w-full max-w-lg rounded-2xl glass-panel-elevated p-6 sm:p-8 space-y-5 shadow-2xl border border-white/15">
             
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg font-black">
+                    <div class="w-10 h-10 rounded-xl bg-[#E6F5F1] text-[#087F70] dark:bg-teal-950/60 dark:text-teal-300 border border-[#0F9D8A]/20 flex items-center justify-center text-lg font-bold">
                         <i class="fa-solid fa-user-pen"></i>
                     </div>
                     <div>
-                        <h3 id="modal-title" class="font-display font-black text-lg text-slate-900 dark:text-white">Add Moderator</h3>
+                        <h3 id="modal-title" class="font-display font-bold text-lg text-slate-900 dark:text-white">Add Moderator</h3>
                         <p class="text-xs text-slate-400 font-medium">Automatic SL serialization (Sat ➔ Fri)</p>
                     </div>
                 </div>
@@ -1578,19 +1552,19 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Full Name</label>
                         <input type="text" id="form-name" required placeholder="e.g. Sefat Karim"
-                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none focus:ring-2 focus:ring-amber-500">
+                               class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Weekly Off Day</label>
                         <select id="form-weekend" onchange="updateFormCalculatedSl()"
-                                class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold outline-none focus:ring-2 focus:ring-amber-500">
-                            <option value="Saturday">Saturday Off</option>
-                            <option value="Sunday">Sunday Off</option>
-                            <option value="Monday">Monday Off</option>
-                            <option value="Tuesday">Tuesday Off</option>
-                            <option value="Wednesday">Wednesday Off</option>
-                            <option value="Thursday">Thursday Off</option>
-                            <option value="Friday">Friday Off</option>
+                                class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
+                            <option value="Saturday" class="text-emerald-600 dark:text-emerald-400 font-bold">Saturday Off</option>
+                            <option value="Sunday" class="text-amber-600 dark:text-amber-400 font-bold">Sunday Off</option>
+                            <option value="Monday" class="text-blue-600 dark:text-blue-400 font-bold">Monday Off</option>
+                            <option value="Tuesday" class="text-purple-600 dark:text-purple-400 font-bold">Tuesday Off</option>
+                            <option value="Wednesday" class="text-cyan-600 dark:text-cyan-400 font-bold">Wednesday Off</option>
+                            <option value="Thursday" class="text-fuchsia-600 dark:text-fuchsia-400 font-bold">Thursday Off</option>
+                            <option value="Friday" class="text-rose-600 dark:text-rose-400 font-bold">Friday Off</option>
                         </select>
                     </div>
                 </div>
@@ -1599,31 +1573,31 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phone (WhatsApp)</label>
                         <input type="tel" id="form-phone" required placeholder="01781597973"
-                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-amber-500">
+                               class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Joining Date (DD-MM-YYYY)</label>
                         <input type="text" id="form-join" required oninput="updateFormTenurePreview()" placeholder="01-01-2026"
-                               class="w-full px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-amber-500">
+                               class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono font-bold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                     </div>
                 </div>
 
                 <!-- Position & Tenure Preview Banner -->
-                <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300 space-y-1">
+                <div class="p-3.5 rounded-xl bg-[#E6F5F1] dark:bg-teal-950/40 border border-[#0F9D8A]/20 text-xs text-[#087F70] dark:text-teal-300 space-y-1">
                     <div class="flex items-center justify-between font-bold">
                         <span id="form-sl-hint">Auto Position: SL #-- (Saturday Off)</span>
                         <input type="hidden" id="form-sl" value="1">
                     </div>
                     <div class="text-[11px] text-slate-500 dark:text-slate-400">
-                        Service Tenure: <b id="form-tenure-preview" class="font-mono text-amber-600 dark:text-amber-400">--</b>
+                        Service Tenure: <b id="form-tenure-preview" class="font-mono text-[#087F70] dark:text-teal-300">--</b>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end gap-3 pt-2">
-                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 font-bold text-xs">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs transition border border-slate-200 dark:border-slate-700 cursor-pointer">
                         Cancel
                     </button>
-                    <button type="submit" class="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-display font-black text-xs shadow-[0_0_20px_rgba(245,158,11,0.5)] border border-yellow-300/40 transition">
+                    <button type="submit" class="px-6 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-display font-semibold text-xs shadow-2xs border border-[#087F70] transition cursor-pointer">
                         Save Moderator
                     </button>
                 </div>
@@ -1637,7 +1611,7 @@
             
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg font-black border border-amber-500/20">
+                    <div class="w-10 h-10 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-lg font-black border border-blue-500/20">
                         <i class="fa-solid fa-moon"></i>
                     </div>
                     <div>
@@ -1651,19 +1625,19 @@
             </div>
 
             <!-- Tab Switcher -->
-            <div class="flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-xs">
+            <div class="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-xs">
                 <button type="button" onclick="switchNightShiftTab('active')" id="tab-btn-night-active"
-                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black shadow-sm text-[11px] sm:text-xs">
+                        class="flex-1 py-2 px-2.5 rounded-lg transition flex items-center justify-center gap-1.5 bg-[#7C3AED] text-white font-semibold shadow-2xs text-[11px] sm:text-xs">
                     <i class="fa-solid fa-calendar-check"></i>
                     <span>Active Duties (<span id="tab-night-active-count">0</span>)</span>
                 </button>
                 <button type="button" onclick="switchNightShiftTab('monthly')" id="tab-btn-night-monthly"
-                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs">
+                        class="flex-1 py-2 px-2.5 rounded-lg transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span>Monthly Roster (<span id="tab-night-monthly-count">0</span>)</span>
                 </button>
                 <button type="button" onclick="switchNightShiftTab('requests')" id="tab-btn-night-requests"
-                        class="flex-1 py-2 px-2.5 rounded-xl transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs">
+                        class="flex-1 py-2 px-2.5 rounded-lg transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-[11px] sm:text-xs">
                     <i class="fa-solid fa-bell"></i>
                     <span>Requests (<span id="tab-night-requests-count">0</span>)</span>
                 </button>
@@ -1672,23 +1646,23 @@
             <!-- Active Tab: New Assignment & Active List -->
             <div id="night-tab-active" class="space-y-4">
                 <!-- Admin Assignment Form (Hidden for Moderators) -->
-                <form id="night-assign-form" onsubmit="handleNightShiftSubmit(event)" class="space-y-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+                <form id="night-assign-form" onsubmit="handleNightShiftSubmit(event)" class="space-y-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Select Moderator</label>
                             <select id="night-mod-select" onchange="autoCalculateNightEndDate()"
-                                    class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold outline-none">
+                                    class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                             </select>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Start Date</label>
                             <input type="date" id="night-start-date" onchange="autoCalculateNightEndDate()"
-                                   class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none">
+                                   class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">End Date</label>
                             <input type="date" id="night-end-date" onchange="updateNightDutyDatesCount()"
-                                   class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none">
+                                   class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                         </div>
                     </div>
 
@@ -1696,7 +1670,7 @@
                         <div class="text-[11px] text-slate-500 font-semibold">
                             <span id="night-calc-desc">-- Night Duties</span>
                         </div>
-                        <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-black text-xs shadow-[0_0_15px_rgba(245,158,11,0.35)] border border-yellow-300/30 transition active:scale-95 flex items-center gap-1.5">
+                        <button type="submit" class="px-5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-xs shadow-2xs border border-[#087F70] transition active:scale-95 flex items-center gap-1.5 cursor-pointer">
                             <i class="fa-solid fa-plus"></i>
                             <span>Assign Night Shift</span>
                         </button>
@@ -1739,13 +1713,13 @@
                                class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold font-mono text-slate-900 dark:text-white shadow-sm outline-none">
                         <button type="button" id="btn-night-auto-assign" onclick="triggerAutoAssignCurrentMonth()" 
                                 title="Automatically calculate and assign 3 moderators per night continuously across the entire month based on weekly off schedules" 
-                                class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-fuchsia-700 text-white text-xs font-bold shadow-md flex items-center gap-1.5 transition active:scale-95">
-                            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                                class="px-3.5 py-1.5 rounded-lg bg-[#7C3AED] hover:bg-violet-700 text-white text-xs font-semibold shadow-2xs flex items-center gap-1.5 transition active:scale-95 cursor-pointer">
+                            <i class="fa-solid fa-wand-magic-sparkles text-violet-200"></i>
                             <span>Auto Assign (3/Night)</span>
                         </button>
                         <button type="button" id="btn-night-clear-monthly" onclick="clearAllNightShifts()" 
                                 title="Clear all night duty schedules"
-                                class="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold transition flex items-center gap-1.5 active:scale-95">
+                                class="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-semibold transition flex items-center gap-1.5 active:scale-95 cursor-pointer">
                             <i class="fa-solid fa-trash-can"></i>
                             <span>Clear All</span>
                         </button>
@@ -1753,12 +1727,12 @@
                     <div class="flex items-center gap-2 self-end sm:self-auto">
                         <button type="button" id="btn-night-whatsapp-all" onclick="openNightShiftWhatsAppBatchModal()" 
                                 title="Notify all scheduled night duty moderators via WhatsApp"
-                                class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition active:scale-95">
+                                class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-2xs flex items-center gap-1.5 transition active:scale-95 cursor-pointer">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                             <span>WhatsApp All</span>
                         </button>
                         <button type="button" id="btn-print-night-report" onclick="printMonthlyNightReport()" 
-                                class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition active:scale-95">
+                                class="px-3 py-1.5 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white text-xs font-semibold shadow-2xs border border-[#087F70] flex items-center gap-1.5 transition active:scale-95 cursor-pointer">
                             <i class="fa-solid fa-print"></i>
                             <span>Print Report</span>
                         </button>
@@ -1875,7 +1849,7 @@
                     </div>
 
                     <div class="flex items-center justify-end pt-1">
-                        <button type="submit" class="px-5 py-2 rounded-xl bg-purple-600 text-white font-bold text-xs shadow-md">
+                        <button type="submit" class="px-5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-xs shadow-2xs border border-[#087F70] transition cursor-pointer">
                             Sanction Official Leave
                         </button>
                     </div>
@@ -1888,8 +1862,8 @@
             <div id="leave-tab-monthly" class="hidden space-y-3">
                 <div class="flex items-center justify-between gap-3">
                     <input type="month" id="monthly-leave-month-picker" onchange="handleMonthlyLeaveMonthChange(this.value)"
-                           class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold font-mono">
-                    <button id="btn-print-leave-report" onclick="printMonthlyLeaveReport()" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white text-xs font-bold">
+                           class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold font-mono text-slate-900 dark:text-white shadow-2xs outline-none">
+                    <button id="btn-print-leave-report" onclick="printMonthlyLeaveReport()" class="px-3.5 py-1.5 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white text-xs font-semibold shadow-2xs border border-[#087F70] flex items-center gap-1.5 transition active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-print mr-1"></i> Print Leave Report
                     </button>
                 </div>
@@ -1963,10 +1937,10 @@
                 </div>
 
                 <div class="flex items-center justify-end gap-3 pt-2">
-                    <button type="button" onclick="closeExchangeModal()" class="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 font-bold text-xs">
+                    <button type="button" onclick="closeExchangeModal()" class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs transition border border-slate-200 dark:border-slate-700 cursor-pointer">
                         Cancel
                     </button>
-                    <button type="submit" class="px-6 py-2.5 rounded-2xl bg-cyan-600 hover:bg-cyan-700 text-white font-display font-bold text-xs shadow-md transition">
+                    <button type="submit" class="px-6 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-display font-semibold text-xs shadow-2xs border border-[#087F70] transition cursor-pointer">
                         Confirm Exchange
                     </button>
                 </div>
@@ -1997,7 +1971,7 @@
 
             <div class="space-y-2 text-xs">
                 <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800">
-                    <div><b>Moderator:</b> <span id="alert-mod-name" class="font-bold text-amber-500 dark:text-amber-400">--</span></div>
+                    <div><b>Moderator:</b> <span id="alert-mod-name" class="font-bold text-blue-600 dark:text-blue-400">--</span></div>
                     <div><b>Duty Date:</b> <span id="alert-today-day" class="font-mono">--</span></div>
                     <div><b>Scheduled Off Day:</b> <span id="alert-mod-weekend" class="font-bold text-amber-600">--</span></div>
                 </div>
@@ -2120,7 +2094,7 @@
                     <button type="button" onclick="closeNightShiftRequestModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white">
                         Cancel
                     </button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-xs shadow-md shadow-emerald-900/30 transition active:scale-95 flex items-center gap-2">
+                    <button type="submit" class="px-5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-semibold text-xs shadow-2xs border border-[#087F70] transition active:scale-95 flex items-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span>Submit Request to In-Charge</span>
                     </button>
@@ -2131,14 +2105,14 @@
 
     <!-- ======================= 10. CHANGE PASSWORD MODAL ======================= -->
     <div id="change-password-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-md p-4 no-print select-none">
-        <div class="relative w-full max-w-md rounded-3xl glass-panel-elevated p-6 sm:p-8 space-y-4 shadow-2xl border border-white/15">
+        <div class="relative w-full max-w-md rounded-2xl glass-panel-elevated p-6 sm:p-8 space-y-4 shadow-2xl border border-white/15">
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-base">
+                    <div class="w-9 h-9 rounded-xl bg-[#E6F5F1] text-[#087F70] flex items-center justify-center text-base border border-[#0F9D8A]/20">
                         <i class="fa-solid fa-key"></i>
                     </div>
                     <div>
-                        <h3 class="font-display font-black text-base text-slate-900 dark:text-white">Change Admin Password</h3>
+                        <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Change Admin Password</h3>
                         <p class="text-[11px] text-slate-400">Update your portal security key</p>
                     </div>
                 </div>
@@ -2155,24 +2129,24 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Current Password</label>
                     <input type="password" id="cp-current-pass" required
-                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none">
+                           class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">New Password (Min 4 chars)</label>
                     <input type="password" id="cp-new-pass" required
-                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none">
+                           class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Confirm New Password</label>
                     <input type="password" id="cp-confirm-pass" required
-                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none">
+                           class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs outline-none focus:ring-2 focus:ring-[#0F9D8A]">
                 </div>
 
                 <div class="flex items-center justify-between pt-2">
-                    <button type="button" onclick="handleResetPasswordDefault()" class="text-xs text-amber-600 hover:underline">
+                    <button type="button" onclick="handleResetPasswordDefault()" class="text-xs text-[#087F70] dark:text-teal-400 hover:underline">
                         Reset to Default
                     </button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 text-slate-950 font-display font-black text-xs shadow-[0_0_20px_rgba(245,158,11,0.45)] border border-yellow-300/40">
+                    <button type="submit" class="px-5 py-2 rounded-lg bg-[#0F9D8A] hover:bg-[#087F70] text-white font-display font-semibold text-xs shadow-2xs border border-[#087F70] transition cursor-pointer">
                         Update Password
                     </button>
                 </div>
@@ -2237,7 +2211,7 @@
             <div onclick="event.stopPropagation()" class="relative w-full max-w-xl rounded-3xl glass-panel-elevated shadow-2xl border border-white/20 overflow-hidden animate-modal-pop">
                 <!-- Search Box -->
                 <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70">
-                    <i class="fa-solid fa-magnifying-glass text-amber-400 text-sm"></i>
+                    <i class="fa-solid fa-magnifying-glass text-blue-500 text-sm"></i>
                     <input type="text" id="palette-search-input" oninput="handlePaletteInput(this.value)" onkeydown="handlePaletteKeydown(event)"
                            placeholder="Type a moderator name, phone, or command... (e.g. 'Sefat', 'Monthly', 'Mark')"
                            class="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-sm font-semibold outline-none">
@@ -2253,7 +2227,7 @@
                         <span>Navigate <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↓</kbd></span>
                         <span>• Select <kbd class="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[9px]">↵</kbd></span>
                     </div>
-                    <span class="font-black text-amber-400">Sanvee's Spotlight Search</span>
+                    <span class="font-black text-blue-500">Sanvee's Spotlight Search</span>
                 </div>
             </div>
         </div>
