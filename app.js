@@ -28,411 +28,7 @@
             { sl: 26, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
         ];
 
-        const DEFAULT_NIGHT_SHIFTS = [
-    {
-        "id":  1791244800810,
-        "modSl":  11,
-        "modName":  "Farcy",
-        "modPhone":  "01603983864",
-        "weekend":  "Monday",
-        "startDate":  "2026-10-06",
-        "endDate":  "2026-10-11",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-06",
-                               "2026-10-07",
-                               "2026-10-08",
-                               "2026-10-09",
-                               "2026-10-10",
-                               "2026-10-11"
-                           ]
-    },
-    {
-        "id":  1793232000479,
-        "modSl":  15,
-        "modName":  "Abdul Muhid",
-        "modPhone":  "01354237535",
-        "weekend":  "Tuesday",
-        "startDate":  "2026-10-29",
-        "endDate":  "2026-10-31",
-        "count":  3,
-        "nightCount":  3,
-        "nightDutyDates":  [
-                               "2026-10-29",
-                               "2026-10-30",
-                               "2026-10-31"
-                           ]
-    },
-    {
-        "id":  1792281600915,
-        "modSl":  24,
-        "modName":  "Tonmoy",
-        "modPhone":  "01921080031",
-        "weekend":  "Friday",
-        "startDate":  "2026-10-18",
-        "endDate":  "2026-10-22",
-        "count":  5,
-        "nightCount":  5,
-        "nightDutyDates":  [
-                               "2026-10-18",
-                               "2026-10-19",
-                               "2026-10-20",
-                               "2026-10-21",
-                               "2026-10-22"
-                           ]
-    },
-    {
-        "id":  1791158400713,
-        "modSl":  6,
-        "modName":  "Al Arafat",
-        "modPhone":  "01327948737",
-        "weekend":  "Sunday",
-        "startDate":  "2026-10-05",
-        "endDate":  "2026-10-10",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-05",
-                               "2026-10-06",
-                               "2026-10-07",
-                               "2026-10-08",
-                               "2026-10-09",
-                               "2026-10-10"
-                           ]
-    },
-    {
-        "id":  1793232000444,
-        "modSl":  17,
-        "modName":  "Sahil (Forever)",
-        "modPhone":  "01947127960",
-        "weekend":  "Wednesday",
-        "startDate":  "2026-10-29",
-        "endDate":  "2026-10-31",
-        "count":  3,
-        "nightCount":  3,
-        "nightDutyDates":  [
-                               "2026-10-29",
-                               "2026-10-30",
-                               "2026-10-31"
-                           ]
-    },
-    {
-        "id":  1791676800542,
-        "modSl":  2,
-        "modName":  "Tarikul Islam",
-        "modPhone":  "01401248381",
-        "weekend":  "Saturday",
-        "startDate":  "2026-10-11",
-        "endDate":  "2026-10-16",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-11",
-                               "2026-10-12",
-                               "2026-10-13",
-                               "2026-10-14",
-                               "2026-10-15",
-                               "2026-10-16"
-                           ]
-    },
-    {
-        "id":  1791763200747,
-        "modSl":  7,
-        "modName":  "Moinul Islam",
-        "modPhone":  "01313520845",
-        "weekend":  "Sunday",
-        "startDate":  "2026-10-12",
-        "endDate":  "2026-10-17",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-12",
-                               "2026-10-13",
-                               "2026-10-14",
-                               "2026-10-15",
-                               "2026-10-16",
-                               "2026-10-17"
-                           ]
-    },
-    {
-        "id":  1790812800297,
-        "modSl":  18,
-        "modName":  "Lavlu Ahmed",
-        "modPhone":  "01857390368",
-        "weekend":  "Wednesday",
-        "startDate":  "2026-10-01",
-        "endDate":  "2026-10-06",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-01",
-                               "2026-10-02",
-                               "2026-10-03",
-                               "2026-10-04",
-                               "2026-10-05",
-                               "2026-10-06"
-                           ]
-    },
-    {
-        "id":  1792713600968,
-        "modSl":  19,
-        "modName":  "Zubayer Mridha",
-        "modPhone":  "01611955763",
-        "weekend":  "Thursday",
-        "startDate":  "2026-10-23",
-        "endDate":  "2026-10-28",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-23",
-                               "2026-10-24",
-                               "2026-10-25",
-                               "2026-10-26",
-                               "2026-10-27",
-                               "2026-10-28"
-                           ]
-    },
-    {
-        "id":  1792886400335,
-        "modSl":  1,
-        "modName":  "Akram",
-        "modPhone":  "01871976484",
-        "weekend":  "Saturday",
-        "startDate":  "2026-10-25",
-        "endDate":  "2026-10-30",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-25",
-                               "2026-10-26",
-                               "2026-10-27",
-                               "2026-10-28",
-                               "2026-10-29",
-                               "2026-10-30"
-                           ]
-    },
-    {
-        "id":  1792713600128,
-        "modSl":  20,
-        "modName":  "Sahil Sheikh",
-        "modPhone":  "01626429771",
-        "weekend":  "Thursday",
-        "startDate":  "2026-10-23",
-        "endDate":  "2026-10-28",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-23",
-                               "2026-10-24",
-                               "2026-10-25",
-                               "2026-10-26",
-                               "2026-10-27",
-                               "2026-10-28"
-                           ]
-    },
-    {
-        "id":  1791849600187,
-        "modSl":  9,
-        "modName":  "Md Raihan",
-        "modPhone":  "01931070660",
-        "weekend":  "Monday",
-        "startDate":  "2026-10-13",
-        "endDate":  "2026-10-18",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-13",
-                               "2026-10-14",
-                               "2026-10-15",
-                               "2026-10-16",
-                               "2026-10-17",
-                               "2026-10-18"
-                           ]
-    },
-    {
-        "id":  1792368000176,
-        "modSl":  5,
-        "modName":  "Omar Faruk Majumder",
-        "modPhone":  "01675562296",
-        "weekend":  "Sunday",
-        "startDate":  "2026-10-19",
-        "endDate":  "2026-10-24",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-19",
-                               "2026-10-20",
-                               "2026-10-21",
-                               "2026-10-22",
-                               "2026-10-23",
-                               "2026-10-24"
-                           ]
-    },
-    {
-        "id":  1790812800391,
-        "modSl":  14,
-        "modName":  "Biplob",
-        "modPhone":  "01926994536",
-        "weekend":  "Tuesday",
-        "startDate":  "2026-10-01",
-        "endDate":  "2026-10-05",
-        "count":  5,
-        "nightCount":  5,
-        "nightDutyDates":  [
-                               "2026-10-01",
-                               "2026-10-02",
-                               "2026-10-03",
-                               "2026-10-04",
-                               "2026-10-05"
-                           ]
-    },
-    {
-        "id":  1792195200339,
-        "modSl":  23,
-        "modName":  "Piyal Sarker",
-        "modPhone":  "01705952384",
-        "weekend":  "Friday",
-        "startDate":  "2026-10-17",
-        "endDate":  "2026-10-22",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-17",
-                               "2026-10-18",
-                               "2026-10-19",
-                               "2026-10-20",
-                               "2026-10-21",
-                               "2026-10-22"
-                           ]
-    },
-    {
-        "id":  1790812800399,
-        "modSl":  10,
-        "modName":  "Fahim Howlader",
-        "modPhone":  "01887474044",
-        "weekend":  "Monday",
-        "startDate":  "2026-10-01",
-        "endDate":  "2026-10-04",
-        "count":  4,
-        "nightCount":  4,
-        "nightDutyDates":  [
-                               "2026-10-01",
-                               "2026-10-02",
-                               "2026-10-03",
-                               "2026-10-04"
-                           ]
-    },
-    {
-        "id":  1791331200211,
-        "modSl":  13,
-        "modName":  "Hamim",
-        "modPhone":  "01327948737",
-        "weekend":  "Tuesday",
-        "startDate":  "2026-10-07",
-        "endDate":  "2026-10-12",
-        "count":  6,
-        "nightCount":  6,
-        "nightDutyDates":  [
-                               "2026-10-07",
-                               "2026-10-08",
-                               "2026-10-09",
-                               "2026-10-10",
-                               "2026-10-11",
-                               "2026-10-12"
-                           ]
-    },
-    {
-        "count":  5,
-        "endDate":  "2026-09-01",
-        "id":  1787897642979,
-        "modName":  "Shakib Ahmed",
-        "modSl":  13,
-        "nightCount":  4,
-        "nightDutyDates":  [
-                               "2026-08-28",
-                               "2026-08-29",
-                               "2026-08-30",
-                               "2026-08-31"
-                           ],
-        "startDate":  "2026-08-28"
-    },
-    {
-        "count":  3,
-        "endDate":  "2026-08-29",
-        "id":  1787805444206,
-        "modName":  "Arman Alif",
-        "modSl":  3,
-        "nightCount":  2,
-        "nightDutyDates":  [
-                               "2026-08-27",
-                               "2026-08-28"
-                           ],
-        "startDate":  "2026-08-27"
-    },
-    {
-        "count":  2,
-        "endDate":  "2026-08-27",
-        "id":  1787732871663,
-        "modName":  "Rezaul Karim",
-        "modSl":  22,
-        "nightCount":  1,
-        "nightDutyDates":  [
-                               "2026-08-26"
-                           ],
-        "startDate":  "2026-08-26"
-    },
-    {
-        "count":  5,
-        "endDate":  "2026-08-27",
-        "id":  1787466562633,
-        "modName":  "Zubayer Mridha",
-        "modSl":  23,
-        "nightCount":  4,
-        "nightDutyDates":  [
-                               "2026-08-23",
-                               "2026-08-24",
-                               "2026-08-25",
-                               "2026-08-26"
-                           ],
-        "startDate":  "2026-08-23"
-    },
-    {
-        "count":  6,
-        "endDate":  "2026-08-28",
-        "id":  1787466332034,
-        "modName":  "Piyal Sarker",
-        "modSl":  26,
-        "nightCount":  5,
-        "nightDutyDates":  [
-                               "2026-08-23",
-                               "2026-08-24",
-                               "2026-08-25",
-                               "2026-08-26",
-                               "2026-08-27"
-                           ],
-        "startDate":  "2026-08-23"
-    },
-    {
-        "count":  3,
-        "endDate":  "2026-08-22",
-        "id":  1787229479227,
-        "modName":  "Akram",
-        "modSl":  2,
-        "nightCount":  2,
-        "startDate":  "2026-08-20"
-    },
-    {
-        "count":  5,
-        "endDate":  "2026-08-24",
-        "id":  1787229465682,
-        "modName":  "Mosharof Hossain",
-        "modSl":  9,
-        "nightCount":  4,
-        "startDate":  "2026-08-20"
-    }
-]
-;
+        const DEFAULT_NIGHT_SHIFTS = [];
 
         let moderators = [...DEFAULT_MODERATORS];
         let attendanceHistory = {}; 
@@ -577,6 +173,7 @@
             if (Array.isArray(remoteExchanges)) weekendExchanges = remoteExchanges;
 
             sortAndReindexModerators();
+            cleanupCorruptedNightData();
             sanitizeAndMigrateAttendanceHistory();
             localStorage.setItem('sanveesModeratorsList', JSON.stringify(moderators));
             localStorage.setItem('sanveesAttendanceHistory', JSON.stringify(attendanceHistory));
@@ -727,6 +324,7 @@
             } else { weekendExchanges = []; }
 
             sortAndReindexModerators();
+            cleanupCorruptedNightData();
             sanitizeAndMigrateAttendanceHistory();
 
             currentActiveDate = getTodayDateStr();
@@ -899,30 +497,112 @@
             return 'mod_sl_' + String(mod.sl);
         }
 
+        function isRecordForModerator(record, mod) {
+            if (!record || !mod) return false;
+            if (record.modId && mod.id && record.modId === mod.id) return true;
+            if (record.modName && mod.name && record.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) return true;
+            if (record.modPhone && mod.phone) {
+                const rp = String(record.modPhone).replace(/\D/g, '');
+                const mp = String(mod.phone).replace(/\D/g, '');
+                if (rp && mp && rp === mp) return true;
+            }
+            return false;
+        }
+
+        function checkModeratorHasNightShift(mod, dateStr) {
+            if (!mod || !dateStr || isModeratorNightExempt(mod)) return false;
+            if (!scheduledNightShifts || !Array.isArray(scheduledNightShifts) || scheduledNightShifts.length === 0) return false;
+            return scheduledNightShifts.some(s => {
+                if (!isRecordForModerator(s, mod)) return false;
+                if (Array.isArray(s.nightDutyDates) && s.nightDutyDates.length > 0) {
+                    return s.nightDutyDates.includes(dateStr);
+                }
+                if (s.startDate && s.endDate) {
+                    return dateStr >= s.startDate && dateStr <= s.endDate;
+                }
+                return false;
+            });
+        }
+
+                function cleanupCorruptedNightData() {
+            if (!Array.isArray(moderators) || moderators.length === 0) return;
+
+            // 1. Clean scheduledNightShifts: remove invalid records (unknown moderators or night-exempt seniors)
+            let nightModified = false;
+            if (Array.isArray(scheduledNightShifts)) {
+                const initialLen = scheduledNightShifts.length;
+                scheduledNightShifts = scheduledNightShifts.filter(s => {
+                    const mod = moderators.find(m => isRecordForModerator(s, m) || (s.modName && m.name === s.modName));
+                    if (!mod) return false; // remove non-existent moderators (Farcy, Lavlu, Shakib, Abdul Muhid)
+                    if (isModeratorNightExempt(mod)) return false; // remove senior night exempt
+                    // Sync metadata with current moderator record
+                    s.modSl = mod.sl;
+                    s.modName = mod.name;
+                    s.modId = mod.id;
+                    s.modPhone = mod.phone;
+                    if (!Array.isArray(s.nightDutyDates) && s.startDate && s.endDate) {
+                        s.nightDutyDates = getDatesInRange(s.startDate, s.endDate);
+                    }
+                    return true;
+                });
+                if (scheduledNightShifts.length !== initialLen) nightModified = true;
+            } else {
+                scheduledNightShifts = [];
+                nightModified = true;
+            }
+
+            if (nightModified) {
+                localStorage.setItem('sanveesNightShifts', JSON.stringify(scheduledNightShifts));
+            }
+
+            // 2. Clean attendanceHistory: reset any night shift erroneously given to exempt seniors or invalid entries
+            if (attendanceHistory && typeof attendanceHistory === 'object') {
+                let attModified = false;
+                Object.keys(attendanceHistory).forEach(dateStr => {
+                    const dayRecords = attendanceHistory[dateStr];
+                    if (!dayRecords || typeof dayRecords !== 'object') return;
+                    const dayName = getDayNameForDate(dateStr);
+
+                    moderators.forEach(mod => {
+                        const modKey = getModeratorKey(mod);
+                        const cleanPhone = mod.phone ? String(mod.phone).replace(/\D/g, '') : '';
+                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                        const defStatus = isWeekend ? 'Weekly Off' : 'Present';
+
+                        // If night exempt senior has Night Shift, reset it
+                        if (isModeratorNightExempt(mod)) {
+                            if (dayRecords[modKey] === 'Night Shift' || dayRecords[mod.name] === 'Night Shift' || (mod.id && dayRecords[mod.id] === 'Night Shift') || (cleanPhone && dayRecords[cleanPhone] === 'Night Shift')) {
+                                dayRecords[modKey] = defStatus;
+                                if (mod.name) dayRecords[mod.name] = defStatus;
+                                if (mod.id) dayRecords[mod.id] = defStatus;
+                                if (cleanPhone) dayRecords[cleanPhone] = defStatus;
+                                attModified = true;
+                            }
+                        }
+
+                        // Remove legacy numeric serial keys
+                        if (dayRecords[String(mod.sl)] !== undefined) {
+                            delete dayRecords[String(mod.sl)];
+                            attModified = true;
+                        }
+                    });
+                });
+
+                if (attModified) {
+                    localStorage.setItem('sanveesAttendanceHistory', JSON.stringify(attendanceHistory));
+                }
+            }
+        }
+
         let _hasSanitizedAttendance = false;
         function sanitizeAndMigrateAttendanceHistory() {
             if (_hasSanitizedAttendance) return;
             if (!attendanceHistory || typeof attendanceHistory !== 'object' || !Array.isArray(moderators) || moderators.length === 0) return;
             _hasSanitizedAttendance = true;
 
-            let modified = false;
+            cleanupCorruptedNightData();
 
-            // Map moderators by Name, clean modKey, phone, id, and serial
-            const nameToModMap = {};
-            const keyToModMap = {};
-            const phoneToModMap = {};
-            const slToModMap = {};
-            moderators.forEach((m, idx) => {
-                const modKey = getModeratorKey(m);
-                keyToModMap[modKey] = m;
-                if (m.name) {
-                    nameToModMap[m.name.trim().toLowerCase()] = m;
-                    nameToModMap[m.name] = m;
-                }
-                if (m.phone) phoneToModMap[m.phone.replace(/\D/g, '')] = m;
-                slToModMap[m.sl] = m;
-                slToModMap[idx + 1] = m;
-            });
+            let modified = false;
 
             Object.keys(attendanceHistory).forEach(dateStr => {
                 const dayRecords = attendanceHistory[dateStr];
@@ -937,7 +617,7 @@
                 moderators.forEach((targetMod, idx) => {
                     const modKey = getModeratorKey(targetMod);
                     const cleanName = (targetMod.name || '').trim().toLowerCase();
-                    const cleanPhone = targetMod.phone ? targetMod.phone.replace(/\D/g, '') : '';
+                    const cleanPhone = targetMod.phone ? String(targetMod.phone).replace(/\D/g, '') : '';
                     const isScheduledWeekend = targetMod.weekend && dayName && (targetMod.weekend.toLowerCase() === dayName.toLowerCase());
 
                     // Look for existing status primarily by name and modKey
@@ -948,67 +628,58 @@
                         const cleanNameStatus = cleanName ? dayRecords[cleanName] : undefined;
                         const idStatus = targetMod.id ? dayRecords[targetMod.id] : undefined;
                         const phoneStatus = cleanPhone ? dayRecords[cleanPhone] : undefined;
-                        const slStatus = dayRecords[String(targetMod.sl)];
 
-                        const candidates = [nameStatus, keyStatus, cleanNameStatus, idStatus, phoneStatus, slStatus].filter(s => s !== undefined && s !== null && s !== '');
-                        // Specific meaningful statuses (Night Shift, Leave, Absent, etc.) ALWAYS win over default 'Present' / 'Weekly Off'
-                        const specificStatus = candidates.find(s => s === 'Night Shift' || s === 'Leave' || s === 'Absent' || s === 'Outside Work' || s === 'Extra Duty' || s === 'Late');
-                        if (specificStatus) {
-                            status = specificStatus;
-                        } else if (candidates.length > 0) {
+                        const candidates = [keyStatus, nameStatus, cleanNameStatus, idStatus, phoneStatus].filter(s => s !== undefined && s !== null && s !== '');
+                        if (candidates.length > 0) {
                             status = candidates[0];
                         }
                     } else {
                         status = dayRecords[targetMod.sl] || dayRecords[idx];
                     }
 
-                    // Check approved leaves (by dates array or startDate..endDate range)
+                    // Night exempt seniors can never have Night Shift
+                    if (isModeratorNightExempt(targetMod) && status === 'Night Shift') {
+                        status = isScheduledWeekend ? 'Weekly Off' : 'Present';
+                    }
+
+                    // Check approved leaves
                     const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                        const isMod = (l.modName && targetMod.name && l.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) ||
-                                      (l.modId ? l.modId === targetMod.id : (l.modPhone === targetMod.phone || l.modSl === targetMod.sl));
-                        if (!isMod) return false;
-                        return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
+                        if (!isRecordForModerator(l, targetMod)) return false;
+                        if (Array.isArray(l.leaveDates) && l.leaveDates.length > 0) return l.leaveDates.includes(dateStr);
+                        return (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                     });
 
                     // Check scheduled night shifts
-                    const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                        const isMod = (s.modName && targetMod.name && s.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) ||
-                                      (s.modId ? s.modId === targetMod.id : (s.modPhone === targetMod.phone || s.modSl === targetMod.sl));
-                        if (!isMod) return false;
-                        return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                    });
+                    const hasNightShift = checkModeratorHasNightShift(targetMod, dateStr);
 
                     // Check weekend exchanges
                     const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => 
-                        ((x.modName && targetMod.name && x.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) || (x.modSl === targetMod.sl || x.modPhone === targetMod.phone)) && x.dutyDate === dateStr
+                        isRecordForModerator(x, targetMod) && x.dutyDate === dateStr
                     );
                     const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => 
-                        ((x.modName && targetMod.name && x.modName.trim().toLowerCase() === targetMod.name.trim().toLowerCase()) || (x.modSl === targetMod.sl || x.modPhone === targetMod.phone)) && x.offDate === dateStr
+                        isRecordForModerator(x, targetMod) && x.offDate === dateStr
                     );
 
                     if (hasApprovedLeave) {
                         status = 'Leave';
-                    } else if (hasNightShift) {
-                        status = 'Night Shift';
                     } else if (hasExchangeDuty) {
                         status = 'Present';
                     } else if (hasExchangeOff) {
                         status = 'Weekly Off';
-                    } else if (isScheduledWeekend) {
-                        // CRITICAL FIX: If today is their scheduled weekend and they have no exchange duty / extra duty,
-                        // force 'Weekly Off'. This fixes records corrupted by previous moderator removal and serial shifts.
-                        if (!status || status === 'Present' || status === 'Weekly Off') {
+                    } else if (!status) {
+                        if (hasNightShift) {
+                            status = 'Night Shift';
+                        } else if (isScheduledWeekend) {
                             status = 'Weekly Off';
-                        }
-                    } else {
-                        // Working day: if not set or corrupted, default to Present
-                        if (!status || status === 'Weekly Off') {
+                        } else {
                             status = 'Present';
                         }
                     }
 
                     newDayRecords[modKey] = status;
                     if (targetMod.name) newDayRecords[targetMod.name] = status;
+                    if (targetMod.id) newDayRecords[targetMod.id] = status;
+                    if (cleanPhone) newDayRecords[cleanPhone] = status;
                 });
 
                 // Preserve any non-numeric custom metadata like _initialized
@@ -1029,110 +700,91 @@
         }
 
         function initAttendanceForDate(dateStr) {
-            if (attendanceHistory[dateStr] && !Array.isArray(attendanceHistory[dateStr]) && attendanceHistory[dateStr]._initialized) {
-                // Ensure every current moderator has an entry keyed by their name and modKey
-                const dayRecords = attendanceHistory[dateStr];
-                const dayName = getDayNameForDate(dateStr);
-                let neededSync = false;
-                for (let i = 0; i < moderators.length; i++) {
-                    const mod = moderators[i];
-                    const modKey = getModeratorKey(mod);
-                    const existingNameStatus = mod.name ? dayRecords[mod.name] : undefined;
-                    const existingKeyStatus = dayRecords[modKey];
-
-                    // If either has Night Shift or specific status, synchronize both keys with it
-                    if (existingNameStatus === 'Night Shift' || existingKeyStatus === 'Night Shift') {
-                        dayRecords[modKey] = 'Night Shift';
-                        if (mod.name) dayRecords[mod.name] = 'Night Shift';
-                    } else if (existingNameStatus && existingNameStatus !== 'Present' && (!existingKeyStatus || existingKeyStatus === 'Present')) {
-                        dayRecords[modKey] = existingNameStatus;
-                    } else if (existingKeyStatus && existingKeyStatus !== 'Present' && (!existingNameStatus || existingNameStatus === 'Present')) {
-                        if (mod.name) dayRecords[mod.name] = existingKeyStatus;
-                    } else if (dayRecords[modKey] === undefined && dayRecords[mod.name] === undefined) {
-                        const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
-                        const defStatus = isWeekend ? 'Weekly Off' : 'Present';
-                        dayRecords[modKey] = defStatus;
-                        dayRecords[mod.name] = defStatus;
-                        neededSync = true;
-                    } else if (dayRecords[modKey] !== undefined && dayRecords[mod.name] === undefined) {
-                        dayRecords[mod.name] = dayRecords[modKey];
-                        neededSync = true;
-                    } else if (dayRecords[mod.name] !== undefined && dayRecords[modKey] === undefined) {
-                        dayRecords[modKey] = dayRecords[mod.name];
-                        neededSync = true;
-                    }
-                    // Clean up any legacy numeric serial key
-                    if (dayRecords[String(mod.sl)] !== undefined) {
-                        delete dayRecords[String(mod.sl)];
-                        neededSync = true;
-                    }
-                }
-                if (neededSync) saveToLocalStorage();
-                return;
-            }
-            if (!attendanceHistory[dateStr] || Array.isArray(attendanceHistory[dateStr])) {
-                sanitizeAndMigrateAttendanceHistory();
-            }
             if (!attendanceHistory[dateStr] || Array.isArray(attendanceHistory[dateStr])) {
                 attendanceHistory[dateStr] = {};
             }
-            const dayName = getDayNameForDate(dateStr);
             const dayRecords = attendanceHistory[dateStr];
+            const dayName = getDayNameForDate(dateStr);
+            let neededSync = false;
+
             for (let i = 0; i < moderators.length; i++) {
                 const mod = moderators[i];
                 const modKey = getModeratorKey(mod);
-                const hasRecord = (dayRecords[modKey] !== undefined) || (dayRecords[mod.name] !== undefined);
-                if (!hasRecord) {
-                    const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
-                    let defaultStatus = isWeekend ? 'Weekly Off' : 'Present';
+                const cleanPhone = mod.phone ? String(mod.phone).replace(/\D/g, '') : '';
+                const isWeekend = mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                const defaultWeekendStatus = isWeekend ? 'Weekly Off' : 'Present';
 
-                    // Check approved leave for this date
+                // Look for existing recorded status
+                let existingStatus = dayRecords[modKey];
+                if (existingStatus === undefined && mod.name && dayRecords[mod.name] !== undefined) {
+                    existingStatus = dayRecords[mod.name];
+                }
+                if (existingStatus === undefined && mod.id && dayRecords[mod.id] !== undefined) {
+                    existingStatus = dayRecords[mod.id];
+                }
+                if (existingStatus === undefined && cleanPhone && dayRecords[cleanPhone] !== undefined) {
+                    existingStatus = dayRecords[cleanPhone];
+                }
+
+                // If senior is night exempt, never allow Night Shift
+                if (isModeratorNightExempt(mod) && existingStatus === 'Night Shift') {
+                    existingStatus = defaultWeekendStatus;
+                    neededSync = true;
+                }
+
+                if (existingStatus === undefined) {
+                    // Brand new uninitialized record - calculate default
+                    let def = defaultWeekendStatus;
+
                     const hasApprovedLeave = approvedLeaves && approvedLeaves.some(l => {
-                        const isMod = (l.modName && mod.name && l.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
-                                      (l.modId ? l.modId === mod.id : (l.modPhone === mod.phone || l.modSl === mod.sl));
-                        if (!isMod) return false;
-                        return (l.leaveDates && l.leaveDates.includes(dateStr)) || (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
+                        if (!isRecordForModerator(l, mod)) return false;
+                        if (Array.isArray(l.leaveDates) && l.leaveDates.length > 0) return l.leaveDates.includes(dateStr);
+                        return (l.startDate && l.endDate && dateStr >= l.startDate && dateStr <= l.endDate);
                     });
 
-                    // Check scheduled night shift for this date
-                    const hasNightShift = scheduledNightShifts && scheduledNightShifts.some(s => {
-                        const isMod = (s.modName && mod.name && s.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
-                                      (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modSl === mod.sl));
-                        if (!isMod) return false;
-                        return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                    });
+                    const hasNightShift = checkModeratorHasNightShift(mod, dateStr);
 
-                    // Check weekend exchange
                     const hasExchangeDuty = weekendExchanges && weekendExchanges.some(x => 
-                        ((x.modName && mod.name && x.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) || (x.modSl === mod.sl || x.modPhone === mod.phone)) && x.dutyDate === dateStr
+                        isRecordForModerator(x, mod) && x.dutyDate === dateStr
                     );
                     const hasExchangeOff = weekendExchanges && weekendExchanges.some(x => 
-                        ((x.modName && mod.name && x.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) || (x.modSl === mod.sl || x.modPhone === mod.phone)) && x.offDate === dateStr
+                        isRecordForModerator(x, mod) && x.offDate === dateStr
                     );
 
                     if (hasApprovedLeave) {
-                        defaultStatus = 'Leave';
-                    } else if (hasNightShift) {
-                        defaultStatus = 'Night Shift';
+                        def = 'Leave';
                     } else if (hasExchangeDuty) {
-                        defaultStatus = 'Present';
+                        def = 'Present';
                     } else if (hasExchangeOff) {
-                        defaultStatus = 'Weekly Off';
+                        def = 'Weekly Off';
+                    } else if (hasNightShift) {
+                        def = 'Night Shift';
                     }
 
-                    dayRecords[modKey] = defaultStatus;
-                    dayRecords[mod.name] = defaultStatus;
-                } else if (dayRecords[modKey] !== undefined) {
-                    dayRecords[mod.name] = dayRecords[modKey];
-                } else if (dayRecords[mod.name] !== undefined) {
-                    dayRecords[modKey] = dayRecords[mod.name];
+                    existingStatus = def;
+                    neededSync = true;
                 }
-                // Strip legacy numeric key if exists
+
+                // Synchronize all keys cleanly with this single source of truth
+                dayRecords[modKey] = existingStatus;
+                if (mod.name) dayRecords[mod.name] = existingStatus;
+                if (mod.id) dayRecords[mod.id] = existingStatus;
+                if (cleanPhone) dayRecords[cleanPhone] = existingStatus;
+
+                // Strip legacy serial keys
                 if (dayRecords[String(mod.sl)] !== undefined) {
                     delete dayRecords[String(mod.sl)];
+                    neededSync = true;
+                }
+                if (dayRecords['mod_' + cleanPhone] !== undefined && ('mod_' + cleanPhone) !== modKey) {
+                    delete dayRecords['mod_' + cleanPhone];
+                }
+                if (dayRecords['mod_sl_' + String(mod.sl)] !== undefined) {
+                    delete dayRecords['mod_sl_' + String(mod.sl)];
                 }
             }
             dayRecords._initialized = true;
+            if (neededSync) saveToLocalStorage();
         }
 
         function getModeratorStatusForDate(mod, dateStr) {
@@ -1147,32 +799,25 @@
 
             const modKey = getModeratorKey(mod);
 
-            // 1. Gather all recorded status candidates for this moderator
-            const candidates = [
-                mod.name ? dayRecords[mod.name] : undefined,
-                dayRecords[modKey],
-                mod.id ? dayRecords[mod.id] : undefined,
-                mod.phone ? dayRecords[mod.phone] : undefined,
-                dayRecords['mod_' + (mod.phone ? mod.phone.replace(/\D/g, '') : '')]
-            ].filter(s => s !== undefined && s !== null && s !== '');
-
-            // 2. Specific status (Night Shift, Leave, Absent, Outside Work, Extra Duty, Late) ALWAYS wins over default 'Present' / 'Weekly Off'
-            const specificStatus = candidates.find(s => s === 'Night Shift' || s === 'Leave' || s === 'Absent' || s === 'Outside Work' || s === 'Extra Duty' || s === 'Late');
-            if (specificStatus) return specificStatus;
-
-            // 3. Check scheduled night shifts dynamically if dayRecords didn't explicitly specify
-            if (scheduledNightShifts && scheduledNightShifts.length > 0) {
-                const hasNightShift = scheduledNightShifts.some(s => {
-                    const isMod = (s.modName && mod.name && s.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) ||
-                                  (s.modId ? s.modId === mod.id : (s.modPhone === mod.phone || s.modSl === mod.sl));
-                    if (!isMod) return false;
-                    return (s.nightDutyDates && s.nightDutyDates.includes(dateStr)) || (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate);
-                });
-                if (hasNightShift) return 'Night Shift';
+            // 1. Direct canonical lookup
+            if (dayRecords[modKey] !== undefined && dayRecords[modKey] !== null && dayRecords[modKey] !== '') {
+                if (isModeratorNightExempt(mod) && dayRecords[modKey] === 'Night Shift') {
+                    return defaultStatus;
+                }
+                return dayRecords[modKey];
             }
 
-            if (candidates.length > 0) {
-                return candidates[0];
+            // 2. Name lookup fallback
+            if (mod.name && dayRecords[mod.name] !== undefined && dayRecords[mod.name] !== null && dayRecords[mod.name] !== '') {
+                if (isModeratorNightExempt(mod) && dayRecords[mod.name] === 'Night Shift') {
+                    return defaultStatus;
+                }
+                return dayRecords[mod.name];
+            }
+
+            // 3. Fallback to check dynamic scheduled shifts if not recorded yet
+            if (checkModeratorHasNightShift(mod, dateStr)) {
+                return 'Night Shift';
             }
 
             return defaultStatus;
@@ -1182,9 +827,88 @@
             if (!mod) return;
             initAttendanceForDate(dateStr);
             const modKey = getModeratorKey(mod);
-            attendanceHistory[dateStr][modKey] = status;
-            if (mod.name) attendanceHistory[dateStr][mod.name] = status;
-            delete attendanceHistory[dateStr][String(mod.sl)];
+            const cleanPhone = mod.phone ? String(mod.phone).replace(/\D/g, '') : '';
+            const dayRecords = attendanceHistory[dateStr];
+
+            // 1. Set all canonical keys to the new status
+            dayRecords[modKey] = status;
+            if (mod.name) dayRecords[mod.name] = status;
+            if (mod.id) dayRecords[mod.id] = status;
+            if (cleanPhone) dayRecords[cleanPhone] = status;
+
+            // 2. Clean legacy keys
+            delete dayRecords[String(mod.sl)];
+            delete dayRecords['mod_' + cleanPhone];
+            delete dayRecords['mod_sl_' + String(mod.sl)];
+
+            // 3. Keep scheduledNightShifts in sync with the change
+            if (status !== 'Night Shift') {
+                let nightShiftsModified = false;
+                if (Array.isArray(scheduledNightShifts) && scheduledNightShifts.length > 0) {
+                    for (let i = scheduledNightShifts.length - 1; i >= 0; i--) {
+                        const s = scheduledNightShifts[i];
+                        if (isRecordForModerator(s, mod)) {
+                            if (Array.isArray(s.nightDutyDates)) {
+                                if (s.nightDutyDates.includes(dateStr)) {
+                                    s.nightDutyDates = s.nightDutyDates.filter(d => d !== dateStr);
+                                    s.nightCount = s.nightDutyDates.length;
+                                    s.count = s.nightDutyDates.length;
+                                    nightShiftsModified = true;
+                                    if (s.nightDutyDates.length === 0) {
+                                        scheduledNightShifts.splice(i, 1);
+                                    }
+                                }
+                            } else if (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate) {
+                                const allDates = getDatesInRange(s.startDate, s.endDate);
+                                s.nightDutyDates = allDates.filter(d => d !== dateStr);
+                                s.nightCount = s.nightDutyDates.length;
+                                s.count = s.nightDutyDates.length;
+                                nightShiftsModified = true;
+                                if (s.nightDutyDates.length === 0) {
+                                    scheduledNightShifts.splice(i, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+                if (nightShiftsModified) {
+                    localStorage.setItem('sanveesNightShifts', JSON.stringify(scheduledNightShifts));
+                }
+            } else if (status === 'Night Shift' && !isModeratorNightExempt(mod)) {
+                // If set to Night Shift manually, ensure it is recorded in scheduledNightShifts
+                let existingRecord = scheduledNightShifts.find(s => isRecordForModerator(s, mod) && (
+                    (Array.isArray(s.nightDutyDates) && s.nightDutyDates.includes(dateStr)) ||
+                    (s.startDate && s.endDate && dateStr >= s.startDate && dateStr <= s.endDate)
+                ));
+                if (!existingRecord) {
+                    let anyModRecord = scheduledNightShifts.find(s => isRecordForModerator(s, mod));
+                    if (anyModRecord && Array.isArray(anyModRecord.nightDutyDates)) {
+                        if (!anyModRecord.nightDutyDates.includes(dateStr)) {
+                            anyModRecord.nightDutyDates.push(dateStr);
+                            anyModRecord.nightDutyDates.sort();
+                            anyModRecord.nightCount = anyModRecord.nightDutyDates.length;
+                            anyModRecord.count = anyModRecord.nightDutyDates.length;
+                            if (dateStr < anyModRecord.startDate) anyModRecord.startDate = dateStr;
+                            if (dateStr > anyModRecord.endDate) anyModRecord.endDate = dateStr;
+                        }
+                    } else {
+                        scheduledNightShifts.unshift({
+                            id: Date.now() + Math.random(),
+                            modId: mod.id,
+                            modSl: mod.sl,
+                            modName: mod.name,
+                            modPhone: mod.phone,
+                            startDate: dateStr,
+                            endDate: dateStr,
+                            count: 1,
+                            nightCount: 1,
+                            nightDutyDates: [dateStr]
+                        });
+                    }
+                    localStorage.setItem('sanveesNightShifts', JSON.stringify(scheduledNightShifts));
+                }
+            }
+
             saveToLocalStorage();
         }
 
@@ -2910,6 +2634,7 @@ ${appointmentState.location || 'Head Office'}`;
 
             scheduledNightShifts.unshift({
                 id: Date.now(),
+                modId: mod.id,
                 modSl: mod.sl,
                 modName: mod.name,
                 modPhone: mod.phone,
@@ -2987,23 +2712,22 @@ ${appointmentState.location || 'Head Office'}`;
             if (idx === -1) return;
             const rec = scheduledNightShifts[idx];
             if (confirm(`Remove Night Shift schedule for ${rec.modName}?`)) {
-                const mod = moderators.find(m => m.sl === rec.modSl) || moderators.find(m => m.name === rec.modName);
-                if (rec.nightDutyDates && Array.isArray(rec.nightDutyDates)) {
-                    rec.nightDutyDates.forEach(d => {
-                        const dayName = getDayNameForDate(d);
-                        attendanceHistory[d] = attendanceHistory[d] || {};
-                        const isWeekend = mod && mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
-                        const defSt = isWeekend ? 'Weekly Off' : 'Present';
-                        if (mod) {
-                            attendanceHistory[d][String(mod.sl)] = defSt;
-                            attendanceHistory[d][getModeratorKey(mod)] = defSt;
-                            if (mod.name) attendanceHistory[d][mod.name] = defSt;
-                        }
-                        if (rec.modName) {
-                            attendanceHistory[d][rec.modName] = defSt;
-                        }
-                    });
-                }
+                const mod = moderators.find(m => isRecordForModerator(rec, m) || (rec.modName && m.name === rec.modName) || m.sl === rec.modSl);
+                const dates = (rec.nightDutyDates && Array.isArray(rec.nightDutyDates) && rec.nightDutyDates.length > 0)
+                    ? rec.nightDutyDates
+                    : (rec.startDate && rec.endDate ? getDatesInRange(rec.startDate, rec.endDate) : []);
+
+                dates.forEach(d => {
+                    const dayName = getDayNameForDate(d);
+                    const isWeekend = mod && mod.weekend && dayName && (mod.weekend.toLowerCase() === dayName.toLowerCase());
+                    const defSt = isWeekend ? 'Weekly Off' : 'Present';
+                    if (mod) {
+                        setModeratorStatusForDate(mod, d, defSt);
+                    } else if (rec.modName && attendanceHistory[d]) {
+                        delete attendanceHistory[d][rec.modName];
+                    }
+                });
+
                 scheduledNightShifts.splice(idx, 1);
                 localStorage.setItem('sanveesNightShifts', JSON.stringify(scheduledNightShifts));
                 localStorage.setItem('sanveesAttendanceHistory', JSON.stringify(attendanceHistory));
@@ -3129,13 +2853,12 @@ ${appointmentState.location || 'Head Office'}`;
                 const dateStr = `${yearStr}-${monthStr}-${String(d).padStart(2, '0')}`;
                 initAttendanceForDate(dateStr);
                 moderators.forEach(m => {
-                    const modKey = getModeratorKey(m);
-                    const slKey = String(m.sl);
-                    if (attendanceHistory[dateStr][slKey] === 'Night Shift' || attendanceHistory[dateStr][modKey] === 'Night Shift') {
+                    const currentStatus = getModeratorStatusForDate(m, dateStr);
+                    if (currentStatus === 'Night Shift') {
                         const dayName = getDayNameForDate(dateStr);
-                        const defSt = (m.weekend === dayName) ? 'Weekly Off' : 'Present';
-                        attendanceHistory[dateStr][slKey] = defSt;
-                        attendanceHistory[dateStr][modKey] = defSt;
+                        const isWeekend = m.weekend && dayName && (m.weekend.toLowerCase() === dayName.toLowerCase());
+                        const defSt = isWeekend ? 'Weekly Off' : 'Present';
+                        setModeratorStatusForDate(m, dateStr, defSt);
                     }
                 });
             }
@@ -3244,6 +2967,7 @@ ${appointmentState.location || 'Head Office'}`;
 
                         newRecords.push({
                             id: Date.now() + newRecords.length + Math.random(),
+                            modId: bestMod.id,
                             modSl: bestMod.sl,
                             modName: bestMod.name,
                             modPhone: bestMod.phone,
@@ -5411,24 +5135,6 @@ ${appointmentState.location || 'Head Office'}`;
                 openCommandPalette();
             }
         });
-
-        // Interactive Bento Mouse Spotlight Tracking
-        function initSpotlightCards() {
-            const cards = document.querySelectorAll('.bento-card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.removeProperty('--mouse-x');
-                    card.style.removeProperty('--mouse-y');
-                });
-            });
-        }
 
         // Initialize on DOM Ready
         function initApp() {
