@@ -1,34 +1,34 @@
 // Official Verified Moderator List
-        const DEFAULT_MODERATORS = [
+        const DEFAULT_MODERATORS = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.moderators)) 
+            ? INITIAL_PORTAL_BACKUP.moderators 
+            : [
             { sl: 1, name: "Sefat Karim", weekend: "Saturday", phone: "01781597973", join: "01-01-2026", id: "mod_01781597973_0_oiq5n", status: "Present", notes: "" },
-            { sl: 2, name: "Akram", weekend: "Saturday", phone: "01871976484", join: "08-03-2024", id: "mod_01871976484_1_6annd", status: "Present", notes: "" },
-            { sl: 3, name: "Arman Alif", weekend: "Saturday", phone: "01406274628", join: "04-10-2025", id: "mod_01406274628_2_9hz6i", status: "Present", notes: "" },
-            { sl: 4, name: "Tarikul Islam", weekend: "Saturday", phone: "01401248381", join: "03-01-2026", id: "mod_01401248381_3_7oujg", status: "Present", notes: "" },
-            { sl: 5, name: "Sajedul Islam", weekend: "Sunday", phone: "01876608766", join: "13-12-2023", id: "mod_01876608766_4_9bsrc", status: "Present", notes: "" },
-            { sl: 6, name: "Omar Faruk Majumder", weekend: "Sunday", phone: "01675562296", join: "31-12-2025", id: "mod_01675562296_5_6wls8", status: "Present", notes: "" },
-            { sl: 7, name: "Al Arafat", weekend: "Sunday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_6_hcciw", status: "Present", notes: "" },
-            { sl: 8, name: "Moinul Islam", weekend: "Sunday", phone: "01313520845", join: "05-01-2026", id: "mod_01313520845_7_gu0pd", status: "Present", notes: "" },
-            { sl: 9, name: "Md Sujon", weekend: "Monday", phone: "01762946309", join: "12-07-2024", id: "mod_01762946309_8_ciyu2", status: "Present", notes: "" },
-            { sl: 10, name: "Mosharof Hossain", weekend: "Monday", phone: "01927917924", join: "01-01-2026", id: "mod_01927917924_9_upf8q", status: "Present", notes: "" },
-            { sl: 11, name: "Md Raihan", weekend: "Monday", phone: "01931070660", join: "27-06-2026", id: "mod_01931070660_10_5tzb7", status: "Present", notes: "" },
-            { sl: 12, name: "Fahim Howlader", weekend: "Monday", phone: "01887474044", join: "08-08-2026", id: "mod_01887474044_11_hmq5y", status: "Present", notes: "" },
-            { sl: 13, name: "Sami", weekend: "Tuesday", phone: "01407914895", join: "05-01-2026", id: "mod_01407914895_13_xwcp7", status: "Present", notes: "" },
-            { sl: 14, name: "Hamim", weekend: "Tuesday", phone: "01602871511", join: "05-01-2026", id: "mod_01602871511_14_to2nh", status: "Present", notes: "" },
-            { sl: 15, name: "Biplob", weekend: "Tuesday", phone: "01926994536", join: "07-09-2026", id: "mod_01926994536_5t6ii", status: "Present", notes: "" },
-            { sl: 16, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
-            { sl: 17, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
-            { sl: 18, name: "Najmul Islam", weekend: "Thursday", phone: "01782417078", join: "17-05-2023", id: "mod_01782417078_18_m1u5q", status: "Present", notes: "" },
-            { sl: 19, name: "Zubayer Mridha", weekend: "Thursday", phone: "01611955763", join: "12-08-2026", id: "mod_01611955763_19_qdz6h", status: "Present", notes: "" },
-            { sl: 20, name: "Naim Khan", weekend: "Thursday", phone: "01615354665", join: "09-01-2025", id: "mod_01615354665_20_unaug", status: "Present", notes: "" },
-            { sl: 21, name: "Sahil Sheikh", weekend: "Friday", phone: "01407722355", join: "01-12-2024", id: "mod_01407722355_21_gghnk", status: "Present", notes: "" },
-            { sl: 22, name: "Rezaul Karim", weekend: "Friday", phone: "01626429771", join: "05-01-2026", id: "mod_01626429771_22_zxcoi", status: "Present", notes: "" },
-            { sl: 23, name: "Piyal Sarker", weekend: "Friday", phone: "01705952384", join: "04-01-2026", id: "mod_01705952384_23_xu0wv", status: "Present", notes: "" },
-            { sl: 24, name: "Tonmoy", weekend: "Friday", phone: "01921080031", join: "11-02-2026", id: "mod_01921080031_24_v2gtv", status: "Present", notes: "" },
-            { sl: 25, name: "Masud Rana", weekend: "Friday", phone: "01792791593", join: "25-08-2026", id: "mod_01792791593_25_domdj", status: "Present", notes: "" },
-            { sl: 26, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
+            { sl: 2, name: "Tarikul Islam", weekend: "Saturday", phone: "01401248381", join: "03-01-2026", id: "mod_01401248381_3_7oujg", status: "Present", notes: "" },
+            { sl: 3, name: "Sajedul Islam", weekend: "Sunday", phone: "01876608766", join: "13-12-2023", id: "mod_01876608766_4_9bsrc", status: "Present", notes: "" },
+            { sl: 4, name: "Omar Faruk Majumder", weekend: "Sunday", phone: "01675562296", join: "31-12-2025", id: "mod_01675562296_5_6wls8", status: "Present", notes: "" },
+            { sl: 5, name: "Al Arafat", weekend: "Sunday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_6_hcciw", status: "Present", notes: "" },
+            { sl: 6, name: "Moinul Islam", weekend: "Sunday", phone: "01313520845", join: "05-01-2026", id: "mod_01313520845_7_gu0pd", status: "Present", notes: "" },
+            { sl: 7, name: "Md Sujon", weekend: "Monday", phone: "01762946309", join: "12-07-2024", id: "mod_01762946309_8_ciyu2", status: "Present", notes: "" },
+            { sl: 8, name: "Md Raihan", weekend: "Monday", phone: "01931070660", join: "27-06-2026", id: "mod_01931070660_10_5tzb7", status: "Present", notes: "" },
+            { sl: 9, name: "Fahim Howlader", weekend: "Monday", phone: "01887474044", join: "08-08-2026", id: "mod_01887474044_11_hmq5y", status: "Present", notes: "" },
+            { sl: 10, name: "Lavlu", weekend: "Monday", phone: "", join: "01-01-2026", id: "mod_lavlu_2026", status: "Present", notes: "" },
+            { sl: 11, name: "Sami", weekend: "Tuesday", phone: "01602871511", join: "05-01-2026", id: "mod_01602871511_12_xwcp7", status: "Present", notes: "" },
+            { sl: 12, name: "Hamim", weekend: "Tuesday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_14_to2nh", status: "Present", notes: "" },
+            { sl: 13, name: "Biplob", weekend: "Tuesday", phone: "01926994536", join: "07-09-2026", id: "mod_01926994536_5t6ii", status: "Present", notes: "" },
+            { sl: 14, name: "Farcy", weekend: "Tuesday", phone: "", join: "01-01-2026", id: "mod_farcy_2026", status: "Present", notes: "" },
+            { sl: 15, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
+            { sl: 16, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
+            { sl: 17, name: "Zubayer Mridha", weekend: "Thursday", phone: "01611955763", join: "12-08-2026", id: "mod_01611955763_19_qdz6h", status: "Present", notes: "" },
+            { sl: 18, name: "Nahid", weekend: "Thursday", phone: "", join: "01-01-2026", id: "mod_nahid_2026", status: "Present", notes: "" },
+            { sl: 19, name: "Abdul Muhid", weekend: "Thursday", phone: "", join: "01-01-2026", id: "mod_abdul_muhid_2026", status: "Present", notes: "" },
+            { sl: 20, name: "Piyal Sarker", weekend: "Friday", phone: "01705952384", join: "04-01-2026", id: "mod_01705952384_23_xu0wv", status: "Present", notes: "" },
+            { sl: 21, name: "Tonmoy", weekend: "Friday", phone: "01921080031", join: "02-11-2026", id: "mod_01921080031_24_v2gtv", status: "Present", notes: "" },
+            { sl: 22, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
         ];
 
-        const DEFAULT_NIGHT_SHIFTS = [];
+        const DEFAULT_NIGHT_SHIFTS = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.nightShifts))
+            ? INITIAL_PORTAL_BACKUP.nightShifts
+            : [];
 
         let moderators = [...DEFAULT_MODERATORS];
         let attendanceHistory = {}; 
@@ -81,14 +81,14 @@
 
         // ======================= FIREBASE REALTIME DATABASE SYNC ENGINE =======================
         const DEFAULT_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyCHD-OfIIvMR3tAnEBZovE4uLa1ZmVAg6I",
-            authDomain: "moderators-data-73dcf.firebaseapp.com",
-            databaseURL: "https://moderators-data-73dcf-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "moderators-data-73dcf",
-            storageBucket: "moderators-data-73dcf.firebasestorage.app",
-            messagingSenderId: "31297264026",
-            appId: "1:31297264026:web:51bdca0840c2cb57ea4223",
-            measurementId: "G-E8K3RQWL1Z"
+            apiKey: "AIzaSyA96AmELcDGBay-L7hWVzz4VIoYmbmQHa0",
+            authDomain: "sanvee-s-41340.firebaseapp.com",
+            databaseURL: "https://sanvee-s-41340-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "sanvee-s-41340",
+            storageBucket: "sanvee-s-41340.firebasestorage.app",
+            messagingSenderId: "141238000539",
+            appId: "1:141238000539:web:49be8d09eda1cd76809f3e",
+            measurementId: "G-T51TXV2RPY"
         };
 
         let firebaseApp = null;
@@ -100,7 +100,14 @@
         function getFirebaseConfig() {
             const saved = localStorage.getItem('sanvees_firebase_config');
             if (saved) {
-                try { return JSON.parse(saved); } catch(e) { return DEFAULT_FIREBASE_CONFIG; }
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.projectId === 'moderators-data-73dcf' || (parsed.databaseURL && parsed.databaseURL.includes('moderators-data-73dcf'))) {
+                        localStorage.setItem('sanvees_firebase_config', JSON.stringify(DEFAULT_FIREBASE_CONFIG));
+                        return DEFAULT_FIREBASE_CONFIG;
+                    }
+                    return parsed;
+                } catch(e) { return DEFAULT_FIREBASE_CONFIG; }
             }
             return DEFAULT_FIREBASE_CONFIG;
         }
@@ -127,6 +134,9 @@
                     const data = snapshot.val();
                     if (data && !isRemoteUpdateInProgress) {
                         applyRemoteFirebaseData(data);
+                    } else if (!data && isFirebaseConnected && !isRemoteUpdateInProgress) {
+                        // Remote database is brand new and empty - seed it with full portal data!
+                        syncAllDataToFirebase();
                     }
                 }, (err) => {
                     updateFirebaseStatusUI(false, `Sync Error: ${err.message}`);
@@ -285,6 +295,22 @@
         }
 
         function loadFromLocalStorage() {
+            // One-time auto-migration to new database & cleaned verified moderator list
+            const MIGRATION_VERSION = 'sanvees_v5_clean_22mods';
+            if (localStorage.getItem('sanvees_data_version') !== MIGRATION_VERSION) {
+                if (typeof INITIAL_PORTAL_BACKUP !== 'undefined') {
+                    if (INITIAL_PORTAL_BACKUP.moderators) localStorage.setItem('sanveesModeratorsList', JSON.stringify(INITIAL_PORTAL_BACKUP.moderators));
+                    if (INITIAL_PORTAL_BACKUP.attendanceHistory) localStorage.setItem('sanveesAttendanceHistory', JSON.stringify(INITIAL_PORTAL_BACKUP.attendanceHistory));
+                    if (INITIAL_PORTAL_BACKUP.nightShifts) localStorage.setItem('sanveesNightShifts', JSON.stringify(INITIAL_PORTAL_BACKUP.nightShifts));
+                    if (INITIAL_PORTAL_BACKUP.leaves) localStorage.setItem('sanveesApprovedLeaves', JSON.stringify(INITIAL_PORTAL_BACKUP.leaves));
+                    if (INITIAL_PORTAL_BACKUP.exchanges) localStorage.setItem('sanveesWeekendExchanges', JSON.stringify(INITIAL_PORTAL_BACKUP.exchanges));
+                } else {
+                    localStorage.setItem('sanveesModeratorsList', JSON.stringify(DEFAULT_MODERATORS));
+                }
+                localStorage.setItem('sanvees_firebase_config', JSON.stringify(DEFAULT_FIREBASE_CONFIG));
+                localStorage.setItem('sanvees_data_version', MIGRATION_VERSION);
+            }
+
             const savedMods = localStorage.getItem('sanveesModeratorsList');
             if (savedMods) {
                 try { moderators = JSON.parse(savedMods); } catch(e) { moderators = [...DEFAULT_MODERATORS]; }
@@ -533,7 +559,7 @@
                 const initialLen = scheduledNightShifts.length;
                 scheduledNightShifts = scheduledNightShifts.filter(s => {
                     const mod = moderators.find(m => isRecordForModerator(s, m) || (s.modName && m.name === s.modName));
-                    if (!mod) return false; // remove non-existent moderators (Farcy, Lavlu, Shakib, Abdul Muhid)
+                    if (!mod) return false; // remove records for removed moderators
                     if (isModeratorNightExempt(mod)) return false; // remove senior night exempt
                     // Sync metadata with current moderator record
                     s.modSl = mod.sl;
