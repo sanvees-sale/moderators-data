@@ -11,19 +11,18 @@
             { sl: 7, name: "Md Sujon", weekend: "Monday", phone: "01762946309", join: "12-07-2024", id: "mod_01762946309_8_ciyu2", status: "Present", notes: "" },
             { sl: 8, name: "Md Raihan", weekend: "Monday", phone: "01931070660", join: "27-06-2026", id: "mod_01931070660_10_5tzb7", status: "Present", notes: "" },
             { sl: 9, name: "Fahim Howlader", weekend: "Monday", phone: "01887474044", join: "08-08-2026", id: "mod_01887474044_11_hmq5y", status: "Present", notes: "" },
-            { sl: 10, name: "Lavlu", weekend: "Monday", phone: "", join: "01-01-2026", id: "mod_lavlu_2026", status: "Present", notes: "" },
+            { sl: 10, name: "Farcy", weekend: "Monday", phone: "", join: "01-01-2026", id: "mod_farcy_2026", status: "Present", notes: "" },
             { sl: 11, name: "Sami", weekend: "Tuesday", phone: "01602871511", join: "05-01-2026", id: "mod_01602871511_12_xwcp7", status: "Present", notes: "" },
             { sl: 12, name: "Hamim", weekend: "Tuesday", phone: "01327948737", join: "05-01-2026", id: "mod_01327948737_14_to2nh", status: "Present", notes: "" },
             { sl: 13, name: "Biplob", weekend: "Tuesday", phone: "01926994536", join: "07-09-2026", id: "mod_01926994536_5t6ii", status: "Present", notes: "" },
-            { sl: 14, name: "Farcy", weekend: "Tuesday", phone: "", join: "01-01-2026", id: "mod_farcy_2026", status: "Present", notes: "" },
-            { sl: 15, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
-            { sl: 16, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
-            { sl: 17, name: "Zubayer Mridha", weekend: "Thursday", phone: "01611955763", join: "12-08-2026", id: "mod_01611955763_19_qdz6h", status: "Present", notes: "" },
-            { sl: 18, name: "Nahid", weekend: "Thursday", phone: "", join: "01-01-2026", id: "mod_nahid_2026", status: "Present", notes: "" },
-            { sl: 19, name: "Abdul Muhid", weekend: "Thursday", phone: "", join: "01-01-2026", id: "mod_abdul_muhid_2026", status: "Present", notes: "" },
-            { sl: 20, name: "Piyal Sarker", weekend: "Friday", phone: "01705952384", join: "04-01-2026", id: "mod_01705952384_23_xu0wv", status: "Present", notes: "" },
-            { sl: 21, name: "Tonmoy", weekend: "Friday", phone: "01921080031", join: "02-11-2026", id: "mod_01921080031_24_v2gtv", status: "Present", notes: "" },
-            { sl: 22, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" }
+            { sl: 14, name: "Kowshiq", weekend: "Wednesday", phone: "01956363216", join: "19-01-2024", id: "mod_01956363216_15_et879", status: "Present", notes: "" },
+            { sl: 15, name: "Sahil (Forever)", weekend: "Wednesday", phone: "01947127960", join: "28-06-2026", id: "mod_01947127960_16_thmxc", status: "Present", notes: "" },
+            { sl: 16, name: "Zubayer Mridha", weekend: "Thursday", phone: "01611955763", join: "12-08-2026", id: "mod_01611955763_19_qdz6h", status: "Present", notes: "" },
+            { sl: 17, name: "Abdul Muhid", weekend: "Thursday", phone: "", join: "01-01-2026", id: "mod_abdul_muhid_2026", status: "Present", notes: "" },
+            { sl: 18, name: "Piyal Sarker", weekend: "Friday", phone: "01705952384", join: "04-01-2026", id: "mod_01705952384_23_xu0wv", status: "Present", notes: "" },
+            { sl: 19, name: "Tonmoy", weekend: "Friday", phone: "01921080031", join: "02-11-2026", id: "mod_01921080031_24_v2gtv", status: "Present", notes: "" },
+            { sl: 20, name: "Sajib Chandro Sarker", weekend: "Friday", phone: "01641058787", join: "05-09-2026", id: "mod_01641058787_lgli6", status: "Present", notes: "" },
+            { sl: 21, name: "Omar Faruk", weekend: "Friday", phone: "01626217178", join: "13-11-2026", id: "mod_01626217178_omar_faruk", status: "Present", notes: "" }
         ];
 
         const DEFAULT_NIGHT_SHIFTS = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.nightShifts))
@@ -31,10 +30,16 @@
             : [];
 
         let moderators = [...DEFAULT_MODERATORS];
-        let attendanceHistory = {}; 
+        let attendanceHistory = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && INITIAL_PORTAL_BACKUP.attendanceHistory) 
+            ? JSON.parse(JSON.stringify(INITIAL_PORTAL_BACKUP.attendanceHistory)) 
+            : {}; 
         let scheduledNightShifts = [...DEFAULT_NIGHT_SHIFTS];
-        let approvedLeaves = [];
-        let weekendExchanges = [];
+        let approvedLeaves = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.leaves)) 
+            ? [...INITIAL_PORTAL_BACKUP.leaves] 
+            : [];
+        let weekendExchanges = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.exchanges)) 
+            ? [...INITIAL_PORTAL_BACKUP.exchanges] 
+            : [];
 
         let currentActiveDate = ""; 
         let currentActiveMonth = ""; 
@@ -81,14 +86,14 @@
 
         // ======================= FIREBASE REALTIME DATABASE SYNC ENGINE =======================
         const DEFAULT_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyA96AmELcDGBay-L7hWVzz4VIoYmbmQHa0",
-            authDomain: "sanvee-s-41340.firebaseapp.com",
-            databaseURL: "https://sanvee-s-41340-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "sanvee-s-41340",
-            storageBucket: "sanvee-s-41340.firebasestorage.app",
-            messagingSenderId: "141238000539",
-            appId: "1:141238000539:web:49be8d09eda1cd76809f3e",
-            measurementId: "G-T51TXV2RPY"
+            apiKey: "AIzaSyCHD-OfIIvMR3tAnEBZovE4uLa1ZmVAg6I",
+            authDomain: "moderators-data-73dcf.firebaseapp.com",
+            databaseURL: "https://moderators-data-73dcf-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "moderators-data-73dcf",
+            storageBucket: "moderators-data-73dcf.firebasestorage.app",
+            messagingSenderId: "31297264026",
+            appId: "1:31297264026:web:51bdca0840c2cb57ea4223",
+            measurementId: "G-E8K3RQWL1Z"
         };
 
         let firebaseApp = null;
@@ -102,7 +107,7 @@
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
-                    if (parsed.projectId === 'moderators-data-73dcf' || (parsed.databaseURL && parsed.databaseURL.includes('moderators-data-73dcf'))) {
+                    if (parsed.projectId !== 'moderators-data-73dcf' && (!parsed.databaseURL || !parsed.databaseURL.includes('moderators-data-73dcf'))) {
                         localStorage.setItem('sanvees_firebase_config', JSON.stringify(DEFAULT_FIREBASE_CONFIG));
                         return DEFAULT_FIREBASE_CONFIG;
                     }
@@ -296,7 +301,7 @@
 
         function loadFromLocalStorage() {
             // One-time auto-migration to new database & cleaned verified moderator list
-            const MIGRATION_VERSION = 'sanvees_v5_clean_22mods';
+            const MIGRATION_VERSION = 'sanvees_v10_removed_nahid_lavlu';
             if (localStorage.getItem('sanvees_data_version') !== MIGRATION_VERSION) {
                 if (typeof INITIAL_PORTAL_BACKUP !== 'undefined') {
                     if (INITIAL_PORTAL_BACKUP.moderators) localStorage.setItem('sanveesModeratorsList', JSON.stringify(INITIAL_PORTAL_BACKUP.moderators));
@@ -320,8 +325,8 @@
 
             const savedAtt = localStorage.getItem('sanveesAttendanceHistory');
             if (savedAtt) {
-                try { attendanceHistory = JSON.parse(savedAtt); } catch(e) { attendanceHistory = {}; }
-            } else { attendanceHistory = {}; }
+                try { attendanceHistory = JSON.parse(savedAtt); } catch(e) { attendanceHistory = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && INITIAL_PORTAL_BACKUP.attendanceHistory) ? JSON.parse(JSON.stringify(INITIAL_PORTAL_BACKUP.attendanceHistory)) : {}; }
+            } else { attendanceHistory = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && INITIAL_PORTAL_BACKUP.attendanceHistory) ? JSON.parse(JSON.stringify(INITIAL_PORTAL_BACKUP.attendanceHistory)) : {}; }
 
             const savedNight = localStorage.getItem('sanveesNightShifts');
             if (savedNight !== null) {
@@ -341,13 +346,13 @@
 
             const savedLeaves = localStorage.getItem('sanveesApprovedLeaves');
             if (savedLeaves) {
-                try { approvedLeaves = JSON.parse(savedLeaves); } catch(e) { approvedLeaves = []; }
-            } else { approvedLeaves = []; }
+                try { approvedLeaves = JSON.parse(savedLeaves); } catch(e) { approvedLeaves = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.leaves)) ? [...INITIAL_PORTAL_BACKUP.leaves] : []; }
+            } else { approvedLeaves = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.leaves)) ? [...INITIAL_PORTAL_BACKUP.leaves] : []; }
 
             const savedExchanges = localStorage.getItem('sanveesWeekendExchanges');
             if (savedExchanges) {
-                try { weekendExchanges = JSON.parse(savedExchanges); } catch(e) { weekendExchanges = []; }
-            } else { weekendExchanges = []; }
+                try { weekendExchanges = JSON.parse(savedExchanges); } catch(e) { weekendExchanges = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.exchanges)) ? [...INITIAL_PORTAL_BACKUP.exchanges] : []; }
+            } else { weekendExchanges = (typeof INITIAL_PORTAL_BACKUP !== 'undefined' && Array.isArray(INITIAL_PORTAL_BACKUP.exchanges)) ? [...INITIAL_PORTAL_BACKUP.exchanges] : []; }
 
             sortAndReindexModerators();
             cleanupCorruptedNightData();
@@ -525,9 +530,16 @@
 
         function isRecordForModerator(record, mod) {
             if (!record || !mod) return false;
-            if (record.modId && mod.id && record.modId === mod.id) return true;
-            if (record.modName && mod.name && record.modName.trim().toLowerCase() === mod.name.trim().toLowerCase()) return true;
-            if (record.modPhone && mod.phone) {
+            // 1. Strict ID match if both exist
+            if (record.modId && mod.id) {
+                return String(record.modId) === String(mod.id);
+            }
+            // 2. Strict Name match if both exist (prevent cross-leakage when two moderators share a phone number)
+            if (record.modName && mod.name) {
+                return record.modName.trim().toLowerCase() === mod.name.trim().toLowerCase();
+            }
+            // 3. Fallback to phone ONLY when record lacks an identifying name/id
+            if (!record.modName && !record.modId && record.modPhone && mod.phone) {
                 const rp = String(record.modPhone).replace(/\D/g, '');
                 const mp = String(mod.phone).replace(/\D/g, '');
                 if (rp && mp && rp === mp) return true;
@@ -653,9 +665,8 @@
                         const keyStatus = dayRecords[modKey];
                         const cleanNameStatus = cleanName ? dayRecords[cleanName] : undefined;
                         const idStatus = targetMod.id ? dayRecords[targetMod.id] : undefined;
-                        const phoneStatus = cleanPhone ? dayRecords[cleanPhone] : undefined;
 
-                        const candidates = [keyStatus, nameStatus, cleanNameStatus, idStatus, phoneStatus].filter(s => s !== undefined && s !== null && s !== '');
+                        const candidates = [keyStatus, nameStatus, cleanNameStatus, idStatus].filter(s => s !== undefined && s !== null && s !== '');
                         if (candidates.length > 0) {
                             status = candidates[0];
                         }
@@ -705,7 +716,6 @@
                     newDayRecords[modKey] = status;
                     if (targetMod.name) newDayRecords[targetMod.name] = status;
                     if (targetMod.id) newDayRecords[targetMod.id] = status;
-                    if (cleanPhone) newDayRecords[cleanPhone] = status;
                 });
 
                 // Preserve any non-numeric custom metadata like _initialized
@@ -748,9 +758,6 @@
                 if (existingStatus === undefined && mod.id && dayRecords[mod.id] !== undefined) {
                     existingStatus = dayRecords[mod.id];
                 }
-                if (existingStatus === undefined && cleanPhone && dayRecords[cleanPhone] !== undefined) {
-                    existingStatus = dayRecords[cleanPhone];
-                }
 
                 // If senior is night exempt, never allow Night Shift
                 if (isModeratorNightExempt(mod) && existingStatus === 'Night Shift') {
@@ -791,13 +798,15 @@
                     neededSync = true;
                 }
 
-                // Synchronize all keys cleanly with this single source of truth
+                // Synchronize all canonical keys cleanly with this single source of truth
                 dayRecords[modKey] = existingStatus;
                 if (mod.name) dayRecords[mod.name] = existingStatus;
                 if (mod.id) dayRecords[mod.id] = existingStatus;
-                if (cleanPhone) dayRecords[cleanPhone] = existingStatus;
 
-                // Strip legacy serial keys
+                // Strip legacy and phone keys to avoid cross-person bleed
+                if (cleanPhone && dayRecords[cleanPhone] !== undefined) {
+                    delete dayRecords[cleanPhone];
+                }
                 if (dayRecords[String(mod.sl)] !== undefined) {
                     delete dayRecords[String(mod.sl)];
                     neededSync = true;
@@ -860,12 +869,14 @@
             dayRecords[modKey] = status;
             if (mod.name) dayRecords[mod.name] = status;
             if (mod.id) dayRecords[mod.id] = status;
-            if (cleanPhone) dayRecords[cleanPhone] = status;
 
-            // 2. Clean legacy keys
+            // 2. Clean legacy keys and phone keys to prevent cross-person bleed
             delete dayRecords[String(mod.sl)];
             delete dayRecords['mod_' + cleanPhone];
             delete dayRecords['mod_sl_' + String(mod.sl)];
+            if (cleanPhone && dayRecords[cleanPhone] !== undefined) {
+                delete dayRecords[cleanPhone];
+            }
 
             // 3. Keep scheduledNightShifts in sync with the change
             if (status !== 'Night Shift') {
@@ -1744,7 +1755,7 @@ ${appointmentState.location || 'Head Office'}`;
                                 <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-semibold flex items-center gap-1.5 mt-0.5">
                                     <span>SL #${String(mod.sl).padStart(2, '0')}</span>
                                     <span>•</span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500">${mod.phone || ''}</span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-500">${mod.phone || '<span class="italic text-slate-400">No Phone</span>'}</span>
                                 </div>
                             </div>
                         </div>
@@ -1774,8 +1785,8 @@ ${appointmentState.location || 'Head Office'}`;
 
                     <td class="col-daily-phone py-3.5 px-4 text-center align-middle">
                         <div class="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
-                            <span>${mod.phone}</span>
-                            ${currentUserRole === 'admin' ? `
+                            <span>${mod.phone ? mod.phone : '<span class="text-xs italic text-slate-400 font-sans">No Phone</span>'}</span>
+                            ${(currentUserRole === 'admin' && mod.phone && mod.phone.replace(/\D/g, '').length >= 10) ? `
                                 <button onclick="triggerDirectWhatsApp('${mod.phone}', '${mod.name}', ${isUnexcusedAbsent}, '${currentActiveDate}')" 
                                         title="${isUnexcusedAbsent ? 'Send Absent Alert Notice' : 'Chat on WhatsApp'}" 
                                         class="relative w-7 h-7 rounded-lg ${isUnexcusedAbsent ? 'bg-rose-50 text-rose-600 hover:bg-rose-100 dark:bg-rose-950/60 dark:text-rose-400 border border-rose-500/30' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700'} flex items-center justify-center text-xs transition active:scale-95 no-print shadow-xs cursor-pointer">
@@ -2191,7 +2202,12 @@ ${appointmentState.location || 'Head Office'}`;
                         } else if (mod.name && dayRecords[mod.name] !== undefined && dayRecords[mod.name] !== null) {
                             status = dayRecords[mod.name];
                         } else if (mod.phone && dayRecords[mod.phone] !== undefined) {
-                            status = dayRecords[mod.phone];
+                            // Only use phone fallback if no other moderator shares this phone number
+                            const cleanPhone = String(mod.phone).replace(/\D/g, '');
+                            const isSharedPhone = cleanPhone && moderators.some(other => other !== mod && other.phone && String(other.phone).replace(/\D/g, '') === cleanPhone);
+                            if (!isSharedPhone) {
+                                status = dayRecords[mod.phone];
+                            }
                         }
                     }
 
@@ -3115,7 +3131,7 @@ ${appointmentState.location || 'Head Office'}`;
                         </div>
                         <div class="text-[10px] text-slate-400 font-mono flex items-center gap-1">
                             <i class="fa-solid fa-phone text-[9px]"></i>
-                            <span>${item.mod.phone}</span>
+                            <span>${item.mod.phone || 'No phone'}</span>
                         </div>
                     </td>
                     <td class="p-2.5 text-center">
@@ -4110,6 +4126,7 @@ ${appointmentState.location || 'Head Office'}`;
 
         function buildWhatsAppURL(phone, name, isAbsentAlert = false, dateStr = currentActiveDate) {
             const cleanPhone = (phone || '').replace(/[^0-9]/g, '');
+            if (!cleanPhone || cleanPhone.length < 10) return null;
             const bdPhone = cleanPhone.startsWith('0') ? '88' + cleanPhone : cleanPhone;
             const message = isAbsentAlert ? getAbsentNoticeMessage(name, dateStr) : `Dear ${name},\n\nI am contacting you regarding your duty shift at Sanvee's by Tony.\n\nRegards,\nSheikh Shahmiran Manik\nModerator In-Charge, Sanvee's by Tony`;
             return `https://wa.me/${bdPhone}?text=${encodeURIComponent(message)}`;
@@ -4120,7 +4137,12 @@ ${appointmentState.location || 'Head Office'}`;
                 showToast('WhatsApp notice dispatch is restricted to In-Charge Admin.', 'info');
                 return;
             }
-            window.open(buildWhatsAppURL(phone, name, isAbsentAlert, dateStr), '_blank');
+            const url = buildWhatsAppURL(phone, name, isAbsentAlert, dateStr);
+            if (!url) {
+                showToast(`No valid phone number for ${name || 'moderator'}`, 'warning');
+                return;
+            }
+            window.open(url, '_blank');
         }
 
         function openAbsentAlertModal(mod, targetDate = currentActiveDate) {
@@ -4211,19 +4233,26 @@ ${appointmentState.location || 'Head Office'}`;
             document.getElementById('moderator-modal').classList.remove('hidden');
         }
 
-        function openEditModal(index) {
+        function openEditModal(target) {
             if (currentUserRole === 'moderator') {
                 showToast('Editing moderators is restricted to In-Charge Admin.', 'info');
                 return;
             }
+            let index = -1;
+            if (typeof target === 'number' && target >= 0 && target < moderators.length) {
+                index = target;
+            } else {
+                index = moderators.findIndex(m => m.id === target || String(m.sl) === String(target));
+            }
+            if (index < 0) return;
             const mod = moderators[index];
             document.getElementById('form-edit-index').value = index;
             document.getElementById('modal-title').innerText = "Edit Moderator";
             document.getElementById('form-sl').value = mod.sl;
-            document.getElementById('form-name').value = mod.name;
-            document.getElementById('form-weekend').value = mod.weekend;
-            document.getElementById('form-phone').value = mod.phone;
-            document.getElementById('form-join').value = mod.join;
+            document.getElementById('form-name').value = mod.name || '';
+            document.getElementById('form-weekend').value = mod.weekend || 'Saturday';
+            document.getElementById('form-phone').value = mod.phone || '';
+            document.getElementById('form-join').value = mod.join || '';
             updateFormTenurePreview();
             updateFormCalculatedSl();
 
@@ -4245,6 +4274,27 @@ ${appointmentState.location || 'Head Office'}`;
             const nameVal = document.getElementById('form-name').value.trim();
             const phoneVal = document.getElementById('form-phone').value.trim();
             const joinVal = document.getElementById('form-join').value.trim();
+
+            if (!nameVal) {
+                showToast('Please enter moderator name.', 'error');
+                return;
+            }
+
+            // Duplicate phone detection: warn if phone already belongs to someone else
+            if (phoneVal) {
+                const cleanInputPhone = phoneVal.replace(/\D/g, '');
+                if (cleanInputPhone.length >= 6) {
+                    const existingDuplicate = moderators.find((m, idx) => {
+                        if (editIndex >= 0 && idx === editIndex) return false;
+                        const mClean = (m.phone || '').replace(/\D/g, '');
+                        return mClean && mClean === cleanInputPhone;
+                    });
+                    if (existingDuplicate) {
+                        const confirmDup = confirm(`⚠️ Warning: Phone number ${phoneVal} is already assigned to "${existingDuplicate.name}" (SL #${String(existingDuplicate.sl).padStart(2, '0')}).\n\nDo you want to proceed and assign this number anyway?`);
+                        if (!confirmDup) return;
+                    }
+                }
+            }
 
             if (editIndex >= 0) {
                 const mod = moderators[editIndex];
@@ -4278,11 +4328,18 @@ ${appointmentState.location || 'Head Office'}`;
             if (activeView === 'monthly') renderMonthlyTable();
         }
 
-        function deleteModerator(index) {
+        function deleteModerator(target) {
             if (currentUserRole === 'moderator') {
                 showToast('Deleting moderators is restricted to In-Charge Admin.', 'info');
                 return;
             }
+            let index = -1;
+            if (typeof target === 'number' && target >= 0 && target < moderators.length) {
+                index = target;
+            } else {
+                index = moderators.findIndex(m => m.id === target || String(m.sl) === String(target));
+            }
+            if (index < 0) return;
             const mod = moderators[index];
             if (!mod) return;
             const deletedName = (mod.name || '').trim();
@@ -4657,7 +4714,10 @@ ${appointmentState.location || 'Head Office'}`;
 
                 // Accept '1234' or last 4 digits of phone or admin password
                 const modPin = passInput.trim();
-                const validModPins = ['1234', mod.phone.slice(-4), AUTH_CONFIG.getPassword()];
+                const phoneDigits = (mod.phone || '').replace(/\D/g, '');
+                const last4 = phoneDigits.length >= 4 ? phoneDigits.slice(-4) : null;
+                const validModPins = ['1234', AUTH_CONFIG.getPassword()];
+                if (last4) validModPins.push(last4);
                 
                 if (validModPins.includes(modPin) || modPin === '1234') {
                     errorBanner.classList.add('hidden');
@@ -5021,14 +5081,14 @@ ${appointmentState.location || 'Head Office'}`;
             const matchingActions = actionCommands.filter(a => a.title.toLowerCase().includes(q) || a.subtitle.toLowerCase().includes(q));
 
             const matchingMods = moderators.filter(m => 
-                m.name.toLowerCase().includes(q) || 
-                m.phone.includes(q) || 
-                m.weekend.toLowerCase().includes(q) ||
-                String(m.sl).includes(q)
+                (m.name || '').toLowerCase().includes(q) || 
+                (m.phone || '').includes(q) || 
+                (m.weekend || '').toLowerCase().includes(q) ||
+                String(m.sl || '').includes(q)
             ).map(m => ({
                 id: `mod-${m.sl}`,
-                title: `${String(m.sl).padStart(2, '0')} - ${m.name}`,
-                subtitle: `${m.weekend} Off • ${m.phone} • Joined ${m.join}`,
+                title: `${String(m.sl).padStart(2, '0')} - ${m.name || 'Unnamed'}`,
+                subtitle: `${m.weekend || '--'} Off • ${m.phone || 'No phone'} • Joined ${m.join || '--'}`,
                 icon: 'fa-user',
                 color: 'text-amber-500 dark:text-amber-400',
                 action: () => {
